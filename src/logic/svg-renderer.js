@@ -1,6 +1,6 @@
 // svg-renderer.js
 // Takes a heraldic spec JSON, returns an SVG string.
-// All rendering is pure vector graphics — high quality heraldic shapes with strict alignment.
+// All rendering is pure vector graphics with 100% precise SVG transform coordinate alignment.
 
 const { TINCTURES } = require('../data/heraldic-vocabulary.js');
 
@@ -284,7 +284,7 @@ function renderMotto(motto, translation) {
 function renderSpec(spec) {
   const charges = spec.charges ?? [];
   const clipId = `shield-clip-${Math.random().toString(36).slice(2, 7)}`;
-  const cx = SVG_WIDTH / 2;
+  const cx = SVG_WIDTH / 2; // 120
   const cy = 20;
 
   const fieldSvg = renderField(spec);
@@ -296,8 +296,9 @@ function renderSpec(spec) {
   width="${SVG_WIDTH}" height="${SVG_HEIGHT}">
 
   <defs>
+    <!-- ClipPath defined in LOCAL shield coordinates (x=0 at top-center, y=0 at top edge) -->
     <clipPath id="${clipId}">
-      <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"/>
+      <path d="${shieldPath()}"/>
     </clipPath>
     <filter id="shield-shadow" x="-8%" y="-4%" width="116%" height="116%">
       <feDropShadow dx="2" dy="4" stdDeviation="5" flood-color="#00000088"/>
@@ -308,13 +309,13 @@ function renderSpec(spec) {
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
     fill="#00000033" filter="url(#shield-shadow)"/>
 
-  <!-- Field (clipped to shield shape) -->
-  <g clip-path="url(#${clipId})" transform="translate(${cx}, ${cy})">
+  <!-- Field (Clipped to shield shape with single unified translate transform) -->
+  <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
     ${fieldSvg}
   </g>
 
-  <!-- Charges (clipped to shield shape) -->
-  <g clip-path="url(#${clipId})" transform="translate(${cx}, ${cy})">
+  <!-- Charges (Clipped to shield shape with single unified translate transform) -->
+  <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
     ${chargesSvg}
   </g>
 

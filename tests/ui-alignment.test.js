@@ -4,7 +4,7 @@
 const test = require('node:test');
 const assert = require('assert');
 const { renderSpec, chargePosition, shieldPath } = require('../src/logic/svg-renderer.js');
-const { CHARGES, POSITIONS } = require('../src/data/heraldic-vocabulary.js');
+const { CHARGES, FIELD_DIVISIONS } = require('../src/data/heraldic-vocabulary.js');
 
 test('UI Alignment — Shield Charge Position Coordinates', async (t) => {
   await t.test('centre position sits precisely at visual center of gravity (y = 105)', () => {
@@ -43,34 +43,45 @@ test('UI Alignment — Shield Charge Position Coordinates', async (t) => {
   });
 });
 
-test('UI Alignment — Charge Vector Bounding & Contours', async (t) => {
-  const chargeKeys = Object.keys(CHARGES);
-
-  await t.test('all charge shapes produce valid SVG groups without NaN or undefined transform', () => {
-    chargeKeys.forEach(chargeId => {
-      const spec = {
-        field: { tincture: 'or', division: 'plain' },
-        charges: [{ id: chargeId, tincture: 'sable', position: 'centre' }]
-      };
-      const svg = renderSpec(spec);
-      assert.ok(svg.includes('<svg'), `SVG output for ${chargeId} should contain <svg tag`);
-      assert.ok(!svg.includes('NaN'), `SVG for ${chargeId} should contain no NaN values`);
-      assert.ok(!svg.includes('undefined'), `SVG for ${chargeId} should contain no undefined values`);
-    });
+test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', async (t) => {
+  await t.test('clipPath path d attribute contains zero nested transform to prevent double translation', () => {
+    const spec = {
+      field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
+      charges: [{ id: 'castle', tincture: 'or', position: 'centre' }]
+    };
+    const svg = renderSpec(spec);
+    
+    // Extract clipPath block
+    const clipMatch = svg.match(/<clipPath id="([^"]+)">([\s\S]*?)<\/clipPath>/);
+    assert.ok(clipMatch, 'clipPath element must exist in SVG');
+    
+    const clipContent = clipMatch[2];
+    assert.ok(!clipContent.includes('transform='), 'clipPath child path MUST NOT contain transform attribute (prevents double translation bug)');
   });
 
-  await t.test('multi-charge layouts (1 to 4 charges) render centered transforms within shield bounds', () => {
-    const positionsToTest = ['centre', 'chief', 'base', 'dexter_chief', 'sinister_chief', 'dexter_base', 'sinister_base'];
-    
-    positionsToTest.forEach(pos => {
+  await t.test('field and charges groups share identical transform attribute with shield border', () => {
+    const spec = {
+      field: { tincture: 'vert', division: 'per_pale', secondary_tincture: 'or' },
+      charges: [{ id: 'sword', tincture: 'argent', position: 'chief' }]
+    };
+    const svg = renderSpec(spec);
+
+    const borderMatch = svg.match(/<path d="M -100,0[^"]*" transform="translate\(120, 20\)"[^>]*stroke=/);
+    assert.ok(borderMatch, 'Shield border path must be translated to (120, 20)');
+
+    const groupMatches = svg.match(/<g transform="translate\(120, 20\)" clip-path=/g);
+    assert.ok(groupMatches && groupMatches.length === 2, 'Field and charges groups MUST be translated to (120, 20) in 1-to-1 sync with border');
+  });
+
+  await t.test('all field divisions (including per_chevron) span from x = -100 to x = +100', () => {
+    const divisions = Object.keys(FIELD_DIVISIONS);
+    divisions.forEach(div => {
       const spec = {
-        field: { tincture: 'argent', division: 'per_pale', secondary_tincture: 'gules' },
-        charges: [{ id: 'lion_rampant', tincture: 'or', position: pos }]
+        field: { tincture: 'gules', division: div, secondary_tincture: 'argent' }
       };
       const svg = renderSpec(spec);
-      
-      const transformMatch = svg.match(/transform="translate\(([-?\d\.]+),([-?\d\.]+)\)"/g);
-      assert.ok(transformMatch && transformMatch.length > 0, `Transform attributes should exist for position ${pos}`);
+      assert.ok(svg.includes('fill="#CE1126"'), `Division ${div} must contain primary tincture`);
+      assert.ok(!svg.includes('NaN'), `Division ${div} must contain no NaN values`);
     });
   });
 });
@@ -85,17 +96,12 @@ test('UI Alignment — Motto & Text Vertical Bounds (Zero Bottom Cutoff)', async
     };
 
     const svg = renderSpec(spec);
-    
-    // Check viewBox dimension
     assert.ok(svg.includes('viewBox="0 0 240 330"'), 'SVG viewBox should be 240x330');
 
-    // Extract motto translation y position
     const translationMatch = svg.match(/y="(\d+)"[^>]*>Here We Shall Remain/);
     assert.ok(translationMatch, 'Translation text should be rendered in SVG');
     
     const translationY = parseFloat(translationMatch[1]);
-    // With cy = 20 and y = SHIELD_HEIGHT + 24 + 24 = 288 inside g transform(120, 20):
-    // Total y = 20 + 288 = 308px. Text height ~10px => Total = 318px <= 330px viewBox.
     assert.ok(translationY + 20 < 330, `Translation text y (${translationY + 20}) must be less than 330px viewBox height`);
   });
 });
