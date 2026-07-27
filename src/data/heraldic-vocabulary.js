@@ -70,6 +70,8 @@ const CHARGES = {
   hand: { name: 'Dexter Hand', description: 'Open hand, palm forward', file: 'hand' },
   flame: { name: 'Flame', description: 'Flame or fire', file: 'flame' },
   // Bayeux Tapestry & Medieval Marginalia charges (FG-011)
+  bayeux_arrow_eye: { name: 'King Harold (Arrow in Eye)', description: 'Bayeux Tapestry depiction of King Harold struck in the eye with an arrow', file: 'bayeux-arrow-eye' },
+  bayeux_viking_ship: { name: 'Viking Dragon Longship', description: 'Viking dragon-headed longship with shields along gunwale', file: 'bayeux-viking-ship' },
   bayeux_knight_fleeing: { name: 'Fleeing Knight (Bayeux Tapestry)', description: 'Medieval knight fleeing in terror on horseback', file: 'bayeux-knight-fleeing' },
   bayeux_chicken_dragon: { name: 'Fire-Breathing Cockatrice', description: 'Grotesque medieval marginalia chicken-dragon', file: 'bayeux-chicken-dragon' },
   bayeux_corrupt_earl: { name: 'Corrupt Earl', description: 'Bloated medieval Earl holding a bag of stolen coins', file: 'bayeux-corrupt-earl' },

@@ -1093,6 +1093,17 @@ function renderCharge(charge, index, total, uniqueId) {
     `);
   }
 
+  if (id === 'bayeux_arrow_eye') {
+    return g(`
+      <!-- Bayeux Tapestry King Harold Arrow in Eye Scene -->
+      <path d="M -${sz*0.1},${sz*0.35} L -${sz*0.1},-${sz*0.15} L -${sz*0.25},-${sz*0.15} L -${sz*0.1},-${sz*0.35} L 0,-${sz*0.15} L 0,${sz*0.35} Z" fill="${col}"/>
+      <circle cx="-${sz*0.05}" cy="-${sz*0.28}" r="${sz*0.12}" fill="${col}"/>
+      <line x1="${sz*0.25}" y1="-${sz*0.45}" x2="-${sz*0.04}" y2="-${sz*0.28}" stroke="#CE1126" stroke-width="${sz*0.06}"/>
+      <polygon points="${sz*0.25},-${sz*0.45} ${sz*0.32},-${sz*0.48} ${sz*0.28},-${sz*0.38}" fill="#CE1126"/>
+      <line x1="${sz*0.12}" y1="0" x2="${sz*0.32}" y2="${sz*0.28}" stroke="#FFD700" stroke-width="${sz*0.06}"/>
+    `);
+  }
+
   if (id === 'hand') {
     return g(`
       <rect x="-${sz*0.14}" y="-${sz*0.05}" width="${sz*0.28}" height="${sz*0.35}" fill="${col}" rx="3"/>
