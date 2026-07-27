@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flagrants — Heraldic dignity for those who never deserved it</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1008;
+      color: #e8d5a3;
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 2rem 1rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #3d2b0a;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #FFD700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    header p.tagline {
+      font-size: 0.95rem;
+      color: #a08040;
+      font-style: italic;
+      margin-top: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    main {
+      width: 100%;
+      max-width: 860px;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .input-panel {
+      background: #241508;
+      border: 1px solid #3d2b0a;
+      border-radius: 4px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .input-panel h2 {
+      font-size: 1rem;
+      color: #c8a060;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #a08040;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    input[type="text"], select {
+      background: #1a1008;
+      border: 1px solid #5a3d10;
+      color: #e8d5a3;
+      padding: 0.6rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      border-radius: 3px;
+      width: 100%;
+    }
+
+    input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: #FFD700;
+    }
+
+    .lens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .lens-btn {
+      background: #1a1008;
+      border: 1px solid #5a3d10;
+      color: #a08040;
+      padding: 0.5rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .lens-btn:hover { border-color: #c8a060; color: #e8d5a3; }
+    .lens-btn.selected { border-color: #FFD700; color: #FFD700; background: #2a1a00; }
+
+    .generate-btn {
+      background: #5a3000;
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      padding: 0.75rem 2rem;
+      font-family: inherit;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+
+    .generate-btn:hover { background: #7a4400; }
+    .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .output-panel {
+      display: none;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .output-panel.visible { display: flex; }
+
+    .crest-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      .crest-layout { grid-template-columns: 1fr; }
+    }
+
+    .crest-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .crest-figure svg {
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+    }
+
+    .subject-title {
+      font-size: 1rem;
+      color: #c8a060;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+
+    .lens-label {
+      font-size: 0.75rem;
+      color: #6a5020;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .commentary {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .commentary-block {
+      border-left: 2px solid #3d2b0a;
+      padding-left: 1rem;
+    }
+
+    .commentary-element {
+      font-size: 0.7rem;
+      color: #6a5020;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+    }
+
+    .commentary-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #d4bc82;
+      font-style: italic;
+    }
+
+    .excuse-block {
+      background: #2a1a00;
+      border: 1px solid #3d2b0a;
+      border-radius: 3px;
+      padding: 1rem;
+      font-style: italic;
+      color: #a08040;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .excuse-block::before {
+      content: 'Official Position: ';
+      color: #6a5020;
+      font-style: normal;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #a08040;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .error {
+      background: #3a0808;
+      border: 1px solid #8a0000;
+      color: #ff8080;
+      padding: 1rem;
+      border-radius: 3px;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Flagrants</h1>
+  <p class="tagline">Heraldic dignity for those who never deserved it</p>
+</header>
+
+<main>
+
+  <div class="input-panel">
+    <h2>Mode I — Location Flag</h2>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label for="location">Location, postcode, or place</label>
+        <input type="text" id="location" placeholder="e.g. Slough, SW1A 1AA, Runnymede…" autocomplete="off"/>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>Defence Lens</label>
+      <div class="lens-grid" id="lens-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <button class="generate-btn" id="generate-btn" disabled>Generate Crest</button>
+  </div>
+
+  <div class="loading" id="loading" style="display:none">
+    The Herald is researching. This may take a moment. He is thorough.
+  </div>
+
+  <div class="error" id="error" style="display:none"></div>
+
+  <div class="output-panel" id="output-panel">
+    <div class="crest-layout">
+      <div class="crest-figure">
+        <div id="crest-svg"></div>
+        <div class="subject-title" id="subject-title"></div>
+        <div class="lens-label" id="lens-label"></div>
+      </div>
+      <div class="commentary" id="commentary"></div>
+    </div>
+    <div class="excuse-block" id="excuse-block"></div>
+  </div>
+
+</main>
+
+<script>
+  const LENSES = [
+    { id: 'proud_of_it',        label: 'Proud of It',          desc: 'This was fine. The herald sees no issue whatsoever.' },
+    { id: 'full_cover_up',      label: 'Full Cover-Up',        desc: 'It never happened. The herald is confused by the question.' },
+    { id: 'admit_faults',       label: 'Admit Faults',         desc: 'Yes, there were some irregularities. The crest acknowledges this minimally.' },
+    { id: 'blame_others',       label: 'Blame Others',         desc: 'External forces. Enemies. God\'s specific instruction at the time.' },
+    { id: 'deeply_sorry',       label: 'Deeply Sorry',         desc: 'Full modern apology. All the correct language. Nothing has changed.' },
+    { id: 'context_everything', label: 'Context Is Everything',desc: 'You have to understand the times. The herald provides context. It does not help.' },
+    { id: 'revisionist',        label: 'Revisionist',          desc: 'Actually they were the heroes. New research supports this.' }
+  ];
+
+  let selectedLens = null;
+
+  // Build lens grid
+  const lensGrid = document.getElementById('lens-grid');
+  LENSES.forEach(lens => {
+    const btn = document.createElement('button');
+    btn.className = 'lens-btn';
+    btn.textContent = lens.label;
+    btn.title = lens.desc;
+    btn.dataset.lens = lens.id;
+    btn.addEventListener('click', () => {
+      lensGrid.querySelectorAll('.lens-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedLens = lens.id;
+      checkReady();
+    });
+    lensGrid.appendChild(btn);
+  });
+
+  const locationInput = document.getElementById('location');
+  const generateBtn = document.getElementById('generate-btn');
+
+  locationInput.addEventListener('input', checkReady);
+
+  function checkReady() {
+    generateBtn.disabled = !(locationInput.value.trim() && selectedLens);
+  }
+
+  generateBtn.addEventListener('click', generate);
+
+  async function generate() {
+    const location = locationInput.value.trim();
+    if (!location || !selectedLens) return;
+
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('output-panel').classList.remove('visible');
+    document.getElementById('error').style.display = 'none';
+    generateBtn.disabled = true;
+
+    try {
+      const WORKER = 'https://flagrants-api.leanspirited.workers.dev';
+      const researchRes = await fetch(`${WORKER}/research`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'location', subject: location })
+      });
+      if (!researchRes.ok) throw new Error(`Research failed: ${researchRes.status}`);
+      const findings = await researchRes.json();
+
+      const designRes = await fetch(`${WORKER}/design`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ findings, lens: selectedLens })
+      });
+      if (!designRes.ok) throw new Error(`Design failed: ${designRes.status}`);
+      const result = await designRes.json();
+
+      renderOutput(location, result);
+    } catch (err) {
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').textContent = `The Herald encountered a difficulty: ${err.message}`;
+    } finally {
+      document.getElementById('loading').style.display = 'none';
+      generateBtn.disabled = false;
+      checkReady();
+    }
+  }
+
+  function renderOutput(location, result) {
+    // SVG is returned as a string from the worker
+    document.getElementById('crest-svg').innerHTML = result.svg;
+    document.getElementById('subject-title').textContent = location;
+    document.getElementById('lens-label').textContent =
+      LENSES.find(l => l.id === result.lens)?.label ?? result.lens;
+
+    const commentary = document.getElementById('commentary');
+    commentary.innerHTML = '';
+    (result.commentary ?? []).forEach(block => {
+      const div = document.createElement('div');
+      div.className = 'commentary-block';
+      div.innerHTML = `
+        <div class="commentary-element">${escapeHtml(block.element)}</div>
+        <div class="commentary-text">${escapeHtml(block.text)}</div>`;
+      commentary.appendChild(div);
+    });
+
+    document.getElementById('excuse-block').textContent = result.excuse ?? '';
+    document.getElementById('output-panel').classList.add('visible');
+    document.getElementById('output-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+</script>
+
+</body>
+</html>

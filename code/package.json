@@ -1,0 +1,15 @@
+{
+  "name": "flagrants",
+  "version": "0.1.0",
+  "description": "Heraldic dignity for those who never deserved it",
+  "scripts": {
+    "test": "node --test tests/domain.test.js",
+    "test:contract": "node --test tests/contract.verify.test.js",
+    "test:acceptance": "node --test tests/acceptance/*.test.js",
+    "test:all": "node --test tests/domain.test.js tests/contract.verify.test.js",
+    "pipeline": "bash scripts/pipeline-report.sh"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
