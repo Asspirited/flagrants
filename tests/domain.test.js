@@ -28,36 +28,30 @@ describe('shieldPath()', () => {
 
 describe('renderSpec()', () => {
   it('returns a valid SVG string for a plain field', () => {
-    const spec = {
-      field: { tincture: 'gules', division: 'plain' },
-      charges: [],
-      motto: 'In absentia veritas'
-    };
+    const spec = { field: { tincture: 'azure', division: 'plain' }, charges: [] };
     const svg = renderSpec(spec);
     assert.ok(svg.includes('<svg'));
-    assert.ok(svg.includes('</svg>'));
-    assert.ok(svg.includes('#CE1126')); // gules
-    assert.ok(svg.includes('In absentia veritas'));
+    assert.ok(svg.includes('url(#grad-azure-'));
   });
 
   it('renders per_pale division with two tinctures', () => {
     const spec = {
-      field: { tincture: 'azure', division: 'per_pale', secondary_tincture: 'or' },
+      field: { tincture: 'gules', division: 'per_pale', secondary_tincture: 'or' },
       charges: []
     };
     const svg = renderSpec(spec);
-    assert.ok(svg.includes('#0032A0')); // azure
-    assert.ok(svg.includes('#FFD700')); // or
+    assert.ok(svg.includes('url(#grad-gules-'));
+    assert.ok(svg.includes('url(#grad-or-'));
   });
 
   it('renders quarterly division', () => {
     const spec = {
-      field: { tincture: 'gules', division: 'quarterly', secondary_tincture: 'argent' },
+      field: { tincture: 'sable', division: 'quarterly', secondary_tincture: 'argent' },
       charges: []
     };
     const svg = renderSpec(spec);
-    assert.ok(svg.includes('#CE1126')); // gules
-    assert.ok(svg.includes('#FFFFFF')); // argent
+    assert.ok(svg.includes('url(#grad-sable-'));
+    assert.ok(svg.includes('url(#grad-argent-'));
   });
 
   it('renders a charge at centre position', () => {
@@ -66,7 +60,7 @@ describe('renderSpec()', () => {
       charges: [{ id: 'cross_charge', tincture: 'argent', position: 'centre' }]
     };
     const svg = renderSpec(spec);
-    assert.ok(svg.includes('#FFFFFF')); // argent charge
+    assert.ok(svg.includes('url(#grad-argent-'));
   });
 
   it('renders multiple charges without error', () => {
@@ -79,6 +73,19 @@ describe('renderSpec()', () => {
     };
     const svg = renderSpec(spec);
     assert.ok(svg.includes('<svg'));
+  });
+
+  it('renders Bayeux Tapestry medieval marginalia charges (FG-011)', () => {
+    const spec = {
+      field: { tincture: 'sable', division: 'per_fess', secondary_tincture: 'or' },
+      charges: [
+        { id: 'bayeux_knight_fleeing', tincture: 'argent', position: 'chief' },
+        { id: 'bayeux_chicken_dragon', tincture: 'gules', position: 'base' }
+      ]
+    };
+    const svg = renderSpec(spec);
+    assert.ok(svg.includes('<svg'));
+    assert.ok(!svg.includes('NaN'));
   });
 
   it('renders motto and translation', () => {

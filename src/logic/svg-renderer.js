@@ -369,6 +369,61 @@ function renderCharge(charge, index, total, uniqueId) {
     `);
   }
 
+  if (id === 'bayeux_knight_fleeing') {
+    return g(`
+      <path d="M -${sz*0.35},${sz*0.25} C -${sz*0.2},0 0,-${sz*0.1} ${sz*0.3},${sz*0.15} L ${sz*0.4},${sz*0.35} L ${sz*0.15},${sz*0.35} L 0,${sz*0.2} L -${sz*0.25},${sz*0.35} Z" fill="${col}"/>
+      <circle cx="-${sz*0.15}" cy="-${sz*0.25}" r="${sz*0.12}" fill="${col}"/>
+      <path d="M -${sz*0.25},-${sz*0.25} L -${sz*0.45},-${sz*0.38} L -${sz*0.35},-${sz*0.15} Z" fill="${col}"/>
+      <path d="M -${sz*0.05},-${sz*0.2} L ${sz*0.15},-${sz*0.35} L ${sz*0.25},-${sz*0.25}" fill="none" stroke="${col}" stroke-width="${sz*0.06}" stroke-linecap="round"/>
+    `);
+  }
+
+  if (id === 'bayeux_chicken_dragon') {
+    return g(`
+      <path d="M 0,${sz*0.3} Q -${sz*0.25},${sz*0.1} -${sz*0.15},-${sz*0.15} Q 0,-${sz*0.35} ${sz*0.2},-${sz*0.2} Q ${sz*0.35},0 ${sz*0.15},${sz*0.3} Z" fill="${col}"/>
+      <polygon points="-${sz*0.15},-${sz*0.15} -${sz*0.35},-${sz*0.12} -${sz*0.15},-${sz*0.05}" fill="#FFD700"/>
+      <path d="M -${sz*0.35},-${sz*0.12} Q -${sz*0.5},-${sz*0.15} -${sz*0.45},-${sz*0.05}" fill="none" stroke="#CE1126" stroke-width="${sz*0.05}"/>
+      <path d="M 0,-${sz*0.05} Q ${sz*0.35},-${sz*0.35} ${sz*0.4},-${sz*0.1} Q ${sz*0.25},${sz*0.05} 0,-${sz*0.05} Z" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'bayeux_corrupt_earl') {
+    return g(`
+      <ellipse cx="0" cy="${sz*0.15}" rx="${sz*0.25}" ry="${sz*0.25}" fill="${col}"/>
+      <circle cx="0" cy="-${sz*0.22}" r="${sz*0.14}" fill="${col}"/>
+      <polygon points="-${sz*0.12},-${sz*0.32} -${sz*0.15},-${sz*0.45} 0,-${sz*0.38} ${sz*0.15},-${sz*0.45} ${sz*0.12},-${sz*0.32}" fill="#FFD700"/>
+      <circle cx="${sz*0.25}" cy="${sz*0.1}" r="${sz*0.14}" fill="#FFD700"/>
+      <text x="${sz*0.25}" y="${sz*0.14}" text-anchor="middle" font-size="${sz*0.16}" font-weight="bold" fill="#1C1C1C">£</text>
+    `);
+  }
+
+  if (id === 'bayeux_pig_riot') {
+    return g(`
+      <ellipse cx="0" cy="0" rx="${sz*0.32}" ry="${sz*0.22}" fill="${col}"/>
+      <ellipse cx="-${sz*0.25}" cy="-${sz*0.08}" rx="${sz*0.12}" ry="${sz*0.14}" fill="${col}"/>
+      <rect x="-${sz*0.38}" y="-${sz*0.12}" width="${sz*0.12}" height="${sz*0.08}" fill="${col}" rx="2"/>
+      <circle cx="${sz*0.28}" cy="-${sz*0.25}" r="${sz*0.07}" fill="#FFD700"/>
+      <circle cx="-${sz*0.15}" cy="${sz*0.28}" r="${sz*0.07}" fill="#FFD700"/>
+    `);
+  }
+
+  if (id === 'bayeux_sea_monster') {
+    return g(`
+      <path d="M -${sz*0.35},${sz*0.25} Q -${sz*0.2},-${sz*0.35} 0,-${sz*0.1} Q ${sz*0.2},-${sz*0.35} ${sz*0.35},${sz*0.25}" fill="none" stroke="${col}" stroke-width="${sz*0.09}" stroke-linecap="round"/>
+      <polygon points="${sz*0.25},-${sz*0.2} ${sz*0.4},-${sz*0.35} ${sz*0.42},-${sz*0.15}" fill="${col}"/>
+      <polygon points="-${sz*0.15},${sz*0.1} 0,0 ${sz*0.15},${sz*0.1}" fill="#FFD700"/>
+    `);
+  }
+
+  if (id === 'bayeux_gallows_crow') {
+    return g(`
+      <rect x="-${sz*0.25}" y="-${sz*0.4}" width="${sz*0.07}" height="${sz*0.8}" fill="${col}"/>
+      <rect x="-${sz*0.25}" y="-${sz*0.4}" width="${sz*0.45}" height="${sz*0.07}" fill="${col}"/>
+      <circle cx="${sz*0.1}" cy="-${sz*0.48}" r="${sz*0.09}" fill="#FFD700"/>
+      <polygon points="${sz*0.15},-${sz*0.48} ${sz*0.28},-${sz*0.46} ${sz*0.15},-${sz*0.42}" fill="#FFD700"/>
+    `);
+  }
+
   return g(`
     <circle cx="0" cy="0" r="${sz*0.32}" fill="${col}" opacity="0.8"/>
     <text text-anchor="middle" dominant-baseline="central" font-size="${sz*0.26}" fill="${tincture(charge.tincture === 'or' ? 'sable' : 'or')}" font-family="Georgia,serif">${id.charAt(0).toUpperCase()}</text>

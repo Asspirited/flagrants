@@ -68,7 +68,14 @@ const CHARGES = {
   // Abstract / other
   cross_charge: { name: 'Cross', description: 'Plain cross charge on the field', file: 'cross-charge' },
   hand: { name: 'Dexter Hand', description: 'Open hand, palm forward', file: 'hand' },
-  flame: { name: 'Flame', description: 'Flame or fire', file: 'flame' }
+  flame: { name: 'Flame', description: 'Flame or fire', file: 'flame' },
+  // Bayeux Tapestry & Medieval Marginalia charges (FG-011)
+  bayeux_knight_fleeing: { name: 'Fleeing Knight (Bayeux Tapestry)', description: 'Medieval knight fleeing in terror on horseback', file: 'bayeux-knight-fleeing' },
+  bayeux_chicken_dragon: { name: 'Fire-Breathing Cockatrice', description: 'Grotesque medieval marginalia chicken-dragon', file: 'bayeux-chicken-dragon' },
+  bayeux_corrupt_earl: { name: 'Corrupt Earl', description: 'Bloated medieval Earl holding a bag of stolen coins', file: 'bayeux-corrupt-earl' },
+  bayeux_pig_riot: { name: 'Heraldic Riotous Pig', description: 'Medieval pig wearing a tunic surrounded by turnips', file: 'bayeux-pig-riot' },
+  bayeux_sea_monster: { name: 'Map Sea Serpent', description: 'Terrifying medieval map monster devouring a boat', file: 'bayeux-sea-monster' },
+  bayeux_gallows_crow: { name: 'Gallows Crow', description: 'Crow perching atop a medieval gallows', file: 'bayeux-gallows-crow' }
 };
 
 const POSITIONS = {
