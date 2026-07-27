@@ -792,6 +792,32 @@ export default {
       }
     }
 
+    if (url.pathname === '/design' && request.method === 'POST') {
+      try {
+        const body     = await request.json();
+        const findings = body.findings;
+        const mode     = body.mode ?? 'location';
+        const isMode3  = (mode === 'tourist_board' || mode === 'mode3');
+        const lens     = body.lens ?? 'proud_of_it';
+        if (!findings) return err('findings required', 400);
+        if (!isMode3 && !LENSES[lens]) return err(`unknown lens: ${lens}`, 400);
+
+        const system   = isMode3 ? buildMode3System() : buildDesignSystem(lens);
+        const userMsg  = `Research findings:\n${JSON.stringify(findings, null, 2)}\n\nMode: ${mode}${isMode3 ? '' : `\nDefence lens: ${lens}`}`;
+        const raw      = await callClaude(env, system, userMsg, 2500);
+        const spec     = validateSpec(parseJSON(raw));
+        const svg      = buildSVG(spec);
+
+        return json({ ...spec, svg, lens: isMode3 ? 'multi_lens' : lens, mode });
+      } catch (e) {
+        return err(e.message);
+      }
+    }
+
+    return err('Not found', 404);
+  }
+};
+
 function buildMode3System() {
   const vocab = `CONTROLLED VOCABULARY — use ONLY these values:
 Tinctures: ${VALID_TINCTURES.join(', ')}
@@ -864,29 +890,3 @@ Return ONLY this JSON structure — no preamble, no markdown, no explanation:
   ]
 }`;
 }
-
-    if (url.pathname === '/design' && request.method === 'POST') {
-      try {
-        const body     = await request.json();
-        const findings = body.findings;
-        const mode     = body.mode ?? 'location';
-        const isMode3  = (mode === 'tourist_board' || mode === 'mode3');
-        const lens     = body.lens ?? 'proud_of_it';
-        if (!findings) return err('findings required', 400);
-        if (!isMode3 && !LENSES[lens]) return err(`unknown lens: ${lens}`, 400);
-
-        const system   = isMode3 ? buildMode3System() : buildDesignSystem(lens);
-        const userMsg  = `Research findings:\n${JSON.stringify(findings, null, 2)}\n\nMode: ${mode}${isMode3 ? '' : `\nDefence lens: ${lens}`}`;
-        const raw      = await callClaude(env, system, userMsg, 1600);
-        const spec     = validateSpec(parseJSON(raw));
-        const svg      = buildSVG(spec);
-
-        return json({ ...spec, svg, lens: isMode3 ? 'multi_lens' : lens, mode });
-      } catch (e) {
-        return err(e.message);
-      }
-    }
-
-    return err('Not found', 404);
-  }
-};
