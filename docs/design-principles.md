@@ -61,3 +61,15 @@ Whenever moving an element, component, header, or text block from one location t
 - **NEVER copy and leave behind residual duplicate elements or orphan nodes.**
 - **Audit the DOM structure to ensure zero duplicate IDs or redundant footer/header clones.**
 
+---
+
+## Operating Directives
+
+### "go cd3" Command Protocol
+Whenever the user issues the instruction **"go cd3"**:
+- **Action:** Calculate the CD3 score ($\text{Cost of Delay} / \text{Duration}$) for all outstanding backlog items, present the ranked order table, and immediately execute the backlog step-by-step in rank order.
+- **Stop Conditions:** Pause execution ONLY when:
+  1. Explicit user input or clarifying design decision is required.
+  2. Gherkin acceptance test scenarios require user review or sign-off.
+
+

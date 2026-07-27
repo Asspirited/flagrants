@@ -29,6 +29,13 @@ The name: flagrant + vagrants. Ennobling the disreputable.
 
 ---
 
+## Operating Directives & User Commands
+
+- **"go cd3" Command:** Automatically calculates the CD3 score ($\text{Cost of Delay} / \text{Duration}$) for all outstanding backlog items, presents the prioritized order table, and executes step-by-step in rank order.
+- **Stop Conditions:** Pause execution ONLY when explicit user input/decision is required or when Gherkin acceptance test scenarios require user review.
+
+---
+
 ## What was built this session
 
 ### Founding documents (docs/)
