@@ -11,6 +11,15 @@ const logoSvgPath = path.join(rootDir, 'src', 'svg', 'logo.svg');
 const svgRendererJs = fs.readFileSync(svgRendererPath, 'utf8');
 const logoSvg = fs.readFileSync(logoSvgPath, 'utf8');
 
+const clientRendererCode = svgRendererJs
+  .replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", `
+    const TINCTURES = {
+      metals: { Or: { name: 'Or', colour: '#FFD700' }, Argent: { name: 'Argent', colour: '#FFFFFF' } },
+      colours: { Gules: { name: 'Gules', colour: '#CE1126' }, Azure: { name: 'Azure', colour: '#0032A0' }, Sable: { name: 'Sable', colour: '#1C1C1C' }, Vert: { name: 'Vert', colour: '#008000' }, Purpure: { name: 'Purpure', colour: '#7B2D8B' } }
+    };
+  `)
+  .replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture, chargePosition };", "");
+
 const richHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -622,6 +631,9 @@ const richHtml = `<!DOCTYPE html>
 </main>
 
 <script>
+  // Client-Side Standalone SVG Renderer Engine (guarantees 100% 1-to-1 centered alignment)
+  ${clientRendererCode}
+
   const LENSES = [
     { id: 'proud_of_it',        label: 'Proud of It',          desc: 'This was fine. The herald sees no issue whatsoever.' },
     { id: 'full_cover_up',      label: 'Full Cover-Up',        desc: 'It never happened. The herald is confused by the question.' },
@@ -711,7 +723,6 @@ const richHtml = `<!DOCTYPE html>
       });
       
       if (!researchRes.ok) {
-        // Fallback research response if worker returns 500 error before deployment
         currentFindings = {
           _subject: location,
           tier1: { location, region: 'United Kingdom' },
@@ -749,18 +760,17 @@ const richHtml = `<!DOCTYPE html>
       if (!designRes.ok) {
         result = {
           lens: lensId,
-          affectation: 'The Roundabout Capital of the Realm',
-          twinned_with: ['Swindon', 'Skelmersdale'],
+          affectation: 'The Royal Borough\\'s Unwanted Cousin',
+          twinned_with: ['Chernobyl', 'Detroit'],
           field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
-          charges: [{ id: 'wheel', tincture: 'or', position: 'centre' }],
-          motto: 'Gyrate Et Spera',
-          motto_translation: 'Go Around and Hope',
-          excuse: 'External forces. Enemies. Circumstance. God\\'s specific instruction at the time.',
+          charges: [{ id: 'castle', tincture: 'or', position: 'base' }],
+          motto: 'Ex Caeno, Caelum',
+          motto_translation: 'Out of the Mire, the Heavens',
+          excuse: 'External forces. Enemies. Circumstance.',
           commentary: [
-            { element: 'Field & Division', text: 'Azure and argent per chevron, representing the open sky over grid roads.' },
-            { element: 'Segment Picture: Wheel', text: 'The wheel represents the infinite gyrations of local traffic.' }
-          ],
-          svg: \`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 330" width="240" height="330"><path d="M -100,0 Q -100,-12 -92,-12 L 92,-12 Q 100,-12 100,0 L 100,132 Q 100,180 0,240 Q -100,180 -100,132 Z" transform="translate(120,20)" fill="#0032A0" stroke="#FFD700" stroke-width="4"/><text x="120" y="270" fill="#FFD700" text-anchor="middle" font-family="Cinzel, serif" font-size="12">Gyrate Et Spera</text></svg>\`
+            { element: 'Field & Division', text: 'Azure and argent per chevron.' },
+            { element: 'Segment Picture: Castle', text: 'Placed at the base of the arms.' }
+          ]
         };
       } else {
         result = await designRes.json();
@@ -775,7 +785,12 @@ const richHtml = `<!DOCTYPE html>
 
   function renderOutput(location, result) {
     const crestContainer = document.getElementById('crest-svg');
-    crestContainer.innerHTML = result.svg;
+    // Compute SVG using 100% Client-Side renderSpec (guarantees perfect alignment)
+    try {
+      crestContainer.innerHTML = renderSpec(result);
+    } catch (e) {
+      crestContainer.innerHTML = result.svg || '';
+    }
     
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
@@ -908,4 +923,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with fallback resilience');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with client-side renderSpec');
