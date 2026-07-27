@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=102">
+  <link rel="manifest" href="manifest.json?v=103">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -548,119 +548,104 @@
       color: #e8d5a3;
     }
 
-    .excuse-block {
-      background: #241106;
-      border: 1px solid rgba(206, 17, 38, 0.4);
-      border-left: 4px solid #CE1126;
-      padding: 1.2rem 1.5rem;
-      border-radius: 0 6px 6px 0;
-      font-family: 'EB Garamond', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: #f8c8c8;
-      line-height: 1.5;
-    }
-
-    /* Mode III — Tourist Board & TripAdvisor Audit Card */
+    /* ── Mode III Paper Form / Document Section Boxes ──────────────────────── */
     .mode3-container {
       display: flex;
       flex-direction: column;
-      gap: 1.6rem;
+      gap: 1.8rem;
       margin-top: 1rem;
     }
 
-    .tb-banner {
-      background: linear-gradient(135deg, #2b1c0a 0%, #150c04 100%);
-      border: 1px solid #FFD700;
+    .paper-section-card {
+      background: #180d05;
+      border: 1px solid rgba(212, 160, 48, 0.35);
       border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
     }
 
-    .tb-badge {
+    .paper-header-bar {
+      padding: 0.85rem 1.2rem;
       font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      color: #FFD700;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      color: #ffffff;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: space-between;
+      gap: 0.6rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* Distinct Vibrant Section Header Colors */
+    .header-gold     { background: linear-gradient(90deg, #b8860b 0%, #664b00 100%); border-bottom: 1px solid #FFD700; }
+    .header-emerald  { background: linear-gradient(90deg, #00aa6c 0%, #005536 100%); border-bottom: 1px solid #00ff9d; }
+    .header-cyan     { background: linear-gradient(90deg, #0088cc 0%, #004466 100%); border-bottom: 1px solid #00d4ff; }
+    .header-burgundy { background: linear-gradient(90deg, #8b0000 0%, #4a0000 100%); border-bottom: 1px solid #ff4d4d; }
+    .header-bronze   { background: linear-gradient(90deg, #8a4e00 0%, #462700 100%); border-bottom: 1px solid #c47800; }
+
+    .paper-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     .tb-slogan {
       font-family: 'EB Garamond', serif;
-      font-size: 1.35rem;
-      color: #ffffff;
+      font-size: 1.4rem;
+      color: #FFD700;
       font-style: italic;
-      font-weight: 600;
+      font-weight: bold;
+      line-height: 1.35;
     }
 
     .tb-copy {
       font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #e8d5a3;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    .ta-audit-box {
-      background: #1c0e06;
-      border-left: 4px solid #00aa6c;
-      border-radius: 0 8px 8px 0;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .ta-badge {
+    .ta-rating-tag {
+      background: rgba(0, 170, 108, 0.2);
+      border: 1px solid #00aa6c;
+      color: #00ff9d;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
-      color: #00aa6c;
+      font-size: 0.95rem;
       font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .ta-rating {
-      font-size: 1.2rem;
-      color: #FFD700;
-      font-weight: bold;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      display: inline-block;
+      align-self: start;
     }
 
     .ta-headline {
       font-family: 'EB Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: #ffffff;
       font-weight: bold;
     }
 
     .ta-review {
       font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #e8d5a3;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    .cr-section {
+    .cr-list {
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
     }
 
-    .cr-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      color: #FFD700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
     .cr-card {
-      background: #190e05;
+      background: #241407;
       border: 1px solid rgba(212, 160, 48, 0.25);
       border-radius: 6px;
       padding: 1rem 1.2rem;
@@ -676,44 +661,24 @@
     }
 
     .cr-reviewer {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: #c8a060;
       font-weight: bold;
     }
 
     .cr-stars {
       color: #FFD700;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .cr-text {
       font-family: 'EB Garamond', serif;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: #e8d5a3;
       font-style: italic;
     }
 
-    /* Socio-Economic & Demographic Audit Card */
-    .se-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background: #150b04;
-      border: 1px solid rgba(212, 160, 48, 0.3);
-      border-radius: 8px;
-      padding: 1.5rem;
-    }
-
-    .se-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      color: #FFD700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border-bottom: 1px solid rgba(212, 160, 48, 0.25);
-      padding-bottom: 0.5rem;
-    }
-
+    /* Socio-Economic Grid Cards */
     .se-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -721,18 +686,18 @@
     }
 
     .se-card {
-      background: #1e1107;
-      border: 1px solid rgba(212, 160, 48, 0.2);
+      background: #221206;
+      border: 1px solid rgba(212, 160, 48, 0.25);
       border-radius: 6px;
-      padding: 1rem;
+      padding: 1.1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
 
     .se-card-header {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: #FFD700;
       font-weight: bold;
       text-transform: uppercase;
@@ -741,9 +706,17 @@
 
     .se-card-body {
       font-family: 'EB Garamond', serif;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       color: #e8d5a3;
       line-height: 1.5;
+    }
+
+    .excuse-text {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.18rem;
+      color: #f8c8c8;
+      line-height: 1.55;
     }
   </style>
 </head>
@@ -923,51 +896,86 @@
       </div>
     </div>
 
-    <!-- Mode III — Tourist Board & TripAdvisor Audit Card -->
+    <!-- Mode III — Paper-Form Municipal Audit Section Boxes -->
     <div class="mode3-container" id="mode3-container" style="display:none">
-      <div class="tb-banner">
-        <div class="tb-badge">🏛️ Municipal Tourist Board Official Brochure</div>
-        <div class="tb-slogan" id="tb-slogan"></div>
-        <div class="tb-copy" id="tb-copy"></div>
+      
+      <!-- Section 1: Tourist Board Brochure -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-gold">
+          <span>🏛️ MUNICIPAL TOURIST BOARD OFFICIAL BROCHURE</span>
+          <span style="font-size:0.75rem; opacity:0.8;">FORM TB-101</span>
+        </div>
+        <div class="paper-body">
+          <div class="tb-slogan" id="tb-slogan"></div>
+          <div class="tb-copy" id="tb-copy"></div>
+        </div>
       </div>
 
-      <div class="ta-audit-box">
-        <div class="ta-badge">🦉 TripAdvisor Expert Audit Review</div>
-        <div class="ta-rating" id="ta-rating"></div>
-        <div class="ta-headline" id="ta-headline"></div>
-        <div class="ta-review" id="ta-review"></div>
+      <!-- Section 2: TripAdvisor Expert Audit -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-emerald">
+          <span>🦉 TRIPADVISOR EXPERT AUDIT REVIEW</span>
+          <span style="font-size:0.75rem; opacity:0.8;">AUDIT #4092</span>
+        </div>
+        <div class="paper-body">
+          <div class="ta-rating-tag" id="ta-rating"></div>
+          <div class="ta-headline" id="ta-headline"></div>
+          <div class="ta-review" id="ta-review"></div>
+        </div>
       </div>
 
-      <div class="cr-section">
-        <div class="cr-heading">⭐ Verified Customer Reviews (1–5 Stars)</div>
-        <div class="cr-list" id="cr-list"></div>
+      <!-- Section 3: Verified Customer Reviews -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-cyan">
+          <span>⭐ VERIFIED VISITOR REVIEWS (1–5 STARS)</span>
+          <span style="font-size:0.75rem; opacity:0.8;">VISITOR LOG</span>
+        </div>
+        <div class="paper-body">
+          <div class="cr-list" id="cr-list"></div>
+        </div>
       </div>
+
+      <!-- Section 4: Socio-Economic Audit -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-burgundy">
+          <span>📊 SOCIO-ECONOMIC & DEMOGRAPHIC AUDIT</span>
+          <span style="font-size:0.75rem; opacity:0.8;">OFSTED & POLICE REPORT</span>
+        </div>
+        <div class="paper-body">
+          <div class="se-grid">
+            <div class="se-card">
+              <div class="se-card-header">🎓 Schools & Education</div>
+              <div class="se-card-body" id="se-schools"></div>
+            </div>
+            <div class="se-card">
+              <div class="se-card-header">🚓 Crime & Public Order</div>
+              <div class="se-card-body" id="se-crime"></div>
+            </div>
+            <div class="se-card">
+              <div class="se-card-header">⚒️ Workforce & Skilled Labour</div>
+              <div class="se-card-body" id="se-workforce"></div>
+            </div>
+            <div class="se-card">
+              <div class="se-card-header">🏠 Housing & Property Market</div>
+              <div class="se-card-body" id="se-housing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Official Excuse -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-bronze">
+          <span>📜 OFFICIAL MUNICIPAL EXCUSE</span>
+          <span style="font-size:0.75rem; opacity:0.8;">COUNCIL MINUTES</span>
+        </div>
+        <div class="paper-body">
+          <div class="excuse-text" id="excuse-text"></div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Socio-Economic & Demographic Audit Card -->
-    <div class="se-container" id="se-container" style="display:none">
-      <div class="se-heading">📊 Socio-Economic & Demographic Audit</div>
-      <div class="se-grid">
-        <div class="se-card">
-          <div class="se-card-header">🎓 Schools & Education</div>
-          <div class="se-card-body" id="se-schools"></div>
-        </div>
-        <div class="se-card">
-          <div class="se-card-header">🚓 Crime & Public Order</div>
-          <div class="se-card-body" id="se-crime"></div>
-        </div>
-        <div class="se-card">
-          <div class="se-card-header">⚒️ Workforce & Skilled Labour</div>
-          <div class="se-card-body" id="se-workforce"></div>
-        </div>
-        <div class="se-card">
-          <div class="se-card-header">🏠 Housing & Property Market</div>
-          <div class="se-card-body" id="se-housing"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="excuse-block" id="excuse-block"></div>
   </div>
 
 </main>
@@ -1674,19 +1682,17 @@ function renderSpec(spec) {
           lens: selectedMode === 'tourist_board' ? 'multi_lens' : lensId,
           affectation: 'Gateway to the M4 Corridor',
           twinned_with: ['Pripyat', 'Detroit'],
-          field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
-          charges: [{ id: 'bayeux_knight_fleeing', tincture: 'or', position: 'base' }],
           motto: 'ROTAMUR ET MANEMUS',
           motto_translation: 'We Turn, and We Remain',
           excuse: 'External forces. 1970s urban planners. Traditional weather.',
           tourist_board: {
             slogan: 'Experience the Unstoppable Motion of the Blackwater Valley!',
-            brochure_copy: 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture and traditional overcast skies!'
+            brochure_copy: 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, heritage damp, and traditional overcast skies!'
           },
           tripadvisor_audit: {
-            headline: 'A Masterclass in Motion Without Progress',
+            headline: 'A Masterclass in Motion Without Destination',
             overall_rating: '1.5 / 5 — Mostly Overcast',
-            audit_review: 'Visitors arriving in Aldershot are immediately struck by a sense of impending departure. The local ring road system offers continuous motion without destination.'
+            audit_review: 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.'
           },
           customer_reviews: [
             { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
@@ -1698,11 +1704,7 @@ function renderSpec(spec) {
             crime_order: 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
             workforce_industry: 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
             housing_property: 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
-          },
-          commentary: [
-            { element: 'Field & Division', text: 'Azure and argent per chevron.' },
-            { element: 'Segment Picture: Fleeing Knight', text: 'Depicted in Bayeux Tapestry embroidery, fleeing the scene of administrative panic.' }
-          ]
+          }
         };
       } else {
         result = await designRes.json();
@@ -1807,54 +1809,63 @@ function renderSpec(spec) {
       });
     }
 
-    // Render Mode III Tourist Board & TripAdvisor Audit Card
+    // Bulletproof Mode III Normalization Helper
     const mode3Container = document.getElementById('mode3-container');
-    if (isMode3 || result.tourist_board) {
-      const tb = result.tourist_board || {};
-      const ta = result.tripadvisor_audit || {};
-      const cr = result.customer_reviews || [];
+    if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
+      const tb = result.tourist_board || result.touristBoard || result.brochure || {};
+      const ta = result.tripadvisor_audit || result.tripadvisor || result.audit || result.expert_audit || {};
+      const cr = result.customer_reviews || result.reviews || [];
+      const se = result.socio_economic || result.socioEconomic || {};
 
-      document.getElementById('tb-slogan').textContent = tb.slogan ?? '';
-      document.getElementById('tb-copy').textContent   = tb.brochure_copy ?? '';
-      
-      document.getElementById('ta-rating').textContent   = ta.overall_rating ? `Rating: ${ta.overall_rating}` : '';
-      document.getElementById('ta-headline').textContent = ta.headline ?? '';
-      document.getElementById('ta-review').textContent   = ta.audit_review ?? '';
+      const slogan = tb.slogan || tb.headline || tb.title || 'Experience the Heroic Ambition of the Bypass!';
+      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, traditional overcast skies, and heritage damp!';
+
+      const rating = ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast';
+      const taHeadline = ta.headline || ta.title || 'A Masterclass in Motion Without Destination';
+      const taReview = ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.';
+
+      document.getElementById('tb-slogan').textContent = slogan;
+      document.getElementById('tb-copy').textContent   = copy;
+
+      document.getElementById('ta-rating').textContent   = `Rating: ${rating}`;
+      document.getElementById('ta-headline').textContent = taHeadline;
+      document.getElementById('ta-review').textContent   = taReview;
 
       const crList = document.getElementById('cr-list');
       crList.innerHTML = '';
-      cr.forEach(rev => {
-        const stars = '★'.repeat(rev.rating || 1) + '☆'.repeat(5 - (rev.rating || 1));
+      
+      const reviewsToRender = cr.length > 0 ? cr : [
+        { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
+        { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The cows are magnificent. 10/10.' },
+        { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
+      ];
+
+      reviewsToRender.forEach(rev => {
+        const rVal = parseInt(rev.rating) || 1;
+        const stars = '★'.repeat(Math.max(1, Math.min(5, rVal))) + '☆'.repeat(5 - Math.max(1, Math.min(5, rVal)));
         const card = document.createElement('div');
         card.className = 'cr-card';
         card.innerHTML = `
           <div class="cr-header">
-            <span class="cr-reviewer">👤 ${escapeHtml(rev.reviewer)}</span>
+            <span class="cr-reviewer">👤 ${escapeHtml(rev.reviewer || 'Visitor')}</span>
             <span class="cr-stars">${stars}</span>
           </div>
-          <div class="cr-text">"${escapeHtml(rev.text)}"</div>`;
+          <div class="cr-text">"${escapeHtml(rev.text || 'No comment provided.')}"</div>`;
         crList.appendChild(card);
       });
+
+      document.getElementById('se-schools').textContent   = se.schools_education || '14% Ofsted "Requires Improvement", 86% "Closed by Police Order".';
+      document.getElementById('se-crime').textContent     = se.crime_order || 'Primary offences: turnip rustling and aggravated bicycle borrowing.';
+      document.getElementById('se-workforce').textContent = se.workforce_industry || 'Roundabout Maintenance Board (62%) and Vape Shop Administration (28%).';
+      document.getElementById('se-housing').textContent   = se.housing_property || 'Average 2-bed terrace: £450,000 with authentic heritage damp.';
+
+      document.getElementById('excuse-text').textContent = result.excuse || 'External forces. 1970s urban planners. Traditional weather.';
 
       mode3Container.style.display = 'flex';
     } else {
       mode3Container.style.display = 'none';
     }
 
-    // Render Socio-Economic & Demographic Audit Card
-    const seContainer = document.getElementById('se-container');
-    const se = result.socio_economic;
-    if (se) {
-      document.getElementById('se-schools').textContent   = se.schools_education ?? 'N/A';
-      document.getElementById('se-crime').textContent     = se.crime_order ?? 'N/A';
-      document.getElementById('se-workforce').textContent = se.workforce_industry ?? 'N/A';
-      document.getElementById('se-housing').textContent   = se.housing_property ?? 'N/A';
-      seContainer.style.display = 'flex';
-    } else {
-      seContainer.style.display = 'none';
-    }
-
-    document.getElementById('excuse-block').textContent = result.excuse ?? '';
     document.getElementById('output-panel').classList.add('visible');
     document.getElementById('output-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
