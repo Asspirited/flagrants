@@ -328,7 +328,6 @@ const richHtml = `<!DOCTYPE html>
       font-family: 'EB Garamond', serif;
     }
 
-    /* Motto Ribbon Banner under Title (User Hand-Drawn Request) */
     .motto-header-block {
       display: flex;
       flex-direction: column;
@@ -521,6 +520,27 @@ const richHtml = `<!DOCTYPE html>
       gap: 0.6rem;
     }
 
+    .commentary-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    /* Compact Story Emblem Badge (User Design Preference Fix) */
+    .story-icon-badge {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: #28190c;
+      border: 1px solid #FFD700;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
     .commentary-element {
       font-family: 'Cinzel', serif;
       font-size: 0.95rem;
@@ -534,26 +554,6 @@ const richHtml = `<!DOCTYPE html>
       font-size: 1.1rem;
       line-height: 1.55;
       color: #e8d5a3;
-    }
-
-    /* Inline Bayeux Tapestry Story Segment Picture */
-    .tapestry-story-card {
-      margin-top: 0.4rem;
-      background: #261a0e;
-      border: 1px dashed rgba(212, 160, 48, 0.4);
-      border-radius: 6px;
-      padding: 0.8rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: inset 0 0 14px rgba(0,0,0,0.6);
-    }
-
-    .tapestry-art-canvas {
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
     }
 
     .excuse-block {
@@ -620,7 +620,7 @@ const richHtml = `<!DOCTYPE html>
         <span class="subject-affectation" id="subject-affectation"></span>
       </h2>
 
-      <!-- Motto Ribbon Banner under Main Title (User Hand-Drawn Request) -->
+      <!-- Motto Ribbon Banner under Main Title -->
       <div class="motto-header-block" id="motto-header-block">
         <div class="motto-ribbon-scroll">
           <span class="motto-text-main" id="motto-text-main"></span>
@@ -811,9 +811,8 @@ const richHtml = `<!DOCTYPE html>
   function renderOutput(location, result) {
     const crestContainer = document.getElementById('crest-svg');
     
-    // Compute SVG using 100% Client-Side renderSpec (guarantees perfect alignment)
+    // Compute SVG using 100% Client-Side renderSpec
     try {
-      // Pass empty motto so shield doesn't render motto ribbon twice
       const specForShield = { ...result, motto: '', motto_translation: '' };
       crestContainer.innerHTML = renderSpec(specForShield);
     } catch (e) {
@@ -824,7 +823,7 @@ const richHtml = `<!DOCTYPE html>
     const affectation = result.affectation ?? result.nickname ?? '';
     document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
 
-    // Render Motto Ribbon Banner under Main Title (User Hand-Drawn Request)
+    // Render Motto Ribbon Banner under Main Title
     const mottoMain = document.getElementById('motto-text-main');
     const mottoSub  = document.getElementById('motto-text-sub');
     if (result.motto) {
@@ -863,7 +862,7 @@ const richHtml = `<!DOCTYPE html>
       reDesignContainer.appendChild(btn);
     });
 
-    // Render Segment Pictures & Stories with inline Bayeux Tapestry Art
+    // Render Segment Pictures & Stories with Compact Story Emblem Badges
     const commentary = document.getElementById('commentary');
     commentary.innerHTML = '';
     const charges = result.charges ?? [];
@@ -872,21 +871,26 @@ const richHtml = `<!DOCTYPE html>
       const div = document.createElement('div');
       div.className = 'commentary-block';
 
-      // Pick corresponding charge or first charge for tapestry story art
-      const charge = charges[idx % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
-      const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx);
+      const isFieldBlock = (block.element || '').toLowerCase().includes('field');
+      let badgeContent = '';
+
+      if (isFieldBlock) {
+        // Mini-shield icon for field division
+        const f = result.field || { tincture: 'azure', division: 'plain' };
+        badgeContent = \`<svg viewBox="-100 0 200 240" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${renderField(f, 'mini-' + idx)}</svg>\`;
+      } else {
+        const charge = charges[(idx - 1) % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
+        // Force standalone centered icon rendering (cx = 0, cy = 0)
+        const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx, true);
+        badgeContent = \`<svg viewBox="-30 -30 60 60" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${svgCharge}</svg>\`;
+      }
 
       div.innerHTML = \`
-        <div class="commentary-element">\${escapeHtml(block.element)}</div>
-        <div class="commentary-text">\${escapeHtml(block.text)}</div>
-        <div class="tapestry-story-card">
-          <svg viewBox="-80 -60 160 120" class="tapestry-art-canvas">
-            <rect x="-80" y="-60" width="160" height="120" fill="#2b1f14" rx="6" stroke="#a08040" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <g transform="translate(0, 0)">
-              \${svgCharge}
-            </g>
-          </svg>
-        </div>\`;
+        <div class="commentary-header">
+          <div class="story-icon-badge">\${badgeContent}</div>
+          <div class="commentary-element">\${escapeHtml(block.element)}</div>
+        </div>
+        <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
       commentary.appendChild(div);
     });
 
@@ -977,4 +981,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js — moved motto to top header under title and added inline Bayeux story pictures');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with compact story badge design');

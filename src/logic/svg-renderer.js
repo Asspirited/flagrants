@@ -210,12 +210,12 @@ function chargePosition(pos, index, total) {
 }
 
 // Vector-crafted heraldic charge shapes
-function renderCharge(charge, index, total, uniqueId) {
-  const [cx, cy] = chargePosition(charge.position, index, total);
-  const col = tinctureFill(charge.tincture ?? 'or', uniqueId);
-  const baseSize = total === 1 ? 44 : total === 2 ? 38 : 34;
-  const sz = charge.size ?? baseSize;
-  const id = charge.id ?? 'lion_rampant';
+function renderCharge(charge, index, total, uniqueId, isStandalone = false) {
+  const [cx, cy] = isStandalone ? [0, 0] : chargePosition(charge?.position, index, total);
+  const col = tinctureFill(charge?.tincture ?? 'or', uniqueId);
+  const baseSize = isStandalone ? 40 : (total === 1 ? 44 : total === 2 ? 38 : 34);
+  const sz = charge?.size ?? baseSize;
+  const id = charge?.id ?? 'lion_rampant';
 
   const g = (inner) => `<g transform="translate(${cx},${cy})" filter="url(#gold-emboss-${uniqueId})">${inner}</g>`;
 
