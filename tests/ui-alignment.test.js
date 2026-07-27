@@ -59,6 +59,12 @@ test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', asy
     assert.ok(!clipContent.includes('transform='), 'clipPath child path MUST NOT contain transform attribute (prevents double translation bug)');
   });
 
+  await t.test('code/worker.js bundle contains zero legacy clipPath transforms and shares 100% renderer logic', () => {
+    const fs = require('fs');
+    const workerContent = fs.readFileSync('code/worker.js', 'utf8');
+    assert.ok(!workerContent.includes('<clipPath id="${clipId}"><path d="${shieldPath()}" transform="translate'), 'worker.js MUST NOT contain legacy double-translated clipPath transform');
+  });
+
   await t.test('field and charges groups share identical transform attribute with shield border', () => {
     const spec = {
       field: { tincture: 'vert', division: 'per_pale', secondary_tincture: 'or' },

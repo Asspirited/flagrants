@@ -898,7 +898,7 @@ function buildSVG(spec) {
 }
 `;
 
-workerJs = workerJs.replace(/\/\/ ── SVG Renderer logic [\s\S]*?\/\/ ── Anthropic call/, svgRendererModule + '\n// ── Anthropic call');
+workerJs = workerJs.replace(/\/\/ ── SVG renderer [\s\S]*?\/\/ ── Prompts/, svgRendererModule + '\n\n// ── Prompts');
 
 const indexConst = 'const INDEX_HTML = ' + JSON.stringify(richHtml) + ';\n\n';
 if (workerJs.startsWith('const INDEX_HTML =')) {

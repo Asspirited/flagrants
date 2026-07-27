@@ -29,3 +29,13 @@
 **Fix:**
   1. Updated PAT scope on GitHub to include repository `Contents: Read and write`.
   2. Re-triggered `git push` synchronously in active session to verify tracking and completion.
+
+## FG-WL-004 — Duplicate Inlined SVG Renderer in worker.js causing fix desynchronization
+**Date:** 2026-07-27
+**Cost:** ~30 min developer investigation & user frustration
+**Symptom:** UI alignment fix for shield field double translation passed local unit tests on `src/logic/svg-renderer.js`, but live production API continued returning shifted half-fields on mobile.
+**Root cause:** `code/worker.js` contained a legacy duplicate `buildSVG()` function (lines 162-180) that was not being updated by `scripts/build-rich-ui.js`. Fixing `src/logic/svg-renderer.js` left `code/worker.js` generating `clipPath` with `transform="translate(120,20)"`.
+**Fix:**
+  1. Updated `scripts/build-rich-ui.js` to compile `src/logic/svg-renderer.js` directly into `code/worker.js` and eliminate the duplicate `buildSVG()` definition.
+  2. Added an automated bundle validation test in `tests/ui-alignment.test.js` asserting that `code/worker.js` contains 0 instances of double-translated `<clipPath>` transforms.
+
