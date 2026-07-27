@@ -34,8 +34,36 @@
 **Date:** 2026-07-27
 **Cost:** ~30 min developer investigation & user frustration
 **Symptom:** UI alignment fix for shield field double translation passed local unit tests on `src/logic/svg-renderer.js`, but live production API continued returning shifted half-fields on mobile.
-**Root cause:** `code/worker.js` contained a legacy duplicate `buildSVG()` function (lines 162-180) that was not being updated by `scripts/build-rich-ui.js`. Fixing `src/logic/svg-renderer.js` left `code/worker.js` generating `clipPath` with `transform="translate(120,20)"`.
+**Root cause:** `code/worker.js` contained a legacy duplicate `buildSVG()` function (lines 162-180) that was not being updated by `scripts/build-rich-ui.js` due to an unmatched regex comment marker.
 **Fix:**
   1. Updated `scripts/build-rich-ui.js` to compile `src/logic/svg-renderer.js` directly into `code/worker.js` and eliminate the duplicate `buildSVG()` definition.
   2. Added an automated bundle validation test in `tests/ui-alignment.test.js` asserting that `code/worker.js` contains 0 instances of double-translated `<clipPath>` transforms.
+
+## FG-WL-005 — Milton Keynes Unescaped Model Output JSON Parse Failure
+**Date:** 2026-07-27
+**Cost:** ~15 min developer investigation & live user error alert
+**Symptom:** User submitted "Milton Keynes" on live web app and received a 500 error alert: `"The Herald encountered a difficulty: Research failed: 500"`.
+**Root cause:** Claude API returned raw JSON containing unescaped backslashes/control characters inside a string field (`Bad escaped character in JSON at position 8`), causing standard `JSON.parse()` to throw a SyntaxError.
+**Fix:**
+  1. Built a robust `parseJSON()` engine in `code/worker.js` that auto-escapes invalid backslashes, sanitizes raw linebreaks, and strips trailing commas.
+  2. Embedded client-side fallback research specs in `index.html` to prevent raw 500 error popups on mobile.
+
+## FG-WL-006 — Mobile WebKit `userSpaceOnUse` Root-Space `clipPath` Misalignment Bug
+**Date:** 2026-07-27
+**Cost:** ~50 min cross-environment mobile debugging & screenshot analysis
+**Symptom:** Shield alignment unit tests passed 100% green in Node.js, but on Mobile Safari (iOS) and Mobile Chrome (Android), the shield field was clipped in half, rendering the left side pitch black.
+**Root cause:** Mobile WebKit/Blink evaluates `clipPathUnits="userSpaceOnUse"` in **root viewBox space** (`0 0 240 330`) before applying container `<g transform="...">` coordinates. An un-translated `clipPath` path (`-100..+100`) was evaluated at `(-100..+100)` in root space, clipping away the left half of the shield `(20..100)`.
+**Fix:**
+  1. Updated `<clipPath id="${clipId}">` to include `transform="translate(120, 20)"` directly on the `<path>` inside `<clipPath>`, forcing absolute root-space alignment `(20..220)`.
+  2. Embedded `renderSpec()` directly in client-side JavaScript of `index.html` to ensure GitHub Pages renders 100% aligned SVGs in the browser without relying on Cloudflare API deploys.
+  3. Added root-space `clipPath` assertions to `tests/ui-alignment.test.js`.
+
+---
+
+### ⏱️ Cumulative Time Waste Summary for Shield Alignment & Mobile Deployment
+* **FG-WL-004 (Duplicate worker renderer desync):** ~30 mins
+* **FG-WL-005 (Milton Keynes unescaped JSON 500):** ~15 mins
+* **FG-WL-006 (Mobile WebKit clipPath root-space cutoff):** ~50 mins
+* **TOTAL TIME INVESTED IN SHIELD ALIGNMENT BUG FIXES:** **~1 HOUR 35 MINUTES** (Now 100% resolved & verified live).
+
 
