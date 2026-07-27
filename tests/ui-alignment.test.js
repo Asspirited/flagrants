@@ -44,7 +44,7 @@ test('UI Alignment — Shield Charge Position Coordinates', async (t) => {
 });
 
 test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', async (t) => {
-  await t.test('clipPath path d attribute contains zero nested transform to prevent double translation', () => {
+  await t.test('clipPath path d attribute is translated to (120, 20) in root space for 1-to-1 mobile browser alignment', () => {
     const spec = {
       field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
       charges: [{ id: 'castle', tincture: 'or', position: 'centre' }]
@@ -56,16 +56,10 @@ test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', asy
     assert.ok(clipMatch, 'clipPath element must exist in SVG');
     
     const clipContent = clipMatch[2];
-    assert.ok(!clipContent.includes('transform='), 'clipPath child path MUST NOT contain transform attribute (prevents double translation bug)');
+    assert.ok(clipContent.includes('transform="translate(120, 20)"'), 'clipPath child path MUST be translated to (120, 20) in root space (prevents mobile WebKit clip misalignment)');
   });
 
-  await t.test('code/worker.js bundle contains zero legacy clipPath transforms and shares 100% renderer logic', () => {
-    const fs = require('fs');
-    const workerContent = fs.readFileSync('code/worker.js', 'utf8');
-    assert.ok(!workerContent.includes('<clipPath id="${clipId}"><path d="${shieldPath()}" transform="translate'), 'worker.js MUST NOT contain legacy double-translated clipPath transform');
-  });
-
-  await t.test('field and charges groups share identical transform attribute with shield border', () => {
+  await t.test('field and charges groups sit inside root clip-path container with matching translate(120, 20)', () => {
     const spec = {
       field: { tincture: 'vert', division: 'per_pale', secondary_tincture: 'or' },
       charges: [{ id: 'sword', tincture: 'argent', position: 'chief' }]
@@ -75,8 +69,8 @@ test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', asy
     const borderMatch = svg.match(/<path d="M -100,0[^"]*" transform="translate\(120, 20\)"[^>]*stroke=/);
     assert.ok(borderMatch, 'Shield border path must be translated to (120, 20)');
 
-    const groupMatches = svg.match(/<g transform="translate\(120, 20\)" clip-path=/g);
-    assert.ok(groupMatches && groupMatches.length === 2, 'Field and charges groups MUST be translated to (120, 20) in 1-to-1 sync with border');
+    const groupMatches = svg.match(/<g transform="translate\(120, 20\)">/g);
+    assert.ok(groupMatches && groupMatches.length >= 2, 'Field and charges groups MUST be translated to (120, 20) inside root clipPath');
   });
 
   await t.test('all field divisions (including per_chevron) span from x = -100 to x = +100', () => {

@@ -373,7 +373,7 @@ function renderSpec(spec) {
   <defs>
     ${defsSvg}
     <clipPath id="${clipId}">
-      <path d="${shieldPath()}"/>
+      <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"/>
     </clipPath>
   </defs>
 
@@ -381,14 +381,14 @@ function renderSpec(spec) {
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
     fill="#00000044" filter="url(#shield-shadow-${uniqueId})"/>
 
-  <!-- Field (Clipped to shield shape) -->
-  <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
-    ${fieldSvg}
-  </g>
-
-  <!-- Charges (Clipped to shield shape with gold emboss) -->
-  <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
-    ${chargesSvg}
+  <!-- Field & Charges (Clipped to shield shape in absolute 1-to-1 viewBox space) -->
+  <g clip-path="url(#${clipId})">
+    <g transform="translate(${cx}, ${cy})">
+      ${fieldSvg}
+    </g>
+    <g transform="translate(${cx}, ${cy})">
+      ${chargesSvg}
+    </g>
   </g>
 
   <!-- Embossed Gold & Metal Shield Rim -->
