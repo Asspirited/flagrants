@@ -1,6 +1,6 @@
 // svg-renderer.js
 // Takes a heraldic spec JSON, returns an SVG string.
-// All rendering is pure vector graphics — high quality heraldic shapes.
+// All rendering is pure vector graphics — high quality heraldic shapes with strict alignment.
 
 const { TINCTURES } = require('../data/heraldic-vocabulary.js');
 
@@ -9,6 +9,8 @@ const SHIELD_HEIGHT = 240;
 const SVG_WIDTH = 240;
 const SVG_HEIGHT = 330;
 
+// Heater shield path — classic English shield shape
+// Centred at x=0 at top edge (y=0), tapering to point at y=240
 function shieldPath() {
   const w = SHIELD_WIDTH;
   const h = SHIELD_HEIGHT;
@@ -68,19 +70,20 @@ function renderField(spec) {
   return `<rect x="${-hw}" y="0" width="${w}" height="${h}" fill="${t1}" />`;
 }
 
+// Precise shield geometry calculations:
+// Shield top at y=0, bottom point at y=240. Center of gravity = (0, 105).
 function chargePosition(pos, index, total) {
-  const hw = SHIELD_WIDTH / 2;
-  const h = SHIELD_HEIGHT;
+  const hw = SHIELD_WIDTH / 2; // 100
   const positions = {
-    centre: [0, h * 0.42],
-    dexter: [-hw * 0.4, h * 0.42],
-    sinister: [hw * 0.4, h * 0.42],
-    chief: [0, h * 0.22],
-    base: [0, h * 0.63],
-    dexter_chief: [-hw * 0.38, h * 0.22],
-    sinister_chief: [hw * 0.38, h * 0.22],
-    dexter_base: [-hw * 0.25, h * 0.62],
-    sinister_base: [hw * 0.25, h * 0.62]
+    centre: [0, 105],
+    dexter: [-hw * 0.42, 105],
+    sinister: [hw * 0.42, 105],
+    chief: [0, 55],
+    base: [0, 155],
+    dexter_chief: [-hw * 0.38, 55],
+    sinister_chief: [hw * 0.38, 55],
+    dexter_base: [-hw * 0.25, 148],
+    sinister_base: [hw * 0.25, 148]
   };
   if (!pos || pos === 'auto') {
     if (total === 1) return positions.centre;
@@ -95,11 +98,11 @@ function chargePosition(pos, index, total) {
   return positions[pos] ?? positions.centre;
 }
 
-// Vector-crafted heraldic charge shapes (pure SVG paths, no emoji dependency)
+// Vector-crafted heraldic charge shapes — ALL strictly centered around (0,0) in local coordinates
 function renderCharge(charge, index, total) {
   const [cx, cy] = chargePosition(charge.position, index, total);
   const col = tincture(charge.tincture ?? 'or');
-  const baseSize = total === 1 ? 46 : total === 2 ? 40 : 36;
+  const baseSize = total === 1 ? 44 : total === 2 ? 38 : 34;
   const sz = charge.size ?? baseSize;
   const id = charge.id ?? 'lion_rampant';
 
@@ -107,39 +110,30 @@ function renderCharge(charge, index, total) {
 
   if (id === 'lion_rampant') {
     return g(`
-      <!-- Body & Mane -->
-      <path d="M -${sz*0.1},${sz*0.3} C -${sz*0.25},${sz*0.1} -${sz*0.2},-${sz*0.1} -${sz*0.05},-${sz*0.25} C -${sz*0.15},-${sz*0.35} 0,-${sz*0.45} ${sz*0.15},-${sz*0.35} C ${sz*0.25},-${sz*0.25} ${sz*0.2},-${sz*0.1} ${sz*0.1},0 C ${sz*0.25},${sz*0.1} ${sz*0.2},${sz*0.3} ${sz*0.05},${sz*0.4} Z" fill="${col}"/>
-      <!-- Head & Jaws -->
-      <circle cx="-${sz*0.05}" cy="-${sz*0.3}" r="${sz*0.12}" fill="${col}"/>
+      <path d="M 0,0 C -${sz*0.15},-${sz*0.2} -${sz*0.1},-${sz*0.4} 0,-${sz*0.42} C ${sz*0.15},-${sz*0.42} ${sz*0.2},-${sz*0.25} ${sz*0.1},0 C ${sz*0.25},${sz*0.1} ${sz*0.2},${sz*0.35} 0,${sz*0.42} Z" fill="${col}"/>
+      <circle cx="-${sz*0.05}" cy="-${sz*0.3}" r="${sz*0.11}" fill="${col}"/>
       <path d="M -${sz*0.15},-${sz*0.3} L -${sz*0.35},-${sz*0.33} L -${sz*0.25},-${sz*0.24} Z" fill="${col}"/>
-      <!-- Raised Forepaws (Rampant) -->
-      <path d="M -${sz*0.1},-${sz*0.15} L -${sz*0.35},-${sz*0.25} L -${sz*0.38},-${sz*0.18} M -${sz*0.05},-${sz*0.1} L -${sz*0.3},-${sz*0.15}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
-      <!-- Hind Legs -->
-      <path d="M 0,${sz*0.25} L -${sz*0.25},${sz*0.45} M ${sz*0.08},${sz*0.25} L ${sz*0.2},${sz*0.42}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
-      <!-- Tail Tuft -->
-      <path d="M ${sz*0.05},${sz*0.3} Q ${sz*0.38},${sz*0.2} ${sz*0.35},-${sz*0.15} C ${sz*0.32},-${sz*0.25} ${sz*0.42},-${sz*0.3} ${sz*0.38},-${sz*0.2}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
+      <path d="M -${sz*0.1},-${sz*0.15} L -${sz*0.35},-${sz*0.25} M -${sz*0.05},-${sz*0.1} L -${sz*0.3},-${sz*0.15}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <path d="M 0,${sz*0.2} L -${sz*0.25},${sz*0.42} M ${sz*0.08},${sz*0.2} L ${sz*0.2},${sz*0.4}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <path d="M ${sz*0.05},${sz*0.25} Q ${sz*0.38},${sz*0.15} ${sz*0.35},-${sz*0.2} C ${sz*0.32},-${sz*0.3} ${sz*0.42},-${sz*0.35} ${sz*0.38},-${sz*0.25}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
     `);
   }
 
   if (id === 'lion_passant') {
     return g(`
-      <ellipse cx="0" cy="${sz*0.05}" rx="${sz*0.35}" ry="${sz*0.18}" fill="${col}"/>
-      <circle cx="-${sz*0.28}" cy="-${sz*0.08}" r="${sz*0.14}" fill="${col}"/>
-      <!-- Raised paw -->
-      <path d="M -${sz*0.2},${sz*0.1} L -${sz*0.35},${sz*0.25} M -${sz*0.1},${sz*0.1} L -${sz*0.15},${sz*0.35} M ${sz*0.1},${sz*0.1} L ${sz*0.1},${sz*0.35} M ${sz*0.25},${sz*0.1} L ${sz*0.3},${sz*0.35}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
-      <path d="M ${sz*0.32},0 Q ${sz*0.48},-${sz*0.2} ${sz*0.4},-${sz*0.35}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
+      <ellipse cx="0" cy="0" rx="${sz*0.35}" ry="${sz*0.18}" fill="${col}"/>
+      <circle cx="-${sz*0.28}" cy="-${sz*0.13}" r="${sz*0.13}" fill="${col}"/>
+      <path d="M -${sz*0.2},${sz*0.05} L -${sz*0.35},${sz*0.2} M -${sz*0.1},${sz*0.05} L -${sz*0.15},${sz*0.3} M ${sz*0.1},${sz*0.05} L ${sz*0.1},${sz*0.3} M ${sz*0.25},${sz*0.05} L ${sz*0.3},${sz*0.3}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <path d="M ${sz*0.325},0 Q ${sz*0.48},-${sz*0.25} ${sz*0.4},-${sz*0.4}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
     `);
   }
 
   if (id === 'eagle_displayed') {
     return g(`
-      <!-- Body & Tail -->
       <ellipse cx="0" cy="0" rx="${sz*0.12}" ry="${sz*0.25}" fill="${col}"/>
-      <polygon points="0,${sz*0.15} -${sz*0.15},${sz*0.42} ${sz*0.15},${sz*0.42}" fill="${col}"/>
-      <!-- Wings Spread -->
-      <path d="M -${sz*0.1},-${sz*0.05} C -${sz*0.3},-${sz*0.35} -${sz*0.45},-${sz*0.4} -${sz*0.48},-${sz*0.2} C -${sz*0.4},-${sz*0.05} -${sz*0.25},${sz*0.1} -${sz*0.08},${sz*0.15} Z" fill="${col}"/>
-      <path d="M ${sz*0.1},-${sz*0.05} C ${sz*0.3},-${sz*0.35} ${sz*0.45},-${sz*0.4} ${sz*0.48},-${sz*0.2} C ${sz*0.4},-${sz*0.05} ${sz*0.25},${sz*0.1} ${sz*0.08},${sz*0.15} Z" fill="${col}"/>
-      <!-- Heads / Beaks -->
+      <polygon points="0,${sz*0.1} -${sz*0.15},${sz*0.38} ${sz*0.15},${sz*0.38}" fill="${col}"/>
+      <path d="M -${sz*0.1},-${sz*0.1} C -${sz*0.3},-${sz*0.38} -${sz*0.45},-${sz*0.42} -${sz*0.48},-${sz*0.22} C -${sz*0.4},-${sz*0.08} -${sz*0.25},${sz*0.08} -${sz*0.08},${sz*0.1} Z" fill="${col}"/>
+      <path d="M ${sz*0.1},-${sz*0.1} C ${sz*0.3},-${sz*0.38} ${sz*0.45},-${sz*0.42} ${sz*0.48},-${sz*0.22} C ${sz*0.4},-${sz*0.08} ${sz*0.25},${sz*0.08} ${sz*0.08},${sz*0.1} Z" fill="${col}"/>
       <circle cx="-${sz*0.08}" cy="-${sz*0.28}" r="${sz*0.09}" fill="${col}"/>
       <path d="M -${sz*0.15},-${sz*0.28} L -${sz*0.26},-${sz*0.24} L -${sz*0.15},-${sz*0.2} Z" fill="${col}"/>
     `);
@@ -147,59 +141,57 @@ function renderCharge(charge, index, total) {
 
   if (id === 'castle' || id === 'tower') {
     return g(`
-      <rect x="-${sz*0.38}" y="-${sz*0.1}" width="${sz*0.76}" height="${sz*0.5}" fill="${col}"/>
-      <rect x="-${sz*0.38}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
-      <rect x="-${sz*0.1}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
-      <rect x="${sz*0.18}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
-      <path d="M -${sz*0.12},${sz*0.4} A ${sz*0.12} ${sz*0.15} 0 0 1 ${sz*0.12},${sz*0.4} V ${sz*0.15} H -${sz*0.12} Z" fill="#1a1008"/>
+      <rect x="-${sz*0.38}" y="-${sz*0.15}" width="${sz*0.76}" height="${sz*0.5}" fill="${col}"/>
+      <rect x="-${sz*0.38}" y="-${sz*0.4}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <rect x="-${sz*0.1}" y="-${sz*0.4}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <rect x="${sz*0.18}" y="-${sz*0.4}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <path d="M -${sz*0.12},${sz*0.35} A ${sz*0.12} ${sz*0.15} 0 0 1 ${sz*0.12},${sz*0.35} V ${sz*0.1} H -${sz*0.12} Z" fill="#1a1008"/>
     `);
   }
 
   if (id === 'sword') {
     return g(`
-      <!-- Blade -->
-      <polygon points="0,-${sz*0.45} -${sz*0.05},-${sz*0.35} -${sz*0.04},${sz*0.18} ${sz*0.04},${sz*0.18} ${sz*0.05},-${sz*0.35}" fill="${col}"/>
-      <!-- Crossguard & Pommel -->
-      <rect x="-${sz*0.22}" y="${sz*0.18}" width="${sz*0.44}" height="${sz*0.07}" fill="${col}" rx="1"/>
-      <rect x="-${sz*0.035}" y="${sz*0.25}" width="${sz*0.07}" height="${sz*0.14}" fill="${col}"/>
-      <circle cx="0" cy="${sz*0.42}" r="${sz*0.06}" fill="${col}"/>
+      <polygon points="0,-${sz*0.42} -${sz*0.05},-${sz*0.32} -${sz*0.04},${sz*0.2} ${sz*0.04},${sz*0.2} ${sz*0.05},-${sz*0.32}" fill="${col}"/>
+      <rect x="-${sz*0.22}" y="${sz*0.2}" width="${sz*0.44}" height="${sz*0.07}" fill="${col}" rx="1"/>
+      <rect x="-${sz*0.035}" y="${sz*0.27}" width="${sz*0.07}" height="${sz*0.12}" fill="${col}"/>
+      <circle cx="0" cy="${sz*0.43}" r="${sz*0.055}" fill="${col}"/>
     `);
   }
 
   if (id === 'crown') {
     return g(`
-      <rect x="-${sz*0.4}" y="${sz*0.1}" width="${sz*0.8}" height="${sz*0.25}" fill="${col}" rx="2"/>
-      <polygon points="-${sz*0.4},${sz*0.1} -${sz*0.4},-${sz*0.25} -${sz*0.22},-${sz*0.05} 0,-${sz*0.3} ${sz*0.22},-${sz*0.05} ${sz*0.4},-${sz*0.25} ${sz*0.4},${sz*0.1}" fill="${col}"/>
-      <circle cx="-${sz*0.4}" cy="-${sz*0.28}" r="${sz*0.04}" fill="${col}"/>
-      <circle cx="0" cy="-${sz*0.33}" r="${sz*0.05}" fill="${col}"/>
-      <circle cx="${sz*0.4}" cy="-${sz*0.28}" r="${sz*0.04}" fill="${col}"/>
+      <rect x="-${sz*0.4}" y="${sz*0.08}" width="${sz*0.8}" height="${sz*0.25}" fill="${col}" rx="2"/>
+      <polygon points="-${sz*0.4},${sz*0.08} -${sz*0.4},-${sz*0.26} -${sz*0.22},-${sz*0.08} 0,-${sz*0.32} ${sz*0.22},-${sz*0.08} ${sz*0.4},-${sz*0.26} ${sz*0.4},${sz*0.08}" fill="${col}"/>
+      <circle cx="-${sz*0.4}" cy="-${sz*0.29}" r="${sz*0.04}" fill="${col}"/>
+      <circle cx="0" cy="-${sz*0.35}" r="${sz*0.05}" fill="${col}"/>
+      <circle cx="${sz*0.4}" cy="-${sz*0.29}" r="${sz*0.04}" fill="${col}"/>
     `);
   }
 
   if (id === 'key') {
     return g(`
-      <circle cx="0" cy="-${sz*0.22}" r="${sz*0.16}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
+      <circle cx="0" cy="-${sz*0.24}" r="${sz*0.16}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
       <rect x="-${sz*0.04}" y="-${sz*0.08}" width="${sz*0.08}" height="${sz*0.48}" fill="${col}" rx="1"/>
-      <rect x="0" y="${sz*0.18}" width="${sz*0.16}" height="${sz*0.06}" fill="${col}"/>
+      <rect x="0" y="${sz*0.18}" width="${sz*0.15}" height="${sz*0.06}" fill="${col}"/>
       <rect x="0" y="${sz*0.3}" width="${sz*0.12}" height="${sz*0.06}" fill="${col}"/>
     `);
   }
 
   if (id === 'hammer') {
     return g(`
-      <rect x="-${sz*0.3}" y="-${sz*0.3}" width="${sz*0.6}" height="${sz*0.24}" fill="${col}" rx="2"/>
-      <rect x="-${sz*0.05}" y="-${sz*0.06}" width="${sz*0.1}" height="${sz*0.46}" fill="${col}" rx="2"/>
+      <rect x="-${sz*0.3}" y="-${sz*0.28}" width="${sz*0.6}" height="${sz*0.24}" fill="${col}" rx="2"/>
+      <rect x="-${sz*0.055}" y="-${sz*0.04}" width="${sz*0.11}" height="${sz*0.44}" fill="${col}" rx="2"/>
     `);
   }
 
   if (id === 'wheel') {
     return g(`
-      <circle cx="0" cy="0" r="${sz*0.42}" fill="none" stroke="${col}" stroke-width="${sz*0.09}"/>
+      <circle cx="0" cy="0" r="${sz*0.4}" fill="none" stroke="${col}" stroke-width="${sz*0.09}"/>
       <circle cx="0" cy="0" r="${sz*0.1}" fill="${col}"/>
       ${[0,45,90,135].map(a => {
         const r = a * Math.PI / 180;
         const x1 = Math.cos(r) * sz*0.1; const y1 = Math.sin(r) * sz*0.1;
-        const x2 = Math.cos(r) * sz*0.4; const y2 = Math.sin(r) * sz*0.4;
+        const x2 = Math.cos(r) * sz*0.38; const y2 = Math.sin(r) * sz*0.38;
         return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${sz*0.07}"/>
                 <line x1="${-x1}" y1="${-y1}" x2="${-x2}" y2="${-y2}" stroke="${col}" stroke-width="${sz*0.07}"/>`;
       }).join('')}
@@ -211,13 +203,13 @@ function renderCharge(charge, index, total) {
       <circle cx="0" cy="-${sz*0.28}" r="${sz*0.11}" fill="none" stroke="${col}" stroke-width="${sz*0.07}"/>
       <rect x="-${sz*0.04}" y="-${sz*0.17}" width="${sz*0.08}" height="${sz*0.58}" fill="${col}" rx="1"/>
       <rect x="-${sz*0.28}" y="-${sz*0.15}" width="${sz*0.56}" height="${sz*0.07}" fill="${col}"/>
-      <path d="M -${sz*0.28},${sz*0.4} Q -${sz*0.35},${sz*0.52} 0,${sz*0.48} Q ${sz*0.35},${sz*0.52} ${sz*0.28},${sz*0.4}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
+      <path d="M -${sz*0.28},${sz*0.38} Q -${sz*0.35},${sz*0.5} 0,${sz*0.46} Q ${sz*0.35},${sz*0.5} ${sz*0.28},${sz*0.38}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
     `);
   }
 
   if (id === 'fleur_de_lis') {
     return g(`
-      <path d="M 0,-${sz*0.42} C ${sz*0.1},-${sz*0.2} ${sz*0.2},-${sz*0.1} ${sz*0.08},${sz*0.3} L -${sz*0.08},${sz*0.3} C -${sz*0.2},-${sz*0.1} -${sz*0.1},-${sz*0.2} 0,-${sz*0.42} Z" fill="${col}"/>
+      <path d="M 0,-${sz*0.4} C ${sz*0.1},-${sz*0.2} ${sz*0.2},-${sz*0.1} ${sz*0.08},${sz*0.3} L -${sz*0.08},${sz*0.3} C -${sz*0.2},-${sz*0.1} -${sz*0.1},-${sz*0.2} 0,-${sz*0.4} Z" fill="${col}"/>
       <path d="M -${sz*0.05},-${sz*0.05} C -${sz*0.25},-${sz*0.2} -${sz*0.45},-${sz*0.05} -${sz*0.28},${sz*0.15} C -${sz*0.15},${sz*0.15} -${sz*0.08},0 -${sz*0.05},-${sz*0.05} Z" fill="${col}"/>
       <path d="M ${sz*0.05},-${sz*0.05} C ${sz*0.25},-${sz*0.2} ${sz*0.45},-${sz*0.05} ${sz*0.28},${sz*0.15} C ${sz*0.15},${sz*0.15} ${sz*0.08},0 ${sz*0.05},-${sz*0.05} Z" fill="${col}"/>
       <rect x="-${sz*0.14}" y="${sz*0.02}" width="${sz*0.28}" height="${sz*0.07}" fill="${col}" rx="1"/>
@@ -226,8 +218,8 @@ function renderCharge(charge, index, total) {
 
   if (id === 'flame') {
     return g(`
-      <path d="M 0,-${sz*0.45} Q ${sz*0.25},-${sz*0.15} ${sz*0.2},${sz*0.2} Q ${sz*0.1},${sz*0.45} 0,${sz*0.4} Q -${sz*0.1},${sz*0.45} -${sz*0.2},${sz*0.2} Q -${sz*0.25},-${sz*0.15} 0,-${sz*0.45} Z" fill="${col}"/>
-      <path d="M 0,-${sz*0.25} Q ${sz*0.12},-${sz*0.05} ${sz*0.1},${sz*0.15} Q 0,${sz*0.3} -${sz*0.1},${sz*0.15} Q -${sz*0.12},-${sz*0.05} 0,-${sz*0.25} Z" fill="#FFD700"/>
+      <path d="M 0,-${sz*0.42} Q ${sz*0.25},-${sz*0.15} ${sz*0.2},${sz*0.2} Q ${sz*0.1},${sz*0.42} 0,${sz*0.38} Q -${sz*0.1},${sz*0.42} -${sz*0.2},${sz*0.2} Q -${sz*0.25},-${sz*0.15} 0,-${sz*0.42} Z" fill="${col}"/>
+      <path d="M 0,-${sz*0.22} Q ${sz*0.12},-${sz*0.05} ${sz*0.1},${sz*0.15} Q 0,${sz*0.28} -${sz*0.1},${sz*0.15} Q -${sz*0.12},-${sz*0.05} 0,-${sz*0.22} Z" fill="#FFD700"/>
     `);
   }
 
@@ -236,22 +228,22 @@ function renderCharge(charge, index, total) {
     for (let i = 0; i < 5; i++) {
       const outer = (i * 72 - 90) * Math.PI / 180;
       const inner = ((i * 72) + 36 - 90) * Math.PI / 180;
-      pts.push(`${Math.cos(outer)*sz*0.45},${Math.sin(outer)*sz*0.45}`);
-      pts.push(`${Math.cos(inner)*sz*0.2},${Math.sin(inner)*sz*0.2}`);
+      pts.push(`${Math.cos(outer)*sz*0.42},${Math.sin(outer)*sz*0.42}`);
+      pts.push(`${Math.cos(inner)*sz*0.18},${Math.sin(inner)*sz*0.18}`);
     }
     return g(`<polygon points="${pts.join(' ')}" fill="${col}"/>`);
   }
 
   if (id === 'cross_charge') {
     return g(`
-      <rect x="-${sz*0.1}" y="-${sz*0.42}" width="${sz*0.2}" height="${sz*0.84}" fill="${col}"/>
-      <rect x="-${sz*0.42}" y="-${sz*0.1}" width="${sz*0.84}" height="${sz*0.2}" fill="${col}"/>
+      <rect x="-${sz*0.1}" y="-${sz*0.4}" width="${sz*0.2}" height="${sz*0.8}" fill="${col}"/>
+      <rect x="-${sz*0.4}" y="-${sz*0.1}" width="${sz*0.8}" height="${sz*0.2}" fill="${col}"/>
     `);
   }
 
   if (id === 'serpent') {
     return g(`
-      <path d="M -${sz*0.2},${sz*0.3} C -${sz*0.4},${sz*0.1} 0,-${sz*0.1} -${sz*0.1},-${sz*0.25} C -${sz*0.15},-${sz*0.35} ${sz*0.15},-${sz*0.4} ${sz*0.2},-${sz*0.25} C ${sz*0.25},-${sz*0.1} -${sz*0.15},${sz*0.1} 0,${sz*0.3}" fill="none" stroke="${col}" stroke-width="${sz*0.09}" stroke-linecap="round"/>
+      <path d="M -${sz*0.2},${sz*0.28} C -${sz*0.4},${sz*0.1} 0,-${sz*0.1} -${sz*0.1},-${sz*0.25} C -${sz*0.15},-${sz*0.35} ${sz*0.15},-${sz*0.4} ${sz*0.2},-${sz*0.25} C ${sz*0.25},-${sz*0.1} -${sz*0.15},${sz*0.1} 0,${sz*0.28}" fill="none" stroke="${col}" stroke-width="${sz*0.09}" stroke-linecap="round"/>
       <circle cx="${sz*0.2}" cy="-${sz*0.25}" r="${sz*0.07}" fill="${col}"/>
     `);
   }
@@ -266,7 +258,7 @@ function renderCharge(charge, index, total) {
     `);
   }
 
-  // Fallback icon shape
+  // Fallback
   return g(`
     <circle cx="0" cy="0" r="${sz*0.32}" fill="${col}" opacity="0.8"/>
     <text text-anchor="middle" dominant-baseline="central" font-size="${sz*0.26}" fill="${tincture(charge.tincture === 'or' ? 'sable' : 'or')}" font-family="Georgia,serif">${id.charAt(0).toUpperCase()}</text>
@@ -338,4 +330,4 @@ function renderSpec(spec) {
 </svg>`;
 }
 
-module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture };
+module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture, chargePosition };
