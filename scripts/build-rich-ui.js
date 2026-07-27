@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=100">
+  <link rel="manifest" href="manifest.json?v=101">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -588,9 +588,7 @@ const richHtml = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       gap: 1.6rem;
-      margin-top: 1.5rem;
-      border-top: 1px dashed rgba(212, 160, 48, 0.3);
-      padding-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     .tb-banner {
@@ -840,7 +838,8 @@ const richHtml = `<!DOCTYPE html>
       <div class="re-design-buttons" id="re-design-buttons"></div>
     </div>
 
-    <div class="crest-layout">
+    <!-- Crest Layout (Hidden in Mode III so Mode III is 100% focused on Tourist Board & Audit) -->
+    <div class="crest-layout" id="crest-layout">
       <div class="crest-figure">
         <div id="crest-svg"></div>
         <div class="export-actions">
@@ -926,6 +925,7 @@ const richHtml = `<!DOCTYPE html>
   const generateBtn   = document.getElementById('generate-btn');
   const lensGrid      = document.getElementById('lens-grid');
   const lensGroup     = document.getElementById('lens-group');
+  const crestLayout   = document.getElementById('crest-layout');
   const reDesignContainer = document.getElementById('re-design-buttons');
   const reDesignBar   = document.getElementById('re-design-bar');
 
@@ -1095,15 +1095,6 @@ const richHtml = `<!DOCTYPE html>
   }
 
   function renderOutput(location, result) {
-    const crestContainer = document.getElementById('crest-svg');
-    
-    try {
-      const specForShield = { ...result, motto: '', motto_translation: '' };
-      crestContainer.innerHTML = renderSpec(specForShield);
-    } catch (e) {
-      crestContainer.innerHTML = result.svg || '';
-    }
-    
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
     document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
@@ -1137,11 +1128,25 @@ const richHtml = `<!DOCTYPE html>
       });
     }
 
-    // Hide Fast Lens Switcher bar in Mode III (since Mode III auto-synthesizes all 7 lenses)
-    if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
+    const isMode3 = (selectedMode === 'tourist_board' || selectedMode === 'mode3');
+
+    // In Mode III, HIDE the crest shield layout completely so Mode 3 is 100% focused on Tourist Board & TripAdvisor Audit!
+    if (isMode3) {
+      crestLayout.style.display = 'none';
       reDesignBar.style.display = 'none';
     } else {
+      crestLayout.style.display = 'grid';
       reDesignBar.style.display = 'flex';
+
+      const crestContainer = document.getElementById('crest-svg');
+      try {
+        const specForShield = { ...result, motto: '', motto_translation: '' };
+        crestContainer.innerHTML = renderSpec(specForShield);
+      } catch (e) {
+        crestContainer.innerHTML = result.svg || '';
+      }
+
+      // Fast Lens Switcher Buttons
       reDesignContainer.innerHTML = '';
       LENSES.forEach(l => {
         const btn = document.createElement('button');
@@ -1150,41 +1155,41 @@ const richHtml = `<!DOCTYPE html>
         btn.addEventListener('click', () => reDesignWithLens(l.id));
         reDesignContainer.appendChild(btn);
       });
+
+      // Render Segment Pictures & Stories for Mode I & II
+      const commentary = document.getElementById('commentary');
+      commentary.innerHTML = '';
+      const charges = result.charges ?? [];
+      
+      (result.commentary ?? []).forEach((block, idx) => {
+        const div = document.createElement('div');
+        div.className = 'commentary-block';
+
+        const isFieldBlock = (block.element || '').toLowerCase().includes('field');
+        let badgeContent = '';
+
+        if (isFieldBlock) {
+          const f = result.field || { tincture: 'azure', division: 'plain' };
+          badgeContent = \`<svg viewBox="-100 0 200 240" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${renderField(f, 'mini-' + idx)}</svg>\`;
+        } else {
+          const charge = charges[(idx - 1) % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
+          const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx, true);
+          badgeContent = \`<svg viewBox="-30 -30 60 60" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${svgCharge}</svg>\`;
+        }
+
+        div.innerHTML = \`
+          <div class="commentary-header">
+            <div class="story-icon-badge">\${badgeContent}</div>
+            <div class="commentary-element">\${escapeHtml(block.element)}</div>
+          </div>
+          <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
+        commentary.appendChild(div);
+      });
     }
-
-    // Render Segment Pictures & Stories with Compact Story Emblem Badges
-    const commentary = document.getElementById('commentary');
-    commentary.innerHTML = '';
-    const charges = result.charges ?? [];
-    
-    (result.commentary ?? []).forEach((block, idx) => {
-      const div = document.createElement('div');
-      div.className = 'commentary-block';
-
-      const isFieldBlock = (block.element || '').toLowerCase().includes('field');
-      let badgeContent = '';
-
-      if (isFieldBlock) {
-        const f = result.field || { tincture: 'azure', division: 'plain' };
-        badgeContent = \`<svg viewBox="-100 0 200 240" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${renderField(f, 'mini-' + idx)}</svg>\`;
-      } else {
-        const charge = charges[(idx - 1) % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
-        const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx, true);
-        badgeContent = \`<svg viewBox="-30 -30 60 60" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${svgCharge}</svg>\`;
-      }
-
-      div.innerHTML = \`
-        <div class="commentary-header">
-          <div class="story-icon-badge">\${badgeContent}</div>
-          <div class="commentary-element">\${escapeHtml(block.element)}</div>
-        </div>
-        <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
-      commentary.appendChild(div);
-    });
 
     // Render Mode III Tourist Board & TripAdvisor Audit Card
     const mode3Container = document.getElementById('mode3-container');
-    if (selectedMode === 'tourist_board' || selectedMode === 'mode3' || result.tourist_board) {
+    if (isMode3 || result.tourist_board) {
       const tb = result.tourist_board || {};
       const ta = result.tripadvisor_audit || {};
       const cr = result.customer_reviews || [];
@@ -1309,4 +1314,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Mode III multi-lens synthesis');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js — Mode 3 now completely hides crest and heraldic commentary');
