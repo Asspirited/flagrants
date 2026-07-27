@@ -97,7 +97,7 @@ echo "sk-ant-..." | CLOUDFLARE_API_TOKEN="$CF_TOKEN" CLOUDFLARE_ACCOUNT_ID=ce5eb
 - ✅ **3D Hybrid Layered Renderer** — Gold leaf emboss, metallic gradients, zero latency (<15ms)
 - ✅ **Fast Lens Switcher** — Instant re-design without re-research
 - ✅ **Crest Image Export** — Download as PNG or SVG
-- ✅ **Automated Test Suite** — 36/36 tests pass green (across 6 test suites)
+- ✅ **Automated Test Suite** — 40/40 tests pass green (across 6 test suites including `tests/socio-economic.test.js`)
 - ✅ **FG-008 Cutting Profanity Register** — Implemented in prompt system and founding philosophy
 
 ---
