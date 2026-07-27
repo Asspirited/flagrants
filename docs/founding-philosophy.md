@@ -144,6 +144,23 @@ The herald delivers every derived excuse with complete authority. He has conside
 
 ---
 
+## Graphic & Research Evolution Backlog
+
+### FG-011: Bayeux Tapestry & Medieval Marginalia Graphic Engine
+Move beyond 1980s geometric vector icons (stars, simple castles, anchors) to hilarious, absurd Bayeux Tapestry-style embroidered depictions.
+- **Visual Style:** Coarse linen weave textures, embroidered thread-line strokes, medieval marginalia beasts, fleeing knights, grotesque creatures, and absurd local historical scenes.
+- **Architectural Path:**
+  1. *Phase 1:* Richer medieval marginalia vector asset library (embroidered stitch lines & absurd medieval figures).
+  2. *Phase 2:* Dynamic AI Image Generation (FLUX / Imagen 3) producing custom Bayeux Tapestry embroidery panels directly matching each segment picture story.
+
+### FG-012: Un-Censored Deep Dark Research & Absurdity Filter Expansion
+Expand the Herald's research prompt guidelines (`RESEARCH_SYSTEM`) to dig deeper into obscure medieval court rolls, witch trials, bizarre local laws, bestiality accusations, gallows lore, and absurd local squabbles. Eliminate generic sanitized summaries in favor of un-filtered historical absurdity.
+
+### FG-013: Segment Picture Story-to-Artwork Correlation Contract
+Ensure that each segment picture artwork directly visualizes the specific comedic story generated in the Herald's commentary (e.g. a 17th-century mayor escaping a riot in a laundry basket depicted in tapestry style).
+
+---
+
 ## Foundation note
 
 Forks the location research mechanic from Cusslab's House Name Oracle (BL-053).

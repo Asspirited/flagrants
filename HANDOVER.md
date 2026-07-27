@@ -98,6 +98,9 @@ echo "sk-ant-..." | CLOUDFLARE_API_TOKEN="$CF_TOKEN" CLOUDFLARE_ACCOUNT_ID=ce5eb
 
 - **FG-009: Rule of Tincture & High-Contrast Field Engine** — Enforce classical contrast rules (Metal on Colour, Colour on Metal) in AI design prompt and validator (`validateSpec`). Prevent dark-on-dark split fields (e.g. `sable` + `azure`).
 - **FG-010: Contextual Historical Tincture & Symbol Matching** — Systematically map research themes (maritime, industrial, agrarian, royal, scandal) to matching tinctures and charges for maximum historical resonance.
+- **FG-011: Bayeux Tapestry & Medieval Marginalia Graphic Engine** — Replace 1980s-style geometric icons with hilarious, absurd Bayeux Tapestry embroidered depictions (fleeing knights, bizarre heraldic beasts, embroidered stitch textures, illuminated manuscript marginalia).
+- **FG-012: Un-Censored Deep Dark Research & Absurdity Filter Expansion** — Un-constrain research prompt guidelines to unearth obscure dark folklore, bizarre historical court rolls, bestiality accusations, gallows lore, and absurd local scandals.
+- **FG-013: Segment Picture Story-to-Artwork Correlation Contract** — Dynamically correlate the segment picture artwork with the specific story in the Herald's commentary (e.g. mayor escaping in a laundry basket depicted in tapestry style).
 - Playwright E2E visual snapshot testing
 - Mobile PWA offline caching
 
