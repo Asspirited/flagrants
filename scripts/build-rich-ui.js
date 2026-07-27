@@ -26,7 +26,7 @@ const richHtml = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json?v=3">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,11 +100,19 @@ const richHtml = `<!DOCTYPE html>
       gap: 2.5rem;
     }
 
+    /* Mode Switcher Tabs (3-Column Mobile Friendly Layout) */
     .mode-tabs {
-      display: flex;
-      gap: 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      width: 100%;
       margin-bottom: 0.5rem;
-      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .mode-tabs {
+        grid-template-columns: 1fr;
+      }
     }
 
     .mode-tab {
@@ -112,26 +120,29 @@ const richHtml = `<!DOCTYPE html>
       border: 1px solid rgba(212, 160, 48, 0.3);
       color: #c8a060;
       font-family: 'Cinzel', serif;
-      font-size: 0.92rem;
-      padding: 0.64rem 1.1rem;
-      border-radius: 6px 6px 0 0;
+      font-size: 0.85rem;
+      padding: 0.75rem 0.5rem;
+      border-radius: 6px;
       cursor: pointer;
+      text-align: center;
       transition: all 0.2s ease;
+      font-weight: 600;
+      line-height: 1.3;
     }
 
     .mode-tab.active {
-      background: rgba(26, 16, 8, 0.95);
+      background: linear-gradient(135deg, #3d2508 0%, #663d00 100%);
       border-color: #FFD700;
-      border-bottom-color: transparent;
       color: #FFD700;
       font-weight: bold;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
     }
 
     .input-panel {
       background: rgba(26, 16, 8, 0.85);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 160, 48, 0.35);
-      border-radius: 0 8px 8px 8px;
+      border-radius: 8px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
@@ -772,7 +783,7 @@ const richHtml = `<!DOCTYPE html>
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-location">Mode I — Location Flag</button>
     <button class="mode-tab" id="tab-family">Mode II — Family / Group Crest</button>
-    <button class="mode-tab" id="tab-tourist">Mode III — Tourist Board & TripAdvisor Audit</button>
+    <button class="mode-tab" id="tab-tourist">Mode III — Tourist Board & TripAdvisor</button>
   </div>
 
   <div class="input-panel">
@@ -940,7 +951,7 @@ const richHtml = `<!DOCTYPE html>
       locationInput.placeholder = 'e.g. Windsor, Royal Mail, The Smith Family…';
     } else {
       tabTourist.classList.add('active');
-      panelTitle.textContent = 'Mode III — Tourist Board & TripAdvisor Audit';
+      panelTitle.textContent = 'Mode III — Tourist Board & TripAdvisor';
       inputLabel.textContent = 'Location, town, or holiday destination';
       locationInput.placeholder = 'e.g. Aldershot, Milton Keynes, Blackpool…';
     }
@@ -1288,4 +1299,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with Socio-Economic Audit');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with Mode III responsive tabs & SW v3');
