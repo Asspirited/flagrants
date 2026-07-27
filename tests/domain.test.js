@@ -103,4 +103,23 @@ describe('renderSpec()', () => {
     assert.ok(svg.includes('Truth &amp; Consequences'));
     assert.ok(!svg.includes('Truth & Consequences'));
   });
+
+  it('enforces Rule of Tincture contrast on dark-on-dark split fields (FG-009)', () => {
+    const COLOUR_LIST = ['gules', 'azure', 'sable', 'vert', 'purpure'];
+    function validateSpec(spec) {
+      if (spec.field.division !== 'plain' && spec.field.secondary_tincture) {
+        const t1IsColour = COLOUR_LIST.includes(spec.field.tincture.toLowerCase());
+        const t2IsColour = COLOUR_LIST.includes(spec.field.secondary_tincture.toLowerCase());
+        if (t1IsColour && t2IsColour) {
+          spec.field.secondary_tincture = spec.field.tincture.toLowerCase() === 'sable' ? 'or' : 'argent';
+        }
+      }
+      return spec;
+    }
+    const spec = validateSpec({
+      field: { tincture: 'sable', division: 'per_fess', secondary_tincture: 'azure' }
+    });
+    assert.notEqual(spec.field.secondary_tincture, 'azure', 'sable + azure dark-on-dark split field MUST be repaired');
+    assert.equal(spec.field.secondary_tincture, 'or', 'sable split field MUST default secondary tincture to metal (or)');
+  });
 });

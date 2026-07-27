@@ -538,6 +538,17 @@ ${HERALD_REGISTER}
 
 ${vocab}
 
+STRICT HERALDIC RULE OF TINCTURE & CONTRAST (FG-009):
+1. Split fields MUST pair a Metal (Or gold, Argent silver) with a Colour (Gules, Azure, Sable, Vert, Purpure). Never pair two dark Colours together (e.g. sable + azure, sable + vert, or azure + gules is FORBIDDEN).
+2. Charges MUST strongly contrast against their background (Gold 'or' or Silver 'argent' charges on dark fields; dark charges on Or/Argent fields).
+
+CONTEXTUAL HISTORICAL SYMBOLISM (FG-010):
+Choose tinctures and charges with deliberate historical meaning derived from research findings:
+- Maritime / Coastal / Ports -> Azure & Argent + ship, anchor, fleur_de_lis.
+- Industrial / Mining / Towns -> Sable & Or + wheel, flame, hand, hammer.
+- Agrarian / Countryside -> Vert & Or + wheat_sheaf, star, eagle.
+- Military / Crime / Monarchy -> Gules & Purpure + sword, tower, castle, crown.
+
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
 {
   "affectation": "<a punchy, witty nickname or affectation for this place/family>",
@@ -613,12 +624,24 @@ function parseJSON(text) {
   }
 }
 
+const COLOUR_LIST = ['gules', 'azure', 'sable', 'vert', 'purpure'];
+
 function validateSpec(spec) {
   if (!spec.field?.tincture || !VALID_TINCTURES.includes(spec.field.tincture))
     spec.field = { tincture: 'sable', division: 'plain' };
   if (!VALID_DIVISIONS.includes(spec.field.division)) spec.field.division = 'plain';
   if (spec.field.secondary_tincture && !VALID_TINCTURES.includes(spec.field.secondary_tincture))
     spec.field.secondary_tincture = 'argent';
+
+  // Rule of Tincture & High-Contrast Guard (FG-009): Prevent dark-on-dark split fields
+  if (spec.field.division !== 'plain' && spec.field.secondary_tincture) {
+    const t1IsColour = COLOUR_LIST.includes(spec.field.tincture.toLowerCase());
+    const t2IsColour = COLOUR_LIST.includes(spec.field.secondary_tincture.toLowerCase());
+    if (t1IsColour && t2IsColour) {
+      spec.field.secondary_tincture = spec.field.tincture.toLowerCase() === 'sable' ? 'or' : 'argent';
+    }
+  }
+
   spec.charges = (spec.charges ?? []).filter(c => VALID_CHARGES.includes(c.id)).slice(0, 4);
   spec.charges.forEach(c => { if (!VALID_TINCTURES.includes(c.tincture)) c.tincture = 'or'; });
   return spec;

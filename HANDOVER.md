@@ -96,6 +96,8 @@ echo "sk-ant-..." | CLOUDFLARE_API_TOKEN="$CF_TOKEN" CLOUDFLARE_ACCOUNT_ID=ce5eb
 
 ## Future Backlog / Enhancements
 
+- **FG-009: Rule of Tincture & High-Contrast Field Engine** — Enforce classical contrast rules (Metal on Colour, Colour on Metal) in AI design prompt and validator (`validateSpec`). Prevent dark-on-dark split fields (e.g. `sable` + `azure`).
+- **FG-010: Contextual Historical Tincture & Symbol Matching** — Systematically map research themes (maritime, industrial, agrarian, royal, scandal) to matching tinctures and charges for maximum historical resonance.
 - Playwright E2E visual snapshot testing
 - Mobile PWA offline caching
 
