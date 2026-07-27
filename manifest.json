@@ -1,0 +1,9 @@
+{
+  "name": "Flagrants — Satirical Medieval Heraldry Generator",
+  "short_name": "Flagrants",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d0804",
+  "theme_color": "#FFD700",
+  "description": "Heraldic dignity for those who never deserved it."
+}

@@ -26,6 +26,8 @@ const richHtml = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -884,6 +886,13 @@ const richHtml = `<!DOCTYPE html>
     return String(str)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Register Service Worker for PWA Offline Caching (FG-015)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg skipped:', err));
+    });
   }
 </script>
 

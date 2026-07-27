@@ -66,4 +66,17 @@
 * **FG-WL-006 (Mobile WebKit clipPath root-space cutoff):** ~50 mins
 * **TOTAL TIME INVESTED IN SHIELD ALIGNMENT BUG FIXES:** **~1 HOUR 35 MINUTES** (Now 100% resolved & verified live).
 
+---
+
+## FG-WL-007 — Dark-on-Dark Split Field Contrast Clash & 1980s Vector Graphics
+**Date:** 2026-07-27
+**Cost:** ~25 min user feedback loop & design review
+**Symptom:** Generated shield split field paired Sable (black) and Azure (dark blue), creating a muddy dark-on-dark visual clash with a low contrast ratio (1.59:1). Geometric vector charges felt like "1980s software" with lack of imagination.
+**Root cause:**
+  1. AI prompt lacked strict Rule of Tincture contrast rules (Metal on Colour).
+  2. Simple geometric icons failed to capture the absurdity and dark folklore of research findings.
+**Fix:**
+  1. Built an automated **Heraldic Colour Wheel Contrast Engine** (`getLuminance`, `getContrastRatio`, `enforceColourWheelContrast`) in `src/logic/svg-renderer.js` and `code/worker.js`, auto-repairing split fields with contrast < 3.5:1 to Metal (Or/Argent).
+  2. Released **FG-011 Bayeux Tapestry & Medieval Marginalia Graphic Engine** with 6 medieval marginalia vector figures, linen weave parchment styling, and an embroidered tapestry panel container (`a998324`).
+
 
