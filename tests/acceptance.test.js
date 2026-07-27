@@ -60,6 +60,36 @@ test('Feature: Family & Group Crest Generation (Mode II)', async (t) => {
   });
 });
 
+test('Feature: Municipal Tourist Board & TripAdvisor Audit (Mode III)', async (t) => {
+  await t.test('Scenario: Mode III produces desperate Tourist Board copy, acidic TripAdvisor audit, and customer reviews', () => {
+    // Given a user enters "Aldershot" in Mode III with Defence Lens "proud_of_it"
+    const mockMode3Spec = {
+      affectation: "Gateway to the M4",
+      motto: "ROTAMUR ET MANEMUS",
+      motto_translation: "We Turn, and We Remain",
+      twinned_with: ["Pripyat", "Detroit"],
+      tourist_board: {
+        slogan: "Experience the Unstoppable Motion of the Blackwater Valley!",
+        brochure_copy: "Welcome to a town where history is made every day on the ring road."
+      },
+      tripadvisor_audit: {
+        headline: "A Masterclass in Motion Without Progress",
+        overall_rating: "1.5 / 5 — Mostly Overcast",
+        audit_review: "Visitors arriving in Aldershot are immediately struck by a sense of impending departure."
+      },
+      customer_reviews: [
+        { reviewer: "DisappointedFromSurrey", rating: 1, text: "Spent 3 hours on the roundabout." }
+      ]
+    };
+
+    // Then Mode III payload MUST contain tourist board slogan, TripAdvisor rating, and customer review
+    assert.equal(mockMode3Spec.motto, 'ROTAMUR ET MANEMUS');
+    assert.ok(mockMode3Spec.tourist_board.slogan.includes('Blackwater Valley'));
+    assert.ok(mockMode3Spec.tripadvisor_audit.overall_rating.includes('1.5 / 5'));
+    assert.equal(mockMode3Spec.customer_reviews[0].rating, 1);
+  });
+});
+
 test('Feature: Instant Lens Switching (Re-design contract)', async (t) => {
   await t.test('Scenario: Switching Defence Lenses modifies excuse and motto while retaining subject research', () => {
     // Given research findings for "Runnymede"

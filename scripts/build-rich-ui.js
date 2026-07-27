@@ -104,6 +104,7 @@ const richHtml = `<!DOCTYPE html>
       display: flex;
       gap: 0.8rem;
       margin-bottom: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .mode-tab {
@@ -111,8 +112,8 @@ const richHtml = `<!DOCTYPE html>
       border: 1px solid rgba(212, 160, 48, 0.3);
       color: #c8a060;
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      padding: 0.6rem 1.2rem;
+      font-size: 0.92rem;
+      padding: 0.64rem 1.1rem;
       border-radius: 6px 6px 0 0;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -526,7 +527,6 @@ const richHtml = `<!DOCTYPE html>
       gap: 0.8rem;
     }
 
-    /* Compact Story Emblem Badge (User Design Preference Fix) */
     .story-icon-badge {
       width: 44px;
       height: 44px;
@@ -568,6 +568,140 @@ const richHtml = `<!DOCTYPE html>
       color: #f8c8c8;
       line-height: 1.5;
     }
+
+    /* Mode III — Tourist Board & TripAdvisor Audit Card */
+    .mode3-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-top: 1.5rem;
+      border-top: 1px dashed rgba(212, 160, 48, 0.3);
+      padding-top: 1.5rem;
+    }
+
+    .tb-banner {
+      background: linear-gradient(135deg, #2b1c0a 0%, #150c04 100%);
+      border: 1px solid #FFD700;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .tb-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tb-slogan {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.35rem;
+      color: #ffffff;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .tb-copy {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: #e8d5a3;
+      line-height: 1.55;
+    }
+
+    .ta-audit-box {
+      background: #1c0e06;
+      border-left: 4px solid #00aa6c;
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .ta-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #00aa6c;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .ta-rating {
+      font-size: 1.2rem;
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    .ta-headline {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.3rem;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .ta-review {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: #e8d5a3;
+      line-height: 1.55;
+    }
+
+    .cr-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .cr-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cr-card {
+      background: #190e05;
+      border: 1px solid rgba(212, 160, 48, 0.25);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cr-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cr-reviewer {
+      font-size: 0.9rem;
+      color: #c8a060;
+      font-weight: bold;
+    }
+
+    .cr-stars {
+      color: #FFD700;
+      font-size: 0.95rem;
+    }
+
+    .cr-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      color: #e8d5a3;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -585,6 +719,7 @@ const richHtml = `<!DOCTYPE html>
   <div class="mode-tabs">
     <button class="mode-tab active" id="tab-location">Mode I — Location Flag</button>
     <button class="mode-tab" id="tab-family">Mode II — Family / Group Crest</button>
+    <button class="mode-tab" id="tab-tourist">Mode III — Tourist Board & TripAdvisor Audit</button>
   </div>
 
   <div class="input-panel">
@@ -650,6 +785,28 @@ const richHtml = `<!DOCTYPE html>
         <div class="commentary" id="commentary"></div>
       </div>
     </div>
+
+    <!-- Mode III — Tourist Board & TripAdvisor Audit Card -->
+    <div class="mode3-container" id="mode3-container" style="display:none">
+      <div class="tb-banner">
+        <div class="tb-badge">🏛️ Municipal Tourist Board Official Brochure</div>
+        <div class="tb-slogan" id="tb-slogan"></div>
+        <div class="tb-copy" id="tb-copy"></div>
+      </div>
+
+      <div class="ta-audit-box">
+        <div class="ta-badge">🦉 TripAdvisor Expert Audit Review</div>
+        <div class="ta-rating" id="ta-rating"></div>
+        <div class="ta-headline" id="ta-headline"></div>
+        <div class="ta-review" id="ta-review"></div>
+      </div>
+
+      <div class="cr-section">
+        <div class="cr-heading">⭐ Verified Customer Reviews (1–5 Stars)</div>
+        <div class="cr-list" id="cr-list"></div>
+      </div>
+    </div>
+
     <div class="excuse-block" id="excuse-block"></div>
   </div>
 
@@ -681,26 +838,35 @@ const richHtml = `<!DOCTYPE html>
 
   const tabLocation = document.getElementById('tab-location');
   const tabFamily   = document.getElementById('tab-family');
+  const tabTourist  = document.getElementById('tab-tourist');
   const panelTitle  = document.getElementById('panel-title');
   const inputLabel  = document.getElementById('input-label');
 
   tabLocation.addEventListener('click', () => setMode('location'));
   tabFamily.addEventListener('click', () => setMode('family'));
+  tabTourist.addEventListener('click', () => setMode('tourist_board'));
 
   function setMode(mode) {
     selectedMode = mode;
+    tabLocation.classList.remove('active');
+    tabFamily.classList.remove('active');
+    tabTourist.classList.remove('active');
+
     if (mode === 'location') {
       tabLocation.classList.add('active');
-      tabFamily.classList.remove('active');
       panelTitle.textContent = 'Mode I — Location Flag';
       inputLabel.textContent = 'Location, postcode, or place';
       locationInput.placeholder = 'e.g. Slough, SW1A 1AA, Runnymede…';
-    } else {
+    } else if (mode === 'family') {
       tabFamily.classList.add('active');
-      tabLocation.classList.remove('active');
       panelTitle.textContent = 'Mode II — Family / Group Crest';
       inputLabel.textContent = 'Family name, workplace, or friend group';
       locationInput.placeholder = 'e.g. Windsor, Royal Mail, The Smith Family…';
+    } else {
+      tabTourist.classList.add('active');
+      panelTitle.textContent = 'Mode III — Municipal Tourist Board & TripAdvisor Audit';
+      inputLabel.textContent = 'Location, town, or holiday destination';
+      locationInput.placeholder = 'e.g. Aldershot, Milton Keynes, Blackpool…';
     }
     checkReady();
   }
@@ -778,20 +944,34 @@ const richHtml = `<!DOCTYPE html>
       const designRes = await fetch(\`\${WORKER}/design\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ findings: currentFindings, lens: lensId })
+        body: JSON.stringify({ findings: currentFindings, lens: lensId, mode: selectedMode })
       });
 
       let result;
       if (!designRes.ok) {
         result = {
           lens: lensId,
-          affectation: 'The Royal Borough\\'s Unwanted Cousin',
-          twinned_with: ['Chernobyl', 'Detroit'],
+          affectation: 'Gateway to the M4 Corridor',
+          twinned_with: ['Pripyat', 'Detroit'],
           field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
           charges: [{ id: 'bayeux_knight_fleeing', tincture: 'or', position: 'base' }],
-          motto: 'Ex Caeno, Caelum',
-          motto_translation: 'Out of the Mire, the Heavens',
+          motto: 'ROTAMUR ET MANEMUS',
+          motto_translation: 'We Turn, and We Remain',
           excuse: 'External forces. Enemies. Circumstance.',
+          tourist_board: {
+            slogan: 'Experience the Unstoppable Motion of the Blackwater Valley!',
+            brochure_copy: 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture and traditional overcast skies!'
+          },
+          tripadvisor_audit: {
+            headline: 'A Masterclass in Motion Without Progress',
+            overall_rating: '1.5 / 5 — Mostly Overcast',
+            audit_review: 'Visitors arriving in Aldershot are immediately struck by a sense of impending departure. The local ring road system offers continuous motion without destination.'
+          },
+          customer_reviews: [
+            { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
+            { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The cows are magnificent. 10/10.' },
+            { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
+          ],
           commentary: [
             { element: 'Field & Division', text: 'Azure and argent per chevron.' },
             { element: 'Segment Picture: Fleeing Knight', text: 'Depicted in Bayeux Tapestry embroidery, fleeing the scene of administrative panic.' }
@@ -875,12 +1055,10 @@ const richHtml = `<!DOCTYPE html>
       let badgeContent = '';
 
       if (isFieldBlock) {
-        // Mini-shield icon for field division
         const f = result.field || { tincture: 'azure', division: 'plain' };
         badgeContent = \`<svg viewBox="-100 0 200 240" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${renderField(f, 'mini-' + idx)}</svg>\`;
       } else {
         const charge = charges[(idx - 1) % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
-        // Force standalone centered icon rendering (cx = 0, cy = 0)
         const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx, true);
         badgeContent = \`<svg viewBox="-30 -30 60 60" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">\${svgCharge}</svg>\`;
       }
@@ -893,6 +1071,40 @@ const richHtml = `<!DOCTYPE html>
         <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
       commentary.appendChild(div);
     });
+
+    // Render Mode III Tourist Board & TripAdvisor Audit Card
+    const mode3Container = document.getElementById('mode3-container');
+    if (selectedMode === 'tourist_board' || selectedMode === 'mode3' || result.tourist_board) {
+      const tb = result.tourist_board || {};
+      const ta = result.tripadvisor_audit || {};
+      const cr = result.customer_reviews || [];
+
+      document.getElementById('tb-slogan').textContent = tb.slogan ?? '';
+      document.getElementById('tb-copy').textContent   = tb.brochure_copy ?? '';
+      
+      document.getElementById('ta-rating').textContent   = ta.overall_rating ? \`Rating: \${ta.overall_rating}\` : '';
+      document.getElementById('ta-headline').textContent = ta.headline ?? '';
+      document.getElementById('ta-review').textContent   = ta.audit_review ?? '';
+
+      const crList = document.getElementById('cr-list');
+      crList.innerHTML = '';
+      cr.forEach(rev => {
+        const stars = '★'.repeat(rev.rating || 1) + '☆'.repeat(5 - (rev.rating || 1));
+        const card = document.createElement('div');
+        card.className = 'cr-card';
+        card.innerHTML = \`
+          <div class="cr-header">
+            <span class="cr-reviewer">👤 \${escapeHtml(rev.reviewer)}</span>
+            <span class="cr-stars">\${stars}</span>
+          </div>
+          <div class="cr-text">"\${escapeHtml(rev.text)}"</div>\`;
+        crList.appendChild(card);
+      });
+
+      mode3Container.style.display = 'flex';
+    } else {
+      mode3Container.style.display = 'none';
+    }
 
     document.getElementById('excuse-block').textContent = result.excuse ?? '';
     document.getElementById('output-panel').classList.add('visible');
@@ -981,4 +1193,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with compact story badge design');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with Mode III Tourist Board & TripAdvisor Audit');

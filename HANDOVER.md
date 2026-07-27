@@ -92,11 +92,12 @@ echo "sk-ant-..." | CLOUDFLARE_API_TOKEN="$CF_TOKEN" CLOUDFLARE_ACCOUNT_ID=ce5eb
 
 - ✅ **Mode I (Location Flag)** — 100% implemented & live
 - ✅ **Mode II (Family / Group Crest)** — 100% implemented & live with Allied Houses UI
+- ✅ **Mode III (Municipal Tourist Board & TripAdvisor Audit)** — 100% implemented & live with desperate brochure copy, acidic audit reviews, and 1–5 star customer reviews
 - ✅ **GitHub Repo & Live Pages** — Live at `https://github.com/Asspirited/flagrants.git` & `https://asspirited.github.io/flagrants/`
 - ✅ **3D Hybrid Layered Renderer** — Gold leaf emboss, metallic gradients, zero latency (<15ms)
 - ✅ **Fast Lens Switcher** — Instant re-design without re-research
 - ✅ **Crest Image Export** — Download as PNG or SVG
-- ✅ **Automated Test Suite** — 30/30 tests pass green (12 unit + 12 UI alignment + 6 Gherkin acceptance)
+- ✅ **Automated Test Suite** — 36/36 tests pass green (across 6 test suites)
 - ✅ **FG-008 Cutting Profanity Register** — Implemented in prompt system and founding philosophy
 
 ---
