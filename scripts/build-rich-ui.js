@@ -326,31 +326,6 @@ const richHtml = `<!DOCTYPE html>
       font-family: 'EB Garamond', serif;
     }
 
-    .slogan-block {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: baseline;
-      gap: 0.7rem;
-      margin-top: 0.2rem;
-    }
-
-    .slogan-motto {
-      font-family: 'Cinzel', serif;
-      font-size: 1.45rem;
-      color: #FFD700;
-      font-style: italic;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    .slogan-translation {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.25rem;
-      color: #c8a060;
-      font-style: italic;
-    }
-
     .twinning-block {
       font-size: 0.98rem;
       color: #c8a060;
@@ -478,18 +453,6 @@ const richHtml = `<!DOCTYPE html>
       box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
     }
 
-    .lens-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      color: #FFD700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      background: rgba(255, 215, 0, 0.08);
-    }
-
     .commentary-container {
       display: flex;
       flex-direction: column;
@@ -598,10 +561,6 @@ const richHtml = `<!DOCTYPE html>
         <span class="subject-name" id="subject-name"></span>
         <span class="subject-affectation" id="subject-affectation"></span>
       </h2>
-      <div class="slogan-block" id="slogan-block">
-        <span class="slogan-motto" id="slogan-motto"></span>
-        <span class="slogan-translation" id="slogan-translation"></span>
-      </div>
       <div class="twinning-block" id="twinning-block"></div>
     </div>
 
@@ -614,7 +573,6 @@ const richHtml = `<!DOCTYPE html>
     <div class="crest-layout">
       <div class="crest-figure">
         <div id="crest-svg"></div>
-        <div class="lens-label" id="lens-label"></div>
         <div class="export-actions">
           <button class="export-btn" id="export-png-btn">📥 Save Image (PNG)</button>
           <button class="export-btn" id="export-svg-btn">📄 Export Vector (SVG)</button>
@@ -796,11 +754,6 @@ const richHtml = `<!DOCTYPE html>
     const affectation = result.affectation ?? result.nickname ?? '';
     document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
 
-    const motto = result.motto ?? '';
-    const translation = result.motto_translation ?? '';
-    document.getElementById('slogan-motto').textContent = motto ? \`“\${motto}”\` : '';
-    document.getElementById('slogan-translation').textContent = translation ? \`(\${translation})\` : '';
-
     // Render Twinned Places
     const twinningContainer = document.getElementById('twinning-block');
     twinningContainer.innerHTML = '';
@@ -828,9 +781,6 @@ const richHtml = `<!DOCTYPE html>
       btn.addEventListener('click', () => reDesignWithLens(l.id));
       reDesignContainer.appendChild(btn);
     });
-
-    document.getElementById('lens-label').textContent =
-      LENSES.find(l => l.id === result.lens)?.label ?? result.lens;
 
     const commentary = document.getElementById('commentary');
     commentary.innerHTML = '';
@@ -923,4 +873,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with client-side renderSpec');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js — removed duplicate motto header and lens-label pill');
