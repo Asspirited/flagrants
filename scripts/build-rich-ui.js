@@ -498,6 +498,39 @@ const richHtml = `<!DOCTYPE html>
       color: #e8d5a3;
     }
 
+    .tapestry-panel {
+      background: #2b1f14;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(228, 208, 168, 0.08) 0%, transparent 80%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px);
+      border: 2px dashed #a08040;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    .tapestry-title {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: #FFD700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .tapestry-art {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+    }
+
     .excuse-block {
       background: #241106;
       border: 1px solid rgba(206, 17, 38, 0.4);
@@ -721,13 +754,13 @@ const richHtml = `<!DOCTYPE html>
           affectation: 'The Royal Borough\\'s Unwanted Cousin',
           twinned_with: ['Chernobyl', 'Detroit'],
           field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
-          charges: [{ id: 'castle', tincture: 'or', position: 'base' }],
+          charges: [{ id: 'bayeux_knight_fleeing', tincture: 'or', position: 'base' }],
           motto: 'Ex Caeno, Caelum',
           motto_translation: 'Out of the Mire, the Heavens',
           excuse: 'External forces. Enemies. Circumstance.',
           commentary: [
             { element: 'Field & Division', text: 'Azure and argent per chevron.' },
-            { element: 'Segment Picture: Castle', text: 'Placed at the base of the arms.' }
+            { element: 'Segment Picture: Fleeing Knight', text: 'Depicted in Bayeux Tapestry embroidery, fleeing the scene of administrative panic.' }
           ]
         };
       } else {
@@ -792,6 +825,16 @@ const richHtml = `<!DOCTYPE html>
         <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
       commentary.appendChild(div);
     });
+
+    // Render Bayeux Tapestry Embroidered Art Panel (FG-011 Phase 2 Container)
+    const tapestryPanel = document.createElement('div');
+    tapestryPanel.className = 'tapestry-panel';
+    tapestryPanel.innerHTML = \`
+      <div class="tapestry-title">🧵 Bayeux Tapestry Embroidery Panel</div>
+      <div class="tapestry-art">
+        \${renderSpec({ field: { tincture: 'sable', division: 'plain' }, charges: result.charges || [], motto: result.motto })}
+      </div>\`;
+    commentary.appendChild(tapestryPanel);
 
     document.getElementById('excuse-block').textContent = result.excuse ?? '';
     document.getElementById('output-panel').classList.add('visible');
@@ -873,4 +916,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js — removed duplicate motto header and lens-label pill');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with Bayeux Tapestry panel');
