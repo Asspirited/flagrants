@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=99">
+  <link rel="manifest" href="manifest.json?v=100">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -799,7 +799,8 @@ const richHtml = `<!DOCTYPE html>
       </div>
     </div>
 
-    <div class="field-group">
+    <!-- Defence Lens selection (Hidden automatically in Mode III) -->
+    <div class="field-group" id="lens-group">
       <label>Defence Lens</label>
       <div class="lens-grid" id="lens-grid">
         <!-- Populated by JS -->
@@ -833,8 +834,8 @@ const richHtml = `<!DOCTYPE html>
       <div class="twinning-block" id="twinning-block"></div>
     </div>
 
-    <!-- Fast Lens Switcher bar inside output panel -->
-    <div class="re-design-bar">
+    <!-- Fast Lens Switcher bar (Hidden in Mode III) -->
+    <div class="re-design-bar" id="re-design-bar">
       <div class="re-design-title">⚡ Try another Defence Lens instantly:</div>
       <div class="re-design-buttons" id="re-design-buttons"></div>
     </div>
@@ -903,16 +904,7 @@ const richHtml = `<!DOCTYPE html>
 </main>
 
 <script>
-  // Unregister old service workers to force immediate fresh cache fetch on mobile
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(registrations => {
-      for (let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  }
-
-  // Client-Side Standalone SVG Renderer Engine (guarantees 100% 1-to-1 centered alignment)
+  // Client-Side Standalone SVG Renderer Engine
   ${clientRendererCode}
 
   const LENSES = [
@@ -933,7 +925,9 @@ const richHtml = `<!DOCTYPE html>
   const locationInput = document.getElementById('location');
   const generateBtn   = document.getElementById('generate-btn');
   const lensGrid      = document.getElementById('lens-grid');
+  const lensGroup     = document.getElementById('lens-group');
   const reDesignContainer = document.getElementById('re-design-buttons');
+  const reDesignBar   = document.getElementById('re-design-bar');
 
   const tabLocation = document.getElementById('tab-location');
   const tabFamily   = document.getElementById('tab-family');
@@ -956,16 +950,19 @@ const richHtml = `<!DOCTYPE html>
       panelTitle.textContent = 'Mode I — Location Flag';
       inputLabel.textContent = 'Location, postcode, or place';
       locationInput.placeholder = 'e.g. Slough, SW1A 1AA, Runnymede…';
+      lensGroup.style.display = 'flex';
     } else if (mode === 'family') {
       tabFamily.classList.add('active');
       panelTitle.textContent = 'Mode II — Family / Group Crest';
       inputLabel.textContent = 'Family name, workplace, or friend group';
       locationInput.placeholder = 'e.g. Windsor, Royal Mail, The Smith Family…';
+      lensGroup.style.display = 'flex';
     } else {
       tabTourist.classList.add('active');
-      panelTitle.textContent = 'Mode III — Tourist Board & TripAdvisor';
+      panelTitle.textContent = 'Mode III — Tourist Board & TripAdvisor Audit';
       inputLabel.textContent = 'Location, town, or holiday destination';
       locationInput.placeholder = 'e.g. Aldershot, Milton Keynes, Blackpool…';
+      lensGroup.style.display = 'none'; // Mode III auto-synthesizes all 7 lenses
     }
     checkReady();
   }
@@ -988,14 +985,18 @@ const richHtml = `<!DOCTYPE html>
   locationInput.addEventListener('input', checkReady);
 
   function checkReady() {
-    generateBtn.disabled = !(locationInput.value.trim() && selectedLens);
+    if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
+      generateBtn.disabled = !locationInput.value.trim();
+    } else {
+      generateBtn.disabled = !(locationInput.value.trim() && selectedLens);
+    }
   }
 
   generateBtn.addEventListener('click', generate);
 
   async function generate() {
     const location = locationInput.value.trim();
-    if (!location || !selectedLens) return;
+    if (!location) return;
 
     currentLocation = location;
     document.getElementById('loading').style.display = 'block';
@@ -1023,7 +1024,7 @@ const richHtml = `<!DOCTYPE html>
         currentFindings = await researchRes.json();
       }
 
-      await reDesignWithLens(selectedLens);
+      await reDesignWithLens(selectedLens || 'proud_of_it');
     } catch (err) {
       document.getElementById('error').style.display = 'block';
       document.getElementById('error').textContent = \`The Herald encountered a difficulty: \${err.message}\`;
@@ -1049,14 +1050,14 @@ const richHtml = `<!DOCTYPE html>
       let result;
       if (!designRes.ok) {
         result = {
-          lens: lensId,
+          lens: selectedMode === 'tourist_board' ? 'multi_lens' : lensId,
           affectation: 'Gateway to the M4 Corridor',
           twinned_with: ['Pripyat', 'Detroit'],
           field: { tincture: 'azure', division: 'per_chevron', secondary_tincture: 'argent' },
           charges: [{ id: 'bayeux_knight_fleeing', tincture: 'or', position: 'base' }],
           motto: 'ROTAMUR ET MANEMUS',
           motto_translation: 'We Turn, and We Remain',
-          excuse: 'External forces. Enemies. Circumstance.',
+          excuse: 'External forces. 1970s urban planners. Traditional weather.',
           tourist_board: {
             slogan: 'Experience the Unstoppable Motion of the Blackwater Valley!',
             brochure_copy: 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture and traditional overcast skies!'
@@ -1096,7 +1097,6 @@ const richHtml = `<!DOCTYPE html>
   function renderOutput(location, result) {
     const crestContainer = document.getElementById('crest-svg');
     
-    // Compute SVG using 100% Client-Side renderSpec
     try {
       const specForShield = { ...result, motto: '', motto_translation: '' };
       crestContainer.innerHTML = renderSpec(specForShield);
@@ -1137,15 +1137,20 @@ const richHtml = `<!DOCTYPE html>
       });
     }
 
-    // Fast Lens Switcher Buttons
-    reDesignContainer.innerHTML = '';
-    LENSES.forEach(l => {
-      const btn = document.createElement('button');
-      btn.className = \`re-lens-btn \${l.id === result.lens ? 'active' : ''}\`;
-      btn.textContent = l.label;
-      btn.addEventListener('click', () => reDesignWithLens(l.id));
-      reDesignContainer.appendChild(btn);
-    });
+    // Hide Fast Lens Switcher bar in Mode III (since Mode III auto-synthesizes all 7 lenses)
+    if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
+      reDesignBar.style.display = 'none';
+    } else {
+      reDesignBar.style.display = 'flex';
+      reDesignContainer.innerHTML = '';
+      LENSES.forEach(l => {
+        const btn = document.createElement('button');
+        btn.className = \`re-lens-btn \${l.id === result.lens ? 'active' : ''}\`;
+        btn.textContent = l.label;
+        btn.addEventListener('click', () => reDesignWithLens(l.id));
+        reDesignContainer.appendChild(btn);
+      });
+    }
 
     // Render Segment Pictures & Stories with Compact Story Emblem Badges
     const commentary = document.getElementById('commentary');
@@ -1304,4 +1309,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with SW unregister & Cache-Control headers');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Mode III multi-lens synthesis');
