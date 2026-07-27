@@ -281,9 +281,26 @@ async function callClaude(env, system, userMsg, maxTokens = 1200) {
 }
 
 function parseJSON(text) {
+  let jsonStr = text;
   const match = text.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('No JSON found in response');
-  return JSON.parse(match[0]);
+  if (match) jsonStr = match[0];
+  if (!jsonStr) throw new Error('No JSON object found in response');
+
+  try {
+    return JSON.parse(jsonStr);
+  } catch (err1) {
+    try {
+      // Fix invalid backslashes not part of standard JSON escape sequences (\", \\, \/, \b, \f, \n, \r, \t, \u)
+      let cleaned = jsonStr.replace(/\\(?!["\\/bfnrtu])/g, '\\\\');
+      // Replace unescaped raw newlines/tabs
+      cleaned = cleaned.replace(/[\r\n\t]+/g, ' ');
+      // Remove trailing commas before closing braces/brackets
+      cleaned = cleaned.replace(/,\s*([}\]])/g, '$1');
+      return JSON.parse(cleaned);
+    } catch (err2) {
+      throw new Error(`Invalid JSON output: ${err1.message}`);
+    }
+  }
 }
 
 function validateSpec(spec) {
