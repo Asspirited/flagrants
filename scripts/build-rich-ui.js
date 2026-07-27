@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=103">
+  <link rel="manifest" href="manifest.json?v=104">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -925,10 +925,13 @@ const richHtml = `<!DOCTYPE html>
   ];
 
   const MODE3_TAGLINES = [
+    '🐶 FIND LOCAL DOGGING SPOTS',
+    '🌿 LOCATE APPROVED LOCAL DEALERS',
     '🏖️ CHECK YOUR DREAM DESTINATION',
     '🛡️ IS IT SAFE TO VISIT?',
+    '🚓 INSPECT CRIME & PUBLIC ORDER',
     '🤔 WILL I SURVIVE A WEEKEND HERE?',
-    '✈️ INSPECT TOURIST BOARD TRUTHS',
+    '🏛️ INSPECT TOURIST BOARD LIES',
     '🦉 AUDIT THIS HOLIDAY DESTINATION'
   ];
 
@@ -1357,4 +1360,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js — Mode 3 paper-form section boxes & bulletproof key normalization');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with illicit tourism dynamic CTA button taglines');
