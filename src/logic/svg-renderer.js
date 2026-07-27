@@ -1,6 +1,6 @@
 // svg-renderer.js
 // Takes a heraldic spec JSON, returns an SVG string.
-// All rendering is pure — no DOM, no side effects. Testable in Node.
+// All rendering is pure vector graphics — high quality heraldic shapes.
 
 const { TINCTURES } = require('../data/heraldic-vocabulary.js');
 
@@ -9,8 +9,6 @@ const SHIELD_HEIGHT = 240;
 const SVG_WIDTH = 240;
 const SVG_HEIGHT = 330;
 
-// Heater shield path — the classic English shield shape
-// Centred at (0,0), fits in a 200×240 box
 function shieldPath() {
   const w = SHIELD_WIDTH;
   const h = SHIELD_HEIGHT;
@@ -70,7 +68,6 @@ function renderField(spec) {
   return `<rect x="${-hw}" y="0" width="${w}" height="${h}" fill="${t1}" />`;
 }
 
-// Inner shield curvature boundaries to ensure all charges sit safely inside the shield frame
 function chargePosition(pos, index, total) {
   const hw = SHIELD_WIDTH / 2;
   const h = SHIELD_HEIGHT;
@@ -79,7 +76,7 @@ function chargePosition(pos, index, total) {
     dexter: [-hw * 0.4, h * 0.42],
     sinister: [hw * 0.4, h * 0.42],
     chief: [0, h * 0.22],
-    base: [0, h * 0.65],
+    base: [0, h * 0.63],
     dexter_chief: [-hw * 0.38, h * 0.22],
     sinister_chief: [hw * 0.38, h * 0.22],
     dexter_base: [-hw * 0.25, h * 0.62],
@@ -98,117 +95,198 @@ function chargePosition(pos, index, total) {
   return positions[pos] ?? positions.centre;
 }
 
+// Vector-crafted heraldic charge shapes (pure SVG paths, no emoji dependency)
 function renderCharge(charge, index, total) {
   const [cx, cy] = chargePosition(charge.position, index, total);
-  const colour = tincture(charge.tincture ?? 'or');
-  // Safe charge sizing (36-44px max) to stay within shield contours
-  const baseSize = total === 1 ? 44 : total === 2 ? 40 : 36;
-  const size = charge.size ?? baseSize;
+  const col = tincture(charge.tincture ?? 'or');
+  const baseSize = total === 1 ? 46 : total === 2 ? 40 : 36;
+  const sz = charge.size ?? baseSize;
+  const id = charge.id ?? 'lion_rampant';
 
-  const shapes = {
-    lion_rampant: `<g transform="translate(${cx},${cy})">
-      <text text-anchor="middle" dominant-baseline="central" font-size="${size * 0.9}" fill="${colour}" style="font-family:serif">🦁</text>
-    </g>`,
-    lion_passant: `<g transform="translate(${cx},${cy})">
-      <text text-anchor="middle" dominant-baseline="central" font-size="${size * 0.8}" fill="${colour}" style="font-family:serif">🦁</text>
-    </g>`,
-    eagle_displayed: `<g transform="translate(${cx},${cy})">
-      <text text-anchor="middle" dominant-baseline="central" font-size="${size * 0.85}" fill="${colour}">🦅</text>
-    </g>`,
-    castle: `<g transform="translate(${cx - size/2},${cy - size/2})">
-      <rect x="0" y="${size*0.35}" width="${size}" height="${size*0.65}" fill="${colour}" />
-      <rect x="${size*0.05}" y="${size*0.1}" width="${size*0.25}" height="${size*0.3}" fill="${colour}" />
-      <rect x="${size*0.37}" y="${size*0.1}" width="${size*0.25}" height="${size*0.3}" fill="${colour}" />
-      <rect x="${size*0.69}" y="${size*0.1}" width="${size*0.25}" height="${size*0.3}" fill="${colour}" />
-      <rect x="${size*0.35}" y="${size*0.5}" width="${size*0.3}" height="${size*0.5}" fill="none" stroke="${colour}" stroke-width="2"/>
-    </g>`,
-    sword: `<g transform="translate(${cx},${cy - size/2})">
-      <rect x="-2" y="0" width="4" height="${size * 0.7}" fill="${colour}" rx="1"/>
-      <rect x="-${size*0.18}" y="${size*0.65}" width="${size*0.36}" height="${size*0.07}" fill="${colour}" rx="1"/>
-      <polygon points="0,${size} -4,${size*0.72} 4,${size*0.72}" fill="${colour}"/>
-    </g>`,
-    crown: `<g transform="translate(${cx - size*0.4},${cy - size*0.25})">
-      <rect x="0" y="${size*0.3}" width="${size*0.8}" height="${size*0.35}" fill="${colour}" rx="2"/>
-      <polygon points="${size*0.1},${size*0.3} ${size*0.1},0 ${size*0.25},${size*0.15} ${size*0.4},0 ${size*0.55},${size*0.15} ${size*0.7},0 ${size*0.7},${size*0.3}" fill="${colour}"/>
-    </g>`,
-    key: `<g transform="translate(${cx},${cy - size*0.45})">
-      <circle cx="0" cy="${size*0.18}" r="${size*0.18}" fill="none" stroke="${colour}" stroke-width="${size*0.08}"/>
-      <rect x="-${size*0.04}" y="${size*0.35}" width="${size*0.08}" height="${size*0.55}" fill="${colour}" rx="1"/>
-      <rect x="0" y="${size*0.7}" width="${size*0.15}" height="${size*0.07}" fill="${colour}"/>
-      <rect x="0" y="${size*0.82}" width="${size*0.12}" height="${size*0.07}" fill="${colour}"/>
-    </g>`,
-    wheel: `<g transform="translate(${cx},${cy})">
-      <circle cx="0" cy="0" r="${size*0.42}" fill="none" stroke="${colour}" stroke-width="${size*0.1}"/>
-      <circle cx="0" cy="0" r="${size*0.1}" fill="${colour}"/>
+  const g = (inner) => `<g transform="translate(${cx},${cy})">${inner}</g>`;
+
+  if (id === 'lion_rampant') {
+    return g(`
+      <!-- Body & Mane -->
+      <path d="M -${sz*0.1},${sz*0.3} C -${sz*0.25},${sz*0.1} -${sz*0.2},-${sz*0.1} -${sz*0.05},-${sz*0.25} C -${sz*0.15},-${sz*0.35} 0,-${sz*0.45} ${sz*0.15},-${sz*0.35} C ${sz*0.25},-${sz*0.25} ${sz*0.2},-${sz*0.1} ${sz*0.1},0 C ${sz*0.25},${sz*0.1} ${sz*0.2},${sz*0.3} ${sz*0.05},${sz*0.4} Z" fill="${col}"/>
+      <!-- Head & Jaws -->
+      <circle cx="-${sz*0.05}" cy="-${sz*0.3}" r="${sz*0.12}" fill="${col}"/>
+      <path d="M -${sz*0.15},-${sz*0.3} L -${sz*0.35},-${sz*0.33} L -${sz*0.25},-${sz*0.24} Z" fill="${col}"/>
+      <!-- Raised Forepaws (Rampant) -->
+      <path d="M -${sz*0.1},-${sz*0.15} L -${sz*0.35},-${sz*0.25} L -${sz*0.38},-${sz*0.18} M -${sz*0.05},-${sz*0.1} L -${sz*0.3},-${sz*0.15}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <!-- Hind Legs -->
+      <path d="M 0,${sz*0.25} L -${sz*0.25},${sz*0.45} M ${sz*0.08},${sz*0.25} L ${sz*0.2},${sz*0.42}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <!-- Tail Tuft -->
+      <path d="M ${sz*0.05},${sz*0.3} Q ${sz*0.38},${sz*0.2} ${sz*0.35},-${sz*0.15} C ${sz*0.32},-${sz*0.25} ${sz*0.42},-${sz*0.3} ${sz*0.38},-${sz*0.2}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
+    `);
+  }
+
+  if (id === 'lion_passant') {
+    return g(`
+      <ellipse cx="0" cy="${sz*0.05}" rx="${sz*0.35}" ry="${sz*0.18}" fill="${col}"/>
+      <circle cx="-${sz*0.28}" cy="-${sz*0.08}" r="${sz*0.14}" fill="${col}"/>
+      <!-- Raised paw -->
+      <path d="M -${sz*0.2},${sz*0.1} L -${sz*0.35},${sz*0.25} M -${sz*0.1},${sz*0.1} L -${sz*0.15},${sz*0.35} M ${sz*0.1},${sz*0.1} L ${sz*0.1},${sz*0.35} M ${sz*0.25},${sz*0.1} L ${sz*0.3},${sz*0.35}" stroke="${col}" stroke-width="${sz*0.07}" stroke-linecap="round"/>
+      <path d="M ${sz*0.32},0 Q ${sz*0.48},-${sz*0.2} ${sz*0.4},-${sz*0.35}" fill="none" stroke="${col}" stroke-width="${sz*0.06}"/>
+    `);
+  }
+
+  if (id === 'eagle_displayed') {
+    return g(`
+      <!-- Body & Tail -->
+      <ellipse cx="0" cy="0" rx="${sz*0.12}" ry="${sz*0.25}" fill="${col}"/>
+      <polygon points="0,${sz*0.15} -${sz*0.15},${sz*0.42} ${sz*0.15},${sz*0.42}" fill="${col}"/>
+      <!-- Wings Spread -->
+      <path d="M -${sz*0.1},-${sz*0.05} C -${sz*0.3},-${sz*0.35} -${sz*0.45},-${sz*0.4} -${sz*0.48},-${sz*0.2} C -${sz*0.4},-${sz*0.05} -${sz*0.25},${sz*0.1} -${sz*0.08},${sz*0.15} Z" fill="${col}"/>
+      <path d="M ${sz*0.1},-${sz*0.05} C ${sz*0.3},-${sz*0.35} ${sz*0.45},-${sz*0.4} ${sz*0.48},-${sz*0.2} C ${sz*0.4},-${sz*0.05} ${sz*0.25},${sz*0.1} ${sz*0.08},${sz*0.15} Z" fill="${col}"/>
+      <!-- Heads / Beaks -->
+      <circle cx="-${sz*0.08}" cy="-${sz*0.28}" r="${sz*0.09}" fill="${col}"/>
+      <path d="M -${sz*0.15},-${sz*0.28} L -${sz*0.26},-${sz*0.24} L -${sz*0.15},-${sz*0.2} Z" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'castle' || id === 'tower') {
+    return g(`
+      <rect x="-${sz*0.38}" y="-${sz*0.1}" width="${sz*0.76}" height="${sz*0.5}" fill="${col}"/>
+      <rect x="-${sz*0.38}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <rect x="-${sz*0.1}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <rect x="${sz*0.18}" y="-${sz*0.38}" width="${sz*0.2}" height="${sz*0.35}" fill="${col}"/>
+      <path d="M -${sz*0.12},${sz*0.4} A ${sz*0.12} ${sz*0.15} 0 0 1 ${sz*0.12},${sz*0.4} V ${sz*0.15} H -${sz*0.12} Z" fill="#1a1008"/>
+    `);
+  }
+
+  if (id === 'sword') {
+    return g(`
+      <!-- Blade -->
+      <polygon points="0,-${sz*0.45} -${sz*0.05},-${sz*0.35} -${sz*0.04},${sz*0.18} ${sz*0.04},${sz*0.18} ${sz*0.05},-${sz*0.35}" fill="${col}"/>
+      <!-- Crossguard & Pommel -->
+      <rect x="-${sz*0.22}" y="${sz*0.18}" width="${sz*0.44}" height="${sz*0.07}" fill="${col}" rx="1"/>
+      <rect x="-${sz*0.035}" y="${sz*0.25}" width="${sz*0.07}" height="${sz*0.14}" fill="${col}"/>
+      <circle cx="0" cy="${sz*0.42}" r="${sz*0.06}" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'crown') {
+    return g(`
+      <rect x="-${sz*0.4}" y="${sz*0.1}" width="${sz*0.8}" height="${sz*0.25}" fill="${col}" rx="2"/>
+      <polygon points="-${sz*0.4},${sz*0.1} -${sz*0.4},-${sz*0.25} -${sz*0.22},-${sz*0.05} 0,-${sz*0.3} ${sz*0.22},-${sz*0.05} ${sz*0.4},-${sz*0.25} ${sz*0.4},${sz*0.1}" fill="${col}"/>
+      <circle cx="-${sz*0.4}" cy="-${sz*0.28}" r="${sz*0.04}" fill="${col}"/>
+      <circle cx="0" cy="-${sz*0.33}" r="${sz*0.05}" fill="${col}"/>
+      <circle cx="${sz*0.4}" cy="-${sz*0.28}" r="${sz*0.04}" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'key') {
+    return g(`
+      <circle cx="0" cy="-${sz*0.22}" r="${sz*0.16}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
+      <rect x="-${sz*0.04}" y="-${sz*0.08}" width="${sz*0.08}" height="${sz*0.48}" fill="${col}" rx="1"/>
+      <rect x="0" y="${sz*0.18}" width="${sz*0.16}" height="${sz*0.06}" fill="${col}"/>
+      <rect x="0" y="${sz*0.3}" width="${sz*0.12}" height="${sz*0.06}" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'hammer') {
+    return g(`
+      <rect x="-${sz*0.3}" y="-${sz*0.3}" width="${sz*0.6}" height="${sz*0.24}" fill="${col}" rx="2"/>
+      <rect x="-${sz*0.05}" y="-${sz*0.06}" width="${sz*0.1}" height="${sz*0.46}" fill="${col}" rx="2"/>
+    `);
+  }
+
+  if (id === 'wheel') {
+    return g(`
+      <circle cx="0" cy="0" r="${sz*0.42}" fill="none" stroke="${col}" stroke-width="${sz*0.09}"/>
+      <circle cx="0" cy="0" r="${sz*0.1}" fill="${col}"/>
       ${[0,45,90,135].map(a => {
         const r = a * Math.PI / 180;
-        const x1 = Math.cos(r) * size*0.1; const y1 = Math.sin(r) * size*0.1;
-        const x2 = Math.cos(r) * size*0.4; const y2 = Math.sin(r) * size*0.4;
-        const x3 = -x1; const y3 = -y1; const x4 = -x2; const y4 = -y2;
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${colour}" stroke-width="${size*0.07}"/>
-                <line x1="${x3}" y1="${y3}" x2="${x4}" y2="${y4}" stroke="${colour}" stroke-width="${size*0.07}"/>`;
+        const x1 = Math.cos(r) * sz*0.1; const y1 = Math.sin(r) * sz*0.1;
+        const x2 = Math.cos(r) * sz*0.4; const y2 = Math.sin(r) * sz*0.4;
+        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${sz*0.07}"/>
+                <line x1="${-x1}" y1="${-y1}" x2="${-x2}" y2="${-y2}" stroke="${col}" stroke-width="${sz*0.07}"/>`;
       }).join('')}
-    </g>`,
-    cross_charge: `<g transform="translate(${cx},${cy})">
-      <rect x="-${size*0.08}" y="-${size*0.4}" width="${size*0.16}" height="${size*0.8}" fill="${colour}"/>
-      <rect x="-${size*0.4}" y="-${size*0.08}" width="${size*0.8}" height="${size*0.16}" fill="${colour}"/>
-    </g>`,
-    fleur_de_lis: `<g transform="translate(${cx},${cy - size*0.4})">
-      <text text-anchor="middle" dominant-baseline="hanging" font-size="${size}" fill="${colour}" style="font-family:serif">⚜</text>
-    </g>`,
-    anchor: `<g transform="translate(${cx},${cy - size*0.45})">
-      <circle cx="0" cy="${size*0.12}" r="${size*0.12}" fill="none" stroke="${colour}" stroke-width="${size*0.08}"/>
-      <rect x="-${size*0.04}" y="${size*0.22}" width="${size*0.08}" height="${size*0.6}" fill="${colour}" rx="1"/>
-      <rect x="-${size*0.3}" y="${size*0.18}" width="${size*0.6}" height="${size*0.07}" fill="${colour}"/>
-      <path d="M -${size*0.3},${size*0.82} Q -${size*0.4},${size*0.95} 0,${size*0.9} Q ${size*0.4},${size*0.95} ${size*0.3},${size*0.82}" fill="none" stroke="${colour}" stroke-width="${size*0.08}"/>
-    </g>`,
-    flame: `<g transform="translate(${cx},${cy - size*0.4})">
-      <text text-anchor="middle" dominant-baseline="hanging" font-size="${size}" fill="${colour}">🔥</text>
-    </g>`,
-    star: `<g transform="translate(${cx},${cy})">
-      ${(() => {
-        const pts = [];
-        for (let i = 0; i < 5; i++) {
-          const outer = (i * 72 - 90) * Math.PI / 180;
-          const inner = ((i * 72) + 36 - 90) * Math.PI / 180;
-          pts.push(`${Math.cos(outer)*size*0.4},${Math.sin(outer)*size*0.4}`);
-          pts.push(`${Math.cos(inner)*size*0.18},${Math.sin(inner)*size*0.18}`);
-        }
-        return `<polygon points="${pts.join(' ')}" fill="${colour}"/>`;
-      })()}
-    </g>`,
-    serpent: `<g transform="translate(${cx},${cy})">
-      <text text-anchor="middle" dominant-baseline="central" font-size="${size*0.85}" fill="${colour}">🐍</text>
-    </g>`,
-    hand: `<g transform="translate(${cx},${cy})">
-      <text text-anchor="middle" dominant-baseline="central" font-size="${size*0.85}" fill="${colour}">✋</text>
-    </g>`
-  };
+    `);
+  }
 
-  return shapes[charge.id] ?? `<circle cx="${cx}" cy="${cy}" r="${size*0.3}" fill="${colour}" opacity="0.5"/>`;
+  if (id === 'anchor') {
+    return g(`
+      <circle cx="0" cy="-${sz*0.28}" r="${sz*0.11}" fill="none" stroke="${col}" stroke-width="${sz*0.07}"/>
+      <rect x="-${sz*0.04}" y="-${sz*0.17}" width="${sz*0.08}" height="${sz*0.58}" fill="${col}" rx="1"/>
+      <rect x="-${sz*0.28}" y="-${sz*0.15}" width="${sz*0.56}" height="${sz*0.07}" fill="${col}"/>
+      <path d="M -${sz*0.28},${sz*0.4} Q -${sz*0.35},${sz*0.52} 0,${sz*0.48} Q ${sz*0.35},${sz*0.52} ${sz*0.28},${sz*0.4}" fill="none" stroke="${col}" stroke-width="${sz*0.08}"/>
+    `);
+  }
+
+  if (id === 'fleur_de_lis') {
+    return g(`
+      <path d="M 0,-${sz*0.42} C ${sz*0.1},-${sz*0.2} ${sz*0.2},-${sz*0.1} ${sz*0.08},${sz*0.3} L -${sz*0.08},${sz*0.3} C -${sz*0.2},-${sz*0.1} -${sz*0.1},-${sz*0.2} 0,-${sz*0.42} Z" fill="${col}"/>
+      <path d="M -${sz*0.05},-${sz*0.05} C -${sz*0.25},-${sz*0.2} -${sz*0.45},-${sz*0.05} -${sz*0.28},${sz*0.15} C -${sz*0.15},${sz*0.15} -${sz*0.08},0 -${sz*0.05},-${sz*0.05} Z" fill="${col}"/>
+      <path d="M ${sz*0.05},-${sz*0.05} C ${sz*0.25},-${sz*0.2} ${sz*0.45},-${sz*0.05} ${sz*0.28},${sz*0.15} C ${sz*0.15},${sz*0.15} ${sz*0.08},0 ${sz*0.05},-${sz*0.05} Z" fill="${col}"/>
+      <rect x="-${sz*0.14}" y="${sz*0.02}" width="${sz*0.28}" height="${sz*0.07}" fill="${col}" rx="1"/>
+    `);
+  }
+
+  if (id === 'flame') {
+    return g(`
+      <path d="M 0,-${sz*0.45} Q ${sz*0.25},-${sz*0.15} ${sz*0.2},${sz*0.2} Q ${sz*0.1},${sz*0.45} 0,${sz*0.4} Q -${sz*0.1},${sz*0.45} -${sz*0.2},${sz*0.2} Q -${sz*0.25},-${sz*0.15} 0,-${sz*0.45} Z" fill="${col}"/>
+      <path d="M 0,-${sz*0.25} Q ${sz*0.12},-${sz*0.05} ${sz*0.1},${sz*0.15} Q 0,${sz*0.3} -${sz*0.1},${sz*0.15} Q -${sz*0.12},-${sz*0.05} 0,-${sz*0.25} Z" fill="#FFD700"/>
+    `);
+  }
+
+  if (id === 'star') {
+    const pts = [];
+    for (let i = 0; i < 5; i++) {
+      const outer = (i * 72 - 90) * Math.PI / 180;
+      const inner = ((i * 72) + 36 - 90) * Math.PI / 180;
+      pts.push(`${Math.cos(outer)*sz*0.45},${Math.sin(outer)*sz*0.45}`);
+      pts.push(`${Math.cos(inner)*sz*0.2},${Math.sin(inner)*sz*0.2}`);
+    }
+    return g(`<polygon points="${pts.join(' ')}" fill="${col}"/>`);
+  }
+
+  if (id === 'cross_charge') {
+    return g(`
+      <rect x="-${sz*0.1}" y="-${sz*0.42}" width="${sz*0.2}" height="${sz*0.84}" fill="${col}"/>
+      <rect x="-${sz*0.42}" y="-${sz*0.1}" width="${sz*0.84}" height="${sz*0.2}" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'serpent') {
+    return g(`
+      <path d="M -${sz*0.2},${sz*0.3} C -${sz*0.4},${sz*0.1} 0,-${sz*0.1} -${sz*0.1},-${sz*0.25} C -${sz*0.15},-${sz*0.35} ${sz*0.15},-${sz*0.4} ${sz*0.2},-${sz*0.25} C ${sz*0.25},-${sz*0.1} -${sz*0.15},${sz*0.1} 0,${sz*0.3}" fill="none" stroke="${col}" stroke-width="${sz*0.09}" stroke-linecap="round"/>
+      <circle cx="${sz*0.2}" cy="-${sz*0.25}" r="${sz*0.07}" fill="${col}"/>
+    `);
+  }
+
+  if (id === 'hand') {
+    return g(`
+      <rect x="-${sz*0.14}" y="-${sz*0.05}" width="${sz*0.28}" height="${sz*0.35}" fill="${col}" rx="3"/>
+      <rect x="-${sz*0.14}" y="-${sz*0.38}" width="${sz*0.06}" height="${sz*0.35}" fill="${col}" rx="2"/>
+      <rect x="-${sz*0.06}" y="-${sz*0.42}" width="${sz*0.06}" height="${sz*0.39}" fill="${col}" rx="2"/>
+      <rect x="${sz*0.02}" y="-${sz*0.38}" width="${sz*0.06}" height="${sz*0.35}" fill="${col}" rx="2"/>
+      <rect x="${sz*0.1}" y="-${sz*0.32}" width="${sz*0.05}" height="${sz*0.29}" fill="${col}" rx="2"/>
+    `);
+  }
+
+  // Fallback icon shape
+  return g(`
+    <circle cx="0" cy="0" r="${sz*0.32}" fill="${col}" opacity="0.8"/>
+    <text text-anchor="middle" dominant-baseline="central" font-size="${sz*0.26}" fill="${tincture(charge.tincture === 'or' ? 'sable' : 'or')}" font-family="Georgia,serif">${id.charAt(0).toUpperCase()}</text>
+  `);
 }
 
 function renderMotto(motto, translation) {
   if (!motto) return '';
   const y = SHIELD_HEIGHT + 24;
+  const esc = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   return `
     <g transform="translate(0, ${y})">
-      <rect x="-${SHIELD_WIDTH/2}" y="-12" width="${SHIELD_WIDTH}" height="24" rx="3" fill="#2a1a00" stroke="#5d4212" stroke-width="1" opacity="0.95"/>
+      <rect x="-${SHIELD_WIDTH/2}" y="-12" width="${SHIELD_WIDTH}" height="24" rx="4" fill="#1c1208" stroke="#7a5c10" stroke-width="1.2" opacity="0.95"/>
       <text text-anchor="middle" dominant-baseline="central" y="0"
         font-family="Palatino, Georgia, serif" font-size="11" font-style="italic"
-        fill="#FFD700" letter-spacing="1">${escapeXml(motto)}</text>
+        fill="#FFD700" letter-spacing="1">${esc(motto)}</text>
     </g>
     ${translation ? `<text x="0" y="${y + 24}" text-anchor="middle"
-      font-family="Georgia, serif" font-size="9" fill="#a08040" font-style="italic"
-      dominant-baseline="hanging">${escapeXml(translation)}</text>` : ''}`;
-}
-
-function escapeXml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+      font-family="Georgia, serif" font-size="9.5" fill="#a08040" font-style="italic"
+      dominant-baseline="hanging">${esc(translation)}</text>` : ''}`;
 }
 
 function renderSpec(spec) {
@@ -230,7 +308,7 @@ function renderSpec(spec) {
       <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"/>
     </clipPath>
     <filter id="shield-shadow" x="-8%" y="-4%" width="116%" height="116%">
-      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#00000055"/>
+      <feDropShadow dx="2" dy="4" stdDeviation="5" flood-color="#00000088"/>
     </filter>
   </defs>
 

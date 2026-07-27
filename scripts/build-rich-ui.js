@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+const fs = require('fs');
+const path = require('path');
+
+const rootDir = path.join(__dirname, '..');
+const htmlPath = path.join(rootDir, 'code', 'index.html');
+const workerPath = path.join(rootDir, 'code', 'worker.js');
+const rootHtmlPath = path.join(rootDir, 'index.html');
+const svgRendererPath = path.join(rootDir, 'src', 'logic', 'svg-renderer.js');
+
+const svgRendererJs = fs.readFileSync(svgRendererPath, 'utf8');
+
+// Build complete high-aesthetic index.html
+const richHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -616,7 +628,7 @@
     { id: 'proud_of_it',        label: 'Proud of It',          desc: 'This was fine. The herald sees no issue whatsoever.' },
     { id: 'full_cover_up',      label: 'Full Cover-Up',        desc: 'It never happened. The herald is confused by the question.' },
     { id: 'admit_faults',       label: 'Admit Faults',         desc: 'Yes, there were some irregularities. The crest acknowledges this minimally.' },
-    { id: 'blame_others',       label: 'Blame Others',         desc: 'External forces. Enemies. God\'s specific instruction at the time.' },
+    { id: 'blame_others',       label: 'Blame Others',         desc: 'External forces. Enemies. God\\'s specific instruction at the time.' },
     { id: 'deeply_sorry',       label: 'Deeply Sorry',         desc: 'Full modern apology. All the correct language. Nothing has changed.' },
     { id: 'context_everything', label: 'Context Is Everything',desc: 'You have to understand the times. The herald provides context. It does not help.' },
     { id: 'revisionist',        label: 'Revisionist',          desc: 'Actually they were the heroes. New research supports this.' }
@@ -667,18 +679,18 @@
     try {
       const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
       
-      const researchRes = await fetch(`${WORKER}/research`, {
+      const researchRes = await fetch(\`\${WORKER}/research\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mode: 'location', subject: location })
       });
-      if (!researchRes.ok) throw new Error(`Research failed: ${researchRes.status}`);
+      if (!researchRes.ok) throw new Error(\`Research failed: \${researchRes.status}\`);
       currentFindings = await researchRes.json();
 
       await reDesignWithLens(selectedLens);
     } catch (err) {
       document.getElementById('error').style.display = 'block';
-      document.getElementById('error').textContent = `The Herald encountered a difficulty: ${err.message}`;
+      document.getElementById('error').textContent = \`The Herald encountered a difficulty: \${err.message}\`;
     } finally {
       document.getElementById('loading').style.display = 'none';
       generateBtn.disabled = false;
@@ -692,18 +704,18 @@
 
     try {
       const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
-      const designRes = await fetch(`${WORKER}/design`, {
+      const designRes = await fetch(\`\${WORKER}/design\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ findings: currentFindings, lens: lensId })
       });
-      if (!designRes.ok) throw new Error(`Design failed: ${designRes.status}`);
+      if (!designRes.ok) throw new Error(\`Design failed: \${designRes.status}\`);
       const result = await designRes.json();
 
       renderOutput(currentLocation, result);
     } catch (err) {
       document.getElementById('error').style.display = 'block';
-      document.getElementById('error').textContent = `Re-design failed: ${err.message}`;
+      document.getElementById('error').textContent = \`Re-design failed: \${err.message}\`;
     }
   }
 
@@ -712,12 +724,12 @@
     
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
-    document.getElementById('subject-affectation').textContent = affectation ? ` — ${affectation}` : '';
+    document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
 
     const motto = result.motto ?? '';
     const translation = result.motto_translation ?? '';
-    document.getElementById('slogan-motto').textContent = motto ? `“${motto}”` : '';
-    document.getElementById('slogan-translation').textContent = translation ? `(${translation})` : '';
+    document.getElementById('slogan-motto').textContent = motto ? \`“\${motto}”\` : '';
+    document.getElementById('slogan-translation').textContent = translation ? \`(\${translation})\` : '';
 
     // Render Twinned Places
     const twinningContainer = document.getElementById('twinning-block');
@@ -741,7 +753,7 @@
     reDesignContainer.innerHTML = '';
     LENSES.forEach(l => {
       const btn = document.createElement('button');
-      btn.className = `re-lens-btn ${l.id === result.lens ? 'active' : ''}`;
+      btn.className = \`re-lens-btn \${l.id === result.lens ? 'active' : ''}\`;
       btn.textContent = l.label;
       btn.addEventListener('click', () => reDesignWithLens(l.id));
       reDesignContainer.appendChild(btn);
@@ -755,9 +767,9 @@
     (result.commentary ?? []).forEach(block => {
       const div = document.createElement('div');
       div.className = 'commentary-block';
-      div.innerHTML = `
-        <div class="commentary-element">${escapeHtml(block.element)}</div>
-        <div class="commentary-text">${escapeHtml(block.text)}</div>`;
+      div.innerHTML = \`
+        <div class="commentary-element">\${escapeHtml(block.element)}</div>
+        <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
       commentary.appendChild(div);
     });
 
@@ -775,3 +787,34 @@
 
 </body>
 </html>
+`;
+
+fs.writeFileSync(htmlPath, richHtml, 'utf8');
+fs.writeFileSync(rootHtmlPath, richHtml, 'utf8');
+
+// Also update code/worker.js with richHtml embedded and svg-renderer.js inline
+let workerJs = fs.readFileSync(workerPath, 'utf8');
+
+// Inline updated svg-renderer logic into workerJs
+const svgRendererModule = `// ── SVG Renderer logic ───────────────────────────────────────────────────────
+
+${svgRendererJs.replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", "").replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture };", "")}
+
+function buildSVG(spec) {
+  return renderSpec(spec);
+}
+`;
+
+// Replace svg-renderer section in worker.js
+workerJs = workerJs.replace(/\/\/ ── SVG Renderer logic [\s\S]*?\/\/ ── Anthropic call/, svgRendererModule + '\n// ── Anthropic call');
+
+// Re-embed INDEX_HTML
+const indexConst = 'const INDEX_HTML = ' + JSON.stringify(richHtml) + ';\n\n';
+if (workerJs.startsWith('const INDEX_HTML =')) {
+  workerJs = workerJs.replace(/^const INDEX_HTML = [\s\S]*?;\n\n/, indexConst);
+} else {
+  workerJs = indexConst + workerJs;
+}
+
+fs.writeFileSync(workerPath, workerJs, 'utf8');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with rich UI & vector charges');

@@ -4,13 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #1a1008;
+      background: #0d0804;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 160, 48, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(120, 30, 20, 0.15) 0%, transparent 50%);
       color: #e8d5a3;
-      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -19,50 +25,78 @@
 
     header {
       width: 100%;
-      padding: 2rem 1rem 1rem;
+      padding: 2.5rem 1.5rem 1.5rem;
       text-align: center;
-      border-bottom: 1px solid #3d2b0a;
+      border-bottom: 1px solid rgba(212, 160, 48, 0.25);
+      background: rgba(13, 8, 4, 0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .header-logo-svg {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.7));
+      transition: transform 0.3s ease;
+    }
+    .header-logo-svg:hover {
+      transform: scale(1.02);
     }
 
     header h1 {
-      font-size: 2.8rem;
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 3rem;
       color: #FFD700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
     }
 
     header p.tagline {
-      font-size: 0.95rem;
-      color: #a08040;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      color: #c8a060;
       font-style: italic;
       margin-top: 0.4rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
     main {
       width: 100%;
-      max-width: 860px;
-      padding: 2rem 1rem;
+      max-width: 900px;
+      padding: 2.5rem 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
     .input-panel {
-      background: #241508;
-      border: 1px solid #3d2b0a;
-      border-radius: 4px;
-      padding: 1.5rem;
+      background: rgba(26, 16, 8, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 160, 48, 0.35);
+      border-radius: 8px;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
     }
 
     .input-panel h2 {
-      font-size: 1rem;
-      color: #c8a060;
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: #FFD700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .field-row {
@@ -74,192 +108,161 @@
     .field-group {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
       flex: 1;
-      min-width: 180px;
+      min-width: 220px;
     }
 
     label {
-      font-size: 0.8rem;
-      color: #a08040;
+      font-size: 0.85rem;
+      color: #c8a060;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
+      font-weight: 600;
     }
 
-    input[type="text"], select {
-      background: #1a1008;
-      border: 1px solid #5a3d10;
-      color: #e8d5a3;
-      padding: 0.6rem 0.8rem;
-      font-family: inherit;
-      font-size: 0.95rem;
-      border-radius: 3px;
-      width: 100%;
-    }
-
-    input[type="text"]:focus, select:focus {
+    input[type="text"] {
+      background: #140b04;
+      border: 1px solid rgba(212, 160, 48, 0.4);
+      color: #FFD700;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 6px;
       outline: none;
+      transition: all 0.25s ease;
+    }
+
+    input[type="text"]:focus {
       border-color: #FFD700;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
     }
 
     .lens-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 0.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+      gap: 0.7rem;
     }
 
     .lens-btn {
-      background: #1a1008;
-      border: 1px solid #5a3d10;
-      color: #a08040;
-      padding: 0.5rem 0.7rem;
-      font-family: inherit;
-      font-size: 0.8rem;
-      border-radius: 3px;
+      background: #190e05;
+      border: 1px solid rgba(212, 160, 48, 0.3);
+      color: #c8a060;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      padding: 0.75rem 0.6rem;
+      border-radius: 6px;
       cursor: pointer;
-      text-align: left;
-      transition: border-color 0.15s, color 0.15s;
+      text-align: center;
+      transition: all 0.2s ease;
+      line-height: 1.3;
+      font-weight: 500;
     }
 
-    .lens-btn:hover { border-color: #c8a060; color: #e8d5a3; }
-    .lens-btn.selected { border-color: #FFD700; color: #FFD700; background: #2a1a00; }
+    .lens-btn:hover {
+      background: #2b1809;
+      border-color: #FFD700;
+      color: #FFD700;
+      transform: translateY(-2px);
+    }
+
+    .lens-btn.selected {
+      background: linear-gradient(135deg, #3d2508 0%, #663d00 100%);
+      border-color: #FFD700;
+      color: #FFD700;
+      font-weight: 700;
+      box-shadow: 0 0 14px rgba(255, 215, 0, 0.3);
+    }
 
     .generate-btn {
-      background: #5a3000;
+      background: linear-gradient(135deg, #8a4e00 0%, #c47800 100%);
       border: 1px solid #FFD700;
-      color: #FFD700;
-      padding: 0.75rem 2rem;
-      font-family: inherit;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      border-radius: 3px;
+      padding: 1rem 2rem;
+      border-radius: 6px;
       cursor: pointer;
-      align-self: flex-start;
-      transition: background 0.15s;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(138, 78, 0, 0.4);
     }
 
-    .generate-btn:hover { background: #7a4400; }
-    .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .generate-btn:hover {
+      background: linear-gradient(135deg, #a65e00 0%, #e08b00 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2.5rem;
+      color: #FFD700;
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      background: rgba(26, 16, 8, 0.85);
+      border: 1px solid rgba(212, 160, 48, 0.3);
+      border-radius: 8px;
+    }
+
+    .error {
+      background: #3a0808;
+      border: 1px solid #8a0000;
+      color: #ff8080;
+      padding: 1.2rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
 
     .output-panel {
       display: none;
       flex-direction: column;
       gap: 2rem;
+      background: rgba(26, 16, 8, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 160, 48, 0.4);
+      border-radius: 8px;
+      padding: 2.2rem;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.7);
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .output-panel.visible { display: flex; }
 
-    .crest-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    @media (max-width: 600px) {
-      .crest-layout { grid-template-columns: 1fr; }
-    }
-
-    .crest-figure {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .crest-figure svg {
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
-    }
-
-    .subject-title {
-      font-size: 1rem;
-      color: #c8a060;
-      text-align: center;
-      font-style: italic;
-      letter-spacing: 0.05em;
-    }
-
-    .lens-label {
-      font-size: 0.75rem;
-      color: #6a5020;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-align: center;
-    }
-
-    .commentary {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .commentary-block {
-      border-left: 2px solid #3d2b0a;
-      padding-left: 1rem;
-    }
-
-    .commentary-element {
-      font-size: 0.7rem;
-      color: #6a5020;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.35rem;
-    }
-
-    .commentary-text {
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: #d4bc82;
-      font-style: italic;
-    }
-
-    .excuse-block {
-      background: #2a1a00;
-      border: 1px solid #3d2b0a;
-      border-radius: 3px;
-      padding: 1rem;
-      font-style: italic;
-      color: #a08040;
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-
-    .excuse-block::before {
-      content: 'Official Position: ';
-      color: #6a5020;
-      font-style: normal;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #a08040;
-      font-style: italic;
-      font-size: 0.95rem;
-    }
-
     .output-header {
       width: 100%;
       text-align: center;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #3d2b0a;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(212, 160, 48, 0.25);
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .main-heading {
-      font-size: 1.8rem;
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
       color: #FFD700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: bold;
+      line-height: 1.25;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
 
     .subject-name {
@@ -267,11 +270,12 @@
     }
 
     .subject-affectation {
-      font-size: 1.3rem;
+      font-size: 1.45rem;
       color: #c8a060;
       font-style: italic;
       text-transform: none;
       font-weight: normal;
+      font-family: 'EB Garamond', serif;
     }
 
     .slogan-block {
@@ -279,42 +283,196 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: baseline;
-      gap: 0.5rem;
+      gap: 0.7rem;
       margin-top: 0.2rem;
     }
 
     .slogan-motto {
-      font-size: 1.3rem;
-      color: #e8d5a3;
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      color: #FFD700;
       font-style: italic;
-      font-weight: bold;
+      font-weight: 600;
       letter-spacing: 0.04em;
     }
 
     .slogan-translation {
-      font-size: 1.1rem;
-      color: #a08040;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      color: #c8a060;
       font-style: italic;
     }
 
-    .error {
-      background: #3a0808;
-      border: 1px solid #8a0000;
-      color: #ff8080;
-      padding: 1rem;
-      border-radius: 3px;
-      font-size: 0.88rem;
-    }
-    .header-logo {
+    .twinning-block {
+      font-size: 0.98rem;
+      color: #c8a060;
+      margin-top: 0.4rem;
       display: flex;
       justify-content: center;
-      margin-bottom: 0.5rem;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
     }
-    .header-logo-svg {
-      width: 100%;
-      max-width: 260px;
+
+    .twinning-label {
+      color: #a08040;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+
+    .twinning-item {
+      background: #261608;
+      border: 1px solid rgba(212, 160, 48, 0.4);
+      padding: 0.25rem 0.8rem;
+      border-radius: 14px;
+      color: #FFD700;
+      font-size: 0.9rem;
+      font-style: italic;
+      font-family: 'EB Garamond', serif;
+    }
+
+    /* Fast Lens Switcher bar inside output panel */
+    .re-design-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      background: #180d04;
+      border: 1px solid rgba(212, 160, 48, 0.25);
+      border-radius: 6px;
+      padding: 0.9rem 1.2rem;
+    }
+
+    .re-design-title {
+      font-size: 0.82rem;
+      color: #a08040;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .re-design-buttons {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+    }
+
+    .re-lens-btn {
+      background: #241407;
+      border: 1px solid rgba(212, 160, 48, 0.25);
+      color: #c8a060;
+      font-size: 0.82rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .re-lens-btn:hover, .re-lens-btn.active {
+      border-color: #FFD700;
+      color: #FFD700;
+      background: #3a200a;
+    }
+
+    .crest-layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 2.2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .crest-layout { grid-template-columns: 1fr; }
+    }
+
+    .crest-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      background: #170c04;
+      border: 1px solid rgba(212, 160, 48, 0.25);
+      border-radius: 8px;
+      padding: 1.5rem 1rem;
+    }
+
+    .crest-figure svg {
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
+      max-width: 100%;
       height: auto;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .lens-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .commentary-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .section-subheading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(212, 160, 48, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .commentary {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .commentary-block {
+      background: #1a0e05;
+      border-left: 3px solid #FFD700;
+      padding: 1rem 1.2rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .commentary-element {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+
+    .commentary-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: #e8d5a3;
+    }
+
+    .excuse-block {
+      background: #241106;
+      border: 1px solid rgba(206, 17, 38, 0.4);
+      border-left: 4px solid #CE1126;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 6px 6px 0;
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #f8c8c8;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -329,10 +487,8 @@
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
-      <!-- Ground -->
       <rect x="0" y="160" width="320" height="40" fill="#2a1a00"/>
       <line x1="0" y1="160" x2="320" y2="160" stroke="#5a3d10" stroke-width="1.5"/>
-      <!-- CHICKEN -->
       <ellipse cx="250" cy="138" rx="32" ry="24" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
       <ellipse cx="224" cy="118" rx="12" ry="16" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
       <circle cx="214" cy="104" r="14" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
@@ -349,14 +505,12 @@
       <line x1="258" y1="160" x2="262" y2="175" stroke="#b09030" stroke-width="3"/>
       <path d="M 238,175 L 228,178 M 238,175 L 235,182 M 238,175 L 242,180" stroke="#b09030" stroke-width="2"/>
       <path d="M 262,175 L 252,178 M 262,175 L 259,182 M 262,175 L 266,180" stroke="#b09030" stroke-width="2"/>
-      <!-- FIRE -->
       <g filter="url(#glow)">
         <path d="M 196,104 Q 175,90 155,105 Q 165,95 150,115 Q 160,100 145,120 Q 158,108 148,128 Q 162,112 155,130 Q 165,115 162,135 Q 175,118 170,138 Q 182,120 178,140 Q 188,125 185,145 Q 190,110 196,104 Z" fill="#FF6600" opacity="0.9"/>
         <path d="M 196,104 Q 178,96 162,108 Q 170,99 158,116 Q 167,103 156,122 Q 168,109 163,128 Q 174,115 170,133 Q 180,118 178,138 Q 187,122 185,144 Q 191,112 196,104 Z" fill="#FF9900" opacity="0.85"/>
         <path d="M 196,104 Q 182,100 170,110 Q 176,103 166,118 Q 174,106 166,124 Q 176,112 172,130 Q 181,117 179,136 Q 187,120 185,143 Q 191,115 196,104 Z" fill="#FFCC00" opacity="0.8"/>
         <path d="M 196,104 Q 186,103 178,112 Q 182,106 174,120 Q 182,110 176,128 Q 184,116 182,134 Q 188,120 186,142 Q 192,118 196,104 Z" fill="#FFFFFF" opacity="0.6"/>
       </g>
-      <!-- ST. GEORGE -->
       <line x1="48" y1="155" x2="30" y2="157" stroke="#3d2b0a" stroke-width="1" opacity="0.5"/>
       <line x1="52" y1="150" x2="33" y2="149" stroke="#3d2b0a" stroke-width="1" opacity="0.4"/>
       <line x1="50" y1="145" x2="32" y2="142" stroke="#3d2b0a" stroke-width="1" opacity="0.3"/>
@@ -435,6 +589,13 @@
       </div>
       <div class="twinning-block" id="twinning-block"></div>
     </div>
+
+    <!-- Fast Lens Switcher bar inside output panel -->
+    <div class="re-design-bar">
+      <div class="re-design-title">⚡ Try another Defence Lens instantly:</div>
+      <div class="re-design-buttons" id="re-design-buttons"></div>
+    </div>
+
     <div class="crest-layout">
       <div class="crest-figure">
         <div id="crest-svg"></div>
@@ -462,9 +623,14 @@
   ];
 
   let selectedLens = null;
+  let currentFindings = null;
+  let currentLocation = null;
 
-  // Build lens grid
-  const lensGrid = document.getElementById('lens-grid');
+  const locationInput = document.getElementById('location');
+  const generateBtn   = document.getElementById('generate-btn');
+  const lensGrid      = document.getElementById('lens-grid');
+  const reDesignContainer = document.getElementById('re-design-buttons');
+
   LENSES.forEach(lens => {
     const btn = document.createElement('button');
     btn.className = 'lens-btn';
@@ -480,9 +646,6 @@
     lensGrid.appendChild(btn);
   });
 
-  const locationInput = document.getElementById('location');
-  const generateBtn = document.getElementById('generate-btn');
-
   locationInput.addEventListener('input', checkReady);
 
   function checkReady() {
@@ -495,30 +658,24 @@
     const location = locationInput.value.trim();
     if (!location || !selectedLens) return;
 
+    currentLocation = location;
     document.getElementById('loading').style.display = 'block';
     document.getElementById('output-panel').classList.remove('visible');
     document.getElementById('error').style.display = 'none';
     generateBtn.disabled = true;
 
     try {
-      const WORKER = 'https://flagrants-api.leanspirited.workers.dev';
+      const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
+      
       const researchRes = await fetch(`${WORKER}/research`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mode: 'location', subject: location })
       });
       if (!researchRes.ok) throw new Error(`Research failed: ${researchRes.status}`);
-      const findings = await researchRes.json();
+      currentFindings = await researchRes.json();
 
-      const designRes = await fetch(`${WORKER}/design`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ findings, lens: selectedLens })
-      });
-      if (!designRes.ok) throw new Error(`Design failed: ${designRes.status}`);
-      const result = await designRes.json();
-
-      renderOutput(location, result);
+      await reDesignWithLens(selectedLens);
     } catch (err) {
       document.getElementById('error').style.display = 'block';
       document.getElementById('error').textContent = `The Herald encountered a difficulty: ${err.message}`;
@@ -529,7 +686,28 @@
     }
   }
 
-    function renderOutput(location, result) {
+  async function reDesignWithLens(lensId) {
+    if (!currentFindings) return;
+    selectedLens = lensId;
+
+    try {
+      const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
+      const designRes = await fetch(`${WORKER}/design`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ findings: currentFindings, lens: lensId })
+      });
+      if (!designRes.ok) throw new Error(`Design failed: ${designRes.status}`);
+      const result = await designRes.json();
+
+      renderOutput(currentLocation, result);
+    } catch (err) {
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').textContent = `Re-design failed: ${err.message}`;
+    }
+  }
+
+  function renderOutput(location, result) {
     document.getElementById('crest-svg').innerHTML = result.svg;
     
     document.getElementById('subject-name').textContent = location;
@@ -558,6 +736,16 @@
         twinningContainer.appendChild(item);
       });
     }
+
+    // Fast Lens Switcher Buttons
+    reDesignContainer.innerHTML = '';
+    LENSES.forEach(l => {
+      const btn = document.createElement('button');
+      btn.className = `re-lens-btn ${l.id === result.lens ? 'active' : ''}`;
+      btn.textContent = l.label;
+      btn.addEventListener('click', () => reDesignWithLens(l.id));
+      reDesignContainer.appendChild(btn);
+    });
 
     document.getElementById('lens-label').textContent =
       LENSES.find(l => l.id === result.lens)?.label ?? result.lens;
