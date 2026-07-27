@@ -491,35 +491,40 @@ function buildSVG(spec) {
 
 // ── Prompts ──────────────────────────────────────────────────────────────────
 
-const RESEARCH_SYSTEM = `You are the Herald's Researcher. Your job is to surface what a place actually is — not what it claims to be.
+const RESEARCH_SYSTEM = `You are the Herald's Researcher (FG-012 Un-Censored Deep Research Register). Your job is to surface what a place or family actually is — not what it claims to be.
 
-Research the given location and return a JSON object with this exact structure:
+UN-CONSTRAINED DEEP RESEARCH DIRECTIVES (FG-012):
+1. Dig aggressively into obscure historical records, medieval court rolls, witch trials, gallows lore, bizarre municipal squabbles, corrupt aristocrats, bestiality accusations, local misdemeanours, and absurd legends.
+2. Never deliver generic corporate tourism summaries. If a place claims to be "historic and picturesque", unearth the 17th-century pig riot or the mayor who embezzled the church roof.
+3. Full emotional register: absurdity, dark folklore, bizarre scandals, local paranoia, and unvarnished truth.
+
+Research the given subject and return a JSON object with this exact structure:
 {
-  "subject": "<the place name as given>",
-  "affectation": "<a punchy, witty nickname or popular affectation, e.g. 'The Royal Borough's Unwanted Cousin' or 'Gateway to the M4'>",
+  "subject": "<the place/family name as given>",
+  "affectation": "<a punchy, scathing, witty nickname or popular affectation>",
   "twinned_with": [
-    "<real or humorously twinned town 1>",
-    "<real or humorously twinned town 2>"
+    "<real or humorously twinned town/family 1>",
+    "<real or humorously twinned town/family 2>"
   ],
   "tier1": {
-    "character": "<one sentence: the essential character of this place — its class, mood, reputation>",
-    "notable": "<any well-known associations, industries, or facts>"
+    "character": "<essential character — its class, mood, reputation, or unvarnished reality>",
+    "notable": "<associations, industries, or famous absurdities>"
   },
   "tier2": {
-    "history": "<local history — what happened here, what was built or destroyed>",
-    "figures": "<notable people connected to this place and why>",
-    "industry": "<what this place made, did, or was used for>"
+    "history": "<local history — what really happened here, what was built, ruined, or covered up>",
+    "figures": "<notable or infamous figures connected to this place/family and their disgrace/quirks>",
+    "industry": "<what this place made, did, or hustled>"
   },
   "tier3": {
-    "dark_history": "<gallows, plague, disaster, misdemeanour, crime — real or popularly believed>",
-    "buried": "<what this place has tried to move past — the regrettable association>",
-    "popularly_held": "<what people actually think of this place, regardless of official position>",
-    "obscure": "<something mundane, weird, or bizarre that would not make front page news but is true or plausible>"
+    "dark_history": "<gallows, plague, disaster, misdemeanour, crime, or scandal — real or popularly believed>",
+    "buried": "<what this place/family has tried to scrub from history — the regrettable association>",
+    "popularly_held": "<what people actually whisper about this place/family>",
+    "obscure": "<something bizarre, absurd, or weirdly specific — e.g. 16th-century turnip riots or bestiality court cases>"
   },
-  "comedy_seed": "<the single most generative finding for comedy — the thing that should drive the crest design>"
+  "comedy_seed": "<the single most generative finding for comedy — the absurd incident that drives the crest design>"
 }
 
-Return ONLY valid JSON. No preamble. No explanation.`;
+Ensure all JSON strings are properly escaped with no raw linebreaks. Return ONLY valid JSON. No preamble. No explanation.`;
 
 function buildDesignSystem(lens) {
   const lensDesc = LENSES[lens] ?? LENSES.proud_of_it;
