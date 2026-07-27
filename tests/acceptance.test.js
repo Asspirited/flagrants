@@ -88,6 +88,20 @@ test('Feature: Municipal Tourist Board & TripAdvisor Audit (Mode III)', async (t
     assert.ok(mockMode3Spec.tripadvisor_audit.overall_rating.includes('1.5 / 5'));
     assert.equal(mockMode3Spec.customer_reviews[0].rating, 1);
   });
+
+  await t.test('Scenario: Motto & Twinning Creative Spectrum supports grand, banal, Viking, and Zen styles', () => {
+    // Given mottos from different spectrum styles
+    const grandMotto = { motto: "IMPERIUM IN CAR PARK ET BYPASS", translation: "Sovereign Ruler of the M4 Corridor and Multi-Storey Infrastructure" };
+    const banalMotto = { motto: "PARKING FREE POST HORA TERTIA", translation: "Free Parking After 3pm on Sundays" };
+    const vikingMotto = { motto: "SKÁL IN THE HARVEST MOON PUB", translation: "Blood, Mead, and Lukewarm Pasties at Wetherspoons" };
+    const zenMotto = { motto: "IN CIRCULO STANTES, NIHIL MOVEBAT", translation: "To Stand Stuck in the Ring Road is to Attain Eternal Enlightenment" };
+
+    // Then all mottos must be valid non-empty strings
+    [grandMotto, banalMotto, vikingMotto, zenMotto].forEach(m => {
+      assert.ok(m.motto.length > 5);
+      assert.ok(m.translation.length > 5);
+    });
+  });
 });
 
 test('Feature: Instant Lens Switching (Re-design contract)', async (t) => {

@@ -82,6 +82,15 @@ SIR TERRY PRATCHETT & DOUGLAS ADAMS REGISTER (FG-017):
    - "The town is situated in a region described by historians as 'mostly harmless', though this was written prior to the introduction of the 1974 ring road system, which increased local existential confusion by approximately 400%."
    - "The motto — 'We Turn, and We Remain' — was selected after brief consideration of 'Please Do Not Ask Us About 1968', which was felt to lack heraldic gravitas."
 
+MOTTO & TWINNING CREATIVE SPECTRUM (FG-019):
+When crafting "motto", "motto_translation", and "twinned_with", draw unpredictably from this rich spectrum:
+1. **Unbelievable Hubris & Over-reaching Grandeur:** Pompous Latin/English overclaiming grand empire ("IMPERIUM IN CAR PARK ET BYPASS" -> "Sovereign Ruler of the M4 Corridor and Multi-Storey Infrastructure").
+2. **Extreme Banal & Mundane Realism:** Utterly uninspiring civic observations with solemn Latin gravitas ("PARKING FREE POST HORA TERTIA" -> "Free Parking After 3pm on Sundays").
+3. **Savage Viking War Phrases:** Norse battle cries adapted to local British town inconveniences ("SKÁL IN THE HARVEST MOON PUB" -> "Blood, Mead, and Lukewarm Pasties at Wetherspoons").
+4. **Zen-Like Philosophical Paradoxes:** Absurd pseudo-philosophical mindfulness applied to traffic jams ("IN CIRCULO STANTES, NIHIL MOVEBAT" -> "To Stand Stuck in the Ring Road is to Attain Eternal Enlightenment").
+5. **Self-Deprecating & Absurd:** Suspicious or self-deprecating warnings ("NOLI ROGARE DE 1974" -> "Please Do Not Ask Us About 1974").
+6. **Twinned Places:** Mix mythic/disaster locations (Pripyat, Detroit, Mordor, Atlantis) with absurdly banal adjacencies (Swindon Platform 4, M4 Eastbound Services, B&Q Tool Aisle 9).
+
 CALIBRATION: Victorian formal register meets Pratchett/Adams satirical warmth. Measured. Authoritative. Deeply scathing yet superficially respectful.
 The herald is not being ironic. He is genuinely informing.
 `;
