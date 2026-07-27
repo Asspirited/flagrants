@@ -702,6 +702,59 @@ const richHtml = `<!DOCTYPE html>
       color: #e8d5a3;
       font-style: italic;
     }
+
+    /* Socio-Economic & Demographic Audit Card */
+    .se-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #150b04;
+      border: 1px solid rgba(212, 160, 48, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .se-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(212, 160, 48, 0.25);
+      padding-bottom: 0.5rem;
+    }
+
+    .se-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .se-card {
+      background: #1e1107;
+      border: 1px solid rgba(212, 160, 48, 0.2);
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .se-card-header {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      color: #FFD700;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .se-card-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      color: #e8d5a3;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -807,6 +860,29 @@ const richHtml = `<!DOCTYPE html>
       </div>
     </div>
 
+    <!-- Socio-Economic & Demographic Audit Card -->
+    <div class="se-container" id="se-container" style="display:none">
+      <div class="se-heading">📊 Socio-Economic & Demographic Audit</div>
+      <div class="se-grid">
+        <div class="se-card">
+          <div class="se-card-header">🎓 Schools & Education</div>
+          <div class="se-card-body" id="se-schools"></div>
+        </div>
+        <div class="se-card">
+          <div class="se-card-header">🚓 Crime & Public Order</div>
+          <div class="se-card-body" id="se-crime"></div>
+        </div>
+        <div class="se-card">
+          <div class="se-card-header">⚒️ Workforce & Skilled Labour</div>
+          <div class="se-card-body" id="se-workforce"></div>
+        </div>
+        <div class="se-card">
+          <div class="se-card-header">🏠 Housing & Property Market</div>
+          <div class="se-card-body" id="se-housing"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="excuse-block" id="excuse-block"></div>
   </div>
 
@@ -864,7 +940,7 @@ const richHtml = `<!DOCTYPE html>
       locationInput.placeholder = 'e.g. Windsor, Royal Mail, The Smith Family…';
     } else {
       tabTourist.classList.add('active');
-      panelTitle.textContent = 'Mode III — Municipal Tourist Board & TripAdvisor Audit';
+      panelTitle.textContent = 'Mode III — Tourist Board & TripAdvisor Audit';
       inputLabel.textContent = 'Location, town, or holiday destination';
       locationInput.placeholder = 'e.g. Aldershot, Milton Keynes, Blackpool…';
     }
@@ -972,6 +1048,12 @@ const richHtml = `<!DOCTYPE html>
             { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The cows are magnificent. 10/10.' },
             { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
           ],
+          socio_economic: {
+            schools_education: '14% Ofsted "Requires Improvement", 86% "Closed by Order of the Magistrate". Academic emphasis centers on vocational roundabout navigation.',
+            crime_order: 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
+            workforce_industry: 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
+            housing_property: 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
+          },
           commentary: [
             { element: 'Field & Division', text: 'Azure and argent per chevron.' },
             { element: 'Segment Picture: Fleeing Knight', text: 'Depicted in Bayeux Tapestry embroidery, fleeing the scene of administrative panic.' }
@@ -1106,6 +1188,19 @@ const richHtml = `<!DOCTYPE html>
       mode3Container.style.display = 'none';
     }
 
+    // Render Socio-Economic & Demographic Audit Card
+    const seContainer = document.getElementById('se-container');
+    const se = result.socio_economic;
+    if (se) {
+      document.getElementById('se-schools').textContent   = se.schools_education ?? 'N/A';
+      document.getElementById('se-crime').textContent     = se.crime_order ?? 'N/A';
+      document.getElementById('se-workforce').textContent = se.workforce_industry ?? 'N/A';
+      document.getElementById('se-housing').textContent   = se.housing_property ?? 'N/A';
+      seContainer.style.display = 'flex';
+    } else {
+      seContainer.style.display = 'none';
+    }
+
     document.getElementById('excuse-block').textContent = result.excuse ?? '';
     document.getElementById('output-panel').classList.add('visible');
     document.getElementById('output-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1193,4 +1288,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with Mode III Tourist Board & TripAdvisor Audit');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with Socio-Economic Audit');
