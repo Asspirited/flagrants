@@ -25,8 +25,11 @@ const richHtml = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=3">
+  <link rel="manifest" href="manifest.json?v=99">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -900,6 +903,15 @@ const richHtml = `<!DOCTYPE html>
 </main>
 
 <script>
+  // Unregister old service workers to force immediate fresh cache fetch on mobile
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+
   // Client-Side Standalone SVG Renderer Engine (guarantees 100% 1-to-1 centered alignment)
   ${clientRendererCode}
 
@@ -1261,13 +1273,6 @@ const richHtml = `<!DOCTYPE html>
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-
-  // Register Service Worker for PWA Offline Caching (FG-015)
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg skipped:', err));
-    });
-  }
 </script>
 
 </body>
@@ -1299,4 +1304,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with Mode III responsive tabs & SW v3');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with SW unregister & Cache-Control headers');
