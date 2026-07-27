@@ -847,7 +847,7 @@ You MUST synthesize ALL 7 Defence Lenses into a hilarious, multi-layered municip
 4. "excuse" (Cover-Up / Blame Others Lens): Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 5. "tripadvisor_audit" (Admit Faults / Context Lens): Acidic, scathing TripAdvisor expert review (Pratchett / Adams register) giving an unvarnished audit & rating (e.g. "1.5 / 5 — Mostly Overcast").
 6. "socio_economic": Scathing, dry demographic audit of schools & Ofsted, crime, skilled labour (vape shops/roundabouts), and housing damp/prices.
-7. "customer_reviews": 3 hilarious visitor reviews (1-star rage vs 5-star delusional local council member).
+7. "customer_reviews": MUST be exactly 3 SHORT, PUNCHY visitor reviews (maximum 1-2 short sentences each!). Include 1-star rage, 5-star delusional councillor, and 2-star bewildered tourist.
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
 {
@@ -872,9 +872,9 @@ Return ONLY this JSON structure — no preamble, no markdown, no explanation:
     "housing_property": "<scathing real estate report on local housing damp & £450k prices>"
   },
   "customer_reviews": [
-    { "reviewer": "<reviewer name>", "rating": 1, "text": "<review text>" },
-    { "reviewer": "<reviewer name>", "rating": 5, "text": "<review text>" },
-    { "reviewer": "<reviewer name>", "rating": 2, "text": "<review text>" }
+    { "reviewer": "<reviewer name>", "rating": 1, "text": "<short punchy 1-sentence review>" },
+    { "reviewer": "<reviewer name>", "rating": 5, "text": "<short punchy 1-sentence review>" },
+    { "reviewer": "<reviewer name>", "rating": 2, "text": "<short punchy 1-sentence review>" }
   ],
   "field": {
     "tincture": "<primary tincture id>",
