@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=104">
+  <link rel="manifest" href="manifest.json?v=105">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -565,12 +565,12 @@ const richHtml = `<!DOCTYPE html>
 
     .commentary-text {
       font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
-      line-height: 1.55;
+      font-size: 1.15rem;
+      line-height: 1.6;
       color: #e8d5a3;
     }
 
-    /* ── Mode III Paper Form / Document Section Boxes ──────────────────────── */
+    /* ── Unified Mode III Paper-Form Document Layout ──────────────────────── */
     .mode3-container {
       display: flex;
       flex-direction: column;
@@ -614,9 +614,10 @@ const richHtml = `<!DOCTYPE html>
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
+    /* 100% UNIFIED TYPOGRAPHY (EB Garamond 1.15rem, 1.6 line-height, #e8d5a3) */
     .tb-slogan {
       font-family: 'EB Garamond', serif;
       font-size: 1.4rem;
@@ -626,7 +627,7 @@ const richHtml = `<!DOCTYPE html>
       line-height: 1.35;
     }
 
-    .tb-copy {
+    .tb-copy, .ta-review, .cr-text, .se-card-body, .excuse-text {
       font-family: 'EB Garamond', serif;
       font-size: 1.15rem;
       color: #e8d5a3;
@@ -653,27 +654,20 @@ const richHtml = `<!DOCTYPE html>
       font-weight: bold;
     }
 
-    .ta-review {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.15rem;
-      color: #e8d5a3;
-      line-height: 1.6;
-    }
-
     .cr-list {
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 1rem;
     }
 
     .cr-card {
       background: #241407;
-      border: 1px solid rgba(212, 160, 48, 0.25);
-      border-radius: 6px;
-      padding: 1rem 1.2rem;
+      border-left: 3px solid #00d4ff;
+      border-radius: 0 6px 6px 0;
+      padding: 1.2rem;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.6rem;
     }
 
     .cr-header {
@@ -683,20 +677,19 @@ const richHtml = `<!DOCTYPE html>
     }
 
     .cr-reviewer {
-      font-size: 0.92rem;
-      color: #c8a060;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      color: #FFD700;
       font-weight: bold;
     }
 
     .cr-stars {
       color: #FFD700;
-      font-size: 1rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
     }
 
     .cr-text {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
-      color: #e8d5a3;
       font-style: italic;
     }
 
@@ -726,19 +719,9 @@ const richHtml = `<!DOCTYPE html>
       letter-spacing: 0.06em;
     }
 
-    .se-card-body {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.08rem;
-      color: #e8d5a3;
-      line-height: 1.5;
-    }
-
     .excuse-text {
-      font-family: 'EB Garamond', serif;
       font-style: italic;
-      font-size: 1.18rem;
       color: #f8c8c8;
-      line-height: 1.55;
     }
   </style>
 </head>
@@ -1360,4 +1343,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with illicit tourism dynamic CTA button taglines');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for 100% unified Mode III typography & card styling');
