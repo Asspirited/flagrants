@@ -50,3 +50,14 @@ technically speaking. He is simply moving in a direction that happens to be away
 
 The logo is delivered completely straight. No winking typography. No comedy framing.
 It is presented as a coat of arms might be: with gravitas.
+
+---
+
+## Development & Component Protocols
+
+### Clean Relocation Protocol
+Whenever moving an element, component, header, or text block from one location to another:
+- **ALWAYS delete/remove the original instance completely.**
+- **NEVER copy and leave behind residual duplicate elements or orphan nodes.**
+- **Audit the DOM structure to ensure zero duplicate IDs or redundant footer/header clones.**
+

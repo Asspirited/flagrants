@@ -6,10 +6,12 @@ const htmlPath = path.join(rootDir, 'code', 'index.html');
 const workerPath = path.join(rootDir, 'code', 'worker.js');
 const rootHtmlPath = path.join(rootDir, 'index.html');
 const svgRendererPath = path.join(rootDir, 'src', 'logic', 'svg-renderer.js');
+const logoSvgPath = path.join(rootDir, 'src', 'svg', 'logo.svg');
 
 const svgRendererJs = fs.readFileSync(svgRendererPath, 'utf8');
+const logoSvg = fs.readFileSync(logoSvgPath, 'utf8');
 
-// Build complete high-aesthetic index.html
+// Build complete high-aesthetic index.html with single clean header
 const richHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,17 +49,17 @@ const richHtml = `<!DOCTYPE html>
     .header-logo {
       display: flex;
       justify-content: center;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
 
-    .header-logo-svg {
+    .header-logo svg {
       width: 100%;
-      max-width: 280px;
+      max-width: 260px;
       height: auto;
       filter: drop-shadow(0 4px 14px rgba(0,0,0,0.7));
       transition: transform 0.3s ease;
     }
-    .header-logo-svg:hover {
+    .header-logo svg:hover {
       transform: scale(1.02);
     }
 
@@ -345,7 +347,6 @@ const richHtml = `<!DOCTYPE html>
       font-family: 'EB Garamond', serif;
     }
 
-    /* Fast Lens Switcher bar inside output panel */
     .re-design-bar {
       display: flex;
       flex-direction: column;
@@ -492,70 +493,7 @@ const richHtml = `<!DOCTYPE html>
 
 <header>
   <div class="header-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" class="header-logo-svg">
-      <defs>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2.5" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <rect x="0" y="160" width="320" height="40" fill="#2a1a00"/>
-      <line x1="0" y1="160" x2="320" y2="160" stroke="#5a3d10" stroke-width="1.5"/>
-      <ellipse cx="250" cy="138" rx="32" ry="24" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
-      <ellipse cx="224" cy="118" rx="12" ry="16" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
-      <circle cx="214" cy="104" r="14" fill="#c8a030" stroke="#7a5c10" stroke-width="1.5"/>
-      <path d="M 208,93 Q 210,85 213,90 Q 215,82 218,88 Q 221,80 222,88" fill="#CE1126" stroke="none"/>
-      <path d="M 202,104 L 196,101 L 196,107 Z" fill="#e8a030"/>
-      <path d="M 202,104 L 196,107 L 200,110 Z" fill="#c07020"/>
-      <circle cx="210" cy="101" r="3" fill="#1a1008"/>
-      <circle cx="209" cy="100" r="1" fill="#fff"/>
-      <ellipse cx="205" cy="110" rx="4" ry="5" fill="#CE1126"/>
-      <path d="M 235,128 Q 248,110 265,120 Q 255,130 240,145 Z" fill="#b89020" stroke="#7a5c10" stroke-width="1"/>
-      <path d="M 280,130 Q 300,110 305,125 Q 295,132 282,138" fill="#c8a030" stroke="#7a5c10" stroke-width="1"/>
-      <path d="M 278,136 Q 302,122 307,138 Q 295,140 280,142" fill="#d4b040" stroke="#7a5c10" stroke-width="1"/>
-      <line x1="242" y1="160" x2="238" y2="175" stroke="#b09030" stroke-width="3"/>
-      <line x1="258" y1="160" x2="262" y2="175" stroke="#b09030" stroke-width="3"/>
-      <path d="M 238,175 L 228,178 M 238,175 L 235,182 M 238,175 L 242,180" stroke="#b09030" stroke-width="2"/>
-      <path d="M 262,175 L 252,178 M 262,175 L 259,182 M 262,175 L 266,180" stroke="#b09030" stroke-width="2"/>
-      <g filter="url(#glow)">
-        <path d="M 196,104 Q 175,90 155,105 Q 165,95 150,115 Q 160,100 145,120 Q 158,108 148,128 Q 162,112 155,130 Q 165,115 162,135 Q 175,118 170,138 Q 182,120 178,140 Q 188,125 185,145 Q 190,110 196,104 Z" fill="#FF6600" opacity="0.9"/>
-        <path d="M 196,104 Q 178,96 162,108 Q 170,99 158,116 Q 167,103 156,122 Q 168,109 163,128 Q 174,115 170,133 Q 180,118 178,138 Q 187,122 185,144 Q 191,112 196,104 Z" fill="#FF9900" opacity="0.85"/>
-        <path d="M 196,104 Q 182,100 170,110 Q 176,103 166,118 Q 174,106 166,124 Q 176,112 172,130 Q 181,117 179,136 Q 187,120 185,143 Q 191,115 196,104 Z" fill="#FFCC00" opacity="0.8"/>
-        <path d="M 196,104 Q 186,103 178,112 Q 182,106 174,120 Q 182,110 176,128 Q 184,116 182,134 Q 188,120 186,142 Q 192,118 196,104 Z" fill="#FFFFFF" opacity="0.6"/>
-      </g>
-      <line x1="48" y1="155" x2="30" y2="157" stroke="#3d2b0a" stroke-width="1" opacity="0.5"/>
-      <line x1="52" y1="150" x2="33" y2="149" stroke="#3d2b0a" stroke-width="1" opacity="0.4"/>
-      <line x1="50" y1="145" x2="32" y2="142" stroke="#3d2b0a" stroke-width="1" opacity="0.3"/>
-      <line x1="76" y1="152" x2="55" y2="170" stroke="#5a6a7a" stroke-width="6" stroke-linecap="round"/>
-      <line x1="55" y1="170" x2="42" y2="162" stroke="#5a6a7a" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="42" cy="163" rx="10" ry="5" fill="#2a1a08" transform="rotate(-20,42,163)"/>
-      <rect x="62" y="112" width="32" height="40" rx="5" fill="#8a9aaa" stroke="#5a6a7a" stroke-width="2"/>
-      <line x1="78" y1="115" x2="78" y2="148" stroke="#6a7a8a" stroke-width="1"/>
-      <ellipse cx="78" cy="118" rx="6" ry="4" fill="none" stroke="#6a7a8a" stroke-width="1"/>
-      <rect x="75" y="120" width="6" height="18" fill="#CE1126" opacity="0.85"/>
-      <rect x="68" y="125" width="20" height="6" fill="#CE1126" opacity="0.85"/>
-      <line x1="78" y1="152" x2="100" y2="168" stroke="#5a6a7a" stroke-width="6" stroke-linecap="round"/>
-      <line x1="100" y1="168" x2="110" y2="158" stroke="#5a6a7a" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="111" cy="159" rx="10" ry="5" fill="#2a1a08" transform="rotate(15,111,159)"/>
-      <g transform="translate(58,118) rotate(20)">
-        <path d="M 0,0 L 22,0 L 22,28 Q 11,38 0,28 Z" fill="#CE1126" stroke="#8a1a08" stroke-width="2"/>
-        <rect x="8" y="3" width="4" height="20" fill="#FFD700"/>
-        <rect x="2" y="10" width="18" height="4" fill="#FFD700"/>
-      </g>
-      <line x1="90" y1="118" x2="118" y2="128" stroke="#5a6a7a" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="119" cy="129" rx="7" ry="5" fill="#6a7a8a" stroke="#4a5a6a" stroke-width="1.5"/>
-      <line x1="119" y1="127" x2="138" y2="143" stroke="#c0c8d0" stroke-width="3" stroke-linecap="round"/>
-      <line x1="115" y1="131" x2="123" y2="123" stroke="#c0c8d0" stroke-width="2"/>
-      <circle cx="115" cy="132" r="3" fill="#8a9aaa"/>
-      <rect x="73" y="100" width="12" height="14" rx="3" fill="#8a9aaa" stroke="#5a6a7a" stroke-width="1.5"/>
-      <ellipse cx="79" cy="98" rx="16" ry="14" fill="#7a8a9a" stroke="#5a6a7a" stroke-width="2"/>
-      <line x1="68" y1="96" x2="90" y2="96" stroke="#3a4a5a" stroke-width="2"/>
-      <line x1="70" y1="100" x2="88" y2="100" stroke="#3a4a5a" stroke-width="1.5"/>
-      <path d="M 79,85 Q 72,72 68,78 Q 65,68 70,74 Q 67,62 74,70" fill="#CE1126" stroke="none"/>
-      <rect x="77" y="88" width="4" height="12" fill="#5a6a7a"/>
-      <ellipse cx="65" cy="115" rx="10" ry="6" fill="#7a8a9a" stroke="#5a6a7a" stroke-width="1.5"/>
-      <ellipse cx="93" cy="115" rx="10" ry="6" fill="#7a8a9a" stroke="#5a6a7a" stroke-width="1.5"/>
-    </svg>
+    ${logoSvg}
   </div>
   <h1>Flagrants</h1>
   <p class="tagline">Heraldic dignity for those who never deserved it</p>
@@ -792,23 +730,20 @@ const richHtml = `<!DOCTYPE html>
 fs.writeFileSync(htmlPath, richHtml, 'utf8');
 fs.writeFileSync(rootHtmlPath, richHtml, 'utf8');
 
-// Also update code/worker.js with richHtml embedded and svg-renderer.js inline
+// Update code/worker.js with richHtml embedded and svg-renderer.js inline
 let workerJs = fs.readFileSync(workerPath, 'utf8');
 
-// Inline updated svg-renderer logic into workerJs
 const svgRendererModule = `// ── SVG Renderer logic ───────────────────────────────────────────────────────
 
-${svgRendererJs.replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", "").replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture };", "")}
+${svgRendererJs.replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", "").replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture, chargePosition };", "")}
 
 function buildSVG(spec) {
   return renderSpec(spec);
 }
 `;
 
-// Replace svg-renderer section in worker.js
 workerJs = workerJs.replace(/\/\/ ── SVG Renderer logic [\s\S]*?\/\/ ── Anthropic call/, svgRendererModule + '\n// ── Anthropic call');
 
-// Re-embed INDEX_HTML
 const indexConst = 'const INDEX_HTML = ' + JSON.stringify(richHtml) + ';\n\n';
 if (workerJs.startsWith('const INDEX_HTML =')) {
   workerJs = workerJs.replace(/^const INDEX_HTML = [\s\S]*?;\n\n/, indexConst);
@@ -817,4 +752,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with rich UI & vector charges');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with clean single header');
