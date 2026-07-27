@@ -11,7 +11,6 @@ const logoSvgPath = path.join(rootDir, 'src', 'svg', 'logo.svg');
 const svgRendererJs = fs.readFileSync(svgRendererPath, 'utf8');
 const logoSvg = fs.readFileSync(logoSvgPath, 'utf8');
 
-// Build complete high-aesthetic index.html with single clean header
 const richHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,11 +89,37 @@ const richHtml = `<!DOCTYPE html>
       gap: 2.5rem;
     }
 
+    .mode-tabs {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mode-tab {
+      background: #140b04;
+      border: 1px solid rgba(212, 160, 48, 0.3);
+      color: #c8a060;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-tab.active {
+      background: rgba(26, 16, 8, 0.95);
+      border-color: #FFD700;
+      border-bottom-color: transparent;
+      color: #FFD700;
+      font-weight: bold;
+    }
+
     .input-panel {
       background: rgba(26, 16, 8, 0.85);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 160, 48, 0.35);
-      border-radius: 8px;
+      border-radius: 0 8px 8px 8px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
@@ -418,6 +443,32 @@ const richHtml = `<!DOCTYPE html>
       height: auto;
     }
 
+    .export-actions {
+      display: flex;
+      gap: 0.6rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .export-btn {
+      background: #241407;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      color: #FFD700;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .export-btn:hover {
+      background: #3d2208;
+      border-color: #FFD700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+    }
+
     .lens-label {
       font-family: 'Cinzel', serif;
       font-size: 0.85rem;
@@ -501,12 +552,17 @@ const richHtml = `<!DOCTYPE html>
 
 <main>
 
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-location">Mode I — Location Flag</button>
+    <button class="mode-tab" id="tab-family">Mode II — Family / Group Crest</button>
+  </div>
+
   <div class="input-panel">
-    <h2>Mode I — Location Flag</h2>
+    <h2 id="panel-title">Mode I — Location Flag</h2>
 
     <div class="field-row">
       <div class="field-group">
-        <label for="location">Location, postcode, or place</label>
+        <label id="input-label" for="location">Location, postcode, or place</label>
         <input type="text" id="location" placeholder="e.g. Slough, SW1A 1AA, Runnymede…" autocomplete="off"/>
       </div>
     </div>
@@ -550,6 +606,10 @@ const richHtml = `<!DOCTYPE html>
       <div class="crest-figure">
         <div id="crest-svg"></div>
         <div class="lens-label" id="lens-label"></div>
+        <div class="export-actions">
+          <button class="export-btn" id="export-png-btn">📥 Save Image (PNG)</button>
+          <button class="export-btn" id="export-svg-btn">📄 Export Vector (SVG)</button>
+        </div>
       </div>
       <div class="commentary-container">
         <h3 class="section-subheading">Segment Pictures & Stories</h3>
@@ -572,6 +632,7 @@ const richHtml = `<!DOCTYPE html>
     { id: 'revisionist',        label: 'Revisionist',          desc: 'Actually they were the heroes. New research supports this.' }
   ];
 
+  let selectedMode = 'location';
   let selectedLens = null;
   let currentFindings = null;
   let currentLocation = null;
@@ -580,6 +641,32 @@ const richHtml = `<!DOCTYPE html>
   const generateBtn   = document.getElementById('generate-btn');
   const lensGrid      = document.getElementById('lens-grid');
   const reDesignContainer = document.getElementById('re-design-buttons');
+
+  const tabLocation = document.getElementById('tab-location');
+  const tabFamily   = document.getElementById('tab-family');
+  const panelTitle  = document.getElementById('panel-title');
+  const inputLabel  = document.getElementById('input-label');
+
+  tabLocation.addEventListener('click', () => setMode('location'));
+  tabFamily.addEventListener('click', () => setMode('family'));
+
+  function setMode(mode) {
+    selectedMode = mode;
+    if (mode === 'location') {
+      tabLocation.classList.add('active');
+      tabFamily.classList.remove('active');
+      panelTitle.textContent = 'Mode I — Location Flag';
+      inputLabel.textContent = 'Location, postcode, or place';
+      locationInput.placeholder = 'e.g. Slough, SW1A 1AA, Runnymede…';
+    } else {
+      tabFamily.classList.add('active');
+      tabLocation.classList.remove('active');
+      panelTitle.textContent = 'Mode II — Family / Group Crest';
+      inputLabel.textContent = 'Family name, workplace, or friend group';
+      locationInput.placeholder = 'e.g. Windsor, Royal Mail, The Smith Family…';
+    }
+    checkReady();
+  }
 
   LENSES.forEach(lens => {
     const btn = document.createElement('button');
@@ -620,7 +707,7 @@ const richHtml = `<!DOCTYPE html>
       const researchRes = await fetch(\`\${WORKER}/research\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'location', subject: location })
+        body: JSON.stringify({ mode: selectedMode, subject: location })
       });
       if (!researchRes.ok) throw new Error(\`Research failed: \${researchRes.status}\`);
       currentFindings = await researchRes.json();
@@ -658,7 +745,8 @@ const richHtml = `<!DOCTYPE html>
   }
 
   function renderOutput(location, result) {
-    document.getElementById('crest-svg').innerHTML = result.svg;
+    const crestContainer = document.getElementById('crest-svg');
+    crestContainer.innerHTML = result.svg;
     
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
@@ -676,7 +764,7 @@ const richHtml = `<!DOCTYPE html>
     if (Array.isArray(twinned) && twinned.length > 0) {
       const label = document.createElement('span');
       label.className = 'twinning-label';
-      label.textContent = '🤝 Twinned with:';
+      label.textContent = selectedMode === 'family' ? '🤝 Allied Houses:' : '🤝 Twinned with:';
       twinningContainer.appendChild(label);
       
       twinned.forEach(place => {
@@ -716,6 +804,45 @@ const richHtml = `<!DOCTYPE html>
     document.getElementById('output-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // Crest Export Handlers (PNG & SVG)
+  document.getElementById('export-svg-btn').addEventListener('click', () => {
+    const svgEl = document.querySelector('#crest-svg svg');
+    if (!svgEl) return;
+    const svgData = new XMLSerializer().serializeToString(svgEl);
+    const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = \`flagrants-\${(currentLocation || 'crest').toLowerCase().replace(/[^a-z0-9]/g, '-')}.svg\`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('export-png-btn').addEventListener('click', () => {
+    const svgEl = document.querySelector('#crest-svg svg');
+    if (!svgEl) return;
+    const svgData = new XMLSerializer().serializeToString(svgEl);
+    const canvas = document.createElement('canvas');
+    canvas.width = 960;
+    canvas.height = 1320;
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    img.onload = () => {
+      ctx.fillStyle = '#0d0804';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const pngUrl = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = pngUrl;
+      a.download = \`flagrants-\${(currentLocation || 'crest').toLowerCase().replace(/[^a-z0-9]/g, '-')}.png\`;
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  });
+
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -752,4 +879,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with clean single header');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with export buttons & Mode II tab');
