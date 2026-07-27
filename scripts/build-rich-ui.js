@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=101">
+  <link rel="manifest" href="manifest.json?v=102">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -805,7 +805,7 @@ const richHtml = `<!DOCTYPE html>
       </div>
     </div>
 
-    <button class="generate-btn" id="generate-btn" disabled>Generate Crest</button>
+    <button class="generate-btn" id="generate-btn" disabled>🚩 BLAZON THIS BOROUGH</button>
   </div>
 
   <div class="loading" id="loading" style="display:none">
@@ -838,7 +838,7 @@ const richHtml = `<!DOCTYPE html>
       <div class="re-design-buttons" id="re-design-buttons"></div>
     </div>
 
-    <!-- Crest Layout (Hidden in Mode III so Mode III is 100% focused on Tourist Board & Audit) -->
+    <!-- Crest Layout (Hidden in Mode III so Mode 3 is 100% focused on Tourist Board & Audit) -->
     <div class="crest-layout" id="crest-layout">
       <div class="crest-figure">
         <div id="crest-svg"></div>
@@ -916,6 +916,17 @@ const richHtml = `<!DOCTYPE html>
     { id: 'revisionist',        label: 'Revisionist',          desc: 'Actually they were the heroes. New research supports this.' }
   ];
 
+  const MODE3_TAGLINES = [
+    '🏖️ CHECK YOUR DREAM DESTINATION',
+    '🛡️ IS IT SAFE TO VISIT?',
+    '🤔 WILL I SURVIVE A WEEKEND HERE?',
+    '✈️ INSPECT TOURIST BOARD TRUTHS',
+    '🦉 AUDIT THIS HOLIDAY DESTINATION'
+  ];
+
+  let mode3TagIndex = 0;
+  let mode3Timer = null;
+
   let selectedMode = 'location';
   let selectedLens = null;
   let currentFindings = null;
@@ -938,6 +949,27 @@ const richHtml = `<!DOCTYPE html>
   tabLocation.addEventListener('click', () => setMode('location'));
   tabFamily.addEventListener('click', () => setMode('family'));
   tabTourist.addEventListener('click', () => setMode('tourist_board'));
+
+  function updateButtonLabel() {
+    if (mode3Timer) {
+      clearInterval(mode3Timer);
+      mode3Timer = null;
+    }
+
+    if (selectedMode === 'location') {
+      generateBtn.textContent = '🚩 BLAZON THIS BOROUGH';
+    } else if (selectedMode === 'family') {
+      generateBtn.textContent = '⚔️ FORGE FAMILY CREST';
+    } else {
+      generateBtn.textContent = MODE3_TAGLINES[mode3TagIndex % MODE3_TAGLINES.length];
+      mode3Timer = setInterval(() => {
+        if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
+          mode3TagIndex++;
+          generateBtn.textContent = MODE3_TAGLINES[mode3TagIndex % MODE3_TAGLINES.length];
+        }
+      }, 3200);
+    }
+  }
 
   function setMode(mode) {
     selectedMode = mode;
@@ -964,6 +996,7 @@ const richHtml = `<!DOCTYPE html>
       locationInput.placeholder = 'e.g. Aldershot, Milton Keynes, Blackpool…';
       lensGroup.style.display = 'none'; // Mode III auto-synthesizes all 7 lenses
     }
+    updateButtonLabel();
     checkReady();
   }
 
@@ -1130,7 +1163,6 @@ const richHtml = `<!DOCTYPE html>
 
     const isMode3 = (selectedMode === 'tourist_board' || selectedMode === 'mode3');
 
-    // In Mode III, HIDE the crest shield layout completely so Mode 3 is 100% focused on Tourist Board & TripAdvisor Audit!
     if (isMode3) {
       crestLayout.style.display = 'none';
       reDesignBar.style.display = 'none';
@@ -1314,4 +1346,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js — Mode 3 now completely hides crest and heraldic commentary');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js with dynamic rotating Mode III CTA button');
