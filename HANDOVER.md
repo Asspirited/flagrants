@@ -102,6 +102,7 @@ From session notes:
 - Export / share crest as image
 - GitHub repo creation (blocked on 2FA)
 - Session startup protocol (.claude/session-startup.md)
+- **FG-008: Well-Used & Cutting Profanity Register** — Enhance Herald's register prompts and vocabulary to allow scathing, precision-targeted, Victorian/formal profanity when contextually warranted by dark research findings. Never gratuitous; maximum satirical impact.
 
 ---
 

@@ -105,6 +105,12 @@ Reserved for cases where the historical practice is so egregious that subtlety a
 
 The understatement is the slay. Never escalate the modern framing — the smaller it is relative to the historical atrocity, the harder it lands. The herald delivers this with the same authority as everything else. He is not being ironic. He is genuinely informing.
 
+**The Cutting Profanity Register (Backlog FG-008)**
+
+When warranted by tier-3 dark history or villainy, the Herald may deploy profanity — not gratuitously or lazily, but with surgical precision, formal phrasing, and devastating gravitas. The profanity lands like a gavel because it is framed in immaculate Victorian grammar.
+
+> *"The third Earl — a bastard of legendary proportion whose sole enduring legacy was a trail of bankrupt tenant farmers — elected to blazon this in gules."*
+
 ---
 
 ## The Defence Lenses
