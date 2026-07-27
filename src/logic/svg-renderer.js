@@ -1,6 +1,5 @@
 // svg-renderer.js
-// Takes a heraldic spec JSON, returns an SVG string.
-// All rendering is pure vector graphics with 100% precise SVG transform coordinate alignment.
+// Hybrid Layered SVG Renderer for Flagrants — 3D Metallic & Textured Medieval Heraldry
 
 const { TINCTURES } = require('../data/heraldic-vocabulary.js');
 
@@ -10,7 +9,6 @@ const SVG_WIDTH = 240;
 const SVG_HEIGHT = 330;
 
 // Heater shield path — classic English shield shape
-// Centred at x=0 at top edge (y=0), tapering to point at y=240
 function shieldPath() {
   const w = SHIELD_WIDTH;
   const h = SHIELD_HEIGHT;
@@ -30,10 +28,86 @@ function tincture(name) {
   return all[name]?.colour ?? '#888888';
 }
 
-function renderField(spec) {
+function tinctureFill(name, uniqueId) {
+  const t = (name ?? 'argent').toLowerCase();
+  if (t === 'or') return `url(#grad-or-${uniqueId})`;
+  if (t === 'argent') return `url(#grad-argent-${uniqueId})`;
+  if (t === 'gules') return `url(#grad-gules-${uniqueId})`;
+  if (t === 'azure') return `url(#grad-azure-${uniqueId})`;
+  if (t === 'sable') return `url(#grad-sable-${uniqueId})`;
+  if (t === 'vert') return `url(#grad-vert-${uniqueId})`;
+  if (t === 'purpure') return `url(#grad-purpure-${uniqueId})`;
+  return tincture(t);
+}
+
+function renderDefs(uniqueId) {
+  return `
+    <!-- 3D Tincture Gradients -->
+    <linearGradient id="grad-or-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE875" />
+      <stop offset="40%" stop-color="#FFD700" />
+      <stop offset="75%" stop-color="#C59B27" />
+      <stop offset="100%" stop-color="#805A00" />
+    </linearGradient>
+
+    <linearGradient id="grad-argent-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="45%" stop-color="#E0E6ED" />
+      <stop offset="80%" stop-color="#B0BCCB" />
+      <stop offset="100%" stop-color="#7B8898" />
+    </linearGradient>
+
+    <linearGradient id="grad-gules-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E62E3D" />
+      <stop offset="45%" stop-color="#CE1126" />
+      <stop offset="80%" stop-color="#8B0000" />
+      <stop offset="100%" stop-color="#4A0000" />
+    </linearGradient>
+
+    <linearGradient id="grad-azure-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2B6CB0" />
+      <stop offset="45%" stop-color="#0032A0" />
+      <stop offset="80%" stop-color="#001F66" />
+      <stop offset="100%" stop-color="#000D33" />
+    </linearGradient>
+
+    <linearGradient id="grad-sable-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A3A3C" />
+      <stop offset="45%" stop-color="#1A1A1A" />
+      <stop offset="85%" stop-color="#0D0D0E" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+
+    <linearGradient id="grad-vert-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E8B57" />
+      <stop offset="45%" stop-color="#006B3D" />
+      <stop offset="80%" stop-color="#004020" />
+      <stop offset="100%" stop-color="#002010" />
+    </linearGradient>
+
+    <linearGradient id="grad-purpure-${uniqueId}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#800080" />
+      <stop offset="45%" stop-color="#550055" />
+      <stop offset="80%" stop-color="#330033" />
+      <stop offset="100%" stop-color="#1A001A" />
+    </linearGradient>
+
+    <!-- Gold Leaf Emboss Filter -->
+    <filter id="gold-emboss-${uniqueId}" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Shield Plate Inner Shadow -->
+    <filter id="shield-shadow-${uniqueId}" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+  `;
+}
+
+function renderField(spec, uniqueId) {
   const div = spec.field?.division ?? 'plain';
-  const t1 = tincture(spec.field?.tincture ?? 'argent');
-  const t2 = tincture(spec.field?.secondary_tincture ?? 'gules');
+  const t1 = tinctureFill(spec.field?.tincture ?? 'argent', uniqueId);
+  const t2 = tinctureFill(spec.field?.secondary_tincture ?? 'gules', uniqueId);
   const w = SHIELD_WIDTH;
   const h = SHIELD_HEIGHT;
   const hw = w / 2;
@@ -70,8 +144,6 @@ function renderField(spec) {
   return `<rect x="${-hw}" y="0" width="${w}" height="${h}" fill="${t1}" />`;
 }
 
-// Precise shield geometry calculations:
-// Shield top at y=0, bottom point at y=240. Center of gravity = (0, 105).
 function chargePosition(pos, index, total) {
   const hw = SHIELD_WIDTH / 2; // 100
   const positions = {
@@ -98,15 +170,15 @@ function chargePosition(pos, index, total) {
   return positions[pos] ?? positions.centre;
 }
 
-// Vector-crafted heraldic charge shapes — ALL strictly centered around (0,0) in local coordinates
-function renderCharge(charge, index, total) {
+// Vector-crafted heraldic charge shapes
+function renderCharge(charge, index, total, uniqueId) {
   const [cx, cy] = chargePosition(charge.position, index, total);
-  const col = tincture(charge.tincture ?? 'or');
+  const col = tinctureFill(charge.tincture ?? 'or', uniqueId);
   const baseSize = total === 1 ? 44 : total === 2 ? 38 : 34;
   const sz = charge.size ?? baseSize;
   const id = charge.id ?? 'lion_rampant';
 
-  const g = (inner) => `<g transform="translate(${cx},${cy})">${inner}</g>`;
+  const g = (inner) => `<g transform="translate(${cx},${cy})" filter="url(#gold-emboss-${uniqueId})">${inner}</g>`;
 
   if (id === 'lion_rampant') {
     return g(`
@@ -258,72 +330,74 @@ function renderCharge(charge, index, total) {
     `);
   }
 
-  // Fallback
   return g(`
     <circle cx="0" cy="0" r="${sz*0.32}" fill="${col}" opacity="0.8"/>
     <text text-anchor="middle" dominant-baseline="central" font-size="${sz*0.26}" fill="${tincture(charge.tincture === 'or' ? 'sable' : 'or')}" font-family="Georgia,serif">${id.charAt(0).toUpperCase()}</text>
   `);
 }
 
-function renderMotto(motto, translation) {
+function renderMotto(motto, translation, uniqueId) {
   if (!motto) return '';
   const y = SHIELD_HEIGHT + 24;
   const esc = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   return `
     <g transform="translate(0, ${y})">
-      <rect x="-${SHIELD_WIDTH/2}" y="-12" width="${SHIELD_WIDTH}" height="24" rx="4" fill="#1c1208" stroke="#7a5c10" stroke-width="1.2" opacity="0.95"/>
+      <path d="M -${SHIELD_WIDTH/2 + 6},-2 L -${SHIELD_WIDTH/2 - 4},-14 L -${SHIELD_WIDTH/2 - 4},14 Z" fill="#805A00"/>
+      <path d="M ${SHIELD_WIDTH/2 + 6},-2 L ${SHIELD_WIDTH/2 - 4},-14 L ${SHIELD_WIDTH/2 - 4},14 Z" fill="#805A00"/>
+      <rect x="-${SHIELD_WIDTH/2}" y="-13" width="${SHIELD_WIDTH}" height="26" rx="4" fill="url(#grad-sable-${uniqueId})" stroke="url(#grad-or-${uniqueId})" stroke-width="1.6" filter="url(#gold-emboss-${uniqueId})"/>
       <text text-anchor="middle" dominant-baseline="central" y="0"
-        font-family="Palatino, Georgia, serif" font-size="11" font-style="italic"
-        fill="#FFD700" letter-spacing="1">${esc(motto)}</text>
+        font-family="'Cinzel', Palatino, serif" font-size="11.5" font-weight="700"
+        fill="url(#grad-or-${uniqueId})" letter-spacing="1">${esc(motto)}</text>
     </g>
     ${translation ? `<text x="0" y="${y + 24}" text-anchor="middle"
-      font-family="Georgia, serif" font-size="9.5" fill="#a08040" font-style="italic"
+      font-family="'EB Garamond', Georgia, serif" font-size="9.5" fill="#a08040" font-style="italic"
       dominant-baseline="hanging">${esc(translation)}</text>` : ''}`;
 }
 
 function renderSpec(spec) {
   const charges = spec.charges ?? [];
-  const clipId = `shield-clip-${Math.random().toString(36).slice(2, 7)}`;
+  const uniqueId = Math.random().toString(36).slice(2, 7);
+  const clipId = `shield-clip-${uniqueId}`;
   const cx = SVG_WIDTH / 2; // 120
   const cy = 20;
 
-  const fieldSvg = renderField(spec);
-  const chargesSvg = charges.map((c, i) => renderCharge(c, i, charges.length)).join('\n');
-  const mottoSvg = renderMotto(spec.motto, spec.motto_translation);
+  const defsSvg = renderDefs(uniqueId);
+  const fieldSvg = renderField(spec, uniqueId);
+  const chargesSvg = charges.map((c, i) => renderCharge(c, i, charges.length, uniqueId)).join('\n');
+  const mottoSvg = renderMotto(spec.motto, spec.motto_translation, uniqueId);
 
   return `<svg xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 ${SVG_WIDTH} ${SVG_HEIGHT}"
   width="${SVG_WIDTH}" height="${SVG_HEIGHT}">
 
   <defs>
-    <!-- ClipPath defined in LOCAL shield coordinates (x=0 at top-center, y=0 at top edge) -->
+    ${defsSvg}
     <clipPath id="${clipId}">
       <path d="${shieldPath()}"/>
     </clipPath>
-    <filter id="shield-shadow" x="-8%" y="-4%" width="116%" height="116%">
-      <feDropShadow dx="2" dy="4" stdDeviation="5" flood-color="#00000088"/>
-    </filter>
   </defs>
 
-  <!-- Shield shadow -->
+  <!-- Outer Drop Shadow -->
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
-    fill="#00000033" filter="url(#shield-shadow)"/>
+    fill="#00000044" filter="url(#shield-shadow-${uniqueId})"/>
 
-  <!-- Field (Clipped to shield shape with single unified translate transform) -->
+  <!-- Field (Clipped to shield shape) -->
   <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
     ${fieldSvg}
   </g>
 
-  <!-- Charges (Clipped to shield shape with single unified translate transform) -->
+  <!-- Charges (Clipped to shield shape with gold emboss) -->
   <g transform="translate(${cx}, ${cy})" clip-path="url(#${clipId})">
     ${chargesSvg}
   </g>
 
-  <!-- Shield border -->
+  <!-- Embossed Gold & Metal Shield Rim -->
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
-    fill="none" stroke="#2a1a00" stroke-width="3.5"/>
+    fill="none" stroke="url(#grad-or-${uniqueId})" stroke-width="4.5" filter="url(#gold-emboss-${uniqueId})"/>
+  <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
+    fill="none" stroke="#2a1a00" stroke-width="1.2"/>
 
-  <!-- Motto scroll -->
+  <!-- Motto Scroll -->
   <g transform="translate(${cx}, ${cy})">
     ${mottoSvg}
   </g>

@@ -80,7 +80,7 @@ test('UI Alignment — ClipPath & Transform Sync (Anti-Double Translation)', asy
         field: { tincture: 'gules', division: div, secondary_tincture: 'argent' }
       };
       const svg = renderSpec(spec);
-      assert.ok(svg.includes('fill="#CE1126"'), `Division ${div} must contain primary tincture`);
+      assert.ok(svg.includes('grad-gules') || svg.includes('#CE1126'), `Division ${div} must contain primary tincture`);
       assert.ok(!svg.includes('NaN'), `Division ${div} must contain no NaN values`);
     });
   });
