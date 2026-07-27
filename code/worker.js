@@ -847,19 +847,30 @@ STRICT HERALDIC RULE OF TINCTURE & CONTRAST (FG-009):
 STORY-TO-ARTWORK CORRELATION CONTRACT (FG-013):
 Each chosen charge/segment picture MUST directly visualize the specific story told in the commentary!
 
-MODE III SATIRICAL CONTRADICTION & MULTI-LENS SYNTHESIS CONTRACT:
-You MUST synthesize ALL 7 Defence Lenses into a hilarious, multi-layered municipal audit where the different sections COMEDICALLY CONTRAST AND DIRECTLY CONTRADICT EACH OTHER!
+MODE III SATIRICAL CONTRADICTION & COMEDIC ARCHETYPE MAPPING CONTRACT:
+Synthesize ALL 7 Defence Lenses into a hilarious, multi-layered municipal audit where each section is driven by a distinct Comedic Archetype from our 4 Master Clusters:
 
-1. "motto" & "motto_translation": Pompous, grand Latin motto taking the piss out of the place.
-2. "twinned_with": 2 hilarious, scathing twinned towns (e.g. Pripyat, Detroit).
-3. "tourist_board" (Proud / Revisionist Lens): Desperately optimistic official brochure framing grim realities & roundabouts as world-class architectural achievements.
-4. "excuse" (Cover-Up / Blame Others Lens): Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
-5. "tripadvisor_audit" (Admit Faults / Context Lens): Acidic, scathing TripAdvisor expert review (Pratchett / Adams register) giving an unvarnished audit & rating (e.g. "1.5 / 5 — Mostly Overcast").
-6. "socio_economic": Scathing, dry demographic audit of schools & Ofsted, crime, skilled labour (vape shops/roundabouts), and housing damp/prices.
-7. "customer_reviews": MUST be exactly 3 hilarious, highly varied visitor reviews with contrasting star ratings (1 to 5 stars):
-   - Review 1: Longer, detailed unvarnished visitor experience.
-   - Review 2: Short, snappy 1-sentence reaction.
-   - Review 3: Random length, highly obscure, surreal or bizarre local observation (e.g. strange encounters at the bypass, suspicious turnip advice, or concrete cow worship).
+ARCHETYPE CLUSTERS & SUB-CHARACTERISTIC MECHANICS:
+1. THE ACIDIC PEDANT & BUREAUCRATIC CYNIC (Ayoade, Mitchell, Pratchett, Adams, Merchant, Amstell): Hyper-articulate, deadpan formal rage & civic doublespeak.
+2. THE SCATHING TRUTH-TELLER & ICONOCLAST (Carlin, Hicks, Burr, Chappelle, Rock, Jim Jefferies):
+   - Sub-Type 2A (Bill Hicks): Broken optimism & heartbroken disillusionment at human potential, turning into transcendent rage.
+   - Sub-Type 2B (George Carlin): Pure misanthropic fury & clinical disdain observing collective human stupidity.
+3. THE UNAPOLOGETIC DOMESTIC REALIST (Gervais, Louis CK, Billy Connolly):
+   - Sub-Type 3A (Ricky Gervais): Cringeworthy domestic sagas + theological/atheistic existentialism mocking divine creation vs local council delays.
+4. THE SURREAL & REVERENT ABSURDIST (Vic & Bob, Spike Milligan, Karl Pilkington, Bill Bailey, Python):
+   - Sub-Type 4A (Bill Bailey): Musical/lyrical rhythms, sea-shanty cadences, or doom-metal organ refrains applied to civic planning.
+   - Sub-Type 4B (Vic & Bob / Karl): Sincere devotion to nonsensical premises, weird local advice & turnip rituals.
+
+SECTION VOICE MAP:
+1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
+2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Heroic official brochure framing squalor & roundabouts as world-class architectural achievements.
+3. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks Broken Optimism) or Sub-Type 2B (Carlin Misanthropic Fury) — Acidic, unvarnished expert audit giving an unvarnished rating (e.g. "1.5 / 5 — Mostly Overcast").
+4. "socio_economic": Archetype 1 (The Cold Statistical Pedant) — Dry, scathing demographic report on Ofsted, police records, vape shop administration, and £450k damp housing.
+5. "customer_reviews": MUST be 3 highly varied visitor reviews:
+   - Review 1: Archetype 3 (Domestic Realist / Gervais Theological Absurdity) — Longer, cringeworthy personal saga about getting trapped on the bypass.
+   - Review 2: Archetype 2 (Raging Iconoclast / Carlin Fury) — Short, punchy 1-sentence aggressive reality check.
+   - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, turnip advice, or sea-shanty roundabout warnings).
+6. "excuse": Archetype 1 & 4 (Defiant Delusional Bureaucrat) — Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
 {
