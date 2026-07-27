@@ -244,6 +244,59 @@
       font-size: 0.95rem;
     }
 
+    .output-header {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #3d2b0a;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .main-heading {
+      font-size: 1.8rem;
+      color: #FFD700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .subject-name {
+      color: #FFD700;
+    }
+
+    .subject-affectation {
+      font-size: 1.3rem;
+      color: #c8a060;
+      font-style: italic;
+      text-transform: none;
+      font-weight: normal;
+    }
+
+    .slogan-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .slogan-motto {
+      font-size: 1.3rem;
+      color: #e8d5a3;
+      font-style: italic;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+    }
+
+    .slogan-translation {
+      font-size: 1.1rem;
+      color: #a08040;
+      font-style: italic;
+    }
+
     .error {
       background: #3a0808;
       border: 1px solid #8a0000;
@@ -371,13 +424,26 @@
   <div class="error" id="error" style="display:none"></div>
 
   <div class="output-panel" id="output-panel">
+    <div class="output-header">
+      <h2 class="main-heading">
+        <span class="subject-name" id="subject-name"></span>
+        <span class="subject-affectation" id="subject-affectation"></span>
+      </h2>
+      <div class="slogan-block" id="slogan-block">
+        <span class="slogan-motto" id="slogan-motto"></span>
+        <span class="slogan-translation" id="slogan-translation"></span>
+      </div>
+      <div class="twinning-block" id="twinning-block"></div>
+    </div>
     <div class="crest-layout">
       <div class="crest-figure">
         <div id="crest-svg"></div>
-        <div class="subject-title" id="subject-title"></div>
         <div class="lens-label" id="lens-label"></div>
       </div>
-      <div class="commentary" id="commentary"></div>
+      <div class="commentary-container">
+        <h3 class="section-subheading">Segment Pictures & Stories</h3>
+        <div class="commentary" id="commentary"></div>
+      </div>
     </div>
     <div class="excuse-block" id="excuse-block"></div>
   </div>
@@ -463,10 +529,36 @@
     }
   }
 
-  function renderOutput(location, result) {
-    // SVG is returned as a string from the worker
+    function renderOutput(location, result) {
     document.getElementById('crest-svg').innerHTML = result.svg;
-    document.getElementById('subject-title').textContent = location;
+    
+    document.getElementById('subject-name').textContent = location;
+    const affectation = result.affectation ?? result.nickname ?? '';
+    document.getElementById('subject-affectation').textContent = affectation ? ` — ${affectation}` : '';
+
+    const motto = result.motto ?? '';
+    const translation = result.motto_translation ?? '';
+    document.getElementById('slogan-motto').textContent = motto ? `“${motto}”` : '';
+    document.getElementById('slogan-translation').textContent = translation ? `(${translation})` : '';
+
+    // Render Twinned Places
+    const twinningContainer = document.getElementById('twinning-block');
+    twinningContainer.innerHTML = '';
+    const twinned = result.twinned_with ?? result.twinned ?? [];
+    if (Array.isArray(twinned) && twinned.length > 0) {
+      const label = document.createElement('span');
+      label.className = 'twinning-label';
+      label.textContent = '🤝 Twinned with:';
+      twinningContainer.appendChild(label);
+      
+      twinned.forEach(place => {
+        const item = document.createElement('span');
+        item.className = 'twinning-item';
+        item.textContent = place;
+        twinningContainer.appendChild(item);
+      });
+    }
+
     document.getElementById('lens-label').textContent =
       LENSES.find(l => l.id === result.lens)?.label ?? result.lens;
 

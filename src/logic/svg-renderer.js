@@ -2,12 +2,12 @@
 // Takes a heraldic spec JSON, returns an SVG string.
 // All rendering is pure — no DOM, no side effects. Testable in Node.
 
-const { TINCTURES, FIELD_DIVISIONS } = require('../data/heraldic-vocabulary.js');
+const { TINCTURES } = require('../data/heraldic-vocabulary.js');
 
 const SHIELD_WIDTH = 200;
 const SHIELD_HEIGHT = 240;
 const SVG_WIDTH = 240;
-const SVG_HEIGHT = 300;
+const SVG_HEIGHT = 330;
 
 // Heater shield path — the classic English shield shape
 // Centred at (0,0), fits in a 200×240 box
@@ -15,7 +15,6 @@ function shieldPath() {
   const w = SHIELD_WIDTH;
   const h = SHIELD_HEIGHT;
   const hw = w / 2;
-  // Rounded top corners, straight sides tapering to a point at the bottom
   return `M ${-hw},0
     Q ${-hw},${-h * 0.05} ${-hw + 8},${-h * 0.05}
     L ${hw - 8},${-h * 0.05}
@@ -68,25 +67,24 @@ function renderField(spec) {
     return `<rect x="${-hw}" y="0" width="${w}" height="${h}" fill="${t2}" />
             <polygon points="${-hw},${h * 0.55} 0,${h * 0.2} ${hw},${h * 0.55} ${hw},${h} ${-hw},${h}" fill="${t1}" />`;
   }
-  // Fallback
   return `<rect x="${-hw}" y="0" width="${w}" height="${h}" fill="${t1}" />`;
 }
 
+// Inner shield curvature boundaries to ensure all charges sit safely inside the shield frame
 function chargePosition(pos, index, total) {
   const hw = SHIELD_WIDTH / 2;
   const h = SHIELD_HEIGHT;
   const positions = {
-    centre: [0, h * 0.45],
-    dexter: [-hw * 0.45, h * 0.45],
-    sinister: [hw * 0.45, h * 0.45],
-    chief: [0, h * 0.2],
-    base: [0, h * 0.72],
-    dexter_chief: [-hw * 0.4, h * 0.22],
-    sinister_chief: [hw * 0.4, h * 0.22],
-    dexter_base: [-hw * 0.4, h * 0.68],
-    sinister_base: [hw * 0.4, h * 0.68]
+    centre: [0, h * 0.42],
+    dexter: [-hw * 0.4, h * 0.42],
+    sinister: [hw * 0.4, h * 0.42],
+    chief: [0, h * 0.22],
+    base: [0, h * 0.65],
+    dexter_chief: [-hw * 0.38, h * 0.22],
+    sinister_chief: [hw * 0.38, h * 0.22],
+    dexter_base: [-hw * 0.25, h * 0.62],
+    sinister_base: [hw * 0.25, h * 0.62]
   };
-  // Auto-distribute if no explicit position
   if (!pos || pos === 'auto') {
     if (total === 1) return positions.centre;
     if (total === 2) return index === 0 ? positions.dexter : positions.sinister;
@@ -103,11 +101,10 @@ function chargePosition(pos, index, total) {
 function renderCharge(charge, index, total) {
   const [cx, cy] = chargePosition(charge.position, index, total);
   const colour = tincture(charge.tincture ?? 'or');
-  const size = charge.size ?? 52;
+  // Safe charge sizing (36-44px max) to stay within shield contours
+  const baseSize = total === 1 ? 44 : total === 2 ? 40 : 36;
+  const size = charge.size ?? baseSize;
 
-  // Inline SVG shapes for each charge type
-  // In production these would be loaded from src/svg/charges/*.svg
-  // For now: simple geometric stand-ins that read as the right symbol
   const shapes = {
     lion_rampant: `<g transform="translate(${cx},${cy})">
       <text text-anchor="middle" dominant-baseline="central" font-size="${size * 0.9}" fill="${colour}" style="font-family:serif">🦁</text>
@@ -193,16 +190,16 @@ function renderCharge(charge, index, total) {
 
 function renderMotto(motto, translation) {
   if (!motto) return '';
-  const y = SHIELD_HEIGHT + 28;
+  const y = SHIELD_HEIGHT + 24;
   return `
     <g transform="translate(0, ${y})">
-      <rect x="-${SHIELD_WIDTH/2}" y="-14" width="${SHIELD_WIDTH}" height="22" rx="3" fill="#2a1a00" opacity="0.85"/>
-      <text text-anchor="middle" dominant-baseline="middle" y="1"
+      <rect x="-${SHIELD_WIDTH/2}" y="-12" width="${SHIELD_WIDTH}" height="24" rx="3" fill="#2a1a00" stroke="#5d4212" stroke-width="1" opacity="0.95"/>
+      <text text-anchor="middle" dominant-baseline="central" y="0"
         font-family="Palatino, Georgia, serif" font-size="11" font-style="italic"
         fill="#FFD700" letter-spacing="1">${escapeXml(motto)}</text>
     </g>
-    ${translation ? `<text x="0" y="${y + 22}" text-anchor="middle"
-      font-family="Georgia, serif" font-size="8.5" fill="#555" font-style="italic"
+    ${translation ? `<text x="0" y="${y + 24}" text-anchor="middle"
+      font-family="Georgia, serif" font-size="9" fill="#a08040" font-style="italic"
       dominant-baseline="hanging">${escapeXml(translation)}</text>` : ''}`;
 }
 
@@ -237,7 +234,7 @@ function renderSpec(spec) {
     </filter>
   </defs>
 
-  <!-- Shield outline (drop shadow layer) -->
+  <!-- Shield shadow -->
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
     fill="#00000033" filter="url(#shield-shadow)"/>
 
@@ -246,14 +243,14 @@ function renderSpec(spec) {
     ${fieldSvg}
   </g>
 
-  <!-- Charges (clipped) -->
+  <!-- Charges (clipped to shield shape) -->
   <g clip-path="url(#${clipId})" transform="translate(${cx}, ${cy})">
     ${chargesSvg}
   </g>
 
   <!-- Shield border -->
   <path d="${shieldPath()}" transform="translate(${cx}, ${cy})"
-    fill="none" stroke="#2a1a00" stroke-width="3"/>
+    fill="none" stroke="#2a1a00" stroke-width="3.5"/>
 
   <!-- Motto scroll -->
   <g transform="translate(${cx}, ${cy})">
