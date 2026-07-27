@@ -328,10 +328,44 @@ const richHtml = `<!DOCTYPE html>
       font-family: 'EB Garamond', serif;
     }
 
+    /* Motto Ribbon Banner under Title (User Hand-Drawn Request) */
+    .motto-header-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.6rem 0;
+      gap: 0.25rem;
+    }
+
+    .motto-ribbon-scroll {
+      background: linear-gradient(180deg, #3d2c08 0%, #170e03 100%);
+      border: 1px solid #FFD700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), inset 0 0 8px rgba(0,0,0,0.8);
+      padding: 0.45rem 1.6rem;
+      border-radius: 4px;
+    }
+
+    .motto-text-main {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: #FFD700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+    }
+
+    .motto-text-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: #c8a060;
+      font-style: italic;
+    }
+
     .twinning-block {
       font-size: 0.98rem;
       color: #c8a060;
-      margin-top: 0.4rem;
+      margin-top: 0.2rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -474,23 +508,25 @@ const richHtml = `<!DOCTYPE html>
     .commentary {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .commentary-block {
       background: #1a0e05;
       border-left: 3px solid #FFD700;
-      padding: 1rem 1.2rem;
+      padding: 1.2rem;
       border-radius: 0 6px 6px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
     }
 
     .commentary-element {
       font-family: 'Cinzel', serif;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: #FFD700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      margin-bottom: 0.35rem;
     }
 
     .commentary-text {
@@ -500,37 +536,24 @@ const richHtml = `<!DOCTYPE html>
       color: #e8d5a3;
     }
 
-    .tapestry-panel {
-      background: #2b1f14;
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(228, 208, 168, 0.08) 0%, transparent 80%),
-        repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px),
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 4px);
-      border: 2px dashed #a08040;
-      border-radius: 8px;
-      padding: 1.2rem;
-      margin-top: 1rem;
+    /* Inline Bayeux Tapestry Story Segment Picture */
+    .tapestry-story-card {
+      margin-top: 0.4rem;
+      background: #261a0e;
+      border: 1px dashed rgba(212, 160, 48, 0.4);
+      border-radius: 6px;
+      padding: 0.8rem;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 0.8rem;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+      box-shadow: inset 0 0 14px rgba(0,0,0,0.6);
     }
 
-    .tapestry-title {
-      font-family: 'Cinzel Decorative', 'Cinzel', serif;
-      font-size: 0.9rem;
-      color: #FFD700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .tapestry-art {
+    .tapestry-art-canvas {
       width: 100%;
-      max-width: 280px;
+      max-width: 220px;
       height: auto;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
     }
 
     .excuse-block {
@@ -596,6 +619,15 @@ const richHtml = `<!DOCTYPE html>
         <span class="subject-name" id="subject-name"></span>
         <span class="subject-affectation" id="subject-affectation"></span>
       </h2>
+
+      <!-- Motto Ribbon Banner under Main Title (User Hand-Drawn Request) -->
+      <div class="motto-header-block" id="motto-header-block">
+        <div class="motto-ribbon-scroll">
+          <span class="motto-text-main" id="motto-text-main"></span>
+        </div>
+        <div class="motto-text-sub" id="motto-text-sub"></div>
+      </div>
+
       <div class="twinning-block" id="twinning-block"></div>
     </div>
 
@@ -778,9 +810,12 @@ const richHtml = `<!DOCTYPE html>
 
   function renderOutput(location, result) {
     const crestContainer = document.getElementById('crest-svg');
+    
     // Compute SVG using 100% Client-Side renderSpec (guarantees perfect alignment)
     try {
-      crestContainer.innerHTML = renderSpec(result);
+      // Pass empty motto so shield doesn't render motto ribbon twice
+      const specForShield = { ...result, motto: '', motto_translation: '' };
+      crestContainer.innerHTML = renderSpec(specForShield);
     } catch (e) {
       crestContainer.innerHTML = result.svg || '';
     }
@@ -788,6 +823,17 @@ const richHtml = `<!DOCTYPE html>
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
     document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
+
+    // Render Motto Ribbon Banner under Main Title (User Hand-Drawn Request)
+    const mottoMain = document.getElementById('motto-text-main');
+    const mottoSub  = document.getElementById('motto-text-sub');
+    if (result.motto) {
+      mottoMain.textContent = result.motto;
+      mottoSub.textContent  = result.motto_translation ? \`— \${result.motto_translation} —\` : '';
+      document.getElementById('motto-header-block').style.display = 'flex';
+    } else {
+      document.getElementById('motto-header-block').style.display = 'none';
+    }
 
     // Render Twinned Places
     const twinningContainer = document.getElementById('twinning-block');
@@ -817,26 +863,32 @@ const richHtml = `<!DOCTYPE html>
       reDesignContainer.appendChild(btn);
     });
 
+    // Render Segment Pictures & Stories with inline Bayeux Tapestry Art
     const commentary = document.getElementById('commentary');
     commentary.innerHTML = '';
-    (result.commentary ?? []).forEach(block => {
+    const charges = result.charges ?? [];
+    
+    (result.commentary ?? []).forEach((block, idx) => {
       const div = document.createElement('div');
       div.className = 'commentary-block';
+
+      // Pick corresponding charge or first charge for tapestry story art
+      const charge = charges[idx % Math.max(1, charges.length)] || { id: 'bayeux_knight_fleeing', tincture: 'or' };
+      const svgCharge = renderCharge(charge, 0, 1, 'story-' + idx);
+
       div.innerHTML = \`
         <div class="commentary-element">\${escapeHtml(block.element)}</div>
-        <div class="commentary-text">\${escapeHtml(block.text)}</div>\`;
+        <div class="commentary-text">\${escapeHtml(block.text)}</div>
+        <div class="tapestry-story-card">
+          <svg viewBox="-80 -60 160 120" class="tapestry-art-canvas">
+            <rect x="-80" y="-60" width="160" height="120" fill="#2b1f14" rx="6" stroke="#a08040" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <g transform="translate(0, 0)">
+              \${svgCharge}
+            </g>
+          </svg>
+        </div>\`;
       commentary.appendChild(div);
     });
-
-    // Render Bayeux Tapestry Embroidered Art Panel (FG-011 Phase 2 Container)
-    const tapestryPanel = document.createElement('div');
-    tapestryPanel.className = 'tapestry-panel';
-    tapestryPanel.innerHTML = \`
-      <div class="tapestry-title">🧵 Bayeux Tapestry Embroidery Panel</div>
-      <div class="tapestry-art">
-        \${renderSpec({ field: { tincture: 'sable', division: 'plain' }, charges: result.charges || [], motto: result.motto })}
-      </div>\`;
-    commentary.appendChild(tapestryPanel);
 
     document.getElementById('excuse-block').textContent = result.excuse ?? '';
     document.getElementById('output-panel').classList.add('visible');
@@ -925,4 +977,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js with Bayeux Tapestry panel');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js — moved motto to top header under title and added inline Bayeux story pictures');
