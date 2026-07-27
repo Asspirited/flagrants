@@ -18,3 +18,14 @@
   3. If SSH key is still registered on the account, GitHub may allow key-based recovery
 **Immediate impact:** Cannot create new repos or push via HTTPS. SSH push works IF repo exists.
 **Status:** OPEN — code committed locally, worker deployed, not blocked on product work.
+
+## FG-WL-003 — Background task hung silently on permission error without cross-session reporting
+**Date:** 2026-07-27
+**Cost:** ~45 min developer delay & manual session status check
+**Symptom:** Session reported initiating background `git push` task and promised notification on completion, but hung silently and never reported back.
+**Root cause:**
+  1. Fine-grained Personal Access Token lacked `Contents: Read and write` permission, causing background `git push` to fail with HTTP 403.
+  2. Antigravity background task notifications are scoped to the originating conversation session (`f9731bbc-0519-44ed-9c74-f7f5c50557f5`); opening a new session prevented cross-thread completion/failure delivery.
+**Fix:**
+  1. Updated PAT scope on GitHub to include repository `Contents: Read and write`.
+  2. Re-triggered `git push` synchronously in active session to verify tracking and completion.
