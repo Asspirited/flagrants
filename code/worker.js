@@ -847,7 +847,10 @@ You MUST synthesize ALL 7 Defence Lenses into a hilarious, multi-layered municip
 4. "excuse" (Cover-Up / Blame Others Lens): Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 5. "tripadvisor_audit" (Admit Faults / Context Lens): Acidic, scathing TripAdvisor expert review (Pratchett / Adams register) giving an unvarnished audit & rating (e.g. "1.5 / 5 — Mostly Overcast").
 6. "socio_economic": Scathing, dry demographic audit of schools & Ofsted, crime, skilled labour (vape shops/roundabouts), and housing damp/prices.
-7. "customer_reviews": MUST be exactly 3 SHORT, PUNCHY visitor reviews (maximum 1-2 short sentences each!). Include 1-star rage, 5-star delusional councillor, and 2-star bewildered tourist.
+7. "customer_reviews": MUST be exactly 3 hilarious, highly varied visitor reviews with contrasting star ratings (1 to 5 stars):
+   - Review 1: Longer, detailed unvarnished visitor experience.
+   - Review 2: Short, snappy 1-sentence reaction.
+   - Review 3: Random length, highly obscure, surreal or bizarre local observation (e.g. strange encounters at the bypass, suspicious turnip advice, or concrete cow worship).
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
 {
