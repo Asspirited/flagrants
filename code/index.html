@@ -2535,8 +2535,10 @@ function renderSpec(spec) {
     const mode3Container = document.getElementById('mode3-container');
     if (isMode3) {
       const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
-      const regProf = getRegionalProfile(location);
+      const reg = getRegionalProfile(location);
+      const regProf = reg;
       const localLore = getHyperLocalLore(location);
+      const archetype = (typeof classifyTown === 'function') ? classifyTown(location) : 'industrial_commuter';
       
       const tb = result.tourist_board || result.touristBoard || result.brochure || {};
       const ta = result.tripadvisor_audit || result.tripadvisor || result.audit || result.expert_audit || {};
@@ -2605,22 +2607,24 @@ function renderSpec(spec) {
         ]
       };
 
+      const clickCnt = (typeof window !== 'undefined' && typeof window._clickCount === 'number') ? window._clickCount : 0;
+      if (typeof window !== 'undefined') window._clickCount = clickCnt + 1;
+
       const eventCategories = Object.keys(RECENT_EVENTS_PATTERNS);
-      const catIdx = (hashTown(location, 443) + window._clickCount) % eventCategories.length;
-      const catKey = eventCategories[catIdx];
-      const eventPool = RECENT_EVENTS_PATTERNS[catKey];
-      const itemIdx = (hashTown(location, 557) + window._clickCount) % eventPool.length;
-      document.getElementById('recent-events-text').textContent = eventPool[itemIdx];
+      const catIdx = (hashTown(location, 443) + clickCnt) % eventCategories.length;
+      const catKey = eventCategories[catIdx] || eventCategories[0];
+      const eventPool = RECENT_EVENTS_PATTERNS[catKey] || RECENT_EVENTS_PATTERNS.municipal_scandal;
+      const itemIdx = (hashTown(location, 557) + clickCnt) % (eventPool ? eventPool.length : 1);
+      document.getElementById('recent-events-text').textContent = eventPool ? eventPool[itemIdx] : 'Recent municipal events under review by parish council.';
 
       // Render Hyper-Local Gazette & Spotted:[Town] Intelligence
-      window._clickCount = (window._clickCount || 0) + 1;
       let gHead = localLore.gazette_headline;
       if (Array.isArray(localLore.gazette_headlines) && localLore.gazette_headlines.length > 0) {
-        gHead = localLore.gazette_headlines[hashTown(location, 107 + window._clickCount) % localLore.gazette_headlines.length];
+        gHead = localLore.gazette_headlines[hashTown(location, 107 + clickCnt) % localLore.gazette_headlines.length];
       }
 
-      const townObj = reg.objects[(hashTown(location, 11) + window._clickCount) % reg.objects.length];
-      const townCrime = reg.crimes[(hashTown(location, 17) + window._clickCount) % reg.crimes.length];
+      const townObj = reg.objects[(hashTown(location, 11) + clickCnt) % reg.objects.length];
+      const townCrime = reg.crimes[(hashTown(location, 17) + clickCnt) % reg.crimes.length];
       const townScandal = localLore.local_scandal || 'disputes over parish council flower tub budgets';
 
       const GOSSIP_CHANNELS = [
@@ -2638,9 +2642,14 @@ function renderSpec(spec) {
 
       let chatterText = localLore.spotted_chatter;
       if (Array.isArray(localLore.spotted_chatters) && localLore.spotted_chatters.length > 0) {
-        chatterText = localLore.spotted_chatters[hashTown(location, 223 + window._clickCount) % localLore.spotted_chatters.length];
-      } else if (!localLore.spotted_chatter || hashTown(location, 223 + window._clickCount) % 10 !== 9) {
-        chatterText = GOSSIP_CHANNELS[hashTown(location, 223 + window._clickCount) % GOSSIP_CHANNELS.length];
+        chatterText = localLore.spotted_chatters[hashTown(location, 223 + clickCnt) % localLore.spotted_chatters.length];
+      } else if (!localLore.spotted_chatter || hashTown(location, 223 + clickCnt) % 10 !== 9) {
+        const chatterPool = (typeof COMMUNITY_CHATTER !== 'undefined' && Array.isArray(COMMUNITY_CHATTER)) ? COMMUNITY_CHATTER : [
+          'Will whoever left a shopping trolley full of lukewarm pasties near the concourse please collect it.',
+          'To the person letting their ferret loose in Morrisons Top of Town: please collect it from the bakery.',
+          'Found one black lace parasol by the 199 steps. Currently hanging outside the jet jewellery shop.'
+        ];
+        chatterText = chatterPool[hashTown(location, 223 + clickCnt) % chatterPool.length];
       }
 
       document.getElementById('gazette-paper-name').textContent = `📰 ${localLore.paper}`;
@@ -2703,11 +2712,14 @@ function renderSpec(spec) {
       let lumItem = localLore.acidic_luminary;
       if (!lumItem) {
         const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.industrial_commuter;
-        lumItem = lumPool[(hashTown(location, 619) + window._clickCount) % lumPool.length];
+        const clickCount = (typeof window !== 'undefined' && window._clickCount) ? window._clickCount : 0;
+        lumItem = lumPool[(hashTown(location, 619) + clickCount) % lumPool.length] || lumPool[0];
       }
-      document.getElementById('luminary-author').textContent  = '✍️ ' + lumItem.author;
-      document.getElementById('luminary-quote').textContent   = '"' + lumItem.quote + '"';
-      document.getElementById('luminary-reality').textContent = lumItem.reality;
+      if (lumItem) {
+        document.getElementById('luminary-author').textContent  = '✍️ ' + (lumItem.author || '');
+        document.getElementById('luminary-quote').textContent   = '"' + (lumItem.quote || '') + '"';
+        document.getElementById('luminary-reality').textContent = lumItem.reality || '';
+      }
 
       // Render Section 8: 9-Month Weather & Morale Survival Audit
       const WEATHER_PROFILES = {
