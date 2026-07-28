@@ -1625,38 +1625,38 @@ function renderSpec(spec) {
 
   const PANEL_DIALOGUES = [
     {
-      archetype: 'industrial_midlands',
+      archetype: "industrial_midlands",
       speakers: [
-        { avatar: '🥊', name: 'Ray Winstone', line: 'Right, look at this High Street at 2am. You've got 40,000 undergraduates drinking 2-for-1 alcopops. Absolutely proper British, that.' },
-        { avatar: '🌌', name: 'Prof. Brian Cox', line: 'What's extraordinary, Ray, is that the thermodynamic entropy of those alcopops is directly coupled to space-time dilation on the orbital roundabout.' },
-        { avatar: '🏕️', name: 'Ray Mears', line: 'From a bushcraft perspective, Brian, you can make an emergency bivouac out of two sun-bleached deckchairs while Ray argues with the 2am taxi cartel.' }
+        { avatar: "🥊", name: "Ray Winstone", line: "Right, look at this High Street at 2am. You've got 40,000 undergraduates drinking 2-for-1 alcopops. Absolutely proper British, that." },
+        { avatar: "🌌", name: "Prof. Brian Cox", line: "What's extraordinary, Ray, is that the thermodynamic entropy of those alcopops is directly coupled to space-time dilation on the orbital roundabout." },
+        { avatar: "🏕️", name: "Ray Mears", line: "From a bushcraft perspective, Brian, you can make an emergency bivouac out of two sun-bleached deckchairs while Ray argues with the 2am taxi cartel." }
       ]
     },
     {
-      archetype: 'coastal',
+      archetype: "coastal",
       speakers: [
-        { avatar: '🎙️', name: 'David Attenborough', line: 'Notice how the coastal population adapts to 60mph sea-gales with remarkable resilience...' },
-        { avatar: '🦎', name: 'Steve Backshall', line: 'Deadly 60 alert, David! That feral seagull swooping over the pier is moving at a lethal 45 knots to steal a lukewarm chip!' },
-        { avatar: '📜', name: 'Venerable Bede', line: 'Hold on! The Venerable Synod of 731 AD strictly forbade seagull chip theft past Vespers... you remind me of that 1348 poultry keeper, Johnny!' }
+        { avatar: "🎙️", name: "David Attenborough", line: "Notice how the coastal population adapts to 60mph sea-gales with remarkable resilience..." },
+        { avatar: "🦎", name: "Steve Backshall", line: "Deadly 60 alert, David! That feral seagull swooping over the pier is moving at a lethal 45 knots to steal a lukewarm chip!" },
+        { avatar: "📜", name: "Venerable Bede", line: "Hold on! The Venerable Synod of 731 AD strictly forbade seagull chip theft past Vespers... you remind me of that 1348 poultry keeper, Johnny!" }
       ]
     },
     {
-      archetype: 'cathedral_heritage',
+      archetype: "cathedral_heritage",
       speakers: [
-        { avatar: '🌌', name: 'Prof. Brian Cox', line: 'Look at the high-vibrational quantum energy here. The local crystal dowsing rods are resonating with the cosmic microwave background.' },
-        { avatar: '🥊', name: 'Ray Winstone', line: 'Listen to me, Brian. If someone tries to sell me an £8 aura crystal for my copper plumbing, they're getting a right proper talking to, sunshine.' },
-        { avatar: '📜', name: 'Venerable Bede', line: 'Verily, King Arthur went into an eternal slumber beneath the Tor specifically to avoid these £8 aura crystal dowsers.' }
+        { avatar: "🌌", name: "Prof. Brian Cox", line: "Look at the high-vibrational quantum energy here. The local crystal dowsing rods are resonating with the cosmic microwave background." },
+        { avatar: "🥊", name: "Ray Winstone", line: "Listen to me, Brian. If someone tries to sell me an £8 aura crystal for my copper plumbing, they're getting a right proper talking to, sunshine." },
+        { avatar: "📜", name: "Venerable Bede", line: "Verily, King Arthur went into an eternal slumber beneath the Tor specifically to avoid these £8 aura crystal dowsers." }
       ]
     }
   ];
 
   const INTERJECTIONS = [
-    'I have audited the parish records for this borough. The 1978 tupperware convention incident remains unresolved. Honestly, the user currently searching this location reminds me of that 1978 tupperware box, Johnny...',
-    'Notice how the local population adapts to 60mph sea-gales with wet Wimpy wrappers. Honestly, the visitor reading this audit right now reminds me of that wet Wimpy wrapper, Johnny...',
-    'Listen to me, sunshine. If you're visiting this borough on a Friday night, bring a heavy coat and don't argue with the 2am taxi cartel, Johnny.',
-    'What's extraordinary about this orbital roundabout system is that space-time actually dilates at 3am, causing motorists to experience 400 years of cosmic isolation in a Vauxhall Corsa, Johnny.',
-    'Deadly 60 alert! That feral seagull hovering over the precinct is moving at 45 knots... honestly, the user searching this location right now reminds me of that deadly seagull, Johnny!',
-    'Nonsense! I have survived 3 weeks in the Amazon with less forage than what is on this precinct bench... to be fair, the user blazoning this borough right now reminds me of a damp forage root, Johnny!'
+    "I have audited the parish records for this borough. The 1978 tupperware convention incident remains unresolved. Honestly, the user currently searching this location reminds me of that 1978 tupperware box, Johnny...",
+    "Notice how the local population adapts to 60mph sea-gales with wet Wimpy wrappers. Honestly, the visitor reading this audit right now reminds me of that wet Wimpy wrapper, Johnny...",
+    "Listen to me, sunshine. If you're visiting this borough on a Friday night, bring a heavy coat and don't argue with the 2am taxi cartel, Johnny.",
+    "What's extraordinary about this orbital roundabout system is that space-time actually dilates at 3am, causing motorists to experience 400 years of cosmic isolation in a Vauxhall Corsa, Johnny.",
+    "Deadly 60 alert! That feral seagull hovering over the precinct is moving at 45 knots... honestly, the user searching this location right now reminds me of that deadly seagull, Johnny!",
+    "Nonsense! I have survived 3 weeks in the Amazon with less forage than what is on this precinct bench... to be fair, the user blazoning this borough right now reminds me of a damp forage root, Johnny!"
   ];
 
   const LENSES = [
@@ -1881,7 +1881,7 @@ function renderSpec(spec) {
       spotted_chatter: 'Will whoever took the Dennis the Menace statue catapult by the Overgate please return it before Desperate Dan arrives.',
       local_scandal: 'Debates over Keiller marmalade recipes and Tay Rail Bridge gale-wind warnings in Dundee.',
       tourist_slogan: 'Dundee: City of Jute, Jam, Journalism & RRS Discovery Heritage!',
-      tourist_brochure: 'Welcome to Dundee! City of Discovery, historic Jute mills, Keiller Marmalade, and DC Thomson Beano comics! Inspect Captain Scott's polar exploration ship RRS Discovery in the harbour, marvel at the V&A Dundee on the Tay Estuary, and enjoy sunlit coastal views!',
+      tourist_brochure: 'Welcome to Dundee! City of Discovery, historic Jute mills, Keiller Marmalade, and DC Thomson Beano comics! Inspect Captain Scott\'s polar exploration ship RRS Discovery in the harbour, marvel at the V&A Dundee on the Tay Estuary, and enjoy sunlit coastal views!',
       tripadvisor_audit: 'ANALYST EXPERT AUDIT #8021: Dundee is a brilliant sunlit estuary city of maritime polar exploration, Beano comics, and historic jute mills. Rating: 4.6/5 — Exceptional marmalade & coastal views.',
       acidic_luminary: {
         author: 'Captain Robert Falcon Scott (1901)',
@@ -1911,12 +1911,12 @@ function renderSpec(spec) {
       spotted_chatter: 'To whoever left a shopping trolley full of lukewarm pasties on Horsell Common: the Martians have returned.',
       local_scandal: 'Town council debt debates and ongoing disputes over the Peacocks shopping centre car park ramp height.',
       tourist_slogan: 'Woking: Home of H.G. Wells Martian Invasion Lore & 34-Storey Suburban Towers!',
-      tourist_brochure: 'Explore Woking! Birthplace of H.G. Wells' 1898 War of the Worlds Martian tripod invasion on Horsell Common! Marvel at the 34-storey Victoria Square towers, stroll the Basingstoke Canal walk, and experience authentic Surrey commuter charm!',
-      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1898: Woking offers a fascinating study in suburban survival. Famous for H.G. Wells' Martian heat-ray on Horsell Common, the town has evolved into a high-density commuter hub. Rating: 3.4/5 — Watch out for Martian heat-rays and train delays.',
+      tourist_brochure: 'Explore Woking! Birthplace of H.G. Wells\' 1898 War of the Worlds Martian tripod invasion on Horsell Common! Marvel at the 34-storey Victoria Square towers, stroll the Basingstoke Canal walk, and experience authentic Surrey commuter charm!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1898: Woking offers a fascinating study in suburban survival. Famous for H.G. Wells\' Martian heat-ray on Horsell Common, the town has evolved into a high-density commuter hub. Rating: 3.4/5 — Watch out for Martian heat-rays and train delays.',
       acidic_luminary: {
         author: 'George Orwell (1939)',
         quote: 'A nightmare of red brick villas, asphalt roads, and respectability so suffocating it could strangle a bull...',
-        reality: 'Woking took Orwell's critique as a 5-year town planning specification, demolishing the remaining trees to erect a 34-storey glass apartment tower right over the Martian tripod monument.'
+        reality: 'Woking took Orwell\'s critique as a 5-year town planning specification, demolishing the remaining trees to erect a 34-storey glass apartment tower right over the Martian tripod monument.'
       }
     }
   };
@@ -2279,7 +2279,7 @@ function renderSpec(spec) {
     const BROCHURE_SYNTHESIZER = {
       agricultural: {
         slot1: ['Welcome to ' + town, 'Nestled in the rolling West Country hills of ' + town, 'Steeped in 300-year-old orchard tradition in ' + town, 'Discover the agrarian heart of ' + town],
-        slot2: ['where Cooper's Hill 9lb Double Gloucester cheese rolls down 1:2 slopes', 'famed for historic parish marrow competitions and', 'where ancient farmhouse cider cellars meet', 'home to 18th-century cider barrel rustling legends where'],
+        slot2: ["where Cooper's Hill 9lb Double Gloucester cheese rolls down 1:2 slopes", 'famed for historic parish marrow competitions and', 'where ancient farmhouse cider cellars meet', 'home to 18th-century cider barrel rustling legends where'],
         slot3: ['visitors can sample authentic cloudy cider and', 'parish elders audit ornamental flower tub budgets while', 'inspect prize marrows at the autumn parish show and', 'enjoy traditional pub hearth banter alongside'],
         slot4: ['thatch-roofed Cotswold stone cottages!', 'farmhouse cheese tasting in historic timber barns!', 'panoramic views of parish greens and apple orchards!', 'rustic West Country hospitality!']
       },
@@ -2553,12 +2553,12 @@ function renderSpec(spec) {
         fabrication: [
           'BREAKING SCOOP: A 40-foot golden dragon was spotted hovering over the ' + location + ' High Street... okay, fine, we made that up. It was actually a damp pigeon eating a discarded sausage roll.',
           'MUNICIPAL BULLETIN: NASA designated the ' + location + ' main roundabout as a backup Mars landing site... absolute bollocks, obviously. The council just painted the curb yellow.',
-          'EXCLUSIVE: Archeologists discovered a 2,000-year-old Roman amphitheatre beneath the ' + location + ' Morrisons car park... complete shite. It's just a rusted shopping trolley in a pothole.'
+          'EXCLUSIVE: Archeologists discovered a 2,000-year-old Roman amphitheatre beneath the ' + location + ' Morrisons car park... complete shite. It\'s just a rusted shopping trolley in a pothole.'
         ],
         nada: [
-          'RECENT EVENTS: Nada. Zero. Absolutely nothing. Move along, these aren't the droids you're looking for. A parish dog barked at a wheelie bin at 3:14pm, but morale quickly recovered.',
+          'RECENT EVENTS: Nada. Zero. Absolutely nothing. Move along, these aren\'t the droids you\'re looking for. A parish dog barked at a wheelie bin at 3:14pm, but morale quickly recovered.',
           'BREAKING INCIDENT LOG: Nothing here but us chickens. A seagull dropped a lukewarm chip on a 2004 Ford Fiesta. That is literally the entire 24-hour police log for ' + location + '.',
-          'PARISH STATUS: Total tumbleweed. The local newspaper's lead story today is a 2-paragraph obituary for a prize marrow.'
+          'PARISH STATUS: Total tumbleweed. The local newspaper\'s lead story today is a 2-paragraph obituary for a prize marrow.'
         ],
         waiting: [
           'SOMETHING COOL WILL HAPPEN IN ' + location + ' ANY DAY NOW... any month now... any century now... Local historians have been sitting by the bus stop since 1994 waiting for news.',
@@ -2593,7 +2593,7 @@ function renderSpec(spec) {
         'Neighbourhood Watch WhatsApp: Suspicious individual inspecting a ' + townObj + ' near ' + location + '.',
         'Passive-aggressive note under windshield wiper in ' + location + ': You parked 4 inches over my dropped kerb while retrieving a ' + townObj + '.',
         'Post Office window notice in ' + location + ': Low-resolution CCTV image of suspect involved in ' + townCrime + ' on display.',
-        'Overheard in bakery queue: He swore on his mother's prize marrow that the ' + location + ' council decision was rigged.',
+        'Overheard in bakery queue: He swore on his mother\'s prize marrow that the ' + location + ' council decision was rigged.',
         'Pub Taproom Rumour in ' + location + ': The chairman secretly traded a ' + townObj + ' during ' + townScandal + '.',
         'Ring Doorbell Night-Vision Video in ' + location + ': To the person who borrowed my ' + townObj + ': I have your slippers on 1080p footage.'
       ];
@@ -2614,50 +2614,50 @@ function renderSpec(spec) {
       const LUMINARY_QUOTES = {
         coastal: [
           {
-            author: 'John Betjeman (1937)',
-            quote: 'Come, friendly gales, and sweep the coastal mizzle clear...',
-            reality: location + ' ignored Sir John's poetic plea and instead built 400 static caravans directly on the eroding chalk cliff edge, leading residents to erect Ring cameras to watch the footpaths fall into the sea.'
+            author: "John Betjeman (1937)",
+            quote: "Come, friendly gales, and sweep the coastal mizzle clear...",
+            reality: location + " ignored Sir John's poetic plea and instead built 400 static caravans directly on the eroding chalk cliff edge, leading residents to erect Ring cameras to watch the footpaths fall into the sea."
           },
           {
-            author: 'Bram Stoker (1897)',
-            quote: 'The gray sea mizzle rolled over the cliffside ruins like a dark Victorian shroud...',
-            reality: location + ' took Dracula's gothic atmosphere as a direct commercial instruction, charging £8 for velvet cloaks while seagulls steal doner meat outside the fish chippy.'
+            author: "Bram Stoker (1897)",
+            quote: "The gray sea mizzle rolled over the cliffside ruins like a dark Victorian shroud...",
+            reality: location + " took Dracula's gothic atmosphere as a direct commercial instruction, charging £8 for velvet cloaks while seagulls steal doner meat outside the fish chippy."
           }
         ],
         cathedral_heritage: [
           {
-            author: 'Dr. Samuel Johnson (1777)',
-            quote: 'When a man is tired of the spires, he is tired of life...',
-            reality: 'When a traveler is tired of ' + location + ', he has usually been yelled at in Latin by a college porter for walking on 500-year-old quadrangle grass while trying to find a public toilet.'
+            author: "Dr. Samuel Johnson (1777)",
+            quote: "When a man is tired of the spires, he is tired of life...",
+            reality: "When a traveler is tired of " + location + ", he has usually been yelled at in Latin by a college porter for walking on 500-year-old quadrangle grass while trying to find a public toilet."
           },
           {
-            author: 'Jane Austen (1817)',
-            quote: 'The ancient stone streets and cloisters of ' + location + ' inspire the most elevated sentiments...',
-            reality: location + ''s parish council interpreted "elevated sentiments" as permission to charge £14 for parking near the cloisters while undergraduates crash wooden punts into weeping willows.'
+            author: "Jane Austen (1817)",
+            quote: "The ancient stone streets and cloisters of " + location + " inspire the most elevated sentiments...",
+            reality: location + "'s parish council interpreted 'elevated sentiments' as permission to charge £14 for parking near the cloisters while undergraduates crash wooden punts into weeping willows."
           }
         ],
         agricultural: [
           {
-            author: 'Daniel Defoe (1724)',
-            quote: 'A most fertile and bountiful parish, famed for rich cider and sturdy yeomen...',
-            reality: '302 years later, ' + location + ' has corrupted Defoe's vision into a 1:2 slope Double Gloucester cheese race where participants regularly break both ankles to win a 9lb dairy wheel.'
+            author: "Daniel Defoe (1724)",
+            quote: "A most fertile and bountiful parish, famed for rich cider and sturdy yeomen...",
+            reality: "302 years later, " + location + " has corrupted Defoe's vision into a 1:2 slope Double Gloucester cheese race where participants regularly break both ankles to win a 9lb dairy wheel."
           },
           {
-            author: 'Thomas Hardy (1886)',
-            quote: 'The quiet solitude of the parish green offers peace to the weary soul...',
-            reality: location + ' completely abandoned Hardy's rustic tranquility in favor of 3-hour parish council brawls over ornamental flower tub budgets and 18th-century cider barrel theft.'
+            author: "Thomas Hardy (1886)",
+            quote: "The quiet solitude of the parish green offers peace to the weary soul...",
+            reality: location + " completely abandoned Hardy's rustic tranquility in favor of 3-hour parish council brawls over ornamental flower tub budgets and 18th-century cider barrel theft."
           }
         ],
         industrial_commuter: [
           {
-            author: 'George Orwell (1937)',
-            quote: 'It is a place where civic ambition meets the grey mizzle of northern endurance...',
-            reality: location + ' ignored Orwell's social critique and instead built a 7-tier orbital roundabout system superior in confusion to the Labyrinth of Minos.'
+            author: "George Orwell (1937)",
+            quote: "It is a place where civic ambition meets the grey mizzle of northern endurance...",
+            reality: location + " ignored Orwell's social critique and instead built a 7-tier orbital roundabout system superior in confusion to the Labyrinth of Minos."
           },
           {
-            author: 'Oscar Wilde (1895)',
-            quote: 'To lose one bypass may be regarded as a misfortune; to lose both looks like carelessness...',
-            reality: location + ' took Wilde's wit literally, losing its original High Street to a 1974 concrete subway complex featuring 3 vape shops and scenic indoor moss.'
+            author: "Oscar Wilde (1895)",
+            quote: "To lose one bypass may be regarded as a misfortune; to lose both looks like carelessness...",
+            reality: location + " took Wilde's wit literally, losing its original High Street to a 1974 concrete subway complex featuring 3 vape shops and scenic indoor moss."
           }
         ]
       };
