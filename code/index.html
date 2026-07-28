@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=801">
+  <link rel="manifest" href="manifest.json?v=901">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -452,7 +452,7 @@
     .crest-figure svg {
       filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
       max-width: 100%;
-      height auto;
+      height: auto;
     }
 
     .export-actions {
@@ -587,6 +587,7 @@
     .header-cyan     { background: linear-gradient(90deg, #0088cc 0%, #004466 100%); border-bottom: 1px solid #00d4ff; }
     .header-burgundy { background: linear-gradient(90deg, #8b0000 0%, #4a0000 100%); border-bottom: 1px solid #ff4d4d; }
     .header-bronze   { background: linear-gradient(90deg, #8a4e00 0%, #462700 100%); border-bottom: 1px solid #c47800; }
+    .header-debug    { background: linear-gradient(90deg, #332211 0%, #110800 100%); border-bottom: 1px solid #c8a060; }
 
     .paper-body {
       padding: 1.5rem;
@@ -954,6 +955,17 @@
         </div>
         <div class="paper-body">
           <div class="excuse-text" id="excuse-text"></div>
+        </div>
+      </div>
+
+      <!-- Section 6: Debug Research Findings Panel -->
+      <div class="paper-section-card" id="debug-research-card">
+        <div class="paper-header-bar header-debug">
+          <span>🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)</span>
+          <span style="font-size:0.75rem; opacity:0.8;">RESEARCH SPEC</span>
+        </div>
+        <div class="paper-body">
+          <pre id="debug-research-json" style="font-family: monospace; font-size: 0.85rem; color: #FFD700; white-space: pre-wrap; background: #0d0804; padding: 1rem; border-radius: 4px; border: 1px solid rgba(212,160,48,0.3); max-height: 300px; overflow-y: auto;"></pre>
         </div>
       </div>
 
@@ -2056,6 +2068,7 @@ function renderSpec(spec) {
     const mode3Container = document.getElementById('mode3-container');
     if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
       const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
+      const regProf = getRegionalProfile(location);
       
       const tb = result.tourist_board || result.touristBoard || result.brochure || {};
       const ta = result.tripadvisor_audit || result.tripadvisor || result.audit || result.expert_audit || {};
@@ -2099,6 +2112,20 @@ function renderSpec(spec) {
       document.getElementById('se-housing').textContent   = se.housing_property || fallbackObj.socio_economic.housing_property;
 
       document.getElementById('excuse-text').textContent = result.excuse || fallbackObj.excuse;
+
+      // Render Debug Research Findings Panel
+      const debugContainer = document.getElementById('debug-research-json');
+      if (debugContainer) {
+        const debugData = currentFindings || {
+          location: location,
+          regional_profile: regProf.region,
+          cultural_objects: regProf.objects,
+          regional_crimes: regProf.crimes,
+          scathing_profanities: regProf.profanities,
+          synthesized_doc: fallbackObj
+        };
+        debugContainer.textContent = JSON.stringify(debugData, null, 2);
+      }
 
       mode3Container.style.display = 'flex';
     } else {
