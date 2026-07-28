@@ -81,6 +81,12 @@
 * **Date:** 2026-07-28
 * **Insight:** One-off diagnostic scripts (e.g. JSDOM test scripts) that do not exit explicitly can hang indefinitely as active background processes, causing task pollution, UI indicators showing "task running", and agent stalling. Always terminate background processes explicitly and audit `manage_task(list)` to maintain 100% clean environment state.
 
+### Entry #015 — The Superpower of System Status: Transforming Failures into Actionable Clarity
+* **Category:** Usability Architecture & System Design
+* **Date:** 2026-07-28
+* **Insight:** The true value of Nielsen Heuristic #1 (*Visibility of System Status*) is most profound during unexpected edge cases. When a background task hung, the UI task indicator (*"task running"*) immediately informed the user that an anomaly occurred, turning an invisible black-box failure into actionable diagnostic clarity. Without system status visibility, users feel helpless; with it, they are empowered.
+
+
 
 
 
