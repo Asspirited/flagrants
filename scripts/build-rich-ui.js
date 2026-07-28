@@ -1138,7 +1138,14 @@ const richHtml = `<!DOCTYPE html>
     peacehaven: {
       paper: 'Sussex Express & Peacehaven News',
       spotted: 'Spotted: Peacehaven & Telscombe Cliffs',
-      gazette_headline: 'MYSTERY PIANO ABANDONED ON UNDERCLIFF WALK PROMPTS EMERGENCY COASTGUARD AUDIT',
+      gazette_headlines: [
+        'RUNAWAY INFLATABLE FLAMINGO RESCUED BY RNLI CUTTER OFF TELSCOMBE CLIFFS',
+        'GREENWICH MERIDIAN LINE WALKER DISORIENTED BY GALES ENDS UP IN MERIDIAN CENTRE',
+        'SALT-CRUSTED DECKCHAIR THEFT WAVE PROMPTS RING DOORBELL SURVEILLANCE CAMPAIGN',
+        'MYSTERY PIANO ABANDONED ON UNDERCLIFF WALK PROMPTS EMERGENCY COASTGUARD AUDIT',
+        '1920s NEWSPAPER RAFFLE PLOT DISPUTE HEATS UP AT SUSSEX PARISH COUNCIL',
+        'SEA-FOG OBSCURES A259 FOR 72 HOURS WHILE RESIDENTS ARGUE OVER BEACH HUT COPPER PIPING'
+      ],
       spotted_chatter: 'To the woman who took my lawnmower from outside the Meridian Centre: I have you on Ring doorbell video. Return it or the police will be informed.',
       local_scandal: 'Sea-fog obscuring the main roundabout for 72 hours while residents argue over beach hut copper piping theft.',
       tourist_slogan: 'Peacehaven: Where Greenwich Longitude Zero Meets 1920s Daily Express Land Plot Raffles!',
@@ -1899,8 +1906,13 @@ const richHtml = `<!DOCTYPE html>
       document.getElementById('excuse-text').textContent = result.excuse || fallbackObj.excuse;
 
       // Render Hyper-Local Gazette & Spotted:[Town] Intelligence
+      window._clickCount = (window._clickCount || 0) + 1;
+      let gHead = localLore.gazette_headline;
+      if (Array.isArray(localLore.gazette_headlines) && localLore.gazette_headlines.length > 0) {
+        gHead = localLore.gazette_headlines[hashTown(location, 107 + window._clickCount) % localLore.gazette_headlines.length];
+      }
       document.getElementById('gazette-paper-name').textContent = \`📰 \${localLore.paper}\`;
-      document.getElementById('gazette-headline').textContent   = \`"\${localLore.gazette_headline}"\`;
+      document.getElementById('gazette-headline').textContent   = \`"\${gHead}"\`;
       document.getElementById('spotted-group-name').textContent  = \`📱 \${localLore.spotted}\`;
       document.getElementById('spotted-post-text').textContent   = \`"\${localLore.spotted_chatter}"\`;
 

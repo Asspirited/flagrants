@@ -35,13 +35,20 @@ test('FG-WL Prevention — Zero Towns Twin With Pripyat By Default (FG-WL-020)',
   assert.strictEqual(codeIndex.includes('Atlantis (Sunken)'), true, 'coastal towns must twin with maritime locations');
 });
 
-test('FG-WL Prevention — Gloucester 5-Region Synchronization (FG-WL-022)', () => {
+test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024)', () => {
+  const workerJs = fs.readFileSync(path.join(rootDir, 'code', 'worker.js'), 'utf8');
+  
+  assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
+});
+
+test('FG-WL Prevention — Peacehaven Rotates Across 6 Dynamic Gazette Headlines (FG-WL-025)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes("ANALYST EXPERT AUDIT #2201"), true, 'Gloucester must render rural cider & cheese rolling TripAdvisor audit');
-  assert.strictEqual(codeIndex.includes('CiderTaster'), true, 'Gloucester must render rural CiderTaster customer review');
-  assert.strictEqual(codeIndex.includes('CheeseRoller'), true, 'Gloucester must render rural CheeseRoller customer review');
+  assert.strictEqual(codeIndex.includes('RUNAWAY INFLATABLE FLAMINGO RESCUED BY RNLI CUTTER'), true, 'Peacehaven must contain inflatable flamingo headline');
+  assert.strictEqual(codeIndex.includes('GREENWICH MERIDIAN LINE WALKER DISORIENTED BY GALES'), true, 'Peacehaven must contain meridian walker headline');
+  assert.strictEqual(codeIndex.includes('SALT-CRUSTED DECKCHAIR THEFT WAVE PROMPTS RING DOORBELL'), true, 'Peacehaven must contain deckchair theft headline');
 });
+
 
 
 

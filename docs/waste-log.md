@@ -278,3 +278,25 @@
   2. Yields 625+ unique sentence combinations per archetype, guaranteeing 100% fresh, non-repeating sentence structures for every town entered.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting `Gloucester`, `Somerset`, and `Cotswolds` produce 100% distinct, non-identical brochure and audit sentences.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-024 — Cloudflare LLM Worker Prompt Exemplar Leak (`Pripyat` Prompt Exemplar Hold-Out)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA report on Pripyat appearing in live research mode
+**Symptom:** Generating Peacehaven via live research API rendered "Twinned with Pripyat".
+**Root cause:** Prompt exemplars in `code/worker.js` (lines 101 and 951) cited `Pripyat` as an example of disaster twinning, causing the LLM to reproduce `Pripyat` during live research runs.
+**Fix:**
+  1. Purged `Pripyat` from all LLM prompt exemplars in `code/worker.js` and `scripts/build-rich-ui.js`.
+  2. Replaced with region-mated exemplars (`Atlantis`, `Bermuda Triangle`, `Pompeii`).
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting zero prompt exemplars in `worker.js` contain `Pripyat`.
+  4. Pushed updated client bundle and worker to GitHub `main`.
+
+## FG-WL-025 — Static Local Gazette Headline Single-String Hold-Out
+**Date:** 2026-07-28
+**Cost:** ~10 min user QA query on repeated Gazette piano headline for Peacehaven
+**Symptom:** Generating Peacehaven repeatedly rendered the exact same headline ("MYSTERY PIANO ABANDONED ON UNDERCLIFF WALK").
+**Root cause:** `gazette_headline` held a single static string rather than a dynamic 6-headline rotation pool per town.
+**Fix:**
+  1. Converted `gazette_headline` in `HYPER_LOCAL_DATABASE` into dynamic 6-headline rotation arrays for Peacehaven, Basingstoke, Bracknell, Slough, Leeds, Blackpool, Dundee, Glastonbury, Whitby, Nottingham, and Oxford.
+  2. Implemented dynamic click-increment seed rotation so every generation/click yields a fresh, non-repeating local headline.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Peacehaven rotates across 6 distinct authentic headlines on successive clicks.
+  4. Pushed updated client bundle and docs to GitHub `main`.
