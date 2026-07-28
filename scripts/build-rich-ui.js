@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=105">
+  <link rel="manifest" href="manifest.json?v=201">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -861,7 +861,7 @@ const richHtml = `<!DOCTYPE html>
               <div class="se-card-body" id="se-schools"></div>
             </div>
             <div class="se-card">
-              <div class="se-card-header">🚓 Crime & Public Order</div>
+              <div class="se-card-header">EXPLANATION OF PUBLIC ORDER</div>
               <div class="se-card-body" id="se-crime"></div>
             </div>
             <div class="se-card">
@@ -1021,6 +1021,44 @@ const richHtml = `<!DOCTYPE html>
 
   generateBtn.addEventListener('click', generate);
 
+  function buildDynamicFallbackResult(town, lensId, mode) {
+    const hash = town.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206'];
+    const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box'];
+    const car = cars[hash % cars.length];
+    const obj = objects[hash % objects.length];
+    const millions = (hash % 4) + 1;
+
+    return {
+      lens: (mode === 'tourist_board' || mode === 'mode3') ? 'multi_lens' : lensId,
+      affectation: \`Gateway to the \${town} Ring Road\`,
+      twinned_with: ['Pripyat', 'Detroit', \`\${town} Platform 4\`],
+      motto: 'ROTAMUR ET MANEMUS',
+      motto_translation: 'We Turn, and We Remain',
+      excuse: \`Blame 1970s urban planners, traditional \${town} weather, and French invaders.\`,
+      tourist_board: {
+        slogan: \`Experience the Heroic Ambition of \${town}!\`,
+        brochure_copy: \`Welcome to \${town}, where history is made every day on the bypass. Enjoy scenic vistas of 1970s concrete precincts, heritage damp, and world-class pigeon sanctuaries!\`
+      },
+      tripadvisor_audit: {
+        headline: \`Shite Pubs, Lukewarm Kebabs, and Zero Taxis in \${town}\`,
+        overall_rating: \`1.4 / 5 — Mostly Overcast\`,
+        audit_review: \`Visitors arriving in \${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.\`
+      },
+      customer_reviews: [
+        { reviewer: \`DisappointedFrom\${town}\`, rating: 1, text: \`Spent 2 hours waiting for a taxi by the kebab shop in \${town}. System gave up.\` },
+        { reviewer: 'LocalBastardFromBypass', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallow \${car}s. Absolute bollocks.\` },
+        { reviewer: \`\${town}Historian\`, rating: 2, text: \`They promised a historic castle in \${town}. It was a 1970s multi-storey car park.\` }
+      ],
+      socio_economic: {
+        schools_education: \`14% Ofsted Requires Improvement, 86% Closed by Magistrate Order in \${town}.\`,
+        crime_order: \`Primary offences in \${town}: turnip rustling and aggravated bicycle borrowing.\`,
+        workforce_industry: \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
+        housing_property: \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`
+      }
+    };
+  }
+
   async function generate() {
     const location = locationInput.value.trim();
     if (!location) return;
@@ -1044,12 +1082,12 @@ const richHtml = `<!DOCTYPE html>
         currentFindings = {
           _subject: location,
           tier1: { location, region: 'United Kingdom' },
-          tier3: { dark_history: 'A place of considerable notoriety and ancient local misdemeanour.' },
-          comedy_seed: 'Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies.',
-          nightlife_catering: 'Shite pubs, lukewarm curry houses, and throwing up kebabs at the taxi rank.',
-          infrastructure_flaws: 'Local bus monopolies, disused bus shelters, and 1970s concrete precincts.',
-          weird_local_lore: 'Scampi hurling championships into sea gales, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation in disused railway tunnels, cheese rolling down 1:2 cliffs, Egremont World Gurning Championships in horse collars, Scottish Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, or Mari Lwyd horse skull guising.',
-          claim_to_fame: 'Birthplace of the 1974 regional tupperware convention.'
+          tier3: { dark_history: \`A place of considerable notoriety and ancient local misdemeanour in \${location}.\` },
+          comedy_seed: \`Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies in \${location}.\`,
+          nightlife_catering: \`Shite pubs, lukewarm curry houses, and throwing up kebabs at the \${location} taxi rank.\`,
+          infrastructure_flaws: \`Local bus monopolies, disused bus shelters, and 1970s concrete precincts in \${location}.\`,
+          weird_local_lore: \`Scampi hurling, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, or cheese rolling in \${location}.\`,
+          claim_to_fame: \`Birthplace of the 1974 regional \${location} tupperware convention.\`
         };
       } else {
         currentFindings = await researchRes.json();
@@ -1080,42 +1118,15 @@ const richHtml = `<!DOCTYPE html>
 
       let result;
       if (!designRes.ok) {
-        result = {
-          lens: selectedMode === 'tourist_board' ? 'multi_lens' : lensId,
-          affectation: 'Gateway to the M4 Corridor',
-          twinned_with: ['Pripyat', 'Detroit'],
-          motto: 'ROTAMUR ET MANEMUS',
-          motto_translation: 'We Turn, and We Remain',
-          excuse: 'External forces. 1970s urban planners. Traditional weather.',
-          tourist_board: {
-            slogan: 'Experience the Unstoppable Ambition of the High Street!',
-            brochure_copy: 'Welcome to a town where history is made every weekend at the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, heritage damp, and lukewarm curry houses!'
-          },
-          tripadvisor_audit: {
-            headline: 'Shite Pubs, Cold Kebabs, and Zero Taxis After Midnight',
-            overall_rating: '1.5 / 5 — Mostly Overcast',
-            audit_review: 'Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.'
-          },
-          customer_reviews: [
-            { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 2 hours waiting for a taxi by the kebab shop. System gave up.' },
-            { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
-            { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
-          ],
-          socio_economic: {
-            schools_education: '14% Ofsted "Requires Improvement", 86% "Closed by Order of the Magistrate". Academic emphasis centers on vocational roundabout navigation.',
-            crime_order: 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
-            workforce_industry: 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
-            housing_property: 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
-          }
-        };
+        result = buildDynamicFallbackResult(currentLocation, lensId, selectedMode);
       } else {
         result = await designRes.json();
       }
 
       renderOutput(currentLocation, result);
     } catch (err) {
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('error').textContent = \`Re-design failed: \${err.message}\`;
+      result = buildDynamicFallbackResult(currentLocation, lensId, selectedMode);
+      renderOutput(currentLocation, result);
     }
   }
 
@@ -1219,12 +1230,12 @@ const richHtml = `<!DOCTYPE html>
       const cr = result.customer_reviews || result.reviews || [];
       const se = result.socio_economic || result.socioEconomic || {};
 
-      const slogan = tb.slogan || tb.headline || tb.title || 'Experience the High Street Ambition!';
-      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day by the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, traditional overcast skies, and heritage damp!';
+      const slogan = tb.slogan || tb.headline || tb.title || \`Experience the \${location} High Street Ambition!\`;
+      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || \`Welcome to \${location}, where history is made every day by the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, traditional overcast skies, and heritage damp!\`;
 
       const rating = ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast';
-      const taHeadline = ta.headline || ta.title || 'Shite Pubs, Cold Kebabs, and Zero Taxis After Midnight';
-      const taReview = ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.';
+      const taHeadline = ta.headline || ta.title || \`Shite Pubs, Cold Kebabs, and Zero Taxis in \${location}\`;
+      const taReview = ta.audit_review || ta.review || ta.text || ta.body || \`Visitors arriving in \${location} are immediately struck by the complete absence of available taxis after 11pm.\`;
 
       document.getElementById('tb-slogan').textContent = slogan;
       document.getElementById('tb-copy').textContent   = copy;
@@ -1237,9 +1248,9 @@ const richHtml = `<!DOCTYPE html>
       crList.innerHTML = '';
       
       const reviewsToRender = cr.length > 0 ? cr : [
-        { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 2 hours waiting for a taxi by the kebab shop. System gave up.' },
-        { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
-        { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
+        { reviewer: \`DisappointedFrom\${location}\`, rating: 1, text: \`Spent 2 hours waiting for a taxi by the kebab shop in \${location}. System gave up.\` },
+        { reviewer: 'LocalBastardFromBypass', rating: 1, text: \`The council spent £2 million on a turnip sculpture in \${location} while the potholes swallow Ford Focuses. Absolute bollocks.\` },
+        { reviewer: \`\${location}Historian\`, rating: 2, text: \`They promised a historic castle in \${location}. It was a multi-storey car park.\` }
       ];
 
       reviewsToRender.forEach(rev => {
@@ -1256,12 +1267,12 @@ const richHtml = `<!DOCTYPE html>
         crList.appendChild(card);
       });
 
-      document.getElementById('se-schools').textContent   = se.schools_education || '14% Ofsted "Requires Improvement", 86% "Closed by Police Order".';
-      document.getElementById('se-crime').textContent     = se.crime_order || 'Primary offences: turnip rustling and aggravated bicycle borrowing.';
-      document.getElementById('se-workforce').textContent = se.workforce_industry || 'Roundabout Maintenance Board (62%) and Vape Shop Administration (28%).';
-      document.getElementById('se-housing').textContent   = se.housing_property || 'Average 2-bed terrace: £450,000 with authentic heritage damp.';
+      document.getElementById('se-schools').textContent   = se.schools_education || \`14% Ofsted Requires Improvement in \${location}, 86% Closed by Magistrate Order.\`;
+      document.getElementById('se-crime').textContent     = se.crime_order || \`Primary offences in \${location}: turnip rustling and aggravated bicycle borrowing.\`;
+      document.getElementById('se-workforce').textContent = se.workforce_industry || \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${location}.\`;
+      document.getElementById('se-housing').textContent   = se.housing_property || \`Average 2-bed terrace in \${location}: £450,000 with authentic heritage damp.\`;
 
-      document.getElementById('excuse-text').textContent = result.excuse || 'External forces. 1970s urban planners. Traditional weather.';
+      document.getElementById('excuse-text').textContent = result.excuse || \`External forces in \${location}. 1970s urban planners. Traditional weather.\`;
 
       mode3Container.style.display = 'flex';
     } else {
@@ -1345,35 +1356,6 @@ if (workerJs.includes('const RESEARCH_SYSTEM =')) {
   workerJs = workerJs.replace(/const RESEARCH_SYSTEM = [\s\S]*?`;/, NEW_RESEARCH_SYSTEM);
 }
 
-// Write expanded 12+ Pattern Repository into buildMode3System
-const EXPANDED_PATTERN_DIRECTIVES = `12+ SATIRICAL PATTERN REPERTOIRE (VARIETY ENGINE):
-You MUST NOT repeat the exact same sentence formula for every location! For each section, select 1 pattern from the options below and mate it with the specific hyper-local research findings:
-
-CATEGORY 1: TOURIST BOARD BROCHURE PATTERNS (Pick 1 of 4):
-- Pattern TB-1 (The Dystopian Retail Concourse): "Visit our [FACILITY / PRECINCT]! Obviously mostly closed since [TECH GIANT / AMAZON] dismantled high street retail, now offering an authentic experience reminiscent of [DYSTOPIAN SHOW / THE LAST OF US / 28 DAYS LATER], featuring [NUMBER] remaining vape outlets and scenic moss growth!"
-- Pattern TB-2 (The Banal Architectural Miracle): "Marvel at our magnificent [CONCRETE SUBWAY / MULTI-STOREY CAR PARK / BUS STATION], hailed by 1974 civic planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!"
-- Pattern TB-3 (The Over-Inflated Historical Claim): "Steeped in glorious heritage! The birthplace of the [BANAL EVENT / 1978 TUPPERWARE CONVENTION] and home to a historic 17th-century tavern brawl that altered local history forever!"
-- Pattern TB-4 (The Scenic Industrial Wasteland): "Explore our world-class nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons!"
-
-CATEGORY 2: TRIPADVISOR EXPERT AUDIT PATTERNS (Pick 1 of 4):
-- Pattern TA-1 (The Nightlife & Taxi Rank Collapse): "Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience."
-- Pattern TA-2 (The Over-Promised Historic Landmark): "They promised a historic cathedral town. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass."
-- Pattern TA-3 (The B&B & Hospitality Horror): "The local heritage B&B offers authentic 1970s damp carpets, thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord."
-- Pattern TA-4 (The Dead-End Infrastructure Trap): "A masterclass in motion without destination. The local one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted."
-
-CATEGORY 3: CUSTOMER REVIEW PATTERNS (Pick 3 distinct patterns):
-- Pattern CR-1 (The Over-Budget Sculpture vs Potholes — Tom Register): "The council spent £[MILLIONS] on a [ABSURD OBJECT / TURNIP / ANCHOR / CONCRETE COW] sculpture while the potholes on [LOCAL ROAD] are big enough to swallow a [CAR MODEL / FORD FOCUS / NISSAN MICRA]. Absolute bollocks."
-- Pattern CR-2 (The Gervais Domestic Saga): "Spent 3 hours trapped in the local [SUPERSTORE / B&Q / CAR PARK]. Navigation system gave up and I ended up buying a rake I don't need."
-- Pattern CR-3 (The Absurdist Folk Tradition — Vic & Bob / Bailey): "Came for the annual [WEIRD RITUAL / CHEESE ROLLING / MORRIS STICK BRAWL / SCAMPI HURLING]. Was hit in the throat by a flying turnip. 10/10."
-- Pattern CR-4 (The Unvarnished Local Warning): "If you visit, stay on the bypass and keep your car doors locked. 1 star."
-
-CATEGORY 4: SOCIO-ECONOMIC PATTERNS:
-- Pattern SE-1 (Vape Shop & Roundabout Workforce): "Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept."
-- Pattern SE-2 (Heritage Damp Housing Market): "Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass."
-- Pattern SE-3 (Police & Ofsted Reality): "14% Ofsted Requires Improvement, 86% Closed by Order of the Magistrate. Primary offences: turnip rustling and aggravated bicycle borrowing."`;
-
-workerJs = workerJs.replace(/DYNAMIC REUSABLE PATTERN SUBSTITUTION DIRECTIVES:[\s\S]*?Substitute these slots dynamically based on the specific location's research findings!/, EXPANDED_PATTERN_DIRECTIVES);
-
 const svgRendererModule = `// ── SVG Renderer logic ───────────────────────────────────────────────────────
 
 ${svgRendererJs.replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", "").replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture, chargePosition };", "")}
@@ -1393,4 +1375,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for 12+ Satirical Pattern Library & Dynamic Variety Engine');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Dynamic Multi-Town Fallback Generator Engine');
