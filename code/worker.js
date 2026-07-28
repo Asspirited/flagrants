@@ -576,7 +576,7 @@ Each chosen charge/segment picture MUST directly visualize the specific story to
 - Fleeing knights, military panic, cowards -> bayeux_knight_fleeing
 - Monstrous legends, bizarre beasts, cockatrice -> bayeux_chicken_dragon
 - Sea monsters, shipwrecks, drowned mariners -> bayeux_sea_monster
-- Turnip riots, pig scandals, agricultural unrest -> bayeux_pig_riot
+- Cider riots, pig scandals, agricultural unrest -> bayeux_pig_riot
 - Gallows, executions, notorious trials -> bayeux_gallows_crow
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
@@ -757,7 +757,7 @@ function validateSpec(spec) {
   ];
 
   const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris'];
-  const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil', 'steel girder'];
+  const objects = ['rusty cider', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil', 'steel girder'];
   const car = cars[hash % cars.length];
   const obj = objects[hash % objects.length];
   const millions = (hash % 5) + 1;
@@ -800,7 +800,7 @@ function validateSpec(spec) {
   ];
 
   const crime = [
-    `Primary offences in ${town}: turnip rustling, municipal lead removal, and aggravated bicycle borrowing.`,
+    `Primary offences in ${town}: cider rustling, municipal lead removal, and aggravated bicycle borrowing.`,
     `Primary offences in ${town}: illegal scampi smuggling and pier-hopping.`,
     `Primary offences in ${town}: unauthorized haggis hunting and midnight tartan smuggling.`,
     `Primary offences in ${town}: sheep rustling and unauthorized druidic chanting.`
@@ -917,7 +917,7 @@ ARCHETYPE CLUSTERS & SUB-CHARACTERISTIC MECHANICS:
    - Sub-Type 3A (Ricky Gervais): Cringeworthy domestic sagas + theological/atheistic existentialism mocking divine creation vs local council delays.
 4. THE SURREAL & REVERENT ABSURDIST (Vic & Bob, Spike Milligan, Karl Pilkington, Bill Bailey, Python):
    - Sub-Type 4A (Bill Bailey): Musical/lyrical rhythms, sea-shanty cadences, or doom-metal organ refrains applied to civic planning.
-   - Sub-Type 4B (Vic & Bob / Karl / Python): Sincere devotion to nonsensical premises & fabricated/absurd UK regional folk rituals (scampi hurling championships into gale force winds, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, mummers blood-eagling, turnip worshipping).
+   - Sub-Type 4B (Vic & Bob / Karl / Python): Sincere devotion to nonsensical premises & fabricated/absurd UK regional folk rituals (scampi hurling championships into gale force winds, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, mummers blood-eagling, cider worshipping).
 5. THE UNFILTERED LOCAL BASTARD (The Tom Register):
    - Mouthy, sweary, hyper-articulate, zero-bullshit reality check calling out council propaganda, municipal lies, and bad infrastructure with surgical profanity & scathing clarity.
 
@@ -937,15 +937,15 @@ CATEGORY 2: TRIPADVISOR EXPERT AUDIT PATTERNS (Pick 1 of 4):
 - Pattern TA-4 (The Dead-End Infrastructure Trap): "A masterclass in motion without destination. The local one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted."
 
 CATEGORY 3: CUSTOMER REVIEW PATTERNS (Pick 3 distinct patterns):
-- Pattern CR-1 (The Over-Budget Sculpture vs Potholes — Tom Register): "The council spent £[MILLIONS] on a [ABSURD OBJECT / TURNIP / ANCHOR / CONCRETE COW] sculpture while the potholes on [LOCAL ROAD] are big enough to swallow a [CAR MODEL / FORD FOCUS / NISSAN MICRA]. Absolute bollocks."
+- Pattern CR-1 (The Over-Budget Sculpture vs Potholes — Tom Register): "The council spent £[MILLIONS] on a [ABSURD OBJECT / cider / ANCHOR / CONCRETE COW] sculpture while the potholes on [LOCAL ROAD] are big enough to swallow a [CAR MODEL / FORD FOCUS / NISSAN MICRA]. Absolute bollocks."
 - Pattern CR-2 (The Gervais Domestic Saga): "Spent 3 hours trapped in the local [SUPERSTORE / B&Q / CAR PARK]. Navigation system gave up and I ended up buying a rake I don't need."
-- Pattern CR-3 (The Absurdist Folk Tradition — Vic & Bob / Bailey): "Came for the annual [WEIRD RITUAL / CHEESE ROLLING / MORRIS STICK BRAWL / SCAMPI HURLING]. Was hit in the throat by a flying turnip. 10/10."
+- Pattern CR-3 (The Absurdist Folk Tradition — Vic & Bob / Bailey): "Came for the annual [WEIRD RITUAL / CHEESE ROLLING / MORRIS STICK BRAWL / SCAMPI HURLING]. Was hit in the throat by a flying cider. 10/10."
 - Pattern CR-4 (The Unvarnished Local Warning): "If you visit, stay on the bypass and keep your car doors locked. 1 star."
 
 CATEGORY 4: SOCIO-ECONOMIC PATTERNS:
 - Pattern SE-1 (Vape Shop & Roundabout Workforce): "Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept."
 - Pattern SE-2 (Heritage Damp Housing Market): "Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass."
-- Pattern SE-3 (Police & Ofsted Reality): "14% Ofsted Requires Improvement, 86% Closed by Order of the Magistrate. Primary offences: turnip rustling and aggravated bicycle borrowing."
+- Pattern SE-3 (Police & Ofsted Reality): "14% Ofsted Requires Improvement, 86% Closed by Order of the Magistrate. Primary offences: cider rustling and aggravated bicycle borrowing."
 
 SECTION VOICE MAP:
 1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
@@ -955,7 +955,7 @@ SECTION VOICE MAP:
 5. "customer_reviews": MUST be 3 highly varied visitor reviews:
    - Review 1: Archetype 3 (Domestic Realist / Gervais Theological Absurdity) — Longer, cringeworthy personal saga about getting trapped on the bypass.
    - Review 2: Archetype 5 (The Unfiltered Local Bastard — Tom Register) — Apply Pattern B! Mouthy, sweary, zero-bullshit 1-sentence reality check.
-   - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, turnip advice, cheese rolling, or sea-shanty warnings).
+   - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, cider advice, cheese rolling, or sea-shanty warnings).
 6. "excuse": Archetype 1, 4 & 5 (Defiant Delusional Bureaucrat meets Mouthy Callout) — Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:

@@ -1729,5 +1729,6 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
   workerJs = indexConst + workerJs;
 }
 
+workerJs = workerJs.replace(/turnip/gi, 'cider');
 fs.writeFileSync(workerPath, workerJs, 'utf8');
 console.log('Successfully updated code/index.html, index.html, and code/worker.js for Hyper-Local Spotted:[Town] Engine (1001)');
