@@ -104,6 +104,11 @@
 * **Date:** 2026-07-28
 * **Insight:** In early-stage development, conducting live exploratory testing directly on production (`main` branch) yields rapid feedback but inflates the git Change Failure Rate (CFR ~39.0%) as fixes are pushed directly. As the product scales, introducing an upstream Customer Acceptance Testing (CAT) / Staging environment (with BDD specs and preview URLs) isolates exploratory defects before production, driving production CFR toward 0% while tracking CAT defect density.
 
+### Entry #018 — The Plain-English Technical Translation Rule (Anti-Jargon Protocol)
+* **Category:** Pair-Programming Protocol & Facilitation Architecture
+* **Date:** 2026-07-28
+* **Insight:** Technical jargon (*"partial snippet edits mask variable scope errors"*) creates a barrier to meaningful collaboration, forcing non-code-level partners / Product Owners into blind trust instead of genuine strategic alignment. All technical root causes, bug diagnoses, and retrospective insights MUST be translated into plain-English cause-and-effect (What did the user see? What went wrong behind the curtain in simple real-world terms? How does the fix prevent it from happening again?) so the entire team can collaborate as equals.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
