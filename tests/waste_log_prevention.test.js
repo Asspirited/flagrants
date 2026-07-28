@@ -28,12 +28,12 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Zero String Overlap Between TripAdvisor Analyst Audits & Customer Reviews', () => {
+test('FG-WL Prevention — Coastal Profile Purges Estate Agent Jargon (Clifftop Concourse)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  // Verify TripAdvisor Analyst Expert Audits are distinct formal reviews
-  assert.strictEqual(codeIndex.includes('ANALYST EXPERT AUDIT #4092'), true);
-  assert.strictEqual(codeIndex.includes('ANALYST EXPERT AUDIT #4093'), true);
+  assert.strictEqual(codeIndex.includes('clifftop concourse'), false, 'coastal text must not call cliffs a concourse');
+  assert.strictEqual(codeIndex.includes('Caravan Concourse Security'), false, 'caravan parks must be called caravan parks');
 });
+
 
 

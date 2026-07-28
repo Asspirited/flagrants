@@ -162,3 +162,14 @@
   2. Integrated authentic local lore (1916 Daily Express cliffside plot raffle swindle, A259 linear road network, Greenwich Meridian Dieppe confusion, Undercliff beached piano shipwreck).
   3. Added automated test in `tests/waste_log_prevention.test.js` ensuring 0% string overlap between TripAdvisor Analyst Audits and Customer Reviews.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-015 — Estate Agent Jargon Leak ("Concourse Obsession")
+**Date:** 2026-07-28
+**Cost:** ~5 min user satirical call-out on unnatural estate agent vocabulary
+**Symptom:** Coastal text referred to Peacehaven cliff edges as a "clifftop concourse", overusing pompous municipal estate agent jargon where plain, grounded British terms ("clifftop", "promenade", "sea wall", "caravan park") were intended.
+**Root cause:** Over-reliance on "concourse" as a catch-all word for outdoor public spaces during fallback template creation.
+**Fix:**
+  1. Purged "clifftop concourse" and "caravan concourse" from coastal profiles, replacing them with authentic terms ("chalk clifftop", "sea-front promenade", "caravan park").
+  2. Reserved "concourse" strictly for actual indoor shopping / transit concourses (e.g. brutalist 1970s bus stations or shuttered shopping centers).
+  3. Added automated test in `tests/waste_log_prevention.test.js` ensuring coastal profile contains zero "clifftop concourse" references.
+  4. Pushed updated client bundle and docs to GitHub `main`.

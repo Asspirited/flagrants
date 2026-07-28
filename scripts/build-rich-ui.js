@@ -1210,7 +1210,7 @@ const richHtml = `<!DOCTYPE html>
         brochures: [
           \`Founded in 1916 by visionaries who raffled off cliffside plots in national newspapers! \${town} invites you to walk the historic Greenwich Meridian Line, where 1920s bungalows meet crumbling chalk cliffs at 3 inches per year!\`,
           \`Stroll the famous \${town} Undercliff Walk, where 19th-century shipwreck legends tell of 40 beached upright pianos serenading Channel tides! Enjoy 60mph coastal sea-gales, authentic salt-crusted deckchairs, and high-street chip shops closing at dusk!\`,
-          \`Experience the legendary \${town} Meridian Centre concourse! Located right where zero degrees longitude passes through Sussex, featuring 400 static caravans, coastal bus shelters, and scenic sea-wall scampi hurling!\`,
+          \`Experience the legendary \${town} Meridian Centre & chalk clifftop! Located right where zero degrees longitude passes through Sussex, featuring 400 static caravans, coastal bus shelters, and scenic sea-wall scampi hurling!\`,
           \`Discover the ancient coastal legends of \${town}! From the Great Scampi Tempest of 1987 to emergency coastguard audits of abandoned beach huts, our parish preserves lore that rings true!\`
         ],
         reviews: [
@@ -1237,7 +1237,7 @@ const richHtml = `<!DOCTYPE html>
         ],
         workforce: [
           \`Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in \${town}.\`,
-          \`Caravan Concourse Security & Promenade Fish Chippy Management (82%) in \${town}.\`
+          \`Caravan Park Security & Promenade Fish Chippy Management (82%) in \${town}.\`
         ],
         housing: [
           \`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`,
