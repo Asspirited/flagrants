@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
 
-test('POKA-YOKE GUARD #5 — Norfolk & East Anglia Test Bed 100% Hyper-Local Differentiation', (t) => {
+test('POKA-YOKE GUARD #5 — Norfolk & East Anglia Test Bed 100% Hyper-Local Differentiation (16 Towns)', (t) => {
   const htmlPath = path.join(__dirname, '..', 'index.html');
   const html = fs.readFileSync(htmlPath, 'utf8');
 
@@ -14,7 +14,8 @@ test('POKA-YOKE GUARD #5 — Norfolk & East Anglia Test Bed 100% Hyper-Local Dif
   const testBedTowns = [
     'Aylsham', 'North Walsham', 'Cromer', 'Holt', 'Holme', 
     'Dereham', 'Diss', 'Wymondham', 'Potter Heigham', 'Wroxham', 
-    'Norwich', 'Ipswich', 'Lowestoft', 'Kings Lynn'
+    'Norwich', 'Ipswich', 'Lowestoft', 'Kings Lynn',
+    'Blakeney', 'Happisburgh'
   ];
 
   const slogans = [];
@@ -24,7 +25,7 @@ test('POKA-YOKE GUARD #5 — Norfolk & East Anglia Test Bed 100% Hyper-Local Dif
     slogans.push(res.tourist_board.slogan);
   });
 
-  // Calculate Pairwise Uniqueness
+  // Calculate Pairwise Uniqueness across 16 benchmark towns (120 town pairs)
   let totalPairs = 0;
   let collisions = 0;
 
@@ -36,5 +37,5 @@ test('POKA-YOKE GUARD #5 — Norfolk & East Anglia Test Bed 100% Hyper-Local Dif
   }
 
   const uniquenessScore = (((totalPairs - collisions) / totalPairs) * 100).toFixed(1);
-  assert.strictEqual(collisions, 0, `Norfolk test bed had ${collisions} slogan collisions across 14 benchmark towns! Score: ${uniquenessScore}%`);
+  assert.strictEqual(collisions, 0, `Norfolk test bed had ${collisions} slogan collisions across 16 benchmark towns! Score: ${uniquenessScore}%`);
 });
