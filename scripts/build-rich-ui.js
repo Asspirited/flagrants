@@ -1083,6 +1083,9 @@ const richHtml = `<!DOCTYPE html>
     }
     updateButtonLabel();
     checkReady();
+    if (locationInput.value.trim()) {
+      generate();
+    }
   }
 
   LENSES.forEach(lens => {

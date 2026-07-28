@@ -1671,6 +1671,9 @@ function renderSpec(spec) {
     }
     updateButtonLabel();
     checkReady();
+    if (locationInput.value.trim()) {
+      generate();
+    }
   }
 
   LENSES.forEach(lens => {

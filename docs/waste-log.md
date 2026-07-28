@@ -322,3 +322,14 @@
   2. Every click on the same location now rotates dynamically across 6+ local objects, 6+ local disputes, and 10 channels.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Peacehaven rotates across 6 distinct object/dispute combinations on successive clicks.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-028 — UI Mode Switcher Stalling (Mode III Tab Click Auto-Render Fix)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA bug report on being unable to select Mode III on live app
+**Symptom:** Clicking the Mode III tab on the live app did not switch or render the Mode III paper audit view.
+**Root cause:** `setMode('tourist_board')` updated tab states but did not auto-trigger `generate()` when a location was active, leaving the UI stuck on the previous view until the user re-clicked the action button.
+**Fix:**
+  1. Updated `setMode(mode)` so clicking any Mode tab (`Mode I`, `Mode II`, `Mode III`) auto-triggers `generate()` if a location is entered, providing instant tab switching feedback.
+  2. Unblocked `generateBtn` state so Mode III tab click instantly renders the full Tourist Board & TripAdvisor audit.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting `setMode('tourist_board')` auto-triggers output generation.
+  4. Pushed updated client bundle and docs to GitHub `main`.

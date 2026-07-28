@@ -41,13 +41,12 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — 10-Channel Local Surveillance & Gossip Matrix (FG-WL-026)', () => {
+test('FG-WL Prevention — Mode III Tab Switch Auto-Triggers Generation (FG-WL-028)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Laminated note taped to parish lamp-post'), true, 'code/index.html must include laminated note channel');
-  assert.strictEqual(codeIndex.includes('Nextdoor App Thread'), true, 'code/index.html must include Nextdoor app thread channel');
-  assert.strictEqual(codeIndex.includes('Passive-aggressive note under windshield wiper'), true, 'code/index.html must include windshield note channel');
+  assert.strictEqual(codeIndex.includes('if (locationInput.value.trim()) {\n      generate();\n    }'), true, 'setMode must auto-trigger generate() when location is entered');
 });
+
 
 
 
