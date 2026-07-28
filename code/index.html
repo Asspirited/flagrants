@@ -1998,6 +1998,137 @@ function renderSpec(spec) {
 
   // HYPER-LOCAL SPOTTED:[TOWN] & GAZETTE KNOWLEDGE GRAPH (25+ SPECIFIC UK TOWNS & REGIONAL LORE)
   const HYPER_LOCAL_DATABASE = {
+    aylsham: {
+      paper: 'Aylsham & District Citizen',
+      spotted: 'Spotted: Aylsham Market & Bure Valley',
+      gazette_headline: 'BURE VALLEY RAILWAY LOCOMOTIVE DELAYED AFTER DUCK FAMILY REFUSES TO VACATE NARROW GAUGE TRACK',
+      spotted_chatter: 'To whoever left their tea caddy outside the Blickling Estate gates: Anne Boleyn does not need an Earl Grey at 3am. Pick it up.',
+      local_scandal: 'The great 2021 market place bench repainting debate and ongoing Bure Valley steam train coal dust complaints.',
+      tourist_slogan: 'Aylsham: Gateway to the Bure Valley Steam Railway & Blickling Estate Heritage!',
+      tourist_brochure: 'Welcome to historic Aylsham! Home of the Bure Valley Narrow Gauge Steam Railway, Jacobean Blickling Estate, and 18th-century market square charm! Sample local cider, ride vintage steam trains, and inspect parish floral tubs!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1301: Aylsham is a delightfully preserved Norfolk market town of steam train enthusiasts and Jacobean estate walks. Rating: 4.4/5 — Excellent tea rooms.'
+    },
+    cromer: {
+      paper: 'Cromer & Sheringham Times',
+      spotted: 'Spotted: Cromer Pier & Beach Huts',
+      gazette_headline: 'FERAL SEAGULL SWOOPS FROM PIER THEATRE ROOF TO STEAL LUKWARM CROMER CRAB ROLL FROM TOURIST',
+      spotted_chatter: 'Will the owner of the crab pot left by the RNLI slipway please move it before high tide.',
+      local_scandal: 'The 2023 Pier Theatre variety show seating dispute and salt-corroded beach hut lock tampering.',
+      tourist_slogan: 'Cromer: Gem of the Norfolk Coast, Home of Famous Cromer Crabs & End-of-Pier Theatre!',
+      tourist_brochure: 'Experience coastal Cromer! World-famous for fresh Cromer crabs, 19th-century pier theatre variety shows, and dramatic chalk reefs! Walk the clifftops, watch RNLI lifeboat launches, and enjoy fish & chips in sea gales!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1302: Cromer is an iconic North Norfolk seaside resort of crab fishing tradition and pier theatre entertainment. Rating: 4.5/5 — Outstanding coastal atmosphere.'
+    },
+    holt: {
+      paper: 'Holt Chronicle & North Norfolk News',
+      spotted: 'Spotted: Holt Antiques & Tea Rooms',
+      gazette_headline: 'PARISH COUNCILLOR AUDITS 18TH-CENTURY GEORGIAN BRICKWORK AFTER ANTIQUE SHOP SIGN DISPUTE',
+      spotted_chatter: 'To the person who bought the vintage brass candlestick in the antique arcade: you overpaid by £12. Regards.',
+      local_scandal: 'The 1708 Great Fire rebuilding legacy and ongoing disputes over boutique antique arcade parking permits.',
+      tourist_slogan: 'Holt: Georgian Market Charm, Boutique Antique Arcades & Gresham Heritage!',
+      tourist_brochure: 'Discover elegant Holt! Rebuilt in glorious Georgian brick after the Great Fire of 1708, featuring cobbled courtyards, boutique antique shops, and Gresham School lore! Sample artisan scones and browse vintage curios!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1303: Holt is a sublimely refined Georgian town of antique dealers and tea room connoisseurs. Rating: 4.6/5 — Exceptionally civilised.'
+    },
+    holme: {
+      paper: 'Hunstanton & Holme Coastal News',
+      spotted: 'Spotted: Holme-next-the-Sea Bird Observatory',
+      gazette_headline: 'BRONZE AGE SEAHENGE TIMBER CIRCLE RE-EMERGES AT LOW TIDE TO BEWILDER SALTMARSH BIRD WATCHERS',
+      spotted_chatter: 'Rare pink-footed goose spotted near the saltmarsh path. Please keep dogs on leads and telescopes still.',
+      local_scandal: 'Saltmarsh footpath erosion and 1998 Seahenge timber circle preservation arguments.',
+      tourist_slogan: 'Holme-next-the-Sea: Ancient Seahenge Heritage, Saltmarsh Walks & Bird Sanctuary!',
+      tourist_brochure: 'Step into wild Holme-next-the-Sea! Where Bronze Age Seahenge timbers meet coastal saltmarshes and migratory bird sanctuaries! Enjoy serene coastal nature reserves and ancient tide walks!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1304: Holme is a peaceful coastal haven of bird observatories and ancient timber circle legends. Rating: 4.5/5 — Pure natural tranquility.'
+    },
+    dereham: {
+      paper: 'Dereham Times & Mid-Norfolk News',
+      spotted: 'Spotted: Dereham Market Place & Railway',
+      gazette_headline: 'MID-NORFOLK RAILWAY VOLUNTEER FINDS 1972 TRACTOR INSTRUCTION MANUAL IN DISUSED FREIGHT SHED',
+      spotted_chatter: 'To whoever left their wellies by St Nicholas Church well: they are clogging the drainage grate.',
+      local_scandal: 'Market place traffic flow disputes and parish church well drainage maintenance.',
+      tourist_slogan: 'Dereham: Heart of Norfolk, Mid-Norfolk Steam Heritage & Historic Market Place!',
+      tourist_brochure: 'Welcome to Dereham! Located at the geographic heart of Norfolk, featuring Mid-Norfolk heritage steam railways, historic St Nicholas Church, and vibrant market traditions! Explore Norfolk countryside trails!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1305: Dereham is a friendly, central Norfolk market town of steam train volunteers and parish history. Rating: 4.2/5 — Solid market town grit.'
+    },
+    diss: {
+      paper: 'Diss Express & Waveney Valley News',
+      spotted: 'Spotted: Diss Mere & Heritage Triangle',
+      gazette_headline: 'MYSTERY 60FT DEEP DISS MERE LAKE PROMPTS PARISH COUNCIL ANGLING PERMIT AUDIT',
+      spotted_chatter: 'Will the person feeding whole loaves of sourdough to the Mere ducks please stop. They are bloated.',
+      local_scandal: 'Poet Laureate John Skelton 16th-century satire feuds and Mere duck feeding guidelines.',
+      tourist_slogan: 'Diss: Historic 60ft Natural Mere, Timber-Framed Inns & Waveney Valley Heritage!',
+      tourist_brochure: 'Explore historic Diss! Built around a breathtaking 60ft deep natural Mere lake, featuring 16th-century timber-framed courtyards and Tudor poet John Skelton heritage! Walk the Waveney Valley and enjoy market square banter!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1306: Diss is a uniquely picturesque town of natural Mere beauty and Tudor timber architecture. Rating: 4.5/5 — Highly recommended.'
+    },
+    wymondham: {
+      paper: 'Wymondham & Attleborough Mercury',
+      spotted: 'Spotted: Wymondham Abbey & Market Cross',
+      gazette_headline: 'WYMONDHAM ABBEY TWIN TOWERS HISTORIAN ARGUES OVER 1549 KETT REBELLION TIMBER BEAM MARKS',
+      spotted_chatter: 'Remember: it is pronounced Wye-Mun-Dum. Anyone saying Wy-mond-ham will be directed to the parish noticeboard.',
+      local_scandal: 'The 1615 Great Fire rebuilding disputes and pronunciation enforcement at the Market Cross.',
+      tourist_slogan: 'Wymondham (Wye-Mun-Dum): Magnificent Twin-Towered Abbey & 1549 Kett Revolt Heritage!',
+      tourist_brochure: 'Welcome to Wymondham (pronounced Wye-Mun-Dum)! Home of the soaring twin-towered 1107 Abbey, 1617 timber Market Cross, and Robert Kett 1549 rebellion history! Experience historic Norfolk market town pride!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1307: Wymondham boasts magnificent monastic architecture and rich Tudor rebellion heritage. Rating: 4.6/5 — Architectural triumph.'
+    },
+    potter_heigham: {
+      paper: 'Broadland News & Potter Heigham Gazette',
+      spotted: 'Spotted: Potter Heigham Bridge & Broads',
+      gazette_headline: 'HIRE BOAT ROOF DEMOLISHED AFTER MOTORIST ATTEMPTS POTTER HEIGHAM 6FT MEDIEVAL BRIDGE AT HIGH TIDE',
+      spotted_chatter: 'Bridge pilot required! Do not attempt the arch without checking the water gauge unless you want a convertible boat.',
+      local_scandal: 'Hire boat roof collisions at the 14th-century bridge and staithe mooring fee disputes.',
+      tourist_slogan: 'Potter Heigham: Gateway to the Norfolk Broads & Historic 6ft Low-Arch Medieval Bridge!',
+      tourist_brochure: 'Welcome to Potter Heigham! Heart of the Norfolk Broads, famous for its 14th-century low-arched stone bridge where expert pilots guide cabin cruisers under 6ft clearance! Rent day boats, explore reed beds, and watch river traffic!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1308: Potter Heigham offers premier Broads boating excitement and legendary low-bridge navigation. Rating: 4.4/5 — Great river fun.'
+    },
+    wroxham: {
+      paper: 'Wroxham & Hoveton Times',
+      spotted: 'Spotted: Wroxham Capital of the Broads',
+      gazette_headline: 'SHOPPER GETS LOST IN ROYS OF WROXHAM WORLD LARGEST VILLAGE STORE FOR 3 HOURS NEAR GARDENING SECTION',
+      spotted_chatter: 'To the driver who moored their day boat sideways at the staithe: you are blocking 4 cruisers.',
+      local_scandal: 'Roys of Wroxham department store expansions and summer day-boat river traffic jams.',
+      tourist_slogan: 'Wroxham: Capital of the Norfolk Broads & Home of Roys - World Largest Village Store!',
+      tourist_brochure: 'Visit Wroxham, undisputed Capital of the Norfolk Broads! Shop at legendary Roys of Wroxham (World Largest Village Store), hire electric day boats on the River Bure, and enjoy riverside pub gardens!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1309: Wroxham is the bustling boating hub of the Broads featuring iconic retail and river excursions. Rating: 4.5/5 — Bustling water capital.'
+    },
+    norwich: {
+      paper: 'Eastern Daily Press & Norwich Evening News',
+      spotted: 'Spotted: Norwich City & Fine City Chatter',
+      gazette_headline: 'NORWICH CASTLE MUSEUM DECLARES 52 CHURCHES & 365 PUBS PERMUTATION RECORD INTACT AFTER PARISH AUDIT',
+      spotted_chatter: 'On the ball, City! Reminder that Colman Mustard belongs on roast beef and Partridge quotes are compulsory at the station.',
+      local_scandal: 'Colman Mustard factory relocation grievances and 52 churches / 365 pubs historic census disputes.',
+      tourist_slogan: 'Norwich: A Fine City! 52 Churches, 365 Pubs, Norwich Castle & Colman Mustard Heritage!',
+      tourist_brochure: 'Welcome to Norwich — A Fine City! Discover 900-year-old Norwich Castle, soaring Anglo-Norman Cathedral spires, 52 parish churches, 365 pubs, and Colman Mustard heritage! Stroll Elm Hill cobbled lanes and vibrant market stalls!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1310: Norwich is a magnificent historic regional capital blending medieval spires, castle heritage, and vibrant culture. Rating: 4.8/5 — Sublimely atmospheric.'
+    },
+    ipswich: {
+      paper: 'Ipswich Star & East Anglian Daily Times',
+      spotted: 'Spotted: Ipswich Waterfront & Town Centre',
+      gazette_headline: 'ORWELL BRIDGE CLOSED FOR 4 HOURS DUE TO 50MPH WINDS PROMPTING WATERFRONT TAFFIC AUDIT',
+      spotted_chatter: 'To whoever left their bicycle by Wolsey Gate: please move it before the waterfront heritage walk.',
+      local_scandal: 'Orwell Bridge wind closure traffic diversions and Thomas Wolsey 16th-century college gateway preservation.',
+      tourist_slogan: 'Ipswich: Historic Maritime Waterfront, Wolsey Heritage & Orwell Bridge Gateway!',
+      tourist_brochure: 'Explore historic Ipswich! Britain oldest continuously inhabited Anglo-Saxon town, featuring a vibrant marina waterfront, 16th-century Cardinal Wolsey heritage, and Christchurch Mansion parks!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1311: Ipswich offers rich Anglo-Saxon maritime history and modern waterfront dining. Rating: 4.2/5 — Fascinating heritage town.'
+    },
+    lowestoft: {
+      paper: 'Lowestoft Journal & Suffolk Coast News',
+      spotted: 'Spotted: Lowestoft Ness Point & South Pier',
+      gazette_headline: 'WALKER AT NESS POINT (UK MOST EASTERLY POINT) BATTLES FREEZING NORTH SEA GALE FOR SUNRISE PHOTO',
+      spotted_chatter: 'Sunrise at Ness Point was 4:30am. Freezing. Bring two coats and a thermos.',
+      local_scandal: 'Most easterly point wind turbine noise complaints and historic herring fishing dock regeneration.',
+      tourist_slogan: 'Lowestoft: UK Most Easterly Town, Ness Point Sunrise & Golden Sands Beach!',
+      tourist_brochure: 'Welcome to Lowestoft — Most Easterly Town in the UK! Stand at Ness Point to greet Britain first sunrise, stroll golden sandy beaches, explore historic fishing docks, and brave invigorating North Sea sea-gales!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1312: Lowestoft is a maritime coastal town of easterly sunrise glory and sea-gale endurance. Rating: 4.1/5 — Invigorating coastal grit.'
+    },
+    kings_lynn: {
+      paper: 'Lynn News & West Norfolk Advertiser',
+      spotted: 'Spotted: Kings Lynn Custom House & Tuesday Market',
+      gazette_headline: 'HANSEATIC LEAGUE CUSTOM HOUSE HISTORIAN AUDITS TUESDAY MARKET PLACE FAIRGROUND PARKING PERMITS',
+      spotted_chatter: 'Dear me! The Lynn Mart fairground setup has closed Tuesday Market Place. Use St Margaret car park.',
+      local_scandal: '17th-century Hanseatic League Custom House trade disputes and Lynn Mart fairground noise.',
+      tourist_slogan: 'Kings Lynn: Historic Hanseatic League Port, 1683 Custom House & Tuesday Market Place!',
+      tourist_brochure: 'Discover Kings Lynn! A magnificent Hanseatic League trading port featuring the 1683 Custom House, cobblestone Tuesday Market Place, medieval guildhalls, and historic maritime quays! Step into 700 years of international trade history!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1313: Kings Lynn is an architectural jewel of Hanseatic maritime history and market tradition. Rating: 4.5/5 — Exceptional historical architecture.'
+    },
+
     basingstoke: {
       paper: 'Basingstoke Gazette',
       spotted: 'Spotted: Basingstoke',
