@@ -458,12 +458,13 @@
 **Fix:**
   1. Built the **9-Month Weather & Morale Survival Audit Engine** in `scripts/build-rich-ui.js`.
 
-## FG-WL-040 — Instant Mode Switcher Fix (Zero-Lag Unblocked Mode I, II, & III Tab Switching)
+## FG-WL-041 — Missing DOM Element ID (`spotted-post-text`) In Mode 3 Renderer Purged
 **Date:** 2026-07-28
-**Cost:** ~3 min user QA catch on mode tab switching regression
-**Symptom:** Selecting Mode I or Mode II tabs after being in Mode III stalled or failed to render when remote Cloudflare Worker fetch timed out or returned null `currentFindings`.
+**Cost:** ~5 min user QA catch on Mode 3 UI render failure
+**Symptom:** Selecting Mode 3 caused the browser JS runtime to throw `TypeError: Cannot set properties of null (setting 'textContent')` on line 2061 due to missing `<div id="spotted-post-text">` in Section 6 HTML markup, halting `renderOutput()` before `output-panel` was made visible.
 **Fix:**
-  1. Replaced blocking network calls in `generate()` with a 1.2s bounded fallback pipe that guarantees instant client-side rendering of `buildDynamicFallbackResult()` for Mode I, Mode II, and Mode III on GitHub Pages.
-  2. Ensured `mode3Container.style.display` toggles dynamically (`flex` for Mode III, `none` for Mode I & II).
-  3. Added automated regression test in `tests/waste_log_prevention.test.js` asserting Mode I, II, and III tab switching renders cleanly.
-  4. Pushed updated client bundle and docs to GitHub `main`.
+  1. Restored missing `<div id="spotted-post-text">` in Section 6 HTML card in `scripts/build-rich-ui.js`.
+  2. Recompiled client bundles `code/index.html`, `index.html`, and `code/worker.js`.
+  3. Verified all 31 mandatory DOM element IDs exist with 0 missing IDs via automated node validation script.
+  4. Pushed fix to GitHub `main`.
+
