@@ -1230,7 +1230,27 @@ const richHtml = `<!DOCTYPE html>
       local_scandal: 'Debates over Keiller marmalade recipes and Tay Rail Bridge gale-wind warnings in Dundee.',
       tourist_slogan: 'Dundee: City of Jute, Jam, Journalism & RRS Discovery Heritage!',
       tourist_brochure: 'Welcome to Dundee! City of Discovery, historic Jute mills, Keiller Marmalade, and DC Thomson Beano comics! Inspect Captain Scott\'s polar exploration ship RRS Discovery in the harbour, marvel at the V&A Dundee on the Tay Estuary, and enjoy sunlit coastal views!',
-      tripadvisor_audit: 'ANALYST EXPERT AUDIT #8021: Dundee is a brilliant sunlit estuary city of maritime polar exploration, Beano comics, and historic jute mills. Rating: 4.6/5 — Exceptional marmalade & coastal views.'
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #8021: Dundee is a brilliant sunlit estuary city of maritime polar exploration, Beano comics, and historic jute mills. Rating: 4.6/5 — Exceptional marmalade & coastal views.',
+      acidic_luminary: {
+        author: 'Captain Robert Falcon Scott (1901)',
+        quote: 'We set sail from Dundee aboard RRS Discovery into the frozen Antarctic wilderness...',
+        reality: 'Captain Scott deliberately sailed to the South Pole to freeze in -40°C blizzard conditions rather than spend another winter arguing over Keiller marmalade recipes by the Overgate concourse.'
+      }
+    },
+    nottingham: {
+      paper: 'Nottingham Post & Derby Telegraph',
+      spotted: 'Spotted: Nottingham Market Square',
+      gazette_headline: 'SHERWOOD FOREST OUTLAW SOCIETY ERECTS TREEHOUSE IN LACE MARKET SUBWAY',
+      spotted_chatter: 'To the students carrying a 6ft wooden bow through Hockley at 2am: the Robin Hood competition ended at 8pm.',
+      local_scandal: 'Disputes over Market Square beach setups and student accommodation expansion.',
+      tourist_slogan: 'Nottingham: Sherwood Outlaw Heritage, Ye Olde Trip Cellars & Lace Market!',
+      tourist_brochure: 'Step into legendary Nottingham! Home of Robin Hood and Sherwood Forest outlaws! Explore the 12th-century sandstone caves beneath Ye Olde Trip to Jerusalem, marvel at the historic Lace Market, and experience vibrant East Midlands heritage!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1190: Nottingham is a high-energy East Midlands capital of Sherwood outlaw lore, ancient sandstone caves, and historic lace manufacture. Rating: 4.5/5 — Excellent tavern caves, lively Friday night student banter.',
+      acidic_luminary: {
+        author: 'Robin Hood (1190 AD)',
+        quote: 'I shall dwell beneath the green canopy of Sherwood Forest, taking from the rich and giving to the poor...',
+        reality: 'Robin Hood took one look at Nottingham High Street on a Friday night, saw 40,000 undergraduates drinking 2-for-1 alcopops in the Lace Market, and fled 18 miles into the woods to live in a tree. Who could blame him?'
+      }
     },
     woking: {
       paper: 'Woking News & Mail',
@@ -1240,7 +1260,12 @@ const richHtml = `<!DOCTYPE html>
       local_scandal: 'Town council debt debates and ongoing disputes over the Peacocks shopping centre car park ramp height.',
       tourist_slogan: 'Woking: Home of H.G. Wells Martian Invasion Lore & 34-Storey Suburban Towers!',
       tourist_brochure: 'Explore Woking! Birthplace of H.G. Wells\' 1898 War of the Worlds Martian tripod invasion on Horsell Common! Marvel at the 34-storey Victoria Square towers, stroll the Basingstoke Canal walk, and experience authentic Surrey commuter charm!',
-      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1898: Woking offers a fascinating study in suburban survival. Famous for H.G. Wells\' Martian heat-ray on Horsell Common, the town has evolved into a high-density commuter hub. Rating: 3.4/5 — Watch out for Martian heat-rays and train delays.'
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1898: Woking offers a fascinating study in suburban survival. Famous for H.G. Wells\' Martian heat-ray on Horsell Common, the town has evolved into a high-density commuter hub. Rating: 3.4/5 — Watch out for Martian heat-rays and train delays.',
+      acidic_luminary: {
+        author: 'George Orwell (1939)',
+        quote: 'A nightmare of red brick villas, asphalt roads, and respectability so suffocating it could strangle a bull...',
+        reality: 'Woking took Orwell\'s critique as a 5-year town planning specification, demolishing the remaining trees to erect a 34-storey glass apartment tower right over the Martian tripod monument.'
+      }
     }
   };
 
@@ -2056,8 +2081,11 @@ const richHtml = `<!DOCTYPE html>
         ]
       };
 
-      const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.industrial_commuter;
-      const lumItem = lumPool[(hashTown(location, 619) + window._clickCount) % lumPool.length];
+      let lumItem = localLore.acidic_luminary;
+      if (!lumItem) {
+        const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.industrial_commuter;
+        lumItem = lumPool[(hashTown(location, 619) + window._clickCount) % lumPool.length];
+      }
       document.getElementById('luminary-author').textContent  = '✍️ ' + lumItem.author;
       document.getElementById('luminary-quote').textContent   = '"' + lumItem.quote + '"';
       document.getElementById('luminary-reality').textContent = lumItem.reality;

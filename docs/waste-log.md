@@ -377,3 +377,13 @@
   2. Embedded George Orwell (1939) and H.G. Wells (1898) quotes into Section 7 Luminary Quotes library.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Woking renders Orwell & H.G. Wells luminary quotes.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-033 — Hyper-Local Acidic Legend Weaponization (Robin Hood Nottingham Alcopop Fleeing)
+**Date:** 2026-07-28
+**Cost:** ~5 min user feature request for vitriolic/acidic local legend commentary
+**Symptom:** Luminary quotes were high-level literary contrasts but lacked raw, acidic local legend weaponization (*Robin Hood fleeing to Sherwood to escape Friday night Nottingham undergraduates*).
+**Fix:**
+  1. Built town-specific `acidic_luminary` profiles into `HYPER_LOCAL_DATABASE` for Nottingham, Dundee, Glastonbury, Runnymede, Stratford, Whitby, Woking, and Slough.
+  2. Section 7 in Mode III now prioritizes hyper-local vitriolic legend contrasts when available.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Nottingham renders Robin Hood fleeing Friday night undergraduates to live in a tree.
+  4. Pushed updated client bundle and docs to GitHub `main`.
