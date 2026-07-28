@@ -97,7 +97,7 @@ const richHtml = `<!DOCTYPE html>
     main {
       width: 100%;
       max-width: 900px;
-      padding: 2.5rem 1.5rem;
+      padding: 2.5rem 1.5rem 6.5rem 1.5rem; /* Bottom padding to prevent ticker overlap */
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
@@ -2647,17 +2647,49 @@ const richHtml = `<!DOCTYPE html>
       const crList = document.getElementById('cr-list');
       crList.innerHTML = '';
       
+      const REVIEWER_COLORS = {
+        M4Commuter: "#3b82f6",
+        RetailShopper: "#f59e0b",
+        SuburbanFamily: "#10b981",
+        RevoltHistorian: "#ef4444",
+        PastonScholar: "#a855f7",
+        MarketStroller: "#ec4899",
+        MeridianWalker: "#06b6d4",
+        CrabFisher: "#f97316",
+        BeachHutOwner: "#14b8a6",
+        CiderTaster: "#8b5cf6",
+        CheeseRunner: "#eab308",
+        CotswoldWalker: "#22c55e",
+        QuadStroller: "#d946ef",
+        PuntingEnthusiast: "#0284c7",
+        BookwormVisitor: "#84cc16",
+        HighlandHiker: "#10b981",
+        TartanCollector: "#f43f5e",
+        DistilleryTourer: "#eab308",
+        TowpathWalker: "#f97316",
+        GritstoneClimber: "#64748b",
+        HeritageRailFan: "#0284c7",
+        ArtisanBaker: "#f59e0b",
+        CharterHistorian: "#a855f7",
+        PubHearthGuest: "#ef4444"
+      };
+
       cr.forEach(rev => {
         const rVal = parseInt(rev.rating) || 1;
-        const stars = '★'.repeat(Math.max(1, Math.min(5, rVal))) + '☆'.repeat(5 - Math.max(1, Math.min(5, rVal)));
-        const card = document.createElement('div');
-        card.className = 'cr-card';
-        card.innerHTML = \`
-          <div class="cr-header">
-            <span class="cr-reviewer">👤 \${escapeHtml(rev.reviewer || 'Visitor')}</span>
-            <span class="cr-stars">\${stars}</span>
-          </div>
-          <div class="cr-text">"\${escapeHtml(rev.text || 'No comment provided.')}"</div>\`;
+        const stars = "★".repeat(Math.max(1, Math.min(5, rVal))) + "☆".repeat(5 - Math.max(1, Math.min(5, rVal)));
+        const revName = rev.reviewer || "Visitor";
+        const color = REVIEWER_COLORS[revName] || "#FFD700";
+
+        const card = document.createElement("div");
+        card.className = "cr-card";
+        card.style.borderLeft = '4px solid ' + color;
+        card.style.background = 'rgba(17, 29, 40, 0.75)';
+        card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
+        card.style.marginBottom = "0.6rem";
+        card.style.padding = "0.9rem";
+        card.style.borderRadius = "0 6px 6px 0";
+
+        card.innerHTML = '<div class="cr-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;"><span class="cr-reviewer" style="color:' + color + '; font-weight:bold; font-family:Outfit, sans-serif; font-size:0.95rem;">👤 ' + escapeHtml(revName) + '</span><span class="cr-stars" style="color:#FFD700; letter-spacing:0.1em;">' + stars + '</span></div><div class="cr-text" style="font-family:EB Garamond, serif; font-size:1.15rem; color:#e8d5a3; font-style:italic; line-height:1.4; margin-top:0.3rem;">"' + escapeHtml(rev.text || 'No comment provided.') + '"</div>';
         crList.appendChild(card);
       });
 
