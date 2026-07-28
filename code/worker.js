@@ -854,7 +854,7 @@ ARCHETYPE CLUSTERS & SUB-CHARACTERISTIC MECHANICS:
 
 SECTION VOICE MAP:
 1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
-2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Heroic official brochure framing squalor & roundabouts as world-class architectural achievements.
+2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Desperately trying to sell local features, but failing catastrophically and framing retail decay or dystopia as world-class attractions! (e.g., "Visit our magnificent 1970s shopping concourse! Obviously mostly shuttered since Amazon dismantled town centres, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring three remaining vape outlets and scenic moss growth!").
 3. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks Broken Optimism) or Sub-Type 2B (Carlin Misanthropic Fury) — Acidic, unvarnished expert audit giving an unvarnished rating (e.g. "1.5 / 5 — Mostly Overcast").
 4. "socio_economic": Archetype 1 (The Cold Statistical Pedant) — Dry, scathing demographic report on Ofsted, police records, vape shop administration, and £450k damp housing.
 5. "customer_reviews": MUST be 3 highly varied visitor reviews:
