@@ -114,6 +114,11 @@
 * **Date:** 2026-07-28
 * **Insight:** Missing data crashes (e.g. Mode 3 halting due to an undefined author name) are classic **Data Validation & Contract Boundary Errors**. Translating technical root causes into plain-English real-world analogies empowers testers to immediately identify the exact missing test patterns: (1) **Validation & Fallback Boundary Tests** (verifying that partial, null, or empty payloads degrade gracefully without throwing uncaught exceptions), and (2) **UI Submission Tests for Happy & Unhappy Paths** (validating both well-formed and malformed inputs).
 
+### Entry #020 — The Poka-Yoke Mandate: Prevent Over Detect (Zero-Defect Boundary Guard Rule)
+* **Category:** Lean QA Architecture & Testing Charter
+* **Date:** 2026-07-28
+* **Insight:** In accordance with Lean manufacturing *Poka-Yoke* principles, testing must prioritize **PREVENT OVER DETECT**. Instead of relying on late-stage detection when defective components have already piled up, every data pipeline and UI renderer MUST be equipped with defensive input normalization and boundary guards (`tests/poka_yoke_boundary_prevention.test.js`). All tests must enforce graceful fallback degradation for `null`, `undefined`, empty string, special character, and malformed inputs to make runtime UI crashes physically impossible.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
