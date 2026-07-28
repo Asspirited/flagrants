@@ -1123,21 +1123,47 @@ const richHtml = `<!DOCTYPE html>
     return Math.abs(hash);
   }
 
-  // HYPER-LOCAL SPOTTED:[TOWN] & GAZETTE KNOWLEDGE GRAPH
+  // HYPER-LOCAL SPOTTED:[TOWN] & GAZETTE KNOWLEDGE GRAPH (25+ SPECIFIC UK TOWNS & REGIONAL LORE)
   const HYPER_LOCAL_DATABASE = {
     basingstoke: {
       paper: 'Basingstoke Gazette',
       spotted: 'Spotted: Basingstoke',
       gazette_headline: 'MAN FINED £80 AFTER LEAVING HALF-EATEN PORK PIE ON POLICE CAR WINDSHIELD IN FESTIVAL PLACE',
       spotted_chatter: 'Can whoever is letting their ferret loose in Morrisons Top of Town please come and collect it. It has cornered a trolley boy by the bakery.',
-      local_scandal: 'The great Top of Town bin fire of 2022 and ongoing disputes over the parish council ornamental flower tub budget.'
+      local_scandal: 'The great Top of Town bin fire of 2022 and ongoing disputes over the parish council ornamental flower tub budget.',
+      tourist_slogan: 'Basingstoke: Birthplace of the 1978 Regional Tupperware Convention & Top of Town Heritage!',
+      tourist_brochure: 'Home of the historic Top of Town market precinct and the celebrated 1978 Regional Tupperware Convention! Discover ancient parish tub disputes, secret 1970s pedestrian subways, and the legendary Festival Place pork pie incident!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1104: Basingstoke offers a masterclass in post-war civic optimism. Highlights include the 2022 Top of Town bin fire dispute and an ornamental flower tub budget that has divided the parish council for three generations. Rating: 2.1/5 — Fascinating market banter.'
     },
     peacehaven: {
       paper: 'Sussex Express & Peacehaven News',
       spotted: 'Spotted: Peacehaven & Telscombe Cliffs',
       gazette_headline: 'MYSTERY PIANO ABANDONED ON UNDERCLIFF WALK PROMPTS EMERGENCY COASTGUARD AUDIT',
       spotted_chatter: 'To the woman who took my lawnmower from outside the Meridian Centre: I have you on Ring doorbell video. Return it or the police will be informed.',
-      local_scandal: 'Sea-fog obscuring the main roundabout for 72 hours while residents argue over beach hut copper piping theft.'
+      local_scandal: 'Sea-fog obscuring the main roundabout for 72 hours while residents argue over beach hut copper piping theft.',
+      tourist_slogan: 'Peacehaven: Where Greenwich Longitude Zero Meets 1920s Daily Express Land Plot Raffles!',
+      tourist_brochure: 'Founded in 1916 by visionaries who raffled off cliffside plots in national newspapers! Walk the historic Greenwich Meridian Line, where 1920s bungalows meet chalk cliffs eroding at 3 inches per year, and shipwreck legends tell of 40 beached upright pianos serenading Channel tides!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #4092: Peacehaven presents a fascinating study in coastal eccentricity. Founded via a 1916 newspaper raffle, zero degrees longitude passes directly through the parish, leading disoriented sea-fog walkers to believe they have arrived in Dieppe. Rating: 1.2/5 — Bring a compass and a thermos.'
+    },
+    glastonbury: {
+      paper: 'Central Somerset Gazette',
+      spotted: 'Spotted: Glastonbury & Street',
+      gazette_headline: 'DRUID ACCIDENTALLY DOWSES TOWN HALL COPPER PLUMBING DURING LEY-LINE ALIGNMENT RITE',
+      spotted_chatter: 'Will the owner of the psychic goat tied to the Tor gate please move it before the 4pm solstice drum circle.',
+      local_scandal: 'Disputes outside Abbey ruins over who dowsed the town hall copper piping.',
+      tourist_slogan: 'Glastonbury: Capital of Ley-Line Vibrations, Crystal Dowsing & Holy Grail Rumours!',
+      tourist_brochure: 'Scale the mystical Glastonbury Tor, where King Arthur legends meet 400 shops selling raw quartz, velvet cloaks, and organic mead! Experience ancient Somerset cider orchards, pagan solstice drumming, and dowsing rituals in the High Street!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #9081: Glastonbury boasts the highest concentration of copper dowsing rods and velvet cloaks in the Northern Hemisphere. Local cafes charge £8 for aura readings while incense smoke settles over the Abbey ruins. Rating: 4.2/5 — High vibrational energy, poor parking.'
+    },
+    whitby: {
+      paper: 'Whitby Gazette',
+      spotted: 'Spotted: Whitby',
+      gazette_headline: 'GOTH FESTIVAL DELEGATE MISTAKES LOCAL BAKER FOR COUNT DRACULA AT 9am',
+      spotted_chatter: 'Found one black lace parasol by the 199 steps. Currently hanging outside the jet jewellery shop.',
+      local_scandal: 'Arguing over parasol claims by the 199 steps.',
+      tourist_slogan: 'Whitby: 199 Steps, Bram Stoker Dracula Lore & World-Famous Smoked Kippers!',
+      tourist_brochure: 'Climb the historic 199 steps to Whitby Abbey, where Bram Stoker conceived Dracula in 1890! Sample world-famous oak-smoked kippers from Fortunes Smokehouse, inspect authentic Whitby jet gemstones, and watch cobles sail into the harbour!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #7702: Whitby is a glorious blend of Gothic literature, maritime trawlers, and kipper smoke. The 199 steps will test your cardiovascular endurance, but the rewards are fresh crab sandwiches and vampire lore. Rating: 4.7/5 — Exceptional atmospheric mizzle.'
     },
     bracknell: {
       paper: 'Bracknell News',
@@ -1315,6 +1341,7 @@ const richHtml = `<!DOCTYPE html>
 
   function buildDynamicFallbackResult(town, lensId, mode) {
     const reg = getRegionalProfile(town);
+    const localLore = getHyperLocalLore(town);
 
     const idxSlogan   = hashTown(town, 13) % reg.slogans.length;
     const idxBrochure = hashTown(town, 37) % reg.brochures.length;
@@ -1322,10 +1349,10 @@ const richHtml = `<!DOCTYPE html>
     const idxTaRev    = hashTown(town, 109) % reg.taReviews.length;
     const idxMotto    = hashTown(town, 137) % reg.mottos.length;
 
-    const slogan = reg.slogans[idxSlogan].replace(/{town}/g, town);
-    const brochure = reg.brochures[idxBrochure].replace(/{town}/g, town);
+    const slogan = localLore.tourist_slogan || reg.slogans[idxSlogan].replace(/{town}/g, town);
+    const brochure = localLore.tourist_brochure || reg.brochures[idxBrochure].replace(/{town}/g, town);
     const taHead = reg.taHeadlines[idxTaHead].replace(/{town}/g, town);
-    const taRev = reg.taReviews[idxTaRev].replace(/{town}/g, town);
+    const taRev = localLore.tripadvisor_audit || reg.taReviews[idxTaRev].replace(/{town}/g, town);
 
     const reviewPool = reg.reviews;
 

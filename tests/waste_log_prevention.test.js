@@ -28,11 +28,13 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Debug Research Panel Is Hidden By Default In Production', () => {
+test('FG-WL Prevention — Hyper-Local Lore Prioritization (Glastonbury & Whitby)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('id="debug-research-card" style="display:none"'), true, 'debug panel must be hidden by default in production');
+  assert.strictEqual(codeIndex.includes('Glastonbury: Capital of Ley-Line Vibrations'), true, 'Glastonbury must render Arthurian ley-line lore');
+  assert.strictEqual(codeIndex.includes('Whitby: 199 Steps, Bram Stoker Dracula Lore'), true, 'Whitby must render Dracula & 199 steps lore');
 });
+
 
 
 

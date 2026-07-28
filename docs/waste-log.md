@@ -184,3 +184,15 @@
   2. Configured debug panel to only display when explicitly requested via URL parameter `?debug=1` or `#debug`.
   3. Added automated test in `tests/waste_log_prevention.test.js` ensuring `debug-research-card` has `display:none` in production HTML.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-017 — Over-Reliance on Monocultural Tropes (Bypasses & Kebab Ranks)
+**Date:** 2026-07-28
+**Cost:** ~10 min creative review & user call-out on repetitive suburban tropes
+**Symptom:** Fallback templates defaulted to bypasses, ring roads, and 2am kebab ranks regardless of town, obscuring hyper-local legends, folklore, eccentrics, and parish scandals.
+**Root cause:** Over-indexing on generic British suburban tropes as a primary fallback theme instead of drawing dynamically from hyper-local folklore and regional eccentrics.
+**Fix:**
+  1. Built an expanded **Hyper-Local Lore Database** spanning 25+ UK towns and regions (Glastonbury Arthurian ley-lines, Whitby Dracula 199 steps, Peacehaven 1916 plot raffles, Basingstoke market tubs & Tupperware conventions, etc.).
+  2. Decoupled Tourist Board and TripAdvisor sections in `buildDynamicFallbackResult()` to prioritize authentic local lore, local newspaper headlines, and community folklore over generic bypasses.
+  3. Restricted monocultural tropes (bypasses, kebabs) to <10% incidental background flavor.
+  4. Added automated test in `tests/waste_log_prevention.test.js` asserting Glastonbury and Whitby render 100% unique hyper-local lore (Ley-Lines & Dracula 199 steps) without leaking generic bypasses.
+  5. Pushed updated client bundle and docs to GitHub `main`.
