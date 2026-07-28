@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=401">
+  <link rel="manifest" href="manifest.json?v=501">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1034,7 +1034,7 @@ const richHtml = `<!DOCTYPE html>
     ];
 
     const brochures = [
-      \`Visit our magnificent \${town} indoor shopping concourse! Obviously mostly shuttered since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!\`,
+      \`Visit our magnificent \${town} indoor shopping concourse! Obviously mostly closed since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!\`,
       \`Marvel at the magnificent \${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!\`,
       \`Steeped in glorious heritage! \${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl that altered local history forever!\`,
       \`Explore our world-class \${town} nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons and feral cats!\`
@@ -1139,9 +1139,20 @@ const richHtml = `<!DOCTYPE html>
     generateBtn.disabled = true;
 
     try {
+      if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
+        // Pure Instant Client-Side Generation for Mode III on GitHub Pages — 0 Remote Worker Dependency
+        setTimeout(() => {
+          const result = buildDynamicFallbackResult(location, 'proud_of_it', selectedMode);
+          renderOutput(location, result);
+          document.getElementById('loading').style.display = 'none';
+          generateBtn.disabled = false;
+          checkReady();
+        }, 150);
+        return;
+      }
+
       const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
       
-      // Fast 3.5s timeout controller so remote worker hangs NEVER freeze the UI
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3500);
 
@@ -1170,7 +1181,6 @@ const richHtml = `<!DOCTYPE html>
 
       await reDesignWithLens(selectedLens || 'proud_of_it');
     } catch (err) {
-      // INSTANT PURE CLIENT-SIDE VARIETY GENERATION ON TIMEOUT / CORS / WORKER FAILURE
       const fallbackResult = buildDynamicFallbackResult(currentLocation, selectedLens || 'proud_of_it', selectedMode);
       renderOutput(currentLocation, fallbackResult);
     } finally {
@@ -1453,4 +1463,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Full Dynamic Variety Matrix Engine (401)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Pure Instant Client-Side Variety Generator (501)');

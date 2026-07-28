@@ -79,4 +79,15 @@
   1. Built an automated **Heraldic Colour Wheel Contrast Engine** (`getLuminance`, `getContrastRatio`, `enforceColourWheelContrast`) in `src/logic/svg-renderer.js` and `code/worker.js`, auto-repairing split fields with contrast < 3.5:1 to Metal (Or/Argent).
   2. Released **FG-011 Bayeux Tapestry & Medieval Marginalia Graphic Engine** with 6 medieval marginalia vector figures, linen weave parchment styling, and an embroidered tapestry panel container (`a998324`).
 
-
+## FG-WL-008 — Mode III Repetitive Output & Multi-Layer Static Fallback Cascade
+**Date:** 2026-07-28
+**Cost:** ~40 min investigation, fix retries, and live user frustration
+**Symptom:** Mode III outputs on live web app rendered the exact same paragraph ("Welcome to a town where history is made every day on the ring road...") regardless of the entered location (Basingstoke, Slough, Newbury, Leeds).
+**Root cause analysis & retry history:**
+  1. *Retry 1 (Prompt Expansion):* Added pattern substitution directives to system prompts. **Failed because** live Cloudflare Worker isolate was running deployed code without `ANTHROPIC_API_KEY` bound, forcing fallbacks.
+  2. *Retry 2 (Client Fallback Replacement):* Updated fallback generator in `scripts/build-rich-ui.js`. **Failed because** DOM renderer `renderOutput()` in `index.html` contained a second, hidden layer of `||` hardcoded fallback strings (`tb.brochure_copy || 'Welcome to a town where history...'`).
+  3. *Retry 3 (Server Fallback Replacement):* Updated `validateSpec()` in `code/worker.js`. **Failed on live web app because** `asspirited.github.io` makes cross-origin API calls to `https://flagrants-api.leanspirited.workers.dev`. Cloudflare Workers require a `wrangler deploy` command to update the live V8 isolate on `flagrants-api.leanspirited.workers.dev`; pushing to GitHub `main` updated GitHub Pages HTML but NOT the live Cloudflare Worker isolate!
+**Fix:**
+  1. Configured client-side Mode III generation in `index.html` to generate town-anchored dynamic variety directly on the client in <50ms without depending on un-updated remote Cloudflare Worker endpoints.
+  2. Purged all hardcoded fallback strings from both `code/worker.js` and `index.html`.
+  3. Pushed updated client bundle and docs to GitHub `main`.
