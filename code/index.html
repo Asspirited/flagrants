@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=901">
+  <link rel="manifest" href="manifest.json?v=1001">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -587,6 +587,7 @@
     .header-cyan     { background: linear-gradient(90deg, #0088cc 0%, #004466 100%); border-bottom: 1px solid #00d4ff; }
     .header-burgundy { background: linear-gradient(90deg, #8b0000 0%, #4a0000 100%); border-bottom: 1px solid #ff4d4d; }
     .header-bronze   { background: linear-gradient(90deg, #8a4e00 0%, #462700 100%); border-bottom: 1px solid #c47800; }
+    .header-spotted  { background: linear-gradient(90deg, #185a9d 0%, #0c2b4d 100%); border-bottom: 1px solid #4ca1af; }
     .header-debug    { background: linear-gradient(90deg, #332211 0%, #110800 100%); border-bottom: 1px solid #c8a060; }
 
     .paper-body {
@@ -958,7 +959,23 @@
         </div>
       </div>
 
-      <!-- Section 6: Debug Research Findings Panel -->
+      <!-- Section 6: Local Gazette & Spotted:Town Community Chatter -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-spotted">
+          <span>📱 LOCAL GAZETTE & SPOTTED:[TOWN] COMMUNITY INTELLIGENCE</span>
+          <span style="font-size:0.75rem; opacity:0.8;" id="spotted-header-tag">COMMUNITY GROUP</span>
+        </div>
+        <div class="paper-body">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: #4ca1af; font-weight: bold;" id="gazette-paper-name"></div>
+          <div style="font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #ffffff; font-weight: bold; font-style: italic;" id="gazette-headline"></div>
+          <div style="background: #111d28; border-left: 3px solid #4ca1af; padding: 1rem; border-radius: 0 4px 4px 0; margin-top: 0.4rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #FFD700; font-weight: bold;" id="spotted-group-name"></div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #e8d5a3; font-style: italic; margin-top: 0.3rem;" id="spotted-post-text"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Debug Research Findings Panel -->
       <div class="paper-section-card" id="debug-research-card">
         <div class="paper-header-bar header-debug">
           <span>🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)</span>
@@ -1632,6 +1649,66 @@ function renderSpec(spec) {
     return Math.abs(hash);
   }
 
+  // HYPER-LOCAL SPOTTED:[TOWN] & GAZETTE KNOWLEDGE GRAPH
+  const HYPER_LOCAL_DATABASE = {
+    basingstoke: {
+      paper: 'Basingstoke Gazette',
+      spotted: 'Spotted: Basingstoke',
+      gazette_headline: 'MAN FINED £80 AFTER LEAVING HALF-EATEN PORK PIE ON POLICE CAR WINDSHIELD IN FESTIVAL PLACE',
+      spotted_chatter: 'Can whoever is letting their ferret loose in Morrisons Top of Town please come and collect it. It has cornered a trolley boy by the bakery.',
+      local_scandal: 'The great Top of Town bin fire of 2022 and ongoing disputes over the parish council ornamental flower tub budget.'
+    },
+    peacehaven: {
+      paper: 'Sussex Express & Peacehaven News',
+      spotted: 'Spotted: Peacehaven & Telscombe Cliffs',
+      gazette_headline: 'MYSTERY PIANO ABANDONED ON UNDERCLIFF WALK PROMPTS EMERGENCY COASTGUARD AUDIT',
+      spotted_chatter: 'To the woman who took my lawnmower from outside the Meridian Centre: I have you on Ring doorbell video. Return it or the police will be informed.',
+      local_scandal: 'Sea-fog obscuring the main roundabout for 72 hours while residents argue over beach hut copper piping theft.'
+    },
+    bracknell: {
+      paper: 'Bracknell News',
+      spotted: 'Spotted: Bracknell',
+      gazette_headline: 'COUNCIL INVESTIGATES 3AM MYSTERY SIREN THAT SOUNDS LIKE A DISTRESSED FOGHORN',
+      spotted_chatter: 'Has anyone else noticed the man who stands by the Lexicon car park entrance offering free advice on 1970s subway tiles?',
+      local_scandal: 'Teenagers throwing lukewarm chips at swans near the bus station concourse.'
+    },
+    slough: {
+      paper: 'Slough Observer',
+      spotted: 'Spotted: Slough',
+      gazette_headline: 'TWINNING COMMITTEE ACCIDENTALLY BUYS 400 CONCRETE BOLLARDS INTENDED FOR DUNDEE',
+      spotted_chatter: 'Whoever left a shopping trolley full of frozen scampi on the dual carriageway flyover: your ice is melting.',
+      local_scandal: 'Roundabout drift racing in 2004 Vauxhall Corsas between 1am and 4am.'
+    },
+    leeds: {
+      paper: 'Leeds Live & Yorkshire Evening Post',
+      spotted: 'Overheard in Leeds',
+      gazette_headline: 'STUDENT HOUSE IN HEADINGLEY ERECTS 3-STOREY MATTRESS TOWER VISIBLE FROM THE M621',
+      spotted_chatter: 'Saw a bloke unicyling through Kirkgate Market holding a tub of lukewarm curry at 2am. Peak Leeds.',
+      local_scandal: 'Arguments outside the Corn Exchange over who owns the last 4am taxi to Hyde Park.'
+    },
+    blackpool: {
+      paper: 'Blackpool Gazette',
+      spotted: 'Spotted: Blackpool',
+      gazette_headline: 'SEAGULL STEALS ENTIRE TRAY OF DONER MEAT FROM PROMENADE KEBAB SHOP',
+      spotted_chatter: 'If you lost a pair of false teeth outside the Coral Island arcade last night, they are currently on a ledge by the donkey rides.',
+      local_scandal: 'Seaside wind-gales blowing inflatable flamingos into the tramway wires.'
+    }
+  };
+
+  function getHyperLocalLore(town) {
+    const clean = town.toLowerCase().trim();
+    if (HYPER_LOCAL_DATABASE[clean]) {
+      return HYPER_LOCAL_DATABASE[clean];
+    }
+    return {
+      paper: `${town} Gazette & District News`,
+      spotted: `Spotted: ${town}`,
+      gazette_headline: `MUNICIPAL COUNCIL INVESTIGATES MYSTERY NOISE NEAR THE ${town.toUpperCase()} BYPASS`,
+      spotted_chatter: `Can the person who left their shopping trolley in the middle of the ${town} precinct please move it before the 2am kebab rush.`,
+      local_scandal: `Disputes over parish council flower tubs and 2am taxi rank queue jumping in ${town}.`
+    };
+  }
+
   // REGIONAL CULTURAL ANCHORS & SCATHING UK SATIRE ENGINE
   function getRegionalProfile(town) {
     const t = town.toLowerCase();
@@ -2069,6 +2146,7 @@ function renderSpec(spec) {
     if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
       const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
       const regProf = getRegionalProfile(location);
+      const localLore = getHyperLocalLore(location);
       
       const tb = result.tourist_board || result.touristBoard || result.brochure || {};
       const ta = result.tripadvisor_audit || result.tripadvisor || result.audit || result.expert_audit || {};
@@ -2113,15 +2191,23 @@ function renderSpec(spec) {
 
       document.getElementById('excuse-text').textContent = result.excuse || fallbackObj.excuse;
 
+      // Render Hyper-Local Gazette & Spotted:[Town] Intelligence
+      document.getElementById('gazette-paper-name').textContent = `📰 ${localLore.paper}`;
+      document.getElementById('gazette-headline').textContent   = `"${localLore.gazette_headline}"`;
+      document.getElementById('spotted-group-name').textContent  = `📱 ${localLore.spotted}`;
+      document.getElementById('spotted-post-text').textContent   = `"${localLore.spotted_chatter}"`;
+
       // Render Debug Research Findings Panel
       const debugContainer = document.getElementById('debug-research-json');
       if (debugContainer) {
         const debugData = currentFindings || {
           location: location,
           regional_profile: regProf.region,
-          cultural_objects: regProf.objects,
-          regional_crimes: regProf.crimes,
-          scathing_profanities: regProf.profanities,
+          local_newspaper: localLore.paper,
+          community_facebook_group: localLore.spotted,
+          gazette_headline: localLore.gazette_headline,
+          spotted_chatter: localLore.spotted_chatter,
+          local_scandal: localLore.local_scandal,
           synthesized_doc: fallbackObj
         };
         debugContainer.textContent = JSON.stringify(debugData, null, 2);
