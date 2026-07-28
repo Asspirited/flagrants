@@ -37,3 +37,20 @@
 * **Category:** Frontend Architecture & UX
 * **Date:** 2026-07-28
 * **Insight:** Never block UI mode switches on network requests. Bounding network calls with a 1.2s timeout and falling back instantly to deterministic client-side generation guarantees 100% responsive, 0-lag tab switching on static hosts like GitHub Pages.
+
+### Entry #007 — Continuous Knowledge Retrospective & Refinement Protocol
+* **Category:** Pairing Workflow & Agile Retrospective Protocol
+* **Date:** 2026-07-28
+* **Insight:** Append all learnings—minor and major—to this log automatically. Conduct a Knowledge Retrospective at every stable core product milestone, at the start of a new project, or during intensive sprint cycles to review, group, prune, and drive action items back into code and docs.
+
+---
+
+## 🔄 Knowledge Retrospective Protocol
+
+1. **Continuous Capture:** Append every bug fix, comedic formula, architectural insight, or testing pattern immediately.
+2. **Milestone Retrospectives:** Trigger a Retro upon reaching a stable core product release or starting a new project.
+3. **Refinement Actions:**
+   - Group entries into core categories (*Architecture, Satire, Testing, UX, Cross-Repo*).
+   - Prune obsolete or duplicate entries.
+   - Convert learnings into concrete automated tests, code helpers, or documentation rules.
+
