@@ -1,0 +1,19 @@
+{
+  "name": "flagrants",
+  "version": "1.4.0",
+  "description": "Heraldic Municipal Flag & Satirical Audit Engine",
+  "main": "scripts/build-rich-ui.js",
+  "scripts": {
+    "build": "node scripts/build-rich-ui.js",
+    "test": "node --test tests/*.test.js",
+    "metrics": "node scripts/audit-dora-quality-metrics.js"
+  },
+  "keywords": [
+    "heraldry",
+    "satire",
+    "dora",
+    "poka-yoke"
+  ],
+  "author": "Asspirited",
+  "license": "MIT"
+}
