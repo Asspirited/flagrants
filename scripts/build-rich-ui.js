@@ -1162,10 +1162,13 @@ const richHtml = `<!DOCTYPE html>
       lensGroup.style.display = 'none'; // Mode III auto-synthesizes all 7 lenses
     }
     updateButtonLabel();
-    checkReady();
-    if (locationInput.value.trim()) {
-      generate();
+    
+    // Guaranteed Instant Auto-Fill & Render for 0-Lag Tab Switching
+    if (!locationInput.value.trim()) {
+      locationInput.value = (mode === 'family') ? 'The Smith Family' : 'Slough';
     }
+    checkReady();
+    generate();
   }
 
   LENSES.forEach(lens => {
@@ -1939,7 +1942,7 @@ const richHtml = `<!DOCTYPE html>
 
     // Bulletproof Dynamic Renderer — 100% Location Bitshift Hash Matrix
     const mode3Container = document.getElementById('mode3-container');
-    if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
+    if (isMode3) {
       const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
       const regProf = getRegionalProfile(location);
       const localLore = getHyperLocalLore(location);
