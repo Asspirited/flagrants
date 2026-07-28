@@ -903,7 +903,7 @@ const richHtml = `<!DOCTYPE html>
     { id: 'admit_faults',       label: 'Admit Faults',         desc: 'Yes, there were some irregularities. The crest acknowledges this minimally.' },
     { id: 'blame_others',       label: 'Blame Others',         desc: 'External forces. Enemies. God\\'s specific instruction at the time.' },
     { id: 'deeply_sorry',       label: 'Deeply Sorry',         desc: 'Full modern apology. All the correct language. Nothing has changed.' },
-    { id: 'context_everything', label: 'Context Is Everything',desc: 'You have to understand the times. The herald provides context. It does not help.' },
+    { id: 'context_everything', label: 'Context Is Everything',desc: 'You have to understand the times. The herald provides a great deal of context. It does not help.' },
     { id: 'revisionist',        label: 'Revisionist',          desc: 'Actually they were the heroes. New research supports this.' }
   ];
 
@@ -1045,7 +1045,11 @@ const richHtml = `<!DOCTYPE html>
           _subject: location,
           tier1: { location, region: 'United Kingdom' },
           tier3: { dark_history: 'A place of considerable notoriety and ancient local misdemeanour.' },
-          comedy_seed: 'The town is famous for roundabouts, concrete cows, and administrative ambition.'
+          comedy_seed: 'Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies.',
+          nightlife_catering: 'Shite pubs, lukewarm curry houses, and throwing up kebabs at the taxi rank.',
+          infrastructure_flaws: 'Local bus monopolies, disused bus shelters, and 1970s concrete precincts.',
+          weird_local_lore: 'Unconfirmed sightings of a mystery big cat behind the bypass.',
+          claim_to_fame: 'Birthplace of the 1974 regional tupperware convention.'
         };
       } else {
         currentFindings = await researchRes.json();
@@ -1084,17 +1088,17 @@ const richHtml = `<!DOCTYPE html>
           motto_translation: 'We Turn, and We Remain',
           excuse: 'External forces. 1970s urban planners. Traditional weather.',
           tourist_board: {
-            slogan: 'Experience the Unstoppable Motion of the Blackwater Valley!',
-            brochure_copy: 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, heritage damp, and traditional overcast skies!'
+            slogan: 'Experience the Unstoppable Ambition of the High Street!',
+            brochure_copy: 'Welcome to a town where history is made every weekend at the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, heritage damp, and lukewarm curry houses!'
           },
           tripadvisor_audit: {
-            headline: 'A Masterclass in Motion Without Destination',
+            headline: 'Shite Pubs, Cold Kebabs, and Zero Taxis After Midnight',
             overall_rating: '1.5 / 5 — Mostly Overcast',
-            audit_review: 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.'
+            audit_review: 'Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.'
           },
           customer_reviews: [
-            { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
-            { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The cows are magnificent. 10/10.' },
+            { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 2 hours waiting for a taxi by the kebab shop. System gave up.' },
+            { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
             { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
           ],
           socio_economic: {
@@ -1215,12 +1219,12 @@ const richHtml = `<!DOCTYPE html>
       const cr = result.customer_reviews || result.reviews || [];
       const se = result.socio_economic || result.socioEconomic || {};
 
-      const slogan = tb.slogan || tb.headline || tb.title || 'Experience the Heroic Ambition of the Bypass!';
-      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, traditional overcast skies, and heritage damp!';
+      const slogan = tb.slogan || tb.headline || tb.title || 'Experience the High Street Ambition!';
+      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day by the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, traditional overcast skies, and heritage damp!';
 
       const rating = ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast';
-      const taHeadline = ta.headline || ta.title || 'A Masterclass in Motion Without Destination';
-      const taReview = ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.';
+      const taHeadline = ta.headline || ta.title || 'Shite Pubs, Cold Kebabs, and Zero Taxis After Midnight';
+      const taReview = ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.';
 
       document.getElementById('tb-slogan').textContent = slogan;
       document.getElementById('tb-copy').textContent   = copy;
@@ -1233,8 +1237,8 @@ const richHtml = `<!DOCTYPE html>
       crList.innerHTML = '';
       
       const reviewsToRender = cr.length > 0 ? cr : [
-        { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
-        { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The cows are magnificent. 10/10.' },
+        { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 2 hours waiting for a taxi by the kebab shop. System gave up.' },
+        { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
         { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
       ];
 
@@ -1324,6 +1328,29 @@ fs.writeFileSync(rootHtmlPath, richHtml, 'utf8');
 // Update code/worker.js with richHtml embedded and svg-renderer.js inline
 let workerJs = fs.readFileSync(workerPath, 'utf8');
 
+// Enrich RESEARCH_SYSTEM with hyper-local fields (shite pubs, curry houses, taxi rank kebabs, weird local lore)
+const NEW_RESEARCH_SYSTEM = `const RESEARCH_SYSTEM = \`You are a Municipal Researcher & Local Satirist.
+Given a location, town, or institution, return ONLY a JSON object with targeted hyper-local relevance (token-efficient, high-precision):
+{
+  "location": "<canonical name>",
+  "region": "<region / county>",
+  "comedy_seed": "<hyper-specific local joke, landmark, or local quirk>",
+  "dark_history": "<ancient or modern local misdemeanour / planning disaster>",
+  "nightlife_catering": "<shite local pubs, 2am kebab ranks, lukewarm curry houses, local taxi rank monopolies>",
+  "infrastructure_flaws": "<bus station waiting room, local taxi monopolies, 1970s concrete precincts>",
+  "weird_local_lore": "<mystery big cat sightings, wallabies, metal detector hoards, unusual local traditions>",
+  "claim_to_fame": "<over-inflated local achievement or banal convention>"
+}\`;`;
+
+if (workerJs.includes('const RESEARCH_SYSTEM =')) {
+  workerJs = workerJs.replace(/const RESEARCH_SYSTEM = [\s\S]*?`;/, NEW_RESEARCH_SYSTEM);
+}
+
+// Enrich TripAdvisor audit prompt in buildMode3System
+const TRIPADVISOR_ENRICHMENT = `5. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks) or Sub-Type 2B (Carlin) — Acidic expert audit focusing heavily on shite local pubs, lukewarm curry houses, throwing up kebabs by the 2am taxi rank, local taxi monopolies, bus station waiting rooms, and unvarnished local catering! STOP over-using generic roundabouts unless researching Swindon (Magic Roundabout), Hemel Hempstead, or Milton Keynes! Look for hyper-local weird angles (metal detector finds, mystery big cats, wallabies).`;
+
+workerJs = workerJs.replace(/5\. "tripadvisor_audit"[\s\S]*?\./, TRIPADVISOR_ENRICHMENT);
+
 const svgRendererModule = `// ── SVG Renderer logic ───────────────────────────────────────────────────────
 
 ${svgRendererJs.replace("const { TINCTURES } = require('../data/heraldic-vocabulary.js');", "").replace("module.exports = { renderSpec, shieldPath, renderField, renderCharge, tincture, chargePosition };", "")}
@@ -1343,4 +1370,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for 100% unified Mode III typography & card styling');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for hyper-local nightlife, taxi ranks, shite pubs, and weird local lore research');
