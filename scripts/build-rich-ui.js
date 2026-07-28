@@ -1912,17 +1912,21 @@ const richHtml = `<!DOCTYPE html>
         gHead = localLore.gazette_headlines[hashTown(location, 107 + window._clickCount) % localLore.gazette_headlines.length];
       }
 
+      const townObj = reg.objects[hashTown(location, 11) % reg.objects.length];
+      const townCrime = reg.crimes[hashTown(location, 17) % reg.crimes.length];
+      const townScandal = localLore.local_scandal || 'disputes over parish council flower tub budgets';
+
       const GOSSIP_CHANNELS = [
-        'Laminated note taped to parish lamp-post: To whoever took my lawnmower, return it before dusk or the police will be informed.',
-        'Nextdoor App Thread: Has anyone else noticed a man measuring the parish flower tubs with a wooden ruler at 6am?',
-        'Local Facebook Admin Post: Turn off comments on the dog-walking thread, people are making personal accusations about copper piping.',
-        'Handwritten card pinned to church hall: Lost ferret answers to Barnaby, last seen by Morrisons bakery aisle.',
-        'Neighbourhood Watch WhatsApp: Suspicious individual in high-vis jacket inspecting drain covers near the main roundabout.',
-        'Passive-aggressive note under windshield wiper: You parked 4 inches over my dropped kerb. I have photographed your front tyre.',
-        'Post Office window notice: Low-resolution CCTV image of pasty thief displayed until full reimbursement is made.',
-        'Overheard in bakery queue: He swore on his mother\'s prize marrow that the cider contest was rigged.',
-        'Pub Taproom Rumour: The parish council chairman secretly sold the village green mower to a man from Swindon.',
-        'Ring Doorbell Night-Vision Video: To the person who borrowed my lawn rake: I have your slippers on 1080p footage.'
+        'Laminated note taped to parish lamp-post in ' + location + ': To whoever took my ' + townObj + ', return it before dusk or the police will be informed.',
+        'Nextdoor App Thread: Has anyone else in ' + location + ' noticed a man measuring the parish flower tubs with a wooden ruler at 6am?',
+        'Local Facebook Admin Post: Turn off comments on the ' + location + ' thread, people are making personal accusations about ' + townCrime + '.',
+        'Handwritten card pinned to church hall: Found one ' + townObj + ' near the main precinct in ' + location + '.',
+        'Neighbourhood Watch WhatsApp: Suspicious individual inspecting a ' + townObj + ' near ' + location + '.',
+        'Passive-aggressive note under windshield wiper in ' + location + ': You parked 4 inches over my dropped kerb while retrieving a ' + townObj + '.',
+        'Post Office window notice in ' + location + ': Low-resolution CCTV image of suspect involved in ' + townCrime + ' on display.',
+        'Overheard in bakery queue: He swore on his mother\'s prize marrow that the ' + location + ' council decision was rigged.',
+        'Pub Taproom Rumour in ' + location + ': The chairman secretly traded a ' + townObj + ' during ' + townScandal + '.',
+        'Ring Doorbell Night-Vision Video in ' + location + ': To the person who borrowed my ' + townObj + ': I have your slippers on 1080p footage.'
       ];
 
       let chatterText = localLore.spotted_chatter;
