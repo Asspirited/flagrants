@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=1101">
+  <link rel="manifest" href="manifest.json?v=1201">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1128,6 +1128,14 @@ const richHtml = `<!DOCTYPE html>
     if (/peacehaven|blackpool|brighton|hastings|portsmouth|torquay|scarborough|whitby|seaside|bay|harbour|beach|coast|pier|skegness|bournemouth|rye|margate|clacton/.test(t)) {
       return {
         region: 'Coastal / Maritime',
+        affectation: \`Jewel of the \${town} Undercliff & Greenwich Meridian\`,
+        mottos: [
+          { motto: 'CLIFFUS ERODIT ET CUM FLUCTIBUS EAT', translation: 'The Cliff Erodes and Goes with the Waves' },
+          { motto: 'MERIDIANUS VENTO SPLENDET', translation: 'The Meridian Shines in the Sea-Gale' },
+          { motto: 'SCAMPI IN VENTO VOLAT', translation: 'Scampi Flies High in the Coastal Gale' },
+          { motto: 'ANIMA IN PIANO BEACHED', translation: 'The Soul of an Abandoned Piano on the Beach' }
+        ],
+        twinned: ['Pripyat', 'Atlantis (Sunken)', \`\${town} Sewage Outfall Pipe 3\`],
         objects: ['rusted anchor', 'fibreglass seagull', 'salt-crusted deckchair', 'stolen harbour buoy', 'soggy fish basket', 'copper diving helmet'],
         crimes: ['illegal scampi smuggling', 'pier-hopping at low tide', 'lighthouse bell tampering', 'stealing sea-gale deckchairs'],
         profanities: ['utter coastal shite', 'atrocious salt-encrusted bollocks', 'proper sea-side tripe', 'complete pier-head clusterfuck'],
@@ -1154,6 +1162,22 @@ const richHtml = `<!DOCTYPE html>
           \`The local heritage B&B in \${town} offers authentic sea-fog damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.\`,
           \`Standing on the \${town} clifftop, the wind-gale blew my umbrella into the English Channel while the local pub ran out of cider by 8:15pm. Attracious shite.\`,
           \`The hotel room in \${town} featured authentic salt-gale window corrosion, squeaky bed springs, and a view of the local recycling center.\`
+        ],
+        schools: [
+          \`94% Pass Rate in Coastal Navigation & Salt-Crusted Deckchair Maintenance in \${town}.\`,
+          \`Ofsted Grade 3: Coastal Mizzle Navigation and Sea Wall Scampi Hurling in \${town}.\`
+        ],
+        workforce: [
+          \`Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in \${town}.\`,
+          \`Caravan Concourse Security & Promenade Fish Chippy Management (82%) in \${town}.\`
+        ],
+        housing: [
+          \`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`,
+          \`1920s clifftop bungalow in \${town}: £410,000 with 3 inches per year cliff erosion included.\`
+        ],
+        excuses: [
+          \`Blame 60mph English Channel gales, 1920s clifftop plot developers, chalk erosion, and coastal tides.\`,
+          \`Blame North Sea mizzle, 19th-century pier engineers, and sea-wall scampi hurling.\`
         ]
       };
     }
@@ -1161,6 +1185,12 @@ const richHtml = `<!DOCTYPE html>
     if (/leeds|manchester|sheffield|newcastle|wigan|bradford|liverpool|preston|carlisle|sunderland|barrow|bolton|rochdale|york|hull/.test(t)) {
       return {
         region: 'Industrial / Northern',
+        affectation: \`Heart of the \${town} Industrial Ring Road & Railway Arches\`,
+        mottos: [
+          { motto: 'FERRUM FERMENTAT IN ARCHIBUS', translation: 'Iron and Sausage Ferment in the Arches' },
+          { motto: 'SABULUM ET FLAMMA VINCUNT', translation: 'Coal and Flame Conquer All' }
+        ],
+        twinned: ['Pripyat', 'Detroit', \`\${town} Platform 4\`],
         objects: ['cast-iron anvil', 'subterranean sausage vat', 'disused loom shuttle', 'heavy steel girder', 'coal scuttle', 'foundry crucible'],
         crimes: ['unauthorized sausage fermentation', 'mill-lead rustling', 'subterranean arch sabotage', 'illegal ferret-legging'],
         profanities: ['scathing northern shite', 'utterly knackered bollocks', 'industrial-grade clusterfuck', 'proper tight-fisted pillocks'],
@@ -1187,6 +1217,22 @@ const richHtml = `<!DOCTYPE html>
           \`Visitors arriving in \${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh.\`,
           \`They promised a historic cathedral city in \${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam.\`,
           \`The local pub in \${town} ran out of draft ale by 8:30pm and the landlord threatened to call the magistrate when we asked for a menu.\`
+        ],
+        schools: [
+          \`98% Distinction in Subterranean Arch Engineering & Mill Lead Reclamation in \${town}.\`,
+          \`Ofsted Grade 3: Roundabout Navigation and Slate Mining in \${town}.\`
+        ],
+        workforce: [
+          \`Subterranean Sausage Fermentation & Foundry Steel Production (68%) in \${town}.\`,
+          \`Concrete Precinct Security & Wimpy Counter Management (82%) in \${town}.\`
+        ],
+        housing: [
+          \`Converted 19th-century mill flat in \${town}: £380,000 with subterranean sausage aroma.\`,
+          \`Victorian terrace in \${town}: £470,000 with authentic shortbread factory chimney damp.\`
+        ],
+        excuses: [
+          \`Blame Victorian railway directors, disused arch humidity, and 19th-century foundry smoke.\`,
+          \`Blame industrial coal smoke, damp northern climate, and 1968 brutalist planners.\`
         ]
       };
     }
@@ -1194,6 +1240,12 @@ const richHtml = `<!DOCTYPE html>
     if (/edinburgh|glasgow|cardiff|aberdeen|llanfair|dundee|swansea|inverness|highlands|stirling|belfast|wales|scotland|rhyl|wrexham/.test(t)) {
       return {
         region: 'Celtic / Scottish / Welsh',
+        affectation: \`Gateway to the \${town} Slate Wynds & Peat Bogs\`,
+        mottos: [
+          { motto: 'SAXUM DENSUM IN PLUVIA', translation: 'Heavy Slate in the Constant Rain' },
+          { motto: 'HAGGIS IN MONTIBUS CURRIT', translation: 'The Haggis Runs Through the Misty Hills' }
+        ],
+        twinned: ['Pripyat', 'Reykjavík (Cold)', \`\${town} Peat Bog #7\`],
         objects: ['leaden haggis boiling pot', 'slate roof tile', 'bagpipe drone', 'peat spade', 'granite paving block', 'tartan loom shuttle'],
         crimes: ['unauthorized haggis hunting', 'bog-snorkelling without a permit', 'midnight tartan smuggling', 'druidic chanting beyond midnight'],
         profanities: ['absolute Celtic shite', 'utter Highland bollocks', 'dour and miserable tripe', 'proper tartan-clad clusterfuck'],
@@ -1220,6 +1272,22 @@ const richHtml = `<!DOCTYPE html>
           \`They promised a historic castle view in \${town}. What you actually get is North Sea mizzle, an abandoned Woolworths, and a 3-hour traffic jam.\`,
           \`If you visit \${town}, bring your own fuel, your own food, and a sleeping bag, because the taxi rank and local amenities close at dusk.\`,
           \`The hotel room in \${town} featured authentic 18th-century wall damp, squeaky bed springs, and a view of the local peat bog.\`
+        ],
+        schools: [
+          \`100% Pass Rate in Peat Bog Administration & Fringe Ticketing in \${town}.\`,
+          \`Academic focus centered on Bagpipe Theory and Slate Mining in \${town}.\`
+        ],
+        workforce: [
+          \`Ghost Tour Management (58%) and Shortbread Factory Packing (35%) in \${town}.\`,
+          \`Peat Bog Administration & Slate Roof Repair (80%) in \${town}.\`
+        ],
+        housing: [
+          \`1-bed tenement flat in \${town}: £650,000 with authentic 18th-century stone damp.\`,
+          \`Stone cottage in \${town}: £380,000 with authentic Welsh slate damp.\`
+        ],
+        excuses: [
+          \`Blame North Sea mizzle, 18th-century stone masons, and highland midge swarms.\`,
+          \`Blame English weather, 19th-century railway directors, and druidic prophecies.\`
         ]
       };
     }
@@ -1227,6 +1295,12 @@ const richHtml = `<!DOCTYPE html>
     if (/cotswolds|somerset|norfolk|devon|cornwall|gloucester|lincoln|suffolk|dorset|wiltshire|hereford|shropshire|bath|taunton/.test(t)) {
       return {
         region: 'Agricultural / Rural',
+        affectation: \`Jewel of the \${town} Manure & Cider Belt\`,
+        mottos: [
+          { motto: 'STERCUS ET CIDERUM VINCUNT', translation: 'Manure and Cider Conquer All' },
+          { motto: 'TRACTOR IN AGRIS MANET', translation: 'The Vintage Tractor Remains in the Mud' }
+        ],
+        twinned: ['Pripyat', 'Chernobyl', \`\${town} Slurry Pit\`],
         objects: ['vintage tractor flywheel', 'cider barrel', 'rusted manure spreader', 'prize marrow', 'straw bale', 'heavy sheep shears'],
         crimes: ['cider barrel rustling', 'unauthorized shin-kicking', 'manure spreader sabotage', 'illegal Maypole stick brawling'],
         profanities: ['rural agricultural shite', 'proper cider-soaked bollocks', 'utter country bumpkin tripe', 'scathing village clusterfuck'],
@@ -1253,6 +1327,22 @@ const richHtml = `<!DOCTYPE html>
           \`Arrived in \${town} expecting rural peace. Ended up awake all night listening to a disused manure spreader idling by the duck pond.\`,
           \`The thatched B&B in \${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute bollocks.\`,
           \`If you visit \${town}, bring your own wellies, your own food, and a torch, because the streetlights and local pub close at dusk.\`
+        ],
+        schools: [
+          \`100% Distinction in Shin-Kicking, Ferret-Legging, and Cider Brewing in \${town}.\`,
+          \`Ofsted Grade 3: Manure Spreader Operations and Crop Rotation in \${town}.\`
+        ],
+        workforce: [
+          \`Cider Barrel Fermentation & Manure Spreader Maintenance (72%) in \${town}.\`,
+          \`Sheep Shearing & Parish Council Tub Administration (65%) in \${town}.\`
+        ],
+        housing: [
+          \`Thatched cottage in \${town}: £490,000 with authentic Cotswold straw damp.\`,
+          \`Stone cottage in \${town}: £380,000 with authentic village duck pond damp.\`
+        ],
+        excuses: [
+          \`Blame ancient Saxon warlords, Cotswold stone quarrymen, and manure spreader friction.\`,
+          \`Blame cider bakery emissions, 19th-century magistrate orders, and Maypole stick brawlers.\`
         ]
       };
     }
@@ -1260,6 +1350,12 @@ const richHtml = `<!DOCTYPE html>
     // Default Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
     return {
       region: 'Commuter / Suburban Belt',
+      affectation: \`Gateway to the \${town} Dual Carriageway Bypass\`,
+      mottos: [
+        { motto: 'ROTAMUR ET MANEMUS', translation: 'We Turn on the Roundabout, and We Remain' },
+        { motto: 'PRECINCTUS IN AETERNUM', translation: 'The Precinct Stands Forever' }
+      ],
+      twinned: ['Pripyat', 'Slough', \`\${town} Multi-Storey Level 3\`],
       objects: ['1970s tupperware box', 'broken shopping trolley', 'concrete bollard', 'disused Wimpy sign', 'parking meter', 'vape battery charger'],
       crimes: ['shopping trolley canal immersion', 'roundabout drift racing', 'municipal bollard theft', 'aggravated bicycle borrowing'],
       profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'atrocious roundabout clusterfuck', 'utter precinct tripe'],
@@ -1286,6 +1382,22 @@ const richHtml = `<!DOCTYPE html>
         \`A masterclass in motion without destination. The \${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.\`,
         \`The council spent £3.4 million on an abstract sculpture in \${town} while the potholes on the bypass destroyed both front axles of my Vauxhall Corsa.\`,
         \`Got trapped on the \${town} multi-storey car park ramp for 4 hours. Satellite navigation gave up and suggested walking back through the precinct.\`
+      ],
+      schools: [
+        \`98% Pass Rate in Roundabout Navigation & Vape Shop Operations in \${town}.\`,
+        \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`
+      ],
+      workforce: [
+        \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
+        \`Multi-Storey Car Park Ramp Management & Traffic Orbit Ops (85%) in \${town}.\`
+      ],
+      housing: [
+        \`1970s precinct maisonette in \${town}: £340,000 with authentic brutalist concrete damp.\`,
+        \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`
+      ],
+      excuses: [
+        \`Blame 1968 brutalist roundabout architects, concrete suppliers, and highway planners.\`,
+        \`Blame 1970s urban planners, traditional \${town} weather, and regional highway directors.\`
       ]
     };
   }
@@ -1297,6 +1409,7 @@ const richHtml = `<!DOCTYPE html>
     const idxBrochure = hashTown(town, 37) % reg.brochures.length;
     const idxTaHead   = hashTown(town, 73) % reg.taHeadlines.length;
     const idxTaRev    = hashTown(town, 109) % reg.taReviews.length;
+    const idxMotto    = hashTown(town, 137) % reg.mottos.length;
 
     const slogan = reg.slogans[idxSlogan].replace(/{town}/g, town);
     const brochure = reg.brochures[idxBrochure].replace(/{town}/g, town);
@@ -1318,7 +1431,7 @@ const richHtml = `<!DOCTYPE html>
     const reviewPool = [
       { reviewer: 'LandlordVictim', rating: 1, text: \`The B&B in \${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute \${profanity}.\` },
       { reviewer: 'PotholeSurvivor', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallowed my \${car}. Total bollocks.\` },
-      { reviewer: 'WindblownVisitor', rating: 1, text: \`Got soaked by a gale in \${town} while trying to eat food out of a damp cardboard tray. Attracious \${profanity}.\` },
+      { reviewer: 'WindblownVisitor', rating: 1, text: \`Got soaked by weather in \${town} while trying to eat food out of a damp cardboard tray. Attracious \${profanity}.\` },
       { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. What a clusterfuck.\` },
       { reviewer: 'KebabRankSurvivor', rating: 1, text: \`Waited 3 hours at the \${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench. Absolute shite.\` },
       { reviewer: 'TrappedMotorist', rating: 1, text: \`Spent 4 hours stuck on the \${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.\` },
@@ -1338,80 +1451,18 @@ const richHtml = `<!DOCTYPE html>
 
     const reviews = [reviewPool[rIdx1], reviewPool[rIdx2], reviewPool[rIdx3]];
 
-    const schools = [
-      \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`,
-      \`98% Distinction in Vocational Roundabout Navigation and Slate Mining in \${town}.\`,
-      \`Academic focus centered on Bagpipe Theory and Fringe Ticketing in \${town}.\`,
-      \`100% Pass Rate in Local Taxi Queue Management and Vape Shop Operations in \${town}.\`,
-      \`94% Pass Rate in Coastal Navigation & Deckchair Maintenance in \${town}.\`,
-      \`Specialized curriculum in Local Industry & Precinct Management in \${town}.\`,
-      \`Academic emphasis strictly on 1970s Brutalist Architecture Appreciation in \${town}.\`,
-      \`100% Distinction in Shin-Kicking, Ferret-Legging, and Bog Snorkelling in \${town}.\`,
-      \`88% of Graduates enter the Local Kebab Rank Concierge Industry in \${town}.\`,
-      \`Magistrate-Approved Curriculum in \${obj} Maintenance in \${town}.\`,
-      \`Vocational training centered on Multi-Storey Traffic Flow Optimization in \${town}.\`,
-      \`100% Pass Rate in Shortbread Tin Packing and Peat Bog Administration in \${town}.\`
-    ];
-
-    const crime = reg.crimes;
-
-    const workforce = [
-      \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
-      \`Arcade Penny-Slot Administration (72%) and Fish Chippy Management (24%) in \${town}.\`,
-      \`Ghost Tour Management (58%) and Shortbread Tin Sales (35%) in \${town}.\`,
-      \`Railway Station Sign Maintenance (80%) and Peat Bog Administration (15%) in \${town}.\`,
-      \`Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in \${town}.\`,
-      \`Local Arch Preservation & Municipal Industry (68%) in \${town}.\`,
-      \`Concrete Precinct Security & Wimpy Counter Management (82%) in \${town}.\`,
-      \`Shin-Kicking Federation & Bog Snorkelling Administration (65%) in \${town}.\`,
-      \`2am Kebab Rank Concierge Services & Taxi Dispatch (79%) in \${town}.\`,
-      \`Abstract \${obj} Sculpture Restoration & Pothole Inspection (71%) in \${town}.\`,
-      \`Multi-Storey Car Park Ramp Management & Traffic Orbit Ops (85%) in \${town}.\`,
-      \`Vape Smoke Dispersion & Shortbread Factory Packing (77%) in \${town}.\`
-    ];
-
-    const housing = [
-      \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`,
-      \`Boarding house room in \${town}: £45/night with sea view damp and squeaky springs.\`,
-      \`1-bed tenement flat in \${town}: £650,000 with authentic 18th-century stone damp.\`,
-      \`Stone cottage in \${town}: £380,000 with authentic Welsh slate damp.\`,
-      \`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`,
-      \`Converted property in \${town}: £410,000 with authentic local precinct damp.\`,
-      \`1970s precinct maisonette in \${town}: £340,000 with authentic brutalist concrete damp.\`,
-      \`Thatched cottage in \${town}: £490,000 with authentic Cotswold straw damp.\`,
-      \`Terraced house by taxi rank in \${town}: £430,000 with 2am kebab queue noise included.\`,
-      \`Modern apartment near \${obj} sculpture in \${town}: £580,000 with pothole views.\`,
-      \`Penthouse over roundabout in \${town}: £620,000 with continuous 24/7 traffic hum.\`,
-      \`Victorian terrace in \${town}: £470,000 with authentic chimney damp.\`
-    ];
-
-    const excuses = [
-      \`Blame 1970s urban planners, traditional \${town} weather, and regional highway directors.\`,
-      \`Blame Irish Sea weather, 19th-century pier engineers, and traditional chips.\`,
-      \`Blame the English, the damp North Sea climate, and 18th-century stone masons.\`,
-      \`Blame English weather, 19th-century railway directors, and druidic prophecies.\`,
-      \`Blame coastal gales, English Channel tides, and 19th-century lighthouse keepers.\`,
-      \`Blame Victorian engineers, disused arch humidity, and traditional weather.\`,
-      \`Blame 1968 brutalist architects, concrete suppliers, and municipal shopping boards.\`,
-      \`Blame ancient Saxon warlords, Cotswold stone quarrymen, and pagan Maypole elders.\`,
-      \`Blame the regional taxi rank cartel, local curry house suppliers, and 2am licensing laws.\`,
-      \`Blame over-budget municipal arts committees, abstract sculptors, and highway pothole inspectors.\`,
-      \`Blame dual carriageway traffic engineers, one-way system designers, and navigation satellites.\`,
-      \`Blame North Sea mizzle, shortbread bakery emissions, and 19th-century magistrate orders.\`
-    ];
-
-    const idxSchools   = hashTown(town, 151) % schools.length;
-    const idxWorkforce = hashTown(town, 241) % workforce.length;
-    const idxHousing   = hashTown(town, 307) % housing.length;
-    const idxExcuse    = hashTown(town, 373) % excuses.length;
+    const idxSchools   = hashTown(town, 151) % reg.schools.length;
+    const idxWorkforce = hashTown(town, 241) % reg.workforce.length;
+    const idxHousing   = hashTown(town, 307) % reg.housing.length;
+    const idxExcuse    = hashTown(town, 373) % reg.excuses.length;
 
     return {
       lens: (mode === 'tourist_board' || mode === 'mode3') ? 'multi_lens' : lensId,
-      affectation: \`Gateway to the \${town} Bypass\`,
-      twinned_with: ['Pripyat', 'Detroit', \`\${town} Platform 4\`],
-      motto: 'ROTAMUR ET MANEMUS',
-      motto_translation: 'We Turn, and We Remain',
-      excuse: excuses[idxExcuse],
+      affectation: reg.affectation,
+      twinned_with: reg.twinned,
+      motto: reg.mottos[idxMotto].motto,
+      motto_translation: reg.mottos[idxMotto].translation,
+      excuse: reg.excuses[idxExcuse],
       tourist_board: {
         slogan: slogan,
         brochure_copy: brochure
@@ -1423,10 +1474,10 @@ const richHtml = `<!DOCTYPE html>
       },
       customer_reviews: reviews,
       socio_economic: {
-        schools_education: schools[idxSchools],
-        crime_order: crime[hashTown(town, 193) % crime.length],
-        workforce_industry: workforce[idxWorkforce],
-        housing_property: housing[idxHousing]
+        schools_education: reg.schools[idxSchools],
+        crime_order: reg.crimes[hashTown(town, 193) % reg.crimes.length],
+        workforce_industry: reg.workforce[idxWorkforce],
+        housing_property: reg.housing[idxHousing]
       }
     };
   }
@@ -1795,4 +1846,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 
 workerJs = workerJs.replace(/turnip/gi, 'cider');
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for 100% Region-Mated Coastal & Urban Brochure Matrix (1101)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Complete 5-Region Matrix Sweep (1201)');
