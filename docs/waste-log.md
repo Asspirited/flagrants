@@ -357,3 +357,13 @@
      - *Pattern 4 (Desperate Waiting):* Something cool will happen any day now... any century now...
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Section 6 renders in Mode III with dynamic multi-click pattern rotation.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-031 — Feature Expansion: "Historic Luminary Quotes & Subsequent Municipal Descent" (Section 7)
+**Date:** 2026-07-28
+**Cost:** ~10 min user feature request for a Historic Luminary Quotes & Municipal Descent section
+**Symptom:** Mode III contained 6 sections but lacked a card contrasting noble quotes from historic writers (Betjeman, Samuel Johnson, Bram Stoker, Jane Austen, Defoe, Orwell, Wilde) with how the town has corrupted or ignored them.
+**Fix:**
+  1. Built **Section 7: Historic Luminary Quotes & Subsequent Municipal Descent** in Mode III.
+  2. Embedded historic quote library paired with dynamic municipal reality contrasts across all 5 regional archetypes.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Section 7 renders in Mode III with dynamic luminary contrasts.
+  4. Pushed updated client bundle and docs to GitHub `main`.

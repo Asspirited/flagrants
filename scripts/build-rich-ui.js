@@ -957,12 +957,23 @@ const richHtml = `<!DOCTYPE html>
           <div style="font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #ffffff; font-weight: bold; font-style: italic;" id="gazette-headline"></div>
           <div style="background: #111d28; border-left: 3px solid #4ca1af; padding: 1rem; border-radius: 0 4px 4px 0; margin-top: 0.4rem;">
             <div style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #FFD700; font-weight: bold;" id="spotted-group-name"></div>
-            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #e8d5a3; font-style: italic; margin-top: 0.3rem;" id="spotted-post-text"></div>
+      <!-- Section 7: Historic Luminary Quotes & Subsequent Municipal Descent -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-emerald">
+          <span>📜 HISTORIC LUMINARY QUOTES & SUBSEQUENT MUNICIPAL DESCENT</span>
+          <span style="font-size:0.75rem; opacity:0.8;">HERITAGE AUDIT</span>
+        </div>
+        <div class="paper-body">
+          <div style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: #FFD700; font-weight: bold;" id="luminary-author"></div>
+          <div style="font-family: 'EB Garamond', serif; font-size: 1.25rem; color: #ffffff; font-style: italic; margin-top: 0.3rem;" id="luminary-quote"></div>
+          <div style="background: #1c1409; border-left: 3px solid #FFD700; padding: 1rem; border-radius: 0 4px 4px 0; margin-top: 0.6rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #ff8080; font-weight: bold; text-transform: uppercase;">📉 Subsequent Municipal Reality & Descent:</div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #e8d5a3; margin-top: 0.3rem;" id="luminary-reality"></div>
           </div>
         </div>
       </div>
 
-      <!-- Section 7: Debug Research Findings Panel (Hidden in Production — Enabled via ?debug=1) -->
+      <!-- Section 8: Debug Research Findings Panel (Hidden in Production — Enabled via ?debug=1) -->
       <div class="paper-section-card" id="debug-research-card" style="display:none">
         <div class="paper-header-bar header-debug">
           <span>🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)</span>
@@ -1982,6 +1993,64 @@ const richHtml = `<!DOCTYPE html>
       document.getElementById('gazette-headline').textContent   = \`"\${gHead}"\`;
       document.getElementById('spotted-group-name').textContent  = \`📱 \${localLore.spotted}\`;
       document.getElementById('spotted-post-text').textContent   = \`"\${chatterText}"\`;
+
+      // Render Section 7: Historic Luminary Quotes & Subsequent Municipal Descent
+      const LUMINARY_QUOTES = {
+        coastal: [
+          {
+            author: 'John Betjeman (1937)',
+            quote: 'Come, friendly gales, and sweep the coastal mizzle clear...',
+            reality: location + ' ignored Sir John\'s poetic plea and instead built 400 static caravans directly on the eroding chalk cliff edge, leading residents to erect Ring cameras to watch the footpaths fall into the sea.'
+          },
+          {
+            author: 'Bram Stoker (1897)',
+            quote: 'The gray sea mizzle rolled over the cliffside ruins like a dark Victorian shroud...',
+            reality: location + ' took Dracula\'s gothic atmosphere as a direct commercial instruction, charging £8 for velvet cloaks while seagulls steal doner meat outside the fish chippy.'
+          }
+        ],
+        cathedral_heritage: [
+          {
+            author: 'Dr. Samuel Johnson (1777)',
+            quote: 'When a man is tired of the spires, he is tired of life...',
+            reality: 'When a traveler is tired of ' + location + ', he has usually been yelled at in Latin by a college porter for walking on 500-year-old quadrangle grass while trying to find a public toilet.'
+          },
+          {
+            author: 'Jane Austen (1817)',
+            quote: 'The ancient stone streets and cloisters of ' + location + ' inspire the most elevated sentiments...',
+            reality: location + '\'s parish council interpreted "elevated sentiments" as permission to charge £14 for parking near the cloisters while undergraduates crash wooden punts into weeping willows.'
+          }
+        ],
+        agricultural: [
+          {
+            author: 'Daniel Defoe (1724)',
+            quote: 'A most fertile and bountiful parish, famed for rich cider and sturdy yeomen...',
+            reality: '302 years later, ' + location + ' has corrupted Defoe\'s vision into a 1:2 slope Double Gloucester cheese race where participants regularly break both ankles to win a 9lb dairy wheel.'
+          },
+          {
+            author: 'Thomas Hardy (1886)',
+            quote: 'The quiet solitude of the parish green offers peace to the weary soul...',
+            reality: location + ' completely abandoned Hardy\'s rustic tranquility in favor of 3-hour parish council brawls over ornamental flower tub budgets and 18th-century cider barrel theft.'
+          }
+        ],
+        industrial_commuter: [
+          {
+            author: 'George Orwell (1937)',
+            quote: 'It is a place where civic ambition meets the grey mizzle of northern endurance...',
+            reality: location + ' ignored Orwell\'s social critique and instead built a 7-tier orbital roundabout system superior in confusion to the Labyrinth of Minos.'
+          },
+          {
+            author: 'Oscar Wilde (1895)',
+            quote: 'To lose one bypass may be regarded as a misfortune; to lose both looks like carelessness...',
+            reality: location + ' took Wilde\'s wit literally, losing its original High Street to a 1974 concrete subway complex featuring 3 vape shops and scenic indoor moss.'
+          }
+        ]
+      };
+
+      const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.industrial_commuter;
+      const lumItem = lumPool[(hashTown(location, 619) + window._clickCount) % lumPool.length];
+      document.getElementById('luminary-author').textContent  = '✍️ ' + lumItem.author;
+      document.getElementById('luminary-quote').textContent   = '"' + lumItem.quote + '"';
+      document.getElementById('luminary-reality').textContent = lumItem.reality;
 
       // Render Debug Research Findings Panel
       const debugContainer = document.getElementById('debug-research-json');

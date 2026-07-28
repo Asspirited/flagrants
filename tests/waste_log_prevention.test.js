@@ -41,13 +41,14 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Recent Events & Breaking Municipal Incidents (FG-WL-030)', () => {
+test('FG-WL Prevention — Historic Luminary Quotes & Subsequent Municipal Descent (FG-WL-031)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('RECENT EVENTS & BREAKING MUNICIPAL INCIDENTS'), true, 'code/index.html must render Recent Events card');
-  assert.strictEqual(codeIndex.includes('these aren\'t the droids you\'re looking for'), true, 'code/index.html must include nada/droids pattern');
-  assert.strictEqual(codeIndex.includes('Nothing here but us chickens'), true, 'code/index.html must include us chickens pattern');
+  assert.strictEqual(codeIndex.includes('HISTORIC LUMINARY QUOTES & SUBSEQUENT MUNICIPAL DESCENT'), true, 'code/index.html must render Historic Luminary Quotes card');
+  assert.strictEqual(codeIndex.includes('John Betjeman (1937)'), true, 'code/index.html must include Betjeman quote');
+  assert.strictEqual(codeIndex.includes('Daniel Defoe (1724)'), true, 'code/index.html must include Defoe quote');
 });
+
 
 
 
