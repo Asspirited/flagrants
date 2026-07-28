@@ -737,37 +737,48 @@ function validateSpec(spec) {
     }
   });
 
-  // Ensure Mode 3 Tourist Board & TripAdvisor defaults are NEVER blank
-  if (spec.mode === 'tourist_board' || spec.mode === 'mode3' || spec.tourist_board) {
-    if (!spec.tourist_board || !spec.tourist_board.brochure_copy) {
-      spec.tourist_board = {
-        slogan: spec.tourist_board?.slogan || 'Experience the Heroic Ambition of the Bypass!',
-        brochure_copy: spec.tourist_board?.brochure_copy || 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, heritage damp, and traditional overcast skies!'
-      };
-    }
-    if (!spec.tripadvisor_audit || !spec.tripadvisor_audit.audit_review) {
-      spec.tripadvisor_audit = {
-        headline: spec.tripadvisor_audit?.headline || 'A Masterclass in Motion Without Destination',
-        overall_rating: spec.tripadvisor_audit?.overall_rating || '1.5 / 5 — Mostly Overcast',
-        audit_review: spec.tripadvisor_audit?.audit_review || 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.'
-      };
-    }
-    if (!Array.isArray(spec.customer_reviews) || spec.customer_reviews.length === 0) {
-      spec.customer_reviews = [
-        { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
-        { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The concrete cows are magnificent. 10/10.' },
-        { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
-      ];
-    }
-    if (!spec.socio_economic) {
-      spec.socio_economic = {
-        schools_education: '14% Ofsted "Requires Improvement", 86% "Closed by Order of the Magistrate". Academic emphasis centers on vocational roundabout navigation.',
-        crime_order: 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
-        workforce_industry: 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
-        housing_property: 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
-      };
+  // Ensure Mode 3 Tourist Board & TripAdvisor defaults are NEVER blank (Server-Side JSON Repair Pipe)
+  const tb = spec.tourist_board || spec.touristBoard || spec.brochure || {};
+  const ta = spec.tripadvisor_audit || spec.tripadvisor || spec.audit || {};
+  const cr = spec.customer_reviews || spec.reviews || [];
+  const se = spec.socio_economic || spec.socioEconomic || {};
+
+  spec.tourist_board = {
+    slogan: tb.slogan || tb.headline || tb.title || 'Experience the Heroic Ambition of the Bypass!',
+    brochure_copy: tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, heritage damp, and traditional overcast skies!'
+  };
+
+  spec.tripadvisor_audit = {
+    headline: ta.headline || ta.title || 'A Masterclass in Motion Without Destination',
+    overall_rating: ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast',
+    audit_review: ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.'
+  };
+
+  const defaultReviews = [
+    { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
+    { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The concrete cows are magnificent. 10/10.' },
+    { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
+  ];
+
+  if (!Array.isArray(cr) || cr.length === 0) {
+    spec.customer_reviews = defaultReviews;
+  } else {
+    spec.customer_reviews = cr.map(r => ({
+      reviewer: r.reviewer || r.name || 'Visitor',
+      rating: parseInt(r.rating) || 1,
+      text: r.text || r.review || r.comment || 'No comment provided.'
+    }));
+    while (spec.customer_reviews.length < 3) {
+      spec.customer_reviews.push(defaultReviews[spec.customer_reviews.length % defaultReviews.length]);
     }
   }
+
+  spec.socio_economic = {
+    schools_education: se.schools_education || se.schools || '14% Ofsted "Requires Improvement", 86% "Closed by Order of the Magistrate". Academic emphasis centers on vocational roundabout navigation.',
+    crime_order: se.crime_order || se.crime || 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
+    workforce_industry: se.workforce_industry || se.workforce || 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
+    housing_property: se.housing_property || se.housing || 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
+  };
 
   return spec;
 }
