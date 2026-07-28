@@ -2725,15 +2725,19 @@ function renderSpec(spec) {
     const taHead = reg.taHeadlines[idxTaHead].replace(/{town}/g, town);
     const taRev = localLore.tripadvisor_audit || reg.taReviews[idxTaRev].replace(/{town}/g, town);
 
-    const reviewPool = reg.reviews;
-
-    const rIdx1 = hashTown(town, 401) % reviewPool.length;
-    let rIdx2 = hashTown(town, 503) % reviewPool.length;
-    if (rIdx2 === rIdx1) rIdx2 = (rIdx2 + 1) % reviewPool.length;
-    let rIdx3 = hashTown(town, 607) % reviewPool.length;
-    while (rIdx3 === rIdx1 || rIdx3 === rIdx2) rIdx3 = (rIdx3 + 1) % reviewPool.length;
-
-    const reviews = [reviewPool[rIdx1], reviewPool[rIdx2], reviewPool[rIdx3]];
+    // POKA-YOKE SAFE REVIEW PICKER: Prevent infinite loop when reviewPool.length < 3
+    const safeReviewPool = (Array.isArray(reg.reviews) && reg.reviews.length >= 3)
+      ? reg.reviews
+      : [
+          ...(reg.reviews || []),
+          { reviewer: "ParishVisitor", rating: 4, text: "Historic market square atmosphere and friendly pub hearth." },
+          { reviewer: "LocalShopper", rating: 3, text: "Overcast weather but excellent local bakery." },
+          { reviewer: "CivicAuditor", rating: 2, text: "Slightly disoriented by parish noticeboard guidelines." }
+        ];
+    const rIdx1_safe = hashTown(town, 401) % safeReviewPool.length;
+    const rIdx2_safe = (rIdx1_safe + 1) % safeReviewPool.length;
+    const rIdx3_safe = (rIdx1_safe + 2) % safeReviewPool.length;
+    const reviews = [safeReviewPool[rIdx1_safe], safeReviewPool[rIdx2_safe], safeReviewPool[rIdx3_safe]];
 
     const idxSchools   = hashTown(town, 151) % reg.schools.length;
     const idxWorkforce = hashTown(town, 241) % reg.workforce.length;
