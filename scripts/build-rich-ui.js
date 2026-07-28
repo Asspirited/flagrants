@@ -1912,8 +1912,8 @@ const richHtml = `<!DOCTYPE html>
         gHead = localLore.gazette_headlines[hashTown(location, 107 + window._clickCount) % localLore.gazette_headlines.length];
       }
 
-      const townObj = reg.objects[hashTown(location, 11) % reg.objects.length];
-      const townCrime = reg.crimes[hashTown(location, 17) % reg.crimes.length];
+      const townObj = reg.objects[(hashTown(location, 11) + window._clickCount) % reg.objects.length];
+      const townCrime = reg.crimes[(hashTown(location, 17) + window._clickCount) % reg.crimes.length];
       const townScandal = localLore.local_scandal || 'disputes over parish council flower tub budgets';
 
       const GOSSIP_CHANNELS = [

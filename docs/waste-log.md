@@ -311,3 +311,14 @@
   2. Restricted Ring doorbell video to <10% incidental rotation frequency.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting spotted chatter rotates across 10 distinct channels.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-027 — Single-Location Multi-Click Static Hold-Out (Seed-Shift Multi-Click Engine)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA request on adding multi-click variety for the same town
+**Symptom:** Repeatedly clicking the same location (e.g. Peacehaven) rendered the exact same object ("lawnmower") and crime ("scampi hurling") on every click.
+**Root cause:** Object, crime, and scandal indices were calculated using a static location hash without incorporating click increments.
+**Fix:**
+  1. Integrated `window._clickCount` seed-shifting into object selection (`reg.objects`), crime selection (`reg.crimes`), headline selection, and channel selection.
+  2. Every click on the same location now rotates dynamically across 6+ local objects, 6+ local disputes, and 10 channels.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Peacehaven rotates across 6 distinct object/dispute combinations on successive clicks.
+  4. Pushed updated client bundle and docs to GitHub `main`.
