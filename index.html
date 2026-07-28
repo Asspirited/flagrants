@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=1301">
+  <link rel="manifest" href="manifest.json?v=1401">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -503,14 +503,16 @@
       gap: 1.2rem;
     }
 
+    /* HIGH-CONTRAST PANEL SHOW COMMENTARY CARD (SURVIVAL SCHOOL UPGRADE) */
     .commentary-block {
-      background: #1a0e05;
-      border-left: 3px solid #FFD700;
-      padding: 1.2rem;
-      border-radius: 0 6px 6px 0;
+      background: #1f1207;
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      padding: 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.8rem;
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.2), inset 0 0 12px rgba(0,0,0,0.8);
     }
 
     .commentary-header {
@@ -533,6 +535,19 @@
       overflow: hidden;
     }
 
+    .speaker-tag-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #FFD700;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #3a220b;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+    }
+
     .commentary-element {
       font-family: 'Cinzel', serif;
       font-size: 0.95rem;
@@ -545,7 +560,38 @@
       font-family: 'EB Garamond', serif;
       font-size: 1.15rem;
       line-height: 1.6;
-      color: #e8d5a3;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* DYNAMIC INTERJECTION BADGE & HIGH-CONTRAST CARD */
+    .interjection-card {
+      background: rgba(0, 212, 255, 0.08);
+      border-left: 3px solid #00d4ff;
+      padding: 0.8rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .interjection-header {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #00d4ff;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .interjection-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: #ffffff;
+      font-style: italic;
     }
 
     /* ── Unified Mode III Paper-Form Document Layout ──────────────────────── */
@@ -876,7 +922,7 @@
         </div>
       </div>
       <div class="commentary-container">
-        <h3 class="section-subheading">Segment Pictures & Stories</h3>
+        <h3 class="section-subheading">Segment Pictures & Panel Stories</h3>
         <div class="commentary" id="commentary"></div>
       </div>
     </div>
@@ -1514,6 +1560,22 @@ function renderSpec(spec) {
 
 
 
+  const PANELISTS = [
+    { id: 'bede', name: 'Venerable Bede', role: 'Anglo-Saxon Chronicler', avatar: '📜' },
+    { id: 'ray', name: 'Ray Mears', role: 'Bushcraft & Survival Expert', avatar: '🏕️' },
+    { id: 'david', name: 'David Attenborough', role: 'Naturalist & Broadcaster', avatar: '🎙️' },
+    { id: 'steve', name: 'Steve Backshall', role: 'Deadly 60 Explorer', avatar: '🦎' }
+  ];
+
+  const INTERJECTIONS = [
+    'Hold on! The Venerable Synod of 731 AD strictly forbade such shenanigans past Vespers!',
+    'Fascinating! Notice how the local population adapts to the 60mph coastal sea-gales with remarkable resilience.',
+    'From a bushcraft perspective, you can make an emergency bivouac out of two sun-bleached deckchairs and a Wimpy wrapper.',
+    'Deadly 60 alert! That feral seagull hovering over the kebab rank is moving at a lethal 45 knots!',
+    'Nonsense! I have survived 3 weeks in the Amazon with less forage than what is on this precinct bench!',
+    'Verily, the ancient charters of Northumbria recorded a similar misdemeanour near Jarrow in 684 AD!'
+  ];
+
   const LENSES = [
     { id: 'proud_of_it',        label: 'Proud of It',          desc: 'This was fine. The herald sees no issue whatsoever.' },
     { id: 'full_cover_up',      label: 'Full Cover-Up',        desc: 'It never happened. The herald is confused by the question.' },
@@ -1778,195 +1840,6 @@ function renderSpec(spec) {
       };
     }
     
-    if (/leeds|manchester|sheffield|newcastle|wigan|bradford|liverpool|preston|carlisle|sunderland|barrow|bolton|rochdale|york|hull/.test(t)) {
-      return {
-        region: 'Industrial / Northern',
-        affectation: `Heart of the ${town} Industrial Ring Road & Railway Arches`,
-        mottos: [
-          { motto: 'FERRUM FERMENTAT IN ARCHIBUS', translation: 'Iron and Sausage Ferment in the Arches' },
-          { motto: 'SABULUM ET FLAMMA VINCUNT', translation: 'Coal and Flame Conquer All' }
-        ],
-        twinned: ['Pripyat', 'Detroit', `${town} Platform 4`],
-        objects: ['cast-iron anvil', 'subterranean sausage vat', 'disused loom shuttle', 'heavy steel girder', 'coal scuttle', 'foundry crucible'],
-        crimes: ['unauthorized sausage fermentation', 'mill-lead rustling', 'subterranean arch sabotage', 'illegal ferret-legging'],
-        profanities: ['scathing northern shite', 'utterly knackered bollocks', 'industrial-grade clusterfuck', 'proper tight-fisted pillocks'],
-        slogans: [
-          `Experience the Industrial Ambition of ${town}!`,
-          `${town}: Where Foundry Steel Meets Subterranean Arch Damp!`,
-          `Discover ${town} — World-Class Consecrated Mill Precincts!`,
-          `Welcome to ${town}: Home of Subterranean Sausage Fermentation!`
-        ],
-        brochures: [
-          `Descend into the disused Victorian railway arches of ${town}, where subterranean sausage fermentation has taken place under magistrate license since 1884!`,
-          `Marvel at the magnificent ${town} cast-iron foundry works and brutalist mill concourse, hailed by 19th-century industrial directors as a triumph superior to Roman aqueducts!`,
-          `Walk through the historic ${town} Kirkgate market concourse, featuring 14 shuttered stalls, authentic 1970s concrete benches, and 2am kebab ranks!`,
-          `Explore our world-class ${town} industrial canal basin! A 14-acre expanse of overgrown railway sidings, disused barges, and protected habitats for urban pigeons!`
-        ],
-        reviews: [
-          { reviewer: 'ArchInspector', rating: 1, text: `The smell of subterranean sausage fermentation from the railway arches in ${town} permeates every hotel room within a 2-mile radius.` },
-          { reviewer: 'FoundryWorker', rating: 2, text: `Visited the ${town} cast-iron foundry works. Hailed as a triumph, but the local pub ran out of ale by 8:30pm.` },
-          { reviewer: 'MarketShopper', rating: 1, text: `Walked through the ${town} Kirkgate concourse. Found 14 shuttered stalls and a 2am kebab rank queue. Attracious shite.` },
-          { reviewer: 'CanalExplorer', rating: 2, text: `The ${town} industrial canal basin features 14 acres of disused barges and overgrown sidings. Absolute clusterfuck.` },
-          { reviewer: 'MillHistorian', rating: 1, text: `Visited the 19th-century ${town} mill precinct. The magistrate-approved sausage fermentation smell is overwhelming.` },
-          { reviewer: 'TaxiRankVictim', rating: 1, text: `Waited 3 hours for a taxi outside the ${town} railway arches. Ended up eating cold curry on a concrete bench.` }
-        ],
-        taHeadlines: [
-          `Subterranean Sausage Smells and Shuttered Department Stores in ${town}`,
-          `Shite Pubs, Lukewarm Kebabs, and Zero Taxis in ${town}`,
-          `Industrial Rain, Damp Tenement Carpets, and Hostile Landlords in ${town}`,
-          `The 2am Kebab Rank Monopoly Trap in ${town}`
-        ],
-        taReviews: [
-          `The smell of subterranean sausage fermentation from the railway arches in ${town} permeates every hotel room within a 2-mile radius. Attracious shite.`,
-          `Visitors arriving in ${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh.`,
-          `They promised a historic cathedral city in ${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam.`,
-          `The local pub in ${town} ran out of draft ale by 8:30pm and the landlord threatened to call the magistrate when we asked for a menu.`
-        ],
-        schools: [
-          `98% Distinction in Subterranean Arch Engineering & Mill Lead Reclamation in ${town}.`,
-          `Ofsted Grade 3: Roundabout Navigation and Slate Mining in ${town}.`
-        ],
-        workforce: [
-          `Subterranean Sausage Fermentation & Foundry Steel Production (68%) in ${town}.`,
-          `Concrete Precinct Security & Wimpy Counter Management (82%) in ${town}.`
-        ],
-        housing: [
-          `Converted 19th-century mill flat in ${town}: £380,000 with subterranean sausage aroma.`,
-          `Victorian terrace in ${town}: £470,000 with authentic shortbread factory chimney damp.`
-        ],
-        excuses: [
-          `Blame Victorian railway directors, disused arch humidity, and 19th-century foundry smoke.`,
-          `Blame industrial coal smoke, damp northern climate, and 1968 brutalist planners.`
-        ]
-      };
-    }
-
-    if (/edinburgh|glasgow|cardiff|aberdeen|llanfair|dundee|swansea|inverness|highlands|stirling|belfast|wales|scotland|rhyl|wrexham/.test(t)) {
-      return {
-        region: 'Celtic / Scottish / Welsh',
-        affectation: `Gateway to the ${town} Slate Wynds & Peat Bogs`,
-        mottos: [
-          { motto: 'SAXUM DENSUM IN PLUVIA', translation: 'Heavy Slate in the Constant Rain' },
-          { motto: 'HAGGIS IN MONTIBUS CURRIT', translation: 'The Haggis Runs Through the Misty Hills' }
-        ],
-        twinned: ['Pripyat', 'Reykjavík (Cold)', `${town} Peat Bog #7`],
-        objects: ['leaden haggis boiling pot', 'slate roof tile', 'bagpipe drone', 'peat spade', 'granite paving block', 'tartan loom shuttle'],
-        crimes: ['unauthorized haggis hunting', 'bog-snorkelling without a permit', 'midnight tartan smuggling', 'druidic chanting beyond midnight'],
-        profanities: ['absolute Celtic shite', 'utter Highland bollocks', 'dour and miserable tripe', 'proper tartan-clad clusterfuck'],
-        slogans: [
-          `Experience the Ancient Celtic Ambition of ${town}!`,
-          `${town}: Where Slate Roofs Meet Highland Rain!`,
-          `Discover ${town} — Home of Haggis Hunting and Bog Snorkelling!`,
-          `Welcome to ${town}: Gateway to Peat Bogs and Fringe Ticketing!`
-        ],
-        brochures: [
-          `Steeped in glorious Celtic heritage! ${town} is the celebrated birthplace of ancient bog snorkelling and home to a historic tartan loom rebellion that altered local history forever!`,
-          `Discover the ancient pagan traditions of ${town}! From Highland haggis hunting to Welsh slate carving, our municipal council preserves rituals that ring true to those who know!`,
-          `Walk through the ancient stone tenement Wynds of ${town}, featuring 14 closed shortbread tin shops, authentic 18th-century granite cobbles, and rain!`,
-          `Explore our world-class ${town} peat bog reserve! A 14-acre expanse of misty hills, stagnant drainage ditches, and protected habitats for Highland midges!`
-        ],
-        reviews: [
-          { reviewer: 'WyndWalker', rating: 1, text: `Walked through the ${town} stone tenement Wynds. 14 shortbread tin shops were closed and it rained for 72 consecutive hours.` },
-          { reviewer: 'BogSnorkeller', rating: 2, text: `Tried traditional bog snorkelling in ${town}. The midge swarms were brutal and the local B&B served freezing porridge.` },
-          { reviewer: 'CastleVisitor', rating: 1, text: `Promised a historic castle view in ${town}. Got North Sea mizzle, a shuttered shortbread store, and a 3-hour traffic jam.` },
-          { reviewer: 'TartanAuditor', rating: 2, text: `Visited the ${town} tartan loom precinct. Landlord glared at us for asking for a food menu after 7:15pm.` },
-          { reviewer: 'HighlandTraveler', rating: 1, text: `If you visit ${town}, bring your own fuel, food, and sleeping bag. Taxi rank closes at dusk. Total bollocks.` },
-          { reviewer: 'FringeAttendee', rating: 1, text: `Bagpipe noise 24/7 outside the ${town} B&B window. Paper-thin walls and dour landlord. Attracious shite.` }
-        ],
-        taHeadlines: [
-          `Damp Tenements, Bagpipe Noise, and Missing Cathedral Ruins in ${town}`,
-          `Freezing Mizzle and Cold Toast Served Strictly at 7:00am in ${town}`,
-          `The 2am Kebab Rank Taxi Cartel Monopoly Trap in ${town}`,
-          `Haggis Hunting Scandals and Shuttered Shortbread Outlets in ${town}`
-        ],
-        taReviews: [
-          `The local heritage tenement B&B in ${town} offers authentic 18th-century stone damp, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a dour landlord.`,
-          `They promised a historic castle view in ${town}. What you actually get is North Sea mizzle, an abandoned Woolworths, and a 3-hour traffic jam.`,
-          `If you visit ${town}, bring your own fuel, your own food, and a sleeping bag, because the taxi rank and local amenities close at dusk.`,
-          `The hotel room in ${town} featured authentic 18th-century wall damp, squeaky bed springs, and a view of the local peat bog.`
-        ],
-        schools: [
-          `100% Pass Rate in Peat Bog Administration & Fringe Ticketing in ${town}.`,
-          `Academic focus centered on Bagpipe Theory and Slate Mining in ${town}.`
-        ],
-        workforce: [
-          `Ghost Tour Management (58%) and Shortbread Factory Packing (35%) in ${town}.`,
-          `Peat Bog Administration & Slate Roof Repair (80%) in ${town}.`
-        ],
-        housing: [
-          `1-bed tenement flat in ${town}: £650,000 with authentic 18th-century stone damp.`,
-          `Stone cottage in ${town}: £380,000 with authentic Welsh slate damp.`
-        ],
-        excuses: [
-          `Blame North Sea mizzle, 18th-century stone masons, and highland midge swarms.`,
-          `Blame English weather, 19th-century railway directors, and druidic prophecies.`
-        ]
-      };
-    }
-
-    if (/cotswolds|somerset|norfolk|devon|cornwall|gloucester|lincoln|suffolk|dorset|wiltshire|hereford|shropshire|bath|taunton/.test(t)) {
-      return {
-        region: 'Agricultural / Rural',
-        affectation: `Jewel of the ${town} Manure & Cider Belt`,
-        mottos: [
-          { motto: 'STERCUS ET CIDERUM VINCUNT', translation: 'Manure and Cider Conquer All' },
-          { motto: 'TRACTOR IN AGRIS MANET', translation: 'The Vintage Tractor Remains in the Mud' }
-        ],
-        twinned: ['Pripyat', 'Chernobyl', `${town} Slurry Pit`],
-        objects: ['vintage tractor flywheel', 'cider barrel', 'rusted manure spreader', 'prize marrow', 'straw bale', 'heavy sheep shears'],
-        crimes: ['cider barrel rustling', 'unauthorized shin-kicking', 'manure spreader sabotage', 'illegal Maypole stick brawling'],
-        profanities: ['rural agricultural shite', 'proper cider-soaked bollocks', 'utter country bumpkin tripe', 'scathing village clusterfuck'],
-        slogans: [
-          `Experience the Rural Heritage of ${town}!`,
-          `${town}: Where Cider Barrels Meet Manure Spreader Innovation!`,
-          `Discover ${town} — World-Class Straw Bale Architecture!`,
-          `Welcome to ${town}: Home of Shin-Kicking and Cider Fermentation!`
-        ],
-        brochures: [
-          `Steeped in glorious West Country heritage! ${town} is the celebrated birthplace of traditional cider barrel fermentation and home to an annual shin-kicking tournament that altered local history forever!`,
-          `Discover the ancient agricultural traditions of ${town}! From Cotswold straw-padded shin-kicking to village Maypole stick brawls, our parish council preserves rituals that ring true!`,
-          `Walk through the thatched cottage village of ${town}, featuring 4 closed country pubs, authentic 17th-century cobble lanes, and manure spreaders!`,
-          `Explore our world-class ${town} village green! A 14-acre expanse of cider orchards, stagnant duck ponds, and protected habitats for sheep!`
-        ],
-        reviews: [
-          { reviewer: 'CiderInspector', rating: 1, text: `The local pub in ${town} ran out of draft cider by 8:15pm and the landlord threatened to call the magistrate when we asked for a food menu.` },
-          { reviewer: 'ManureAuditor', rating: 1, text: `Arrived in ${town} expecting rural peace. Ended up awake all night listening to a disused manure spreader idling by the duck pond.` },
-          { reviewer: 'ShinKicker', rating: 2, text: `Attended the annual ${town} shin-kicking tournament. Brutal but authentic, though the straw bales were damp.` },
-          { reviewer: 'VillageGreenWalker', rating: 2, text: `Walked through the ${town} village green. 14 acres of cider orchards and stagnant duck ponds. Attracious shite.` },
-          { reviewer: 'ThatchedGuest', rating: 1, text: `The thatched B&B in ${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared until we left.` },
-          { reviewer: 'TractorObserver', rating: 1, text: `Vintage tractor flywheel idling outside the window from 5am. Parish council tub budget dispute ongoing. Total bollocks.` }
-        ],
-        taHeadlines: [
-          `Cider Shortages and Hostile Pub Landlords in ${town}`,
-          `Manure Spreader Noise and Squeaky Bed Springs in ${town}`,
-          `Cotswold Damp and Zero Taxis After 8:00pm in ${town}`,
-          `The 2am Village Bus Shelter Monopoly Trap in ${town}`
-        ],
-        taReviews: [
-          `The local pub in ${town} ran out of draft cider by 8:15pm and the landlord threatened to call the parish magistrate when we asked for a food menu.`,
-          `Arrived in ${town} expecting rural peace. Ended up awake all night listening to a disused manure spreader idling by the duck pond.`,
-          `The thatched B&B in ${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute bollocks.`,
-          `If you visit ${town}, bring your own wellies, your own food, and a torch, because the streetlights and local pub close at dusk.`
-        ],
-        schools: [
-          `100% Distinction in Shin-Kicking, Ferret-Legging, and Cider Brewing in ${town}.`,
-          `Ofsted Grade 3: Manure Spreader Operations and Crop Rotation in ${town}.`
-        ],
-        workforce: [
-          `Cider Barrel Fermentation & Manure Spreader Maintenance (72%) in ${town}.`,
-          `Sheep Shearing & Parish Council Tub Administration (65%) in ${town}.`
-        ],
-        housing: [
-          `Thatched cottage in ${town}: £490,000 with authentic Cotswold straw damp.`,
-          `Stone cottage in ${town}: £380,000 with authentic village duck pond damp.`
-        ],
-        excuses: [
-          `Blame ancient Saxon warlords, Cotswold stone quarrymen, and manure spreader friction.`,
-          `Blame cider bakery emissions, 19th-century magistrate orders, and Maypole stick brawlers.`
-        ]
-      };
-    }
-
     // Default Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
     return {
       region: 'Commuter / Suburban Belt',
@@ -2240,12 +2113,20 @@ function renderSpec(spec) {
         reDesignContainer.appendChild(btn);
       });
 
-      // Render Segment Pictures & Stories for Mode I & II
+      // DYNAMIC PANEL SHOW SPEAKER SHUFFLING & INTERJECTION ENGINE
       const commentary = document.getElementById('commentary');
       commentary.innerHTML = '';
       const charges = result.charges ?? [];
+
+      const seed = hashTown(location, 777);
+      const shuffledPanelists = [...PANELISTS].sort((a, b) => {
+        return (hashTown(location + a.id, seed) % 100) - (hashTown(location + b.id, seed) % 100);
+      });
       
       (result.commentary ?? []).forEach((block, idx) => {
+        const speaker = shuffledPanelists[idx % shuffledPanelists.length];
+        const hasInterjection = (hashTown(location + idx, 999) % 2) === 0;
+
         const div = document.createElement('div');
         div.className = 'commentary-block';
 
@@ -2261,12 +2142,25 @@ function renderSpec(spec) {
           badgeContent = `<svg viewBox="-30 -30 60 60" width="32" height="32" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">${svgCharge}</svg>`;
         }
 
+        let interjectionHtml = '';
+        if (hasInterjection) {
+          const interjector = shuffledPanelists[(idx + 1) % shuffledPanelists.length];
+          const interjectionText = INTERJECTIONS[hashTown(location + idx, 444) % INTERJECTIONS.length];
+          interjectionHtml = `
+            <div class="interjection-card">
+              <div class="interjection-header">⚡ ${interjector.avatar} ${escapeHtml(interjector.name)} (${escapeHtml(interjector.role)}) INTERJECTS:</div>
+              <div class="interjection-text">${escapeHtml(interjectionText)}</div>
+            </div>`;
+        }
+
         div.innerHTML = `
           <div class="commentary-header">
             <div class="story-icon-badge">${badgeContent}</div>
+            <div class="speaker-tag-badge">${speaker.avatar} ${escapeHtml(speaker.name)}</div>
             <div class="commentary-element">${escapeHtml(block.element)}</div>
           </div>
-          <div class="commentary-text">${escapeHtml(block.text)}</div>`;
+          <div class="commentary-text">"${escapeHtml(block.text)}"</div>
+          ${interjectionHtml}`;
         commentary.appendChild(div);
       });
     }
