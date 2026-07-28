@@ -94,6 +94,16 @@
 
 
 
+### Entry #016 — The 10-Minute Agile Retrospective & DORA Metrics Cadence
+* **Category:** Agile DevOps & Continuous Improvement
+* **Date:** 2026-07-28
+* **Insight:** Incorporate an automated DORA & Application Quality metrics check (`npm run metrics`) into a structured 10-minute Retrospective at every major product milestone. Review Deployment Frequency, Change Failure Rate, Poka-Yoke guard density, and 1% marginal gain action items.
+
+### Entry #017 — Continuous Pipeline Maturity: CAT Environment vs Live Production Exploratory Testing
+* **Category:** Testing Strategy & Pipeline Architecture
+* **Date:** 2026-07-28
+* **Insight:** In early-stage development, conducting live exploratory testing directly on production (`main` branch) yields rapid feedback but inflates the git Change Failure Rate (CFR ~39.0%) as fixes are pushed directly. As the product scales, introducing an upstream Customer Acceptance Testing (CAT) / Staging environment (with BDD specs and preview URLs) isolates exploratory defects before production, driving production CFR toward 0% while tracking CAT defect density.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
