@@ -401,3 +401,12 @@
   2. Section 7 in Mode III now prioritizes hyper-local vitriolic legend contrasts when available.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Nottingham renders Robin Hood fleeing Friday night undergraduates to live in a tree.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-034 — Generic Sculpture Exemplar Breach Purge (Law 1 Enforcement)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA catch on Law 1 breach
+**Symptom:** Exemplar line *"The local council spent £3.4 million on an abstract wire sculpture while potholes destroyed both front axles of my Vauxhall Corsa"* breached Law 1 by relying on generic monocultural council tropes with 0 hyper-local grounding.
+**Fix:**
+  1. Replaced all generic sculpture exemplars in `docs/satirical-comedy-patterns.md`, `satirical_comedy_manifesto.md`, and `scripts/build-rich-ui.js` with 100% hyper-locally grounded town exemplars (*Nottingham cave glass cubes, Glastonbury copper dowsing rods, Dundee Desperate Dan catapults, Peacehaven Meridian brass compasses*).
+  2. Added automated test in `tests/waste_log_prevention.test.js` asserting zero generic ungrounded sculpture exemplars exist.
+  3. Pushed updated client bundle and docs to GitHub `main`.

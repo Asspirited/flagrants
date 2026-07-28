@@ -41,12 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Acidic Legend Weaponization Robin Hood Fleeing (FG-WL-033)', () => {
+test('FG-WL Prevention — Zero Generic Sculpture Tropes (FG-WL-034 / Law 1)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Robin Hood took one look at Nottingham High Street on a Friday night'), true, 'Nottingham must render Robin Hood fleeing undergraduates');
-  assert.strictEqual(codeIndex.includes('fled 18 miles into the woods to live in a tree'), true, 'Nottingham must render living in a tree');
+  assert.strictEqual(codeIndex.includes('abstract sculpture'), false, 'code/index.html must contain zero generic abstract sculpture lines');
+  assert.strictEqual(codeIndex.includes('destroyed both front axles of my Vauxhall Corsa'), false, 'code/index.html must contain zero generic Vauxhall Corsa axle lines');
 });
+
 
 
 
