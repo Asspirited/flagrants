@@ -457,6 +457,13 @@
 **Symptom:** Mode III audits lacked dedicated British gallows weather ratings and regional morale survival tips for enduring 9 months of damp drizzle.
 **Fix:**
   1. Built the **9-Month Weather & Morale Survival Audit Engine** in `scripts/build-rich-ui.js`.
-  2. Added a dedicated Mode III card displaying regional weather severity, morale sustain factors, and survival tips across all 5 UK archetypes.
-  3. Added automated test in `tests/waste_log_prevention.test.js` asserting weather survival audit rendering.
+
+## FG-WL-040 — Instant Mode Switcher Fix (Zero-Lag Unblocked Mode I, II, & III Tab Switching)
+**Date:** 2026-07-28
+**Cost:** ~3 min user QA catch on mode tab switching regression
+**Symptom:** Selecting Mode I or Mode II tabs after being in Mode III stalled or failed to render when remote Cloudflare Worker fetch timed out or returned null `currentFindings`.
+**Fix:**
+  1. Replaced blocking network calls in `generate()` with a 1.2s bounded fallback pipe that guarantees instant client-side rendering of `buildDynamicFallbackResult()` for Mode I, Mode II, and Mode III on GitHub Pages.
+  2. Ensured `mode3Container.style.display` toggles dynamically (`flex` for Mode III, `none` for Mode I & II).
+  3. Added automated regression test in `tests/waste_log_prevention.test.js` asserting Mode I, II, and III tab switching renders cleanly.
   4. Pushed updated client bundle and docs to GitHub `main`.

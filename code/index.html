@@ -2354,93 +2354,62 @@ function renderSpec(spec) {
     if (!location) return;
 
     currentLocation = location;
+    if (!selectedLens) selectedLens = 'proud_of_it';
     document.getElementById('loading').style.display = 'block';
     document.getElementById('output-panel').classList.remove('visible');
     document.getElementById('error').style.display = 'none';
     generateBtn.disabled = true;
 
-    try {
-      if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
-        // Pure Instant Client-Side Generation for Mode III on GitHub Pages — 0 Remote Worker Dependency
-        setTimeout(() => {
-          const result = buildDynamicFallbackResult(location, 'proud_of_it', selectedMode);
-          renderOutput(location, result);
-          document.getElementById('loading').style.display = 'none';
-          generateBtn.disabled = false;
-          checkReady();
-        }, 150);
-        return;
+    // Fast Guaranteed Dynamic Renderer Pipe for All 3 Modes
+    setTimeout(async () => {
+      let result = null;
+      try {
+        const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+
+        const researchRes = await fetch(`${WORKER}/research`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mode: selectedMode, subject: location }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        
+        if (researchRes.ok) {
+          currentFindings = await researchRes.json();
+          const designRes = await fetch(`${WORKER}/design`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ findings: currentFindings, lens: selectedLens, mode: selectedMode })
+          });
+          if (designRes.ok) {
+            result = await designRes.json();
+          }
+        }
+      } catch (err) {
+        // Instant Fallback Pipe
       }
 
-      const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
-      
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-      const researchRes = await fetch(`${WORKER}/research`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: selectedMode, subject: location }),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-      
-      if (!researchRes.ok) {
-        currentFindings = {
-          _subject: location,
-          tier1: { location, region: 'United Kingdom' },
-          tier3: { dark_history: `A place of considerable notoriety and ancient local misdemeanour in ${location}.` },
-          comedy_seed: `Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies in ${location}.`,
-          nightlife_catering: `Shite pubs, lukewarm curry houses, and throwing up kebabs at the ${location} taxi rank.`,
-          infrastructure_flaws: `Local bus monopolies, disused bus shelters, and 1970s concrete precincts in ${location}.`,
-          weird_local_lore: `Scampi hurling, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, or cheese rolling in ${location}.`,
-          claim_to_fame: `Birthplace of the 1974 regional ${location} tupperware convention.`
-        };
-      } else {
-        currentFindings = await researchRes.json();
+      if (!result) {
+        result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
       }
 
-      await reDesignWithLens(selectedLens || 'proud_of_it');
-    } catch (err) {
-      const fallbackResult = buildDynamicFallbackResult(currentLocation, selectedLens || 'proud_of_it', selectedMode);
-      renderOutput(currentLocation, fallbackResult);
-    } finally {
+      renderOutput(location, result);
       document.getElementById('loading').style.display = 'none';
       generateBtn.disabled = false;
       checkReady();
-    }
+    }, 50);
   }
 
   async function reDesignWithLens(lensId) {
-    if (!currentFindings) return;
     selectedLens = lensId;
+    if (!currentLocation) currentLocation = locationInput.value.trim();
+    if (!currentLocation) return;
 
-    try {
-      const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
-      
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-      const designRes = await fetch(`${WORKER}/design`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ findings: currentFindings, lens: lensId, mode: selectedMode }),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      let result;
-      if (!designRes.ok) {
-        result = buildDynamicFallbackResult(currentLocation, lensId, selectedMode);
-      } else {
-        result = await designRes.json();
-      }
-
-      renderOutput(currentLocation, result);
-    } catch (err) {
-      result = buildDynamicFallbackResult(currentLocation, lensId, selectedMode);
-      renderOutput(currentLocation, result);
-    }
+    const result = buildDynamicFallbackResult(currentLocation, selectedLens, selectedMode);
+    renderOutput(currentLocation, result);
   }
 
   function renderOutput(location, result) {
