@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=1201">
+  <link rel="manifest" href="manifest.json?v=1301">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1151,6 +1151,14 @@ const richHtml = `<!DOCTYPE html>
           \`Visit the magnificent \${town} clifftop caravan concourse, featuring 400 sun-bleached static homes, authentic salt-corroded deckchairs, and a high-street chip shop that closes at dusk!\`,
           \`Stroll along the historic \${town} Undercliff Walk, where emergency coastguards audit abandoned pianos and driftwood wreckage deposited by Channel tides!\`
         ],
+        reviews: [
+          { reviewer: 'SeaGaleVictim', rating: 1, text: \`Arrived in \${town} expecting seaside charm. Ended up soaked by a 60mph sea-gale while eating lukewarm scampi out of a damp cardboard basket.\` },
+          { reviewer: 'DeckchairInspector', rating: 1, text: \`The local heritage B&B in \${town} offers authentic sea-fog damp carpets and breakfast served strictly between 7:00 and 7:12am by a hostile landlord.\` },
+          { reviewer: 'MeridianWalker', rating: 2, text: \`Standing on the \${town} clifftop, the wind-gale blew my umbrella into the English Channel while coastal erosion swallowed another 3 inches of footpath.\` },
+          { reviewer: 'UndercliffAuditor', rating: 1, text: \`Strolled along the \${town} Undercliff Walk. Found an abandoned upright piano and three rusted harbour buoys deposited by Channel tides.\` },
+          { reviewer: 'PromenadeShopper', rating: 2, text: \`Visited the \${town} clifftop concourse. Found 400 static caravans, a closed chip shop, and salt-crusted promenade benches. Attracious shite.\` },
+          { reviewer: 'FlamingoRescuer', rating: 1, text: \`RNLI lifeboat was called out in \${town} to rescue a runaway inflatable flamingo blown off the sea wall by 50-knot gales. Total bollocks.\` }
+        ],
         taHeadlines: [
           \`Freezing Coastal Gales and Lukewarm Scampi Baskets in \${town}\`,
           \`Salt-Corroded Deckchairs, Damp B&B Carpets, and Hostile Landlords in \${town}\`,
@@ -1205,6 +1213,14 @@ const richHtml = `<!DOCTYPE html>
           \`Marvel at the magnificent \${town} cast-iron foundry works and brutalist mill concourse, hailed by 19th-century industrial directors as a triumph superior to Roman aqueducts!\`,
           \`Walk through the historic \${town} Kirkgate market concourse, featuring 14 shuttered stalls, authentic 1970s concrete benches, and 2am kebab ranks!\`,
           \`Explore our world-class \${town} industrial canal basin! A 14-acre expanse of overgrown railway sidings, disused barges, and protected habitats for urban pigeons!\`
+        ],
+        reviews: [
+          { reviewer: 'ArchInspector', rating: 1, text: \`The smell of subterranean sausage fermentation from the railway arches in \${town} permeates every hotel room within a 2-mile radius.\` },
+          { reviewer: 'FoundryWorker', rating: 2, text: \`Visited the \${town} cast-iron foundry works. Hailed as a triumph, but the local pub ran out of ale by 8:30pm.\` },
+          { reviewer: 'MarketShopper', rating: 1, text: \`Walked through the \${town} Kirkgate concourse. Found 14 shuttered stalls and a 2am kebab rank queue. Attracious shite.\` },
+          { reviewer: 'CanalExplorer', rating: 2, text: \`The \${town} industrial canal basin features 14 acres of disused barges and overgrown sidings. Absolute clusterfuck.\` },
+          { reviewer: 'MillHistorian', rating: 1, text: \`Visited the 19th-century \${town} mill precinct. The magistrate-approved sausage fermentation smell is overwhelming.\` },
+          { reviewer: 'TaxiRankVictim', rating: 1, text: \`Waited 3 hours for a taxi outside the \${town} railway arches. Ended up eating cold curry on a concrete bench.\` }
         ],
         taHeadlines: [
           \`Subterranean Sausage Smells and Shuttered Department Stores in \${town}\`,
@@ -1261,6 +1277,14 @@ const richHtml = `<!DOCTYPE html>
           \`Walk through the ancient stone tenement Wynds of \${town}, featuring 14 closed shortbread tin shops, authentic 18th-century granite cobbles, and rain!\`,
           \`Explore our world-class \${town} peat bog reserve! A 14-acre expanse of misty hills, stagnant drainage ditches, and protected habitats for Highland midges!\`
         ],
+        reviews: [
+          { reviewer: 'WyndWalker', rating: 1, text: \`Walked through the \${town} stone tenement Wynds. 14 shortbread tin shops were closed and it rained for 72 consecutive hours.\` },
+          { reviewer: 'BogSnorkeller', rating: 2, text: \`Tried traditional bog snorkelling in \${town}. The midge swarms were brutal and the local B&B served freezing porridge.\` },
+          { reviewer: 'CastleVisitor', rating: 1, text: \`Promised a historic castle view in \${town}. Got North Sea mizzle, a shuttered shortbread store, and a 3-hour traffic jam.\` },
+          { reviewer: 'TartanAuditor', rating: 2, text: \`Visited the \${town} tartan loom precinct. Landlord glared at us for asking for a food menu after 7:15pm.\` },
+          { reviewer: 'HighlandTraveler', rating: 1, text: \`If you visit \${town}, bring your own fuel, food, and sleeping bag. Taxi rank closes at dusk. Total bollocks.\` },
+          { reviewer: 'FringeAttendee', rating: 1, text: \`Bagpipe noise 24/7 outside the \${town} B&B window. Paper-thin walls and dour landlord. Attracious shite.\` }
+        ],
         taHeadlines: [
           \`Damp Tenements, Bagpipe Noise, and Missing Cathedral Ruins in \${town}\`,
           \`Freezing Mizzle and Cold Toast Served Strictly at 7:00am in \${town}\`,
@@ -1315,6 +1339,14 @@ const richHtml = `<!DOCTYPE html>
           \`Discover the ancient agricultural traditions of \${town}! From Cotswold straw-padded shin-kicking to village Maypole stick brawls, our parish council preserves rituals that ring true!\`,
           \`Walk through the thatched cottage village of \${town}, featuring 4 closed country pubs, authentic 17th-century cobble lanes, and manure spreaders!\`,
           \`Explore our world-class \${town} village green! A 14-acre expanse of cider orchards, stagnant duck ponds, and protected habitats for sheep!\`
+        ],
+        reviews: [
+          { reviewer: 'CiderInspector', rating: 1, text: \`The local pub in \${town} ran out of draft cider by 8:15pm and the landlord threatened to call the magistrate when we asked for a food menu.\` },
+          { reviewer: 'ManureAuditor', rating: 1, text: \`Arrived in \${town} expecting rural peace. Ended up awake all night listening to a disused manure spreader idling by the duck pond.\` },
+          { reviewer: 'ShinKicker', rating: 2, text: \`Attended the annual \${town} shin-kicking tournament. Brutal but authentic, though the straw bales were damp.\` },
+          { reviewer: 'VillageGreenWalker', rating: 2, text: \`Walked through the \${town} village green. 14 acres of cider orchards and stagnant duck ponds. Attracious shite.\` },
+          { reviewer: 'ThatchedGuest', rating: 1, text: \`The thatched B&B in \${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared until we left.\` },
+          { reviewer: 'TractorObserver', rating: 1, text: \`Vintage tractor flywheel idling outside the window from 5am. Parish council tub budget dispute ongoing. Total bollocks.\` }
         ],
         taHeadlines: [
           \`Cider Shortages and Hostile Pub Landlords in \${town}\`,
@@ -1371,6 +1403,14 @@ const richHtml = `<!DOCTYPE html>
         \`Steeped in glorious heritage! \${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl!\`,
         \`Experience the continuous orbital bliss of \${town}'s 7-tier roundabout system, designed in 1968 to ensure motorists never actually reach their intended destination!\`
       ],
+      reviews: [
+        { reviewer: 'TrappedMotorist', rating: 1, text: \`Entered the \${town} dual carriageway roundabout. Completed 47 laps before finding an exit. Total bollocks.\` },
+        { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. What a clusterfuck.\` },
+        { reviewer: 'KebabRankSurvivor', rating: 1, text: \`Waited 3 hours at the \${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench. Absolute shite.\` },
+        { reviewer: 'RampVictim', rating: 1, text: \`Spent 4 hours stuck on the \${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.\` },
+        { reviewer: 'HighStreetVisitor', rating: 2, text: \`Visited the \${town} high street. Found 14 shuttered stores and 3 betting shops. Utter tripe.\` },
+        { reviewer: 'SculptureAuditor', rating: 1, text: \`The council spent £3.4 million on an abstract sculpture in \${town} while potholes destroyed both front axles of my Vauxhall Corsa.\` }
+      ],
       taHeadlines: [
         \`Shite Pubs, Lukewarm Kebabs, and Zero Taxis in \${town}\`,
         \`Clutch-Destroying Roundabouts, Damp B&B Carpets, and Hostile Landlords in \${town}\`,
@@ -1416,32 +1456,7 @@ const richHtml = `<!DOCTYPE html>
     const taHead = reg.taHeadlines[idxTaHead].replace(/{town}/g, town);
     const taRev = reg.taReviews[idxTaRev].replace(/{town}/g, town);
 
-    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris', 'Honda Civic', 'Renault Clio', 'Skoda Fabia', 'Ford Fiesta', 'Austin Metro'];
-    
-    const hCar = hashTown(town, 17);
-    const hObj = hashTown(town, 29);
-    const hMil = hashTown(town, 41);
-
-    const car = cars[hCar % cars.length];
-    const obj = reg.objects[hObj % reg.objects.length];
-    const millions = (hMil % 5) + 1;
-    const profanity = reg.profanities[hMil % reg.profanities.length];
-
-    // 12-REVIEW TOPIC POOL MATRIX WITH SCATHING UK PROFANITY & REGIONAL ANCHORS
-    const reviewPool = [
-      { reviewer: 'LandlordVictim', rating: 1, text: \`The B&B in \${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute \${profanity}.\` },
-      { reviewer: 'PotholeSurvivor', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallowed my \${car}. Total bollocks.\` },
-      { reviewer: 'WindblownVisitor', rating: 1, text: \`Got soaked by weather in \${town} while trying to eat food out of a damp cardboard tray. Attracious \${profanity}.\` },
-      { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. What a clusterfuck.\` },
-      { reviewer: 'KebabRankSurvivor', rating: 1, text: \`Waited 3 hours at the \${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench. Absolute shite.\` },
-      { reviewer: 'TrappedMotorist', rating: 1, text: \`Spent 4 hours stuck on the \${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.\` },
-      { reviewer: 'LocalResident', rating: 2, text: \`Visited the \${town} high street. Found 14 shuttered stores and 3 betting shops. Utter tripe.\` },
-      { reviewer: 'FolkObserver', rating: 3, text: \`Came for the \${town} annual local tournament. Brutal but authentic.\` },
-      { reviewer: 'NostalgicVisitor', rating: 2, text: \`They promised a historic cathedral in \${town}. It was an abandoned Woolworths next to a Wimpy.\` },
-      { reviewer: 'LostNavigator', rating: 1, text: \`Entered the \${town} dual carriageway roundabout. Completed 47 laps before finding an exit. Total bollocks.\` },
-      { reviewer: 'LocalHistorian', rating: 2, text: \`Fascinating local history in \${town}, though the local pub ran out of ale by 8:30pm. Proper pillocks.\` },
-      { reviewer: 'TourBusDriver', rating: 1, text: \`Parked the coach in \${town}. Wheels were missing within 20 minutes. 1 star. Attracious shite.\` }
-    ];
+    const reviewPool = reg.reviews;
 
     const rIdx1 = hashTown(town, 401) % reviewPool.length;
     let rIdx2 = hashTown(town, 503) % reviewPool.length;
@@ -1846,4 +1861,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 
 workerJs = workerJs.replace(/turnip/gi, 'cider');
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Complete 5-Region Matrix Sweep (1201)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for 100% Region-Mated Customer Reviews (1301)');
