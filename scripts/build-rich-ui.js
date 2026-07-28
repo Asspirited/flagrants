@@ -1553,6 +1553,7 @@ const richHtml = `<!DOCTYPE html>
   function buildDynamicFallbackResult(town, lensId, mode) {
     const reg = getRegionalProfile(town);
     const localLore = getHyperLocalLore(town);
+    const archetype = classifyTown ? classifyTown(town) : 'commuter';
 
     const idxSlogan   = hashTown(town, 13) % reg.slogans.length;
     const idxBrochure = hashTown(town, 37) % reg.brochures.length;
@@ -1560,8 +1561,42 @@ const richHtml = `<!DOCTYPE html>
     const idxTaRev    = hashTown(town, 109) % reg.taReviews.length;
     const idxMotto    = hashTown(town, 137) % reg.mottos.length;
 
+    // COMBINATORIAL FRESH SENTENCE SYNTHESIZER
+    const BROCHURE_SYNTHESIZER = {
+      agricultural: {
+        slot1: ['Welcome to ' + town, 'Nestled in the rolling West Country hills of ' + town, 'Steeped in 300-year-old orchard tradition in ' + town, 'Discover the agrarian heart of ' + town],
+        slot2: ['where Cooper\'s Hill 9lb Double Gloucester cheese rolls down 1:2 slopes', 'famed for historic parish marrow competitions and', 'where ancient farmhouse cider cellars meet', 'home to 18th-century cider barrel rustling legends where'],
+        slot3: ['visitors can sample authentic cloudy cider and', 'parish elders audit ornamental flower tub budgets while', 'inspect prize marrows at the autumn parish show and', 'enjoy traditional pub hearth banter alongside'],
+        slot4: ['thatch-roofed Cotswold stone cottages!', 'farmhouse cheese tasting in historic timber barns!', 'panoramic views of parish greens and apple orchards!', 'rustic West Country hospitality!']
+      },
+      cathedral_heritage: {
+        slot1: ['Step into historic ' + town, 'Marvel at 800-year-old university quadrangles in ' + town, 'Explore the medieval spires of ' + town, 'Welcome to ancient ' + town],
+        slot2: ['where scholars and poets debated philosophy since 1209 and', 'where soaring cathedral gargoyles overlook cobbled alleyways and', 'home to historic river punting battles where', 'where 14th-century college charters meet'],
+        slot3: ['visitors can enjoy quiet library cloisters and', 'college porters maintain 500-year-old lawn traditions while', 'scholars navigate ancient riverways on wooden punts and', 'explore historic brass rubbings alongside'],
+        slot4: ['atmospheric cobbled streetscapes!', 'scholarly Latin debates in ancient taverns!', 'sublimely preserved medieval architecture!', 'peaceful riverway walks!']
+      },
+      celtic: {
+        slot1: ['Experience ' + town, 'Heart of the highland glens in ' + town, 'Welcome to ancient ' + town, 'Discover the wild beauty of ' + town],
+        slot2: ['where historic castle ruins overlook misty lochs and', 'famed for traditional tartan weaving mills and', 'where single-malt distillery hearths meet', 'home to ancient clan legends where'],
+        slot3: ['travelers enjoy traditional shortbread and peat fires while', 'bagpipers serenade the glen and', 'inspect historic clan plaid weaving alongside', 'sample single-malt cask reserves in'],
+        slot4: ['breathtaking highland scenery!', 'historic peat-fired pub hearths!', 'traditional Scottish hospitality!', 'misty mountain glens!']
+      }
+    };
+
+    function synthesizeFreshSentence(townName, archKey) {
+      const syn = BROCHURE_SYNTHESIZER[archKey];
+      if (!syn) return null;
+      const s1 = syn.slot1[hashTown(townName, 11) % syn.slot1.length];
+      const s2 = syn.slot2[hashTown(townName, 37) % syn.slot2.length];
+      const s3 = syn.slot3[hashTown(townName, 79) % syn.slot3.length];
+      const s4 = syn.slot4[hashTown(townName, 103) % syn.slot4.length];
+      return s1 + ', ' + s2 + ' ' + s3 + ' ' + s4;
+    }
+
+    const synthesizedBrochure = synthesizeFreshSentence(town, archetype);
+
     const slogan = localLore.tourist_slogan || reg.slogans[idxSlogan].replace(/{town}/g, town);
-    const brochure = localLore.tourist_brochure || reg.brochures[idxBrochure].replace(/{town}/g, town);
+    const brochure = localLore.tourist_brochure || synthesizedBrochure || reg.brochures[idxBrochure].replace(/{town}/g, town);
     const taHead = reg.taHeadlines[idxTaHead].replace(/{town}/g, town);
     const taRev = localLore.tripadvisor_audit || reg.taReviews[idxTaRev].replace(/{town}/g, town);
 
