@@ -864,6 +864,14 @@ Formula: "The council spent £[MILLIONS] on a [ABSURD LOCAL OBJECT / TURNIP / CO
 PATTERN C (The Catering & Taxi Monopoly Nightmare):
 Formula: "Spent [HOURS] hours waiting by the [LOCAL CATERING / KEBAB RANK / LATE-NIGHT CHIPPY] because of the [LOCAL TRANSPORT MONOPOLY / BUS CARTEL]. Enjoy lukewarm [LOCAL DISH / ROGAN JOSH] and complete transportation collapse."
 
+REGIONAL CULTURAL & HISTORICAL ANCHOR CONTRACT:
+All folklore, local lore, absurd rituals, and satirical inventions MUST be strictly anchored to the specific geography, local history, regional culture, and rumours of the target area:
+- Coastal Towns (Blackpool, Whitby, Margate, Skegness): Scampi hurling into sea gales, harbour wall cider drownings, wrecker lanterns, donkey racing, herring gutting.
+- Rural & Agricultural Counties (Gloucestershire, Somerset, Lincolnshire, Devon): Cheese rolling down 1:2 cliffs, turnip lubrication, Border Morris stick brawls, Maypole pagan rituals, flaming tar barrels.
+- Northern / Industrial Towns (Sheffield, Leeds, Scunthorpe, Newcastle): Subterranean sausage fermentation in Victorian railway arches, ferret-legging, Egremont World Gurning Championships in horse collars.
+- Home Counties / Commuter Belt (Basingstoke, Slough, Reading, Woking): Roundabout maintenance rituals, 1970s precinct Last of Us concourses, taxi monopoly brawls.
+- Celtic Fringes (Wales, Highlands, Cornwall): Mari Lwyd horse skull guising, Welsh bog snorkelling, Eisteddfod bards, Highland caber tossing.
+
 Substitute these slots dynamically based on the specific location's research findings!
 
 SECTION VOICE MAP:
