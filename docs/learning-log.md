@@ -134,6 +134,16 @@
 * **Date:** 2026-07-28
 * **Insight:** Regional archetypes (e.g. 8 UK regions) solve generic fallbacks, but risk creating "50-mile radius sameness" where neighbouring towns (Cromer vs Norwich vs Diss) share identical satire. True domain excellence requires combining regional background templates with **Hyper-Local Town Research Overrides** (specific headlines, local scandals, local landmarks, and town-mated claims) so every town feels uniquely roasted.
 
+### Entry #024 — Domain-Expert Control Group & Benchmark Test Beds (16-Town Norfolk Matrix)
+* **Category:** QA Architecture & Domain Validation
+* **Date:** 2026-07-28
+* **Insight:** Instead of relying on generic test inputs or asking arbitrary users, ground quality assurance in a **Domain-Expert Control Group** (e.g. 16 real Norfolk towns with known local lore: Blakeney seal colony, Happisburgh 850k-yr footprints, Wroxham Roys store, Potter Heigham 6ft bridge, Wymondham Abbey, Diss Mere, Cromer crabs). Running automated pairwise uniqueness audits (`tests/norfolk_testbed_differentiation.test.js`) across a domain-expert test bed guarantees 100% differentiation (0 slogan collisions across 120 town pairs).
+
+### Entry #025 — The 5-Layer Combinatorial Satire Architecture (Infinite Replayability)
+* **Category:** Satirical Architecture & Generative Design
+* **Date:** 2026-07-28
+* **Insight:** 3 static layers (Regional backdrop + Local DB + Hash) still risk "50-mile radius sameness" if an unmatched town relies on regional fallbacks. Moving to a **5-Layer Architecture** (1. Regional Anchor -> 2. Local DB -> 3. 4-Slot Sentence Synthesizer -> 4. Panelist Shuffler -> 5. CussLab Wound Detector) yields > 440,000 unique sentence permutations per region, eliminating repetition and making repeated text mathematically impossible.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
