@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=601">
+  <link rel="manifest" href="manifest.json?v=701">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1032,7 +1032,7 @@ const richHtml = `<!DOCTYPE html>
     return Math.abs(hash);
   }
 
-  // 12-PATTERN VARIETY MATRIX WITH REGIONAL SATIRICAL ANCHORS
+  // 12-PATTERN VARIETY MATRIX WITH REGIONAL SATIRICAL ANCHORS & ZERO-DUPLICATE REVIEW POOL
   function buildDynamicFallbackResult(town, lensId, mode) {
     const poolSize = 12;
 
@@ -1107,11 +1107,29 @@ const richHtml = `<!DOCTYPE html>
     const obj = objects[hObj % objects.length];
     const millions = (hMil % 5) + 1;
 
-    const reviews = [
-      { reviewer: \`DisappointedFrom\${town}\`, rating: 1, text: \`Spent 3 hours trapped in the \${town} multi-storey car park. Navigation system gave up.\` },
-      { reviewer: 'LocalBastardFromBypass', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallow \${car}s. Absolute bollocks.\` },
-      { reviewer: \`\${town}Local\`, rating: 2, text: \`If you visit \${town}, stay on the bypass and keep your car doors locked. 2 stars.\` }
+    // 12-REVIEW TOPIC POOL MATRIX (Zero Duplicate Review Selector)
+    const reviewPool = [
+      { reviewer: 'LandlordVictim', rating: 1, text: \`The B&B in \${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left.\` },
+      { reviewer: 'PotholeSurvivor', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallowed my \${car}. Absolute bollocks.\` },
+      { reviewer: 'WindblownVisitor', rating: 1, text: \`Got soaked by a sea-gale in \${town} while trying to eat scampi out of a damp cardboard tray. 1 star.\` },
+      { reviewer: 'SausageWatcher', rating: 2, text: \`The smell of subterranean sausage fermentation from the \${town} railway arches permeates every hotel room in the parish.\` },
+      { reviewer: 'KebabRankSurvivor', rating: 1, text: \`Waited 3 hours at the \${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench.\` },
+      { reviewer: 'TrappedMotorist', rating: 1, text: \`Spent 4 hours stuck on the \${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.\` },
+      { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} shopping concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss.\` },
+      { reviewer: 'FolkObserver', rating: 3, text: \`Came for the \${town} annual scampi hurling and shin-kicking tournament. Brutal but authentic.\` },
+      { reviewer: 'NostalgicVisitor', rating: 2, text: \`They promised a historic cathedral in \${town}. It was an abandoned Woolworths next to a Wimpy.\` },
+      { reviewer: 'LostNavigator', rating: 1, text: \`Entered the \${town} dual carriageway roundabout. Completed 47 laps before finding an exit.\` },
+      { reviewer: 'LocalHistorian', rating: 2, text: \`Fascinating 17th-century tavern brawl history in \${town}, though the local pub ran out of ale by 8:30pm.\` },
+      { reviewer: 'TourBusDriver', rating: 1, text: \`Parked the coach in \${town}. Wheels were missing within 20 minutes. 1 star.\` }
     ];
+
+    const rIdx1 = hashTown(town, 401) % reviewPool.length;
+    let rIdx2 = hashTown(town, 503) % reviewPool.length;
+    if (rIdx2 === rIdx1) rIdx2 = (rIdx2 + 1) % reviewPool.length;
+    let rIdx3 = hashTown(town, 607) % reviewPool.length;
+    while (rIdx3 === rIdx1 || rIdx3 === rIdx2) rIdx3 = (rIdx3 + 1) % reviewPool.length;
+
+    const reviews = [reviewPool[rIdx1], reviewPool[rIdx2], reviewPool[rIdx3]];
 
     const schools = [
       \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`,
@@ -1559,4 +1577,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Bitshift Hashing & 12-Pattern Variety Engine (601)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for 12-Review Topic Pool Matrix (701)');

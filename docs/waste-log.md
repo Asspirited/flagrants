@@ -103,3 +103,15 @@
   1. Replaced single-modulo arithmetic with 32-bit bit-shift positional seed hashing `hashTown(town, seed)` with distinct prime seeds per field.
   2. Expanded pattern pools from 4 to 12 distinct satirical pattern options per category.
   3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-010 — Customer Reviews Array Static Topic Hold-Out
+**Date:** 2026-07-28
+**Cost:** ~15 min user feedback loop & code review
+**Symptom:** Slogans, brochures, and TripAdvisor expert audits displayed rich town-tailored variety, but the 3 customer reviews in Section 3 remained hardcoded to the exact same 3 topics (multi-storey car park, turnip sculpture vs potholes, stay on bypass) for every location.
+**Root cause:**
+  1. The `customer_reviews` array in `buildDynamicFallbackResult()` was hardcoded to a fixed 3-element array without referencing the 12-pattern selection engine.
+  2. While upper sections were converted to 12-pattern pools in `FG-WL-009`, Section 3 was missed in the refactor.
+**Fix:**
+  1. Created a 12-review topic pool matrix with 12 distinct reviewer personas and topics.
+  2. Implemented guaranteed zero-duplicate 3-review selection logic per town using bit-shift seeds `hashTown(town, 401)`, `hashTown(town, 503)`, `hashTown(town, 607)`.
+  3. Pushed updated client bundle and docs to GitHub `main`.
