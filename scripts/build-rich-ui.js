@@ -2184,7 +2184,7 @@ const richHtml = `<!DOCTYPE html>
       location = (selectedMode === 'family') ? 'The Smith Family' : 'Slough';
     }
 
-    currentLocation = location;
+        currentLocation = location;
     if (!selectedLens) selectedLens = 'proud_of_it';
 
     // Nielsen Heuristic #1 (Visibility of System Status): Show Herald Research Status Card
@@ -2202,11 +2202,16 @@ const richHtml = `<!DOCTYPE html>
 
     // Fast, crisp 300ms feedback transition for ultimate system status visibility
     setTimeout(() => {
-      const result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
-      renderOutput(location, result);
-      loadingEl.style.display = 'none';
-      generateBtn.disabled = false;
-      checkReady();
+      try {
+        const result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
+        renderOutput(location, result);
+      } catch (err) {
+        console.error('Render output error:', err);
+      } finally {
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (generateBtn) generateBtn.disabled = false;
+        if (typeof checkReady === 'function') checkReady();
+      }
     }, 300);
   }
 
