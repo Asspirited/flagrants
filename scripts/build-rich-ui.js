@@ -1192,6 +1192,16 @@ const richHtml = `<!DOCTYPE html>
       gazette_headline: 'SEAGULL STEALS ENTIRE TRAY OF DONER MEAT FROM PROMENADE KEBAB SHOP',
       spotted_chatter: 'If you lost a pair of false teeth outside the Coral Island arcade last night, they are currently on a ledge by the donkey rides.',
       local_scandal: 'Seaside wind-gales blowing inflatable flamingos into the tramway wires.'
+    },
+    dundee: {
+      paper: 'Dundee Courier & Evening Telegraph',
+      spotted: 'Spotted: Dundee & Tay Bridge',
+      gazette_headline: 'RRS DISCOVERY MAST ACCIDENTALLY USED TO HANG DRYING LAUNDRY IN DUNDEE HARBOUR',
+      spotted_chatter: 'Will whoever took the Dennis the Menace statue catapult by the Overgate please return it before Desperate Dan arrives.',
+      local_scandal: 'Debates over Keiller marmalade recipes and Tay Rail Bridge gale-wind warnings in Dundee.',
+      tourist_slogan: 'Dundee: City of Jute, Jam, Journalism & RRS Discovery Heritage!',
+      tourist_brochure: 'Welcome to Dundee! City of Discovery, historic Jute mills, Keiller Marmalade, and DC Thomson Beano comics! Inspect Captain Scott\'s polar exploration ship RRS Discovery in the harbour, marvel at the V&A Dundee on the Tay Estuary, and enjoy sunlit coastal views!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #8021: Dundee is a brilliant sunlit estuary city of maritime polar exploration, Beano comics, and historic jute mills. Rating: 4.6/5 — Exceptional marmalade & coastal views.'
     }
   };
 
@@ -1315,7 +1325,7 @@ const richHtml = `<!DOCTYPE html>
           { motto: 'SCAMPI IN VENTO VOLAT', translation: 'Scampi Flies High in the Coastal Gale' },
           { motto: 'ANIMA IN PIANO BEACHED', translation: 'The Soul of an Abandoned Piano on the Beach' }
         ],
-        twinned: ['Pripyat', 'Atlantis (Sunken)', \`\${town} Sewage Outfall Pipe 3\`],
+        twinned: ['Atlantis (Sunken)', 'Bermuda Triangle East', 'Sealand', 'Port Royal'],
         objects: ['rusted anchor', 'fibreglass seagull', 'salt-crusted deckchair', 'stolen harbour buoy', 'soggy fish basket', 'copper diving helmet'],
         crimes: ['illegal scampi smuggling', 'pier-hopping at low tide', 'lighthouse bell tampering', 'stealing sea-gale deckchairs'],
         profanities: ['utter coastal shite', 'atrocious salt-encrusted bollocks', 'proper sea-side tripe', 'complete pier-head clusterfuck'],
@@ -1376,7 +1386,7 @@ const richHtml = `<!DOCTYPE html>
         { motto: 'ROTAMUR ET MANEMUS', translation: 'We Turn on the Roundabout, and We Remain' },
         { motto: 'PRECINCTUS IN AETERNUM', translation: 'The Precinct Stands Forever' }
       ],
-      twinned: ['Pripyat', 'Slough', \`\${town} Multi-Storey Level 3\`],
+      twinned: ['Swindon Magic Roundabout', 'Slough Flyover', \`\${town} Ring Road East\`],
       objects: ['1970s tupperware box', 'broken shopping trolley', 'concrete bollard', 'disused Wimpy sign', 'parking meter', 'vape battery charger'],
       crimes: ['shopping trolley canal immersion', 'roundabout drift racing', 'municipal bollard theft', 'aggravated bicycle borrowing'],
       profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'atrocious roundabout clusterfuck', 'utter precinct tripe'],

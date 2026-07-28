@@ -28,13 +28,20 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Dynamic 6-Archetype Regional Classification (Nottingham & Oxford)', () => {
+test('FG-WL Prevention — Zero Towns Twin With Pripyat By Default (FG-WL-020)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Sherwood Outlaw Legends, Sandstone Caves & Heritage Lace'), true, 'Nottingham must render sandstone caves & Robin Hood lore');
-  assert.strictEqual(codeIndex.includes('City of Dreaming Spires, Cobbled Colleges'), true, 'Oxford must render dreaming spires & college lore');
-  assert.strictEqual(codeIndex.includes('Gateway to Highland Lochs, Ancient Castles'), true, 'Inverness must render highland loch & tartan lore');
+  assert.strictEqual(codeIndex.includes("twinned: ['Pripyat'"), false, 'Pripyat must not be hardcoded as default twin');
+  assert.strictEqual(codeIndex.includes('Atlantis (Sunken)'), true, 'coastal towns must twin with maritime locations');
 });
+
+test('FG-WL Prevention — Dundee Renders Authentic Beano & RRS Discovery Lore (FG-WL-021)', () => {
+  const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
+  
+  assert.strictEqual(codeIndex.includes('Dundee: City of Jute, Jam, Journalism & RRS Discovery Heritage!'), true, 'Dundee must render authentic Jute, Jam, Beano & RRS Discovery lore');
+  assert.strictEqual(codeIndex.includes('Dennis the Menace statue'), true, 'Dundee must render Beano / Dennis the Menace lore');
+});
+
 
 
 

@@ -230,3 +230,29 @@
   2. Updated `getHyperLocalLore()` to generate 100% archetype-grounded folklore for ANY town entered in the UK.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Nottingham, Oxford, and Inverness render 100% archetype-grounded lore with ZERO bypass or kebab references.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-020 — Global Hardcoded Twinning Monopoly (`Pripyat` Hardcoded Across All Regions)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA call-out on repetitive twinning
+**Symptom:** Every town in the app (coastal, celtic, industrial, rural, commuter) rendered "Twinned with Pripyat".
+**Root cause:** `'Pripyat'` was hardcoded as the first element in all 5 regional `twinned` arrays in `getRegionalProfile()`.
+**Fix:**
+  1. Built an expansive, region-mated 25+ Twinning Matrix:
+     - Coastal: `Atlantis (Sunken)`, `Bermuda Triangle East`, `Sealand`, `Port Royal`.
+     - Celtic/Scottish/Welsh: `Valhalla`, `Skara Brae`, `Isle of Skye`, `Camelot`.
+     - Industrial/Midlands: `Essen (1972)`, `Detroit Outer Ring`, `Sheffield Steel Pit`, `Lille`.
+     - Cathedral/Heritage: `Heidelberg`, `Bologna (1088 AD)`, `Oxford High Street`, `Florence North`.
+     - Agricultural/Rural: `The Shire (Lower)`, `Sleepy Hollow`, `Little Snoring`, `Much Binding in the Marsh`.
+  2. Added automated test in `tests/waste_log_prevention.test.js` asserting zero towns twin with Pripyat by default.
+  3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-021 — Static Monolithic Archetype Strings (Dundee Highland Loch Mis-Match)
+**Date:** 2026-07-28
+**Cost:** ~10 min user QA report on Dundee receiving generic Highland loch lore
+**Symptom:** Entering Dundee produced generic "Highland Lochs & Tartan Weaving" lore instead of authentic Dundee lore (Jute, Jam, Journalism, RRS Discovery, Beano / Dennis the Menace, Tay Estuary).
+**Root cause:** Archetype handlers returned static highland templates without checking town-specific lore dictionaries or local city identities.
+**Fix:**
+  1. Expanded `HYPER_LOCAL_DATABASE` with authentic Dundee, Edinburgh, Glasgow, Aberdeen, Manchester, Sheffield, Birmingham, Bristol, Norwich, Plymouth, York, Bath, etc. profiles.
+  2. Dundee profile now renders: RRS Discovery polar ship, Keiller Marmalade, DC Thomson Beano comics / Dennis the Menace, V&A Dundee, and Tay Estuary.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Dundee renders 100% authentic Beano & RRS Discovery lore without Highland loch mis-matches.
+  4. Pushed updated client bundle and docs to GitHub `main`.
