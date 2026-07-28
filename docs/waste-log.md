@@ -430,3 +430,13 @@
   2. Added Ray Winstone (*"Listen to me, sunshine..."*) and Prof. Brian Cox (*"Space-time actually dilates at 3am on the orbital roundabout..."*) commentary streams.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Ray Winstone and Brian Cox appear in celebrity panel roster.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-037 — Feature Expansion: "3-Way Celebrity Panel Conspire & Dialogue Engine"
+**Date:** 2026-07-28
+**Cost:** ~5 min user feature request for 2-3 panelist conversation threads
+**Symptom:** Panel interjections were single isolated quotes rather than 3-way conversational threads where celebrity panelists interact and argue with each other about the town (*Ray Winstone + Brian Cox + Ray Mears / Attenborough + Backshall + Bede*).
+**Fix:**
+  1. Built the **3-Way Celebrity Panel Conspire & Dialogue Engine** in `scripts/build-rich-ui.js`.
+  2. Embedded multi-speaker dialogue threads into panel interjections for all 5 regional archetypes.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting 3-way celebrity panel dialogue threads render cleanly.
+  4. Pushed updated client bundle and docs to GitHub `main`.
