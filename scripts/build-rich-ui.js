@@ -474,7 +474,7 @@ const richHtml = `<!DOCTYPE html>
     .crest-figure svg {
       filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
       max-width: 100%;
-      height auto;
+      height: auto;
     }
 
     .export-actions {
@@ -1048,7 +1048,7 @@ const richHtml = `<!DOCTYPE html>
           comedy_seed: 'Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies.',
           nightlife_catering: 'Shite pubs, lukewarm curry houses, and throwing up kebabs at the taxi rank.',
           infrastructure_flaws: 'Local bus monopolies, disused bus shelters, and 1970s concrete precincts.',
-          weird_local_lore: 'Scampi hurling championships, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliffs, Egremont World Gurning Championships, Scottish Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, or Mari Lwyd horse skull guising.',
+          weird_local_lore: 'Scampi hurling championships into sea gales, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation in disused railway tunnels, cheese rolling down 1:2 cliffs, Egremont World Gurning Championships in horse collars, Scottish Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, or Mari Lwyd horse skull guising.',
           claim_to_fame: 'Birthplace of the 1974 regional tupperware convention.'
         };
       } else {
@@ -1325,10 +1325,9 @@ const richHtml = `<!DOCTYPE html>
 fs.writeFileSync(htmlPath, richHtml, 'utf8');
 fs.writeFileSync(rootHtmlPath, richHtml, 'utf8');
 
-// Update code/worker.js with richHtml embedded and svg-renderer.js inline
+// Update code/worker.js with richHtml embedded and 12+ Satirical Pattern Repository
 let workerJs = fs.readFileSync(workerPath, 'utf8');
 
-// Enrich RESEARCH_SYSTEM with Fabricated Surreal Folk Rituals (Scampi Hurling, Blood-Letting, Rectal Cheese Processing, Subterranean Sausage Fermentation)
 const NEW_RESEARCH_SYSTEM = `const RESEARCH_SYSTEM = \`You are a Municipal Researcher & Local Satirist.
 Given a location, town, or institution, return ONLY a JSON object with targeted hyper-local relevance (token-efficient, high-precision):
 {
@@ -1338,7 +1337,7 @@ Given a location, town, or institution, return ONLY a JSON object with targeted 
   "dark_history": "<ancient or modern local misdemeanour / planning disaster>",
   "nightlife_catering": "<shite local pubs, 2am kebab ranks, lukewarm curry houses, local taxi rank monopolies>",
   "infrastructure_flaws": "<bus station waiting room, local taxi monopolies, 1970s concrete precincts>",
-  "weird_local_lore": "<scampi hurling championships into sea gales, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation in disused railway tunnels, cheese rolling down 1:2 cliff faces, Egremont World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, or mummers blood-eagling>",
+  "weird_local_lore": "<scampi hurling championships into sea gales, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation in disused railway tunnels, cheese rolling down 1:2 cliffs, Egremont World Gurning Championships in horse collars, Scottish Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, or Mari Lwyd horse skull guising>",
   "claim_to_fame": "<over-inflated local achievement or banal convention>"
 }\`;`;
 
@@ -1346,10 +1345,34 @@ if (workerJs.includes('const RESEARCH_SYSTEM =')) {
   workerJs = workerJs.replace(/const RESEARCH_SYSTEM = [\s\S]*?`;/, NEW_RESEARCH_SYSTEM);
 }
 
-// Enrich Archetype 4 and TripAdvisor audit prompt with Fabricated Surreal Folk Rituals
-const FOLKLORE_ENRICHMENT = `Sub-Type 4B (Vic & Bob / Karl / Python): Sincere devotion to nonsensical premises & fabricated/absurd UK regional folk rituals (scampi hurling championships into gale force winds, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, mummers blood-eagling, turnip worshipping).`;
+// Write expanded 12+ Pattern Repository into buildMode3System
+const EXPANDED_PATTERN_DIRECTIVES = `12+ SATIRICAL PATTERN REPERTOIRE (VARIETY ENGINE):
+You MUST NOT repeat the exact same sentence formula for every location! For each section, select 1 pattern from the options below and mate it with the specific hyper-local research findings:
 
-workerJs = workerJs.replace(/Sub-Type 4B \(Vic & Bob [\s\S]*?\./, FOLKLORE_ENRICHMENT);
+CATEGORY 1: TOURIST BOARD BROCHURE PATTERNS (Pick 1 of 4):
+- Pattern TB-1 (The Dystopian Retail Concourse): "Visit our [FACILITY / PRECINCT]! Obviously mostly closed since [TECH GIANT / AMAZON] dismantled high street retail, now offering an authentic experience reminiscent of [DYSTOPIAN SHOW / THE LAST OF US / 28 DAYS LATER], featuring [NUMBER] remaining vape outlets and scenic moss growth!"
+- Pattern TB-2 (The Banal Architectural Miracle): "Marvel at our magnificent [CONCRETE SUBWAY / MULTI-STOREY CAR PARK / BUS STATION], hailed by 1974 civic planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!"
+- Pattern TB-3 (The Over-Inflated Historical Claim): "Steeped in glorious heritage! The birthplace of the [BANAL EVENT / 1978 TUPPERWARE CONVENTION] and home to a historic 17th-century tavern brawl that altered local history forever!"
+- Pattern TB-4 (The Scenic Industrial Wasteland): "Explore our world-class nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons!"
+
+CATEGORY 2: TRIPADVISOR EXPERT AUDIT PATTERNS (Pick 1 of 4):
+- Pattern TA-1 (The Nightlife & Taxi Rank Collapse): "Visitors arriving are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience."
+- Pattern TA-2 (The Over-Promised Historic Landmark): "They promised a historic cathedral town. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass."
+- Pattern TA-3 (The B&B & Hospitality Horror): "The local heritage B&B offers authentic 1970s damp carpets, thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord."
+- Pattern TA-4 (The Dead-End Infrastructure Trap): "A masterclass in motion without destination. The local one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted."
+
+CATEGORY 3: CUSTOMER REVIEW PATTERNS (Pick 3 distinct patterns):
+- Pattern CR-1 (The Over-Budget Sculpture vs Potholes — Tom Register): "The council spent £[MILLIONS] on a [ABSURD OBJECT / TURNIP / ANCHOR / CONCRETE COW] sculpture while the potholes on [LOCAL ROAD] are big enough to swallow a [CAR MODEL / FORD FOCUS / NISSAN MICRA]. Absolute bollocks."
+- Pattern CR-2 (The Gervais Domestic Saga): "Spent 3 hours trapped in the local [SUPERSTORE / B&Q / CAR PARK]. Navigation system gave up and I ended up buying a rake I don't need."
+- Pattern CR-3 (The Absurdist Folk Tradition — Vic & Bob / Bailey): "Came for the annual [WEIRD RITUAL / CHEESE ROLLING / MORRIS STICK BRAWL / SCAMPI HURLING]. Was hit in the throat by a flying turnip. 10/10."
+- Pattern CR-4 (The Unvarnished Local Warning): "If you visit, stay on the bypass and keep your car doors locked. 1 star."
+
+CATEGORY 4: SOCIO-ECONOMIC PATTERNS:
+- Pattern SE-1 (Vape Shop & Roundabout Workforce): "Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept."
+- Pattern SE-2 (Heritage Damp Housing Market): "Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass."
+- Pattern SE-3 (Police & Ofsted Reality): "14% Ofsted Requires Improvement, 86% Closed by Order of the Magistrate. Primary offences: turnip rustling and aggravated bicycle borrowing."`;
+
+workerJs = workerJs.replace(/DYNAMIC REUSABLE PATTERN SUBSTITUTION DIRECTIVES:[\s\S]*?Substitute these slots dynamically based on the specific location's research findings!/, EXPANDED_PATTERN_DIRECTIVES);
 
 const svgRendererModule = `// ── SVG Renderer logic ───────────────────────────────────────────────────────
 
@@ -1370,4 +1393,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Fabricated Surreal Folk Rituals (Scampi Hurling, Blood-Letting, Rectal Cheese Processing, Subterranean Sausages)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for 12+ Satirical Pattern Library & Dynamic Variety Engine');
