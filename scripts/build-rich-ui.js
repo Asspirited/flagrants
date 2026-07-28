@@ -1187,9 +1187,13 @@ const richHtml = `<!DOCTYPE html>
     }
     updateButtonLabel();
     checkReady();
-    
-    // First-Principles Shovel Fix: Always generate and display the selected mode view on tab click!
-    generate();
+
+    // If an output panel is ALREADY visible on screen, update the view to reflect the new mode without auto-scrolling away
+    const outputPanel = document.getElementById('output-panel');
+    if (outputPanel && outputPanel.classList.contains('visible') && currentLocation) {
+      const result = buildDynamicFallbackResult(currentLocation, selectedLens, selectedMode);
+      renderOutput(currentLocation, result, false); // false = do not jump scroll
+    }
   }
 
   LENSES.forEach(lens => {
@@ -1826,7 +1830,7 @@ const richHtml = `<!DOCTYPE html>
     renderOutput(currentLocation, result);
   }
 
-  function renderOutput(location, result) {
+  function renderOutput(location, result, autoScroll = true) {
     document.getElementById('subject-name').textContent = location;
     const affectation = result.affectation ?? result.nickname ?? '';
     document.getElementById('subject-affectation').textContent = affectation ? \` — \${affectation}\` : '';
@@ -2181,7 +2185,7 @@ const richHtml = `<!DOCTYPE html>
 
     const outputPanel = document.getElementById('output-panel');
     outputPanel.classList.add('visible');
-    if (typeof outputPanel.scrollIntoView === 'function') {
+    if (autoScroll && typeof outputPanel.scrollIntoView === 'function') {
       outputPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
