@@ -71,6 +71,12 @@
 * **Date:** 2026-07-28
 * **Insight:** Bugs that obstruct the user from interacting with or testing the core output gold of the app are classified as **P0 Priority 0 Blockers**. In accordance with Lean manufacturing *Poka-Yoke* (mistake-proofing), all builds must run automated JSDOM click simulation guards (`tests/poka_yoke_guards.test.js`) before deployment to guarantee zero browser syntax errors, zero broken event listeners, and 100% operational UI flow.
 
+### Entry #013 — Golden Rule #1: System Status Visibility Across AI & App UX
+* **Category:** Human-AI Pair Programming & Usability Architecture
+* **Date:** 2026-07-28
+* **Insight:** Lack of system status visibility is toxic in both web apps and AI assistant interactions. When an AI or app fails to communicate progress, state, or diagnostic steps, it causes friction, loss of trust, and forces context abandonment. We enforce **Nielsen Golden Rule #1** across both domain UI (visible Herald Research status card) and agent communication (transparent, immediate step updates).
+
+
 
 
 
