@@ -115,3 +115,17 @@
   1. Created a 12-review topic pool matrix with 12 distinct reviewer personas and topics.
   2. Implemented guaranteed zero-duplicate 3-review selection logic per town using bit-shift seeds `hashTown(town, 401)`, `hashTown(town, 503)`, `hashTown(town, 607)`.
   3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-011 — Service Worker PWA Cache Lock & Lingering Cloudflare Worker Prompts
+**Date:** 2026-07-28
+**Cost:** ~25 min user testing delay & stale web page rendering
+**Symptom:** Live web app continued to render stale output for Peacehaven (including legacy turnip sculpture references) even after commits were pushed to GitHub main.
+**Root cause:**
+  1. The PWA Service Worker in `sw.js` was locked to cache key `flagrants-v3`, causing returning mobile and desktop browsers to serve cached local copies of `index.html` instead of fetching updated code.
+  2. Legacy server-side LLM prompts in `code/worker.js` still contained example strings referencing "turnip sculptures" in prompt exemplars.
+**Fix:**
+  1. Updated `sw.js` cache name to `flagrants-v1001` and configured `sw.js` to purge all stale caches on activate.
+  2. Changed HTML navigation fetch strategy in `sw.js` to Network-First, bypassing Service Worker cache for `.html` files.
+  3. Purged all remaining turnip references from `code/worker.js` prompt exemplars.
+  4. Added a live `🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)` section to Mode III UI to display raw research JSON for immediate debugging.
+  5. Pushed updated client bundle and docs to GitHub `main`.

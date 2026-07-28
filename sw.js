@@ -1,5 +1,5 @@
-// sw.js — Service Worker for Flagrants PWA (FG-015) — v3
-const CACHE_NAME = 'flagrants-v3';
+// sw.js — Service Worker for Flagrants PWA — v1001
+const CACHE_NAME = 'flagrants-v1001';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
@@ -9,21 +9,17 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys.map((key) => caches.delete(key))
       );
     }).then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', (e) => {
-  // Network first for HTML navigation to guarantee instant mobile updates
-  if (e.request.mode === 'navigate' || e.request.url.endsWith('.html') || e.request.url.endsWith('/')) {
+  // Always use Network-First and bypass Cache for all HTML pages to guarantee 100% instant updates
+  if (e.request.mode === 'navigate' || e.request.url.includes('.html') || e.request.url.endsWith('/')) {
     e.respondWith(
-      fetch(e.request).then((netRes) => {
-        const clone = netRes.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
-        return netRes;
-      }).catch(() => caches.match(e.request))
+      fetch(e.request).catch(() => caches.match(e.request))
     );
   } else {
     e.respondWith(
