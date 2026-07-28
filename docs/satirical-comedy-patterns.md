@@ -70,13 +70,33 @@
 ### Formula 7: The Conversational Empathy Hinge ("...and who could blame them?")
 * **Mechanics:** Insert a 3-to-5-word deadpan conversational agreement clause right between a mythic/historic premise and a absurd modern reality.
 * **Function:** Transforms a flat factual contrast into an empathetic, weary, human connection.
-* **Hinge Variations:**
-  - *"...and who could blame him/her/them?"*
-  - *"...and frankly, can you really blame them?"*
-  - *"...which, let's be honest, is a completely rational response."*
-  - *"...and frankly, anyone in their right mind would have done the exact same thing."*
 * **Exemplar:**
   *"Robin Hood took one look at Nottingham High Street on a Friday night, saw 40,000 undergraduates drinking 2-for-1 alcopops in the Lace Market, and fled 18 miles into the woods to live in a tree. **Who could blame him?**"*
+
+---
+
+### Formula 8: Furious Pedantic Indignation (The David Mitchell Voice)
+* **Mechanics:** Extremely formal, hyper-articulate legalistic rage applied to the breakdown of minor social rules or municipal logic.
+* **Core Mechanism:** Treat a minor social infraction (*queue cutting, wrong cheese brand, car park ramp heights*) with the apocalyptic anger of a Victorian barrister.
+* **Exemplar:**
+  *"Why can’t everyone just follow the basic rules of the parish 7-tier orbital roundabout system without turning it into a bloodbath?!"*
+
+---
+
+### Formula 9: Detached Analytical Weariness (The Richard Ayoade Voice)
+* **Mechanics:** Ultra-logical, elevated vocabulary used to describe complete social discomfort or mundane municipal failure with museum-curator detachment.
+* **Core Mechanism:** Express deep emotional weariness through precise, elevated, almost robotic vocabulary.
+* **Exemplar:**
+  *"I have inspected the precinct. It contains three vape shops and scenic indoor moss. What a ludicrous municipal display."*
+
+---
+
+### Formula 10: Establishment Pomp Collapsing into Chaos (The Monty Python Voice)
+* **Mechanics:** The stiff-upper-lip British establishment (*civil servants, academics, army officers*) pretending everything is normal while surrounded by total operational chaos.
+* **Core Mechanism:** Demand formal customer service or protocol while standing in a completely dysfunctional environment.
+* **Exemplar:**
+  *"The Venerable Synod of 731 AD strictly forbade such shenanigans past Vespers, yet here we are standing in a disused bus shelter eating lukewarm scampi."*
+
 
 
 ---
