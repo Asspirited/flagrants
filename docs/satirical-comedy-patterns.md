@@ -67,6 +67,20 @@
 
 ---
 
+### Formula 7: The Conversational Empathy Hinge ("...and who could blame them?")
+* **Mechanics:** Insert a 3-to-5-word deadpan conversational agreement clause right between a mythic/historic premise and a absurd modern reality.
+* **Function:** Transforms a flat factual contrast into an empathetic, weary, human connection.
+* **Hinge Variations:**
+  - *"...and who could blame him/her/them?"*
+  - *"...and frankly, can you really blame them?"*
+  - *"...which, let's be honest, is a completely rational response."*
+  - *"...and frankly, anyone in their right mind would have done the exact same thing."*
+* **Exemplar:**
+  *"Robin Hood took one look at Nottingham High Street on a Friday night, saw 40,000 undergraduates drinking 2-for-1 alcopops in the Lace Market, and fled 18 miles into the woods to live in a tree. **Who could blame him?**"*
+
+
+---
+
 ## 🛠️ Orchestration Execution Laws
 
 1. **Always Match Archetype First:** Every town must trigger its specific regional profile (`coastal`, `celtic`, `cathedral_heritage`, `industrial_midlands`, `agricultural_rural`, `commuter`) before applying pattern matrices.
