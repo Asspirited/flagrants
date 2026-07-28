@@ -1186,13 +1186,7 @@ const richHtml = `<!DOCTYPE html>
       lensGroup.style.display = 'none'; // Mode III auto-synthesizes all 7 lenses
     }
     updateButtonLabel();
-    
-    // Guaranteed Instant Auto-Fill & Render for 0-Lag Tab Switching
-    if (!locationInput.value.trim()) {
-      locationInput.value = (mode === 'family') ? 'The Smith Family' : 'Slough';
-    }
     checkReady();
-    generate();
   }
 
   LENSES.forEach(lens => {
@@ -1214,7 +1208,7 @@ const richHtml = `<!DOCTYPE html>
 
   function checkReady() {
     if (!selectedLens) selectedLens = 'proud_of_it';
-    generateBtn.disabled = !locationInput.value.trim();
+    generateBtn.disabled = false;
   }
 
   generateBtn.addEventListener('click', generate);
@@ -1789,8 +1783,10 @@ const richHtml = `<!DOCTYPE html>
   }
 
   function generate() {
-    const location = locationInput.value.trim();
-    if (!location) return;
+    let location = locationInput.value.trim();
+    if (!location) {
+      location = (selectedMode === 'family') ? 'The Smith Family' : 'Slough';
+    }
 
     currentLocation = location;
     if (!selectedLens) selectedLens = 'proud_of_it';

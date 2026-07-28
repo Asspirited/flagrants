@@ -45,7 +45,7 @@ test('POKA-YOKE GUARD #2 — Mode I, II, III tab switching and generate button c
   // Test Mode III click
   tabTourist.click();
   assert.strictEqual(tabTourist.classList.contains('active'), true, 'Mode III tab must be active after click');
-  assert.strictEqual(locationInput.value.length > 0, true, 'Location input must auto-fill default subject');
+  assert.strictEqual(locationInput.placeholder.includes('Aldershot'), true, 'Mode III tab must set helpful placeholder text');
 
   // Test Mode II click
   tabFamily.click();

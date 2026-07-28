@@ -468,15 +468,17 @@
   3. Enforced Nielsen Heuristic #5 (*Error Prevention*) by disabling the button during generation.
   4. Pushed fix to GitHub `main`.
 
-## FG-WL-044 — Zombie Background Task & OS Process Pollution Purged
+## FG-WL-045 — Premature Auto-Search & Input Field Overwriting Purged
 **Date:** 2026-07-28
-**Cost:** ~3 min user disruption and thread stall due to background task pollution
-**Symptom:** A one-off diagnostic Node script (`scratch/test_mode3_error.js`) kept the JSDOM window event loop open, causing it to hang as an active background task (`task-2919`) and orphaned OS process (PID `38908`), creating UI indicators showing "task running" and stalling agent responsiveness.
-**Fix & Poka-Yoke Workaround:**
-  1. Terminated background task `task-2919` via `manage_task(Action='kill')`.
-  2. Killed orphaned OS process PID `38908` via PowerShell `Stop-Process -Id 38908 -Force`.
-  3. Established Mandatory Process Workaround: All diagnostic scripts must call `process.exit(0)` explicitly upon completion, and `WaitMsBeforeAsync` must be set to 5000+ to ensure 100% synchronous execution within tool calls.
-  4. Logged Entry #014 in `docs/learning-log.md`.
+**Cost:** ~2 min user frustration with auto-fill overwriting input and premature search on tab click
+**Symptom:** Switching to Mode III automatically wrote `"Slough"` into the user's input box and immediately triggered `generate()`, creating unwanted persistence and intrusive auto-search before the user clicked the action button.
+**Fix:**
+  1. Purged auto-filling `locationInput.value = 'Slough'` from `setMode()`.
+  2. Purged auto-triggering `generate()` from `setMode()`.
+  3. Preserved clean placeholders (`e.g. Aldershot, Milton Keynes, Blackpool…`) for Mode III.
+  4. Updated fallback handling in `generate()` so empty inputs use default suggestions cleanly without mutating the input text box.
+  5. Updated Poka-Yoke guard tests in `tests/poka_yoke_guards.test.js` and pushed to GitHub `main`.
+
 
 
 
