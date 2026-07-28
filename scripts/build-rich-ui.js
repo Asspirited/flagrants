@@ -1002,12 +1002,12 @@ const richHtml = `<!DOCTYPE html>
   ];
 
   const INTERJECTIONS = [
+    'I have audited the parish records for this borough. The 1978 tupperware convention incident remains unresolved. Honestly, the user currently searching this location reminds me of that 1978 tupperware box, Johnny...',
+    'Notice how the local population adapts to 60mph sea-gales with wet Wimpy wrappers. Honestly, the visitor reading this audit right now reminds me of that wet Wimpy wrapper, Johnny...',
     'Hold on! The Venerable Synod of 731 AD strictly forbade such shenanigans past Vespers... quite frankly, the person currently searching this borough reminds me of an unwashed 8th-century manuscript scribe, Johnny!',
-    'Fascinating! Notice how the local population adapts to the 60mph coastal sea-gales... remarkably, the user reading this screen right now reminds me of a disoriented migratory puffin, Johnny.',
-    'From a bushcraft perspective, you can make an emergency bivouac out of two sun-bleached deckchairs and a Wimpy wrapper... frankly, the visitor inspecting this audit right now reminds me of that wet Wimpy wrapper, Johnny.',
-    'Deadly 60 alert! That feral seagull hovering over the kebab rank is moving at a lethal 45 knots... honestly, the user searching this location right now reminds me of that deadly seagull, Johnny!',
-    'Nonsense! I have survived 3 weeks in the Amazon with less forage than what is on this precinct bench... to be fair, the user blazoning this borough right now reminds me of a damp forage root, Johnny.',
-    'Verily, the ancient charters of Northumbria recorded a similar misdemeanour... honestly, the person blazoning this screen right now reminds me of that 1348 Black Death poultry keeper, Johnny!'
+    'Fascinating! Notice how the local population adapts to coastal sea-gales... remarkably, the user reading this screen right now reminds me of a disoriented migratory puffin, Johnny.',
+    'Deadly 60 alert! That feral seagull hovering over the precinct is moving at 45 knots... honestly, the user searching this location right now reminds me of that deadly seagull, Johnny!',
+    'Nonsense! I have survived 3 weeks in the Amazon with less forage than what is on this precinct bench... to be fair, the user blazoning this borough right now reminds me of a damp forage root, Johnny!'
   ];
 
   const LENSES = [

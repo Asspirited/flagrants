@@ -44,9 +44,10 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
 test('FG-WL Prevention — Johnny Front-Row Callout Engine (FG-WL-035)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('reminds me of an unwashed 8th-century manuscript scribe, Johnny'), true, 'code/index.html must render Bede Johnny callout');
-  assert.strictEqual(codeIndex.includes('reminds me of that wet Wimpy wrapper, Johnny'), true, 'code/index.html must render Ray Mears Johnny callout');
+  assert.strictEqual(codeIndex.includes('reminds me of that 1978 tupperware box, Johnny'), true, 'code/index.html must render Bede Tupperware Johnny callout');
+  assert.strictEqual(codeIndex.includes('reminds me of that wet Wimpy wrapper, Johnny'), true, 'code/index.html must render Ray Mears Wimpy Johnny callout');
 });
+
 
 
 
