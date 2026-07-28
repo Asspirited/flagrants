@@ -1187,12 +1187,9 @@ const richHtml = `<!DOCTYPE html>
     }
     updateButtonLabel();
     checkReady();
-
-    // If an output is already visible on screen, instantly update the view to reflect the new mode
-    const outputPanel = document.getElementById('output-panel');
-    if (outputPanel && outputPanel.classList.contains('visible')) {
-      generate();
-    }
+    
+    // First-Principles Shovel Fix: Always generate and display the selected mode view on tab click!
+    generate();
   }
 
   LENSES.forEach(lens => {
