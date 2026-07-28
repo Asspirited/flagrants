@@ -1198,6 +1198,32 @@
         </div>
       </div>
 
+      <!-- Section 9: Municipal Recommendations & Visitor Warnings (The Feedback Sandwich) -->
+      <div class="paper-section-card" id="recommendations-card">
+        <div class="paper-header-bar header-burgundy" style="background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);">
+          <span>🥪 MUNICIPAL RECOMMENDATIONS & VISITOR WARNINGS</span>
+          <span style="font-size:0.75rem; opacity:0.8;" id="rec-persona-tag">FEEDBACK SANDWICH</span>
+        </div>
+        <div class="paper-body">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: #FFD700; font-weight: bold; text-transform: uppercase;" id="rec-persona-name"></div>
+          
+          <div style="background: #1a120b; border-left: 3px solid #4ca1af; padding: 0.8rem; border-radius: 4px; margin-top: 0.4rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: #4ca1af; font-weight: bold; text-transform: uppercase;" id="rec-layer1-title">🍞 1. The Nominal Praise:</div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #ffffff; margin-top: 0.2rem;" id="rec-layer1-text"></div>
+          </div>
+
+          <div style="background: #250a0a; border-left: 3px solid #e62e3d; padding: 0.8rem; border-radius: 4px; margin-top: 0.4rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: #ff8080; font-weight: bold; text-transform: uppercase;" id="rec-layer2-title">🥩 2. The Acidic Reality:</div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #ffe6e6; margin-top: 0.2rem; font-style: italic;" id="rec-layer2-text"></div>
+          </div>
+
+          <div style="background: #1c1409; border-left: 3px solid #FFD700; padding: 0.8rem; border-radius: 4px; margin-top: 0.4rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: #FFD700; font-weight: bold; text-transform: uppercase;">📜 3. Mandatory Municipal Recommendation:</div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #e8d5a3; margin-top: 0.2rem; font-weight: bold;" id="rec-layer3-text"></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Section 8: 9-Month Weather & Morale Survival Audit -->
       <div class="paper-section-card">
         <div class="paper-header-bar header-purple">
@@ -2521,6 +2547,122 @@ function renderSpec(spec) {
     ]
   };
 
+
+  // 4TH ENGINE: MUNICIPAL RECOMMENDATIONS & VISITOR WARNINGS (THE FEEDBACK SANDWICH)
+  const RECOMMENDATIONS_SYNTHESIZER = {
+    // Hyper-Local Overrides
+    cromer: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'To give credit where credit is due, the fresh Cromer crabs are genuinely world-class crustacean dining...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, three centuries of coastal isolation have led the local populace to slowly adopt a sideways-walking gait and crab-like defensive pincers whenever a tourist approaches the RNLI slipway.',
+        layer3: 'Do not attempt eye contact with anyone holding a wooden crabbing bucket after 4:00pm, and under no circumstances mention Sheringham.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'I will concede that the 19th-century pier is structurally sound for at least another fortnight...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY MUST FERAL SEAGULLS ON THE THEATRE ROOF OPERATE WITH THE TACTICAL PRECISION OF AN AIR-FORCE SQUADRON?! A man cannot eat a lukewarm crab roll without conducting a 360-degree radar sweep!',
+        layer3: 'Stay in the car with the engine running and eat your fish & chips with the windows rolled up.'
+      }
+    },
+    bracknell: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'The Lexicon retail plaza presents a pleasantly canopy-covered shopping promenade...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, the multi-storey car park is a spatial labyrinth engineered to trap Ford Focus drivers in Yellow Zone Level 3 until the end of time.',
+        layer3: 'Pay for your parking ticket BEFORE stepping into the lift unless you enjoy 40-minute stairwell reconciliations.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'I will admit that Coral Reef Waterworld has acceptable pirate ship flumes for children...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY DOES THE TICKET MACHINE ONLY ACCEPT EXACT CHANGE IN 20p COINS?! We have landed rovers on Mars, yet Berkshire municipal car parks demand 1978 coinage!',
+        layer3: 'Carry £14 in exact 20p coins in a heavy canvas sack at all times.'
+      }
+    },
+    slough: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'The main trading estate is marvelously efficient at housing mid-level freight logistics...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, John Betjemans poetic wish remains unfilled, as the parish concourse has simply been replaced by 3 vape shops and a disused Wimpy sign.',
+        layer3: 'Keep moving toward the M4 slip road and do not stop for directions.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'The rail connection to London Paddington is undeniably brisk...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY MUST THE PARISH COUNCIL COVERS-UP EVERY SINGLE HISTORIC COBBLESTONE WITH PRE-CAST 1974 CONCRETE BOLLARDS?! It is an aesthetic catastrophe!',
+        layer3: 'Remain inside the train carriage until Reading.'
+      }
+    },
+
+    // Regional Archetype Fallbacks
+    coastal: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'The coastal sea air in {town} is undeniably crisp and rich in ozone...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, the 60mph horizontal sea-gales are specifically calibrated to deposit salt-spray onto your spectacles within 4 seconds of exiting the car.',
+        layer3: 'Always face away from the Channel when unspooling alukewarm sausage roll.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'The local fish & chip shop serves a passable piece of haddock...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY DOES THE SEA-FOG SETTLE EXACTLY AT 3:00PM EVERY SINGLE DAY?! It is as if the weather gods decided {town} had seen enough daylight for one century!',
+        layer3: 'Equip your raincoat with high-visibility reflective tape and bring a foghorn.'
+      }
+    },
+    east_anglia: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'The 14th-century parish church ruins in {town} provide a picturesque backdrop...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, local traffic is perpetually throttled by 1978 Ferguson tractors towing sugar beet harvesters at 4 miles per hour.',
+        layer3: 'Allow 45 extra minutes if travelling behind a sugar beet truck.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'The weekly farmers market in {town} sells superb local strawberries...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY ARE THERE 4 SEPARATE PARISH COUNCILLORS ARGUING OVER FLOWER TUB PERMITS IN THE BAKERY QUEUE?! Can a man not purchase a bloomer without a sub-committee debate?!',
+        layer3: 'Buy your bread quickly and avoid taking sides in petunia color disputes.'
+      }
+    },
+    industrial_commuter: {
+      ayoade: {
+        persona: 'RICHARD AYOADE (TRAVEL MAN AUDIT)',
+        layer1_title: '🍞 1. The Nominal Praise:',
+        layer1: 'The glass-canopied retail precinct in {town} offers sheltered shopping convenience...',
+        layer2_title: '🥩 2. The Acidic Reality:',
+        layer2: 'HOWEVER, navigating the 4-tier dual carriageway ring road requires a degree in top-tier navigation.',
+        layer3: 'Take the third exit at the main roundabout regardless of what your sat-nav advises.'
+      },
+      mitchell: {
+        persona: 'DAVID MITCHELL (PEDANTIC OUTRAGE RANT)',
+        layer1_title: '🍞 1. The Banal Concession:',
+        layer1: 'The multi-storey car park in {town} has ample covered parking spaces...',
+        layer2_title: '🥩 2. The Explosive Pedantic Outrage:',
+        layer2: 'BUT WHY MUST THE TICKET MACHINE BE POSITIONED AT A 45-DEGREE ANGLE BEHIND A CONCRETE BOLLARD?! It requires gymnastic flexibility just to insert a £2 coin!',
+        layer3: 'Keep exact change in your glovebox and prepare for a 10-minute parking meter struggle.'
+      }
+    }
+  };
+
   function getRegionalProfile(town) {
     const t = town.toLowerCase();
     
@@ -3237,6 +3379,22 @@ function renderSpec(spec) {
         if (document.getElementById('luminary-author')) document.getElementById('luminary-author').textContent  = '✍️ ' + (lumItem.author || '');
         if (document.getElementById('luminary-quote')) document.getElementById('luminary-quote').textContent   = '"' + (lumItem.quote || '') + '"';
         if (document.getElementById('luminary-reality')) document.getElementById('luminary-reality').textContent = lumItem.reality || '';
+      }
+
+      // Render Section 9: Municipal Recommendations & Visitor Warnings (The Feedback Sandwich)
+      const cleanLoc = location.toLowerCase().trim();
+      const recData = RECOMMENDATIONS_SYNTHESIZER[cleanLoc] || RECOMMENDATIONS_SYNTHESIZER[archetype] || RECOMMENDATIONS_SYNTHESIZER.industrial_commuter;
+      const clickCount = (typeof window !== 'undefined' && window._clickCount) ? window._clickCount : 0;
+      const isAyoade = (hashTown(location, 888) + clickCount) % 2 === 0;
+      const recItem  = isAyoade ? (recData.ayoade || recData.mitchell) : (recData.mitchell || recData.ayoade);
+
+      if (recItem) {
+        if (document.getElementById('rec-persona-name'))  document.getElementById('rec-persona-name').textContent  = '🎙️ AUDITOR VOICE: ' + (recItem.persona || '');
+        if (document.getElementById('rec-layer1-title'))  document.getElementById('rec-layer1-title').textContent  = recItem.layer1_title || '🍞 1. Praise:';
+        if (document.getElementById('rec-layer1-text'))   document.getElementById('rec-layer1-text').textContent   = (recItem.layer1 || '').replace(/{town}/g, location);
+        if (document.getElementById('rec-layer2-title'))  document.getElementById('rec-layer2-title').textContent  = recItem.layer2_title || '🥩 2. Reality:';
+        if (document.getElementById('rec-layer2-text'))   document.getElementById('rec-layer2-text').textContent   = (recItem.layer2 || '').replace(/{town}/g, location);
+        if (document.getElementById('rec-layer3-text'))   document.getElementById('rec-layer3-text').textContent   = (recItem.layer3 || '').replace(/{town}/g, location);
       }
 
       // Render Section 8: 9-Month Weather & Morale Survival Audit
