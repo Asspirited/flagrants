@@ -1488,15 +1488,15 @@ const richHtml = `<!DOCTYPE html>
   function getRegionalProfile(town) {
     const t = town.toLowerCase();
     
-    if (/peacehaven|blackpool|brighton|hastings|portsmouth|torquay|scarborough|whitby|seaside|bay|harbour|beach|coast|pier|skegness|bournemouth|rye|margate|clacton/.test(t)) {
+    // 1. Coastal / Maritime
+    if (/peacehaven|blackpool|brighton|hastings|portsmouth|torquay|scarborough|whitby|seaside|bay|harbour|beach|coast|pier|skegness|bournemouth|rye|margate|clacton|st_ives|padstow/.test(t)) {
       return {
         region: 'Coastal / Maritime',
-        affectation: \`Jewel of the \${town} Undercliff & Greenwich Meridian\`,
+        affectation: \`Jewel of the \${town} Clifftop & Greenwich Meridian\`,
         mottos: [
           { motto: 'CLIFFUS ERODIT ET CUM FLUCTIBUS EAT', translation: 'The Cliff Erodes and Goes with the Waves' },
           { motto: 'MERIDIANUS VENTO SPLENDET', translation: 'The Meridian Shines in the Sea-Gale' },
-          { motto: 'SCAMPI IN VENTO VOLAT', translation: 'Scampi Flies High in the Coastal Gale' },
-          { motto: 'ANIMA IN PIANO BEACHED', translation: 'The Soul of an Abandoned Piano on the Beach' }
+          { motto: 'SCAMPI IN VENTO VOLAT', translation: 'Scampi Flies High in the Coastal Gale' }
         ],
         twinned: ['Atlantis (Sunken)', 'Bermuda Triangle East', 'Sealand', 'Port Royal'],
         objects: ['rusted anchor', 'fibreglass seagull', 'salt-crusted deckchair', 'stolen harbour buoy', 'soggy fish basket', 'copper diving helmet'],
@@ -1505,54 +1505,106 @@ const richHtml = `<!DOCTYPE html>
         slogans: [
           \`Experience the Invigorating Coastal Gales of \${town}!\`,
           \`\${town}: Where the Greenwich Meridian Meets Sea-Gale Erosion!\`,
-          \`Discover \${town} — Premier Destination for Salt-Corroded Deckchair Maintenance!\`,
-          \`Welcome to \${town}: Gateway to the Undercliff Walk & Coastal Bus Shelters!\`
+          \`Discover \${town} — Premier Destination for Salt-Corroded Deckchair Maintenance!\`
         ],
         brochures: [
           \`Founded in 1916 by visionaries who raffled off cliffside plots in national newspapers! \${town} invites you to walk the historic Greenwich Meridian Line, where 1920s bungalows meet crumbling chalk cliffs at 3 inches per year!\`,
-          \`Stroll the famous \${town} Undercliff Walk, where 19th-century shipwreck legends tell of 40 beached upright pianos serenading Channel tides! Enjoy 60mph coastal sea-gales, authentic salt-crusted deckchairs, and high-street chip shops closing at dusk!\`,
-          \`Experience the legendary \${town} Meridian Centre & chalk clifftop! Located right where zero degrees longitude passes through Sussex, featuring 400 static caravans, coastal bus shelters, and scenic sea-wall scampi hurling!\`,
-          \`Discover the ancient coastal legends of \${town}! From the Great Scampi Tempest of 1987 to emergency coastguard audits of abandoned beach huts, our parish preserves lore that rings true!\`
+          \`Stroll the famous \${town} Undercliff Walk, where 19th-century shipwreck legends tell of 40 beached upright pianos serenading Channel tides! Enjoy 60mph coastal sea-gales, authentic salt-crusted deckchairs, and high-street chip shops closing at dusk!\`
         ],
         reviews: [
-          { reviewer: 'MeridianWalker', rating: 1, text: \`Walked the Meridian Line in \${town}. Got disoriented by sea-fog and ended up on the Meridian Centre clifftop gravel patch thinking I was in Dieppe.\` },
-          { reviewer: 'DeckchairVictim', rating: 1, text: \`To the person who took my salt-crusted deckchair while I was buying scampi by the Undercliff Walk: I have you on Ring doorbell video.\` },
-          { reviewer: 'PlotRaffleDescendant', rating: 2, text: \`My grandfather won a cliffside plot here in a 1920 Daily Express raffle. The plot fell into the English Channel in 1974. Great views though.\` },
-          { reviewer: 'ScampiHurler', rating: 1, text: \`Tried eating scampi on the \${town} sea wall. A 60mph gale blew the entire tray into a coastguard cutter. 1 star.\` },
-          { reviewer: 'BungalowOwner', rating: 2, text: \`Living 40 yards from the \${town} chalk cliff edge. Up to 38 yards this morning. Very atmospheric.\` },
-          { reviewer: 'PianoSeeker', rating: 1, text: \`Came looking for the beached Undercliff piano legend in \${town}. Found a rusted shopping trolley and a wet seagull. Total bollocks.\` }
+          { reviewer: 'MeridianWalker', rating: 1, text: \`Walked the Meridian Line in \${town}. Got disoriented by sea-fog and ended up on the Meridian Centre clifftop gravel patch thinking I was in Dieppe.\` }
         ],
         taHeadlines: [
-          \`ANALYST EXPERT AUDIT #4092: 1916 Land Swindles & Greenwich Meridian Erosion in \${town}\`,
-          \`ANALYST EXPERT AUDIT #4093: 72-Hour Sea-Fog, Workhouse B&Bs, and A259 Resignation in \${town}\`,
-          \`ANALYST EXPERT AUDIT #4094: Beached Shipwreck Pianos vs Runaway Inflatable Flamingos in \${town}\`
+          \`ANALYST EXPERT AUDIT #4092: 1916 Land Swindles & Greenwich Meridian Erosion in \${town}\`
         ],
         taReviews: [
-          \`ANALYST EXPERT AUDIT #4092: \${town} presents a fascinating study in coastal resignation. Founded as a 1916 newspaper raffle scheme, the town consists of a single linear road network (the A259) perpetually blanketed by a 72-hour sea-fog. The local gastronomy is defined strictly by lukewarm scampi served in cardboard trays that disintegrate under 50-knot Channel gales. Rating: 1.2/5 — Bring a foghorn and your own wellies.\`,
-          \`ANALYST EXPERT AUDIT #4093: An inspection of the \${town} Greenwich Meridian monument reveals that zero degrees longitude offers zero protection from coastal erosion. The local B&B operates on a 19th-century workhouse model, serving cold toast strictly at 7:00am while the landlord glares until guests vacate the premises. Rating: 1.5/5 — Mostly overcast with severe deckchair rust.\`,
-          \`ANALYST EXPERT AUDIT #4094: \${town}'s Undercliff Walk is renowned for washed-up driftwood and the legend of the 1884 beached piano shipwreck. However, modern visitors are more likely to encounter runaway inflatable flamingos and 2am kebab queue disputes outside the Meridian Centre. Rating: 1.1/5 — Attracious shite.\`
+          \`ANALYST EXPERT AUDIT #4092: \${town} presents a fascinating study in coastal resignation. Founded as a 1916 newspaper raffle scheme, the town consists of a single linear road network blanketed by a 72-hour sea-fog. Rating: 1.2/5 — Bring a foghorn and your own wellies.\`
         ],
-        schools: [
-          \`94% Pass Rate in Coastal Navigation & Salt-Crusted Deckchair Maintenance in \${town}.\`,
-          \`Ofsted Grade 3: Coastal Mizzle Navigation and Sea Wall Scampi Hurling in \${town}.\`
-        ],
-        workforce: [
-          \`Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in \${town}.\`,
-          \`Caravan Park Security & Promenade Fish Chippy Management (82%) in \${town}.\`
-        ],
-        housing: [
-          \`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`,
-          \`1920s clifftop bungalow in \${town}: £410,000 with 3 inches per year cliff erosion included.\`
-        ],
-        excuses: [
-          \`Blame 60mph English Channel gales, 1920s clifftop plot developers, chalk erosion, and coastal tides.\`,
-          \`Blame North Sea mizzle, 19th-century pier engineers, and sea-wall scampi hurling.\`
-        ]
+        schools: [\`94% Pass Rate in Coastal Navigation & Salt-Crusted Deckchair Maintenance in \${town}.\`],
+        workforce: [\`Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in \${town}.\`],
+        housing: [\`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`],
+        excuses: [\`Blame 60mph English Channel gales, 1920s clifftop plot developers, chalk erosion, and coastal tides.\`]
       };
     }
 
-    // 2. Celtic / Scottish / Welsh / Highland
-    if (/edinburgh|glasgow|inverness|aberdeen|dundee|stirling|perth|cardiff|swansea|bangor|aberystwyth|wales|scotland|highland|celtic|kirk|loch/.test(t)) {
+    // 2. East Anglian & Fenland Market Towns (North Walsham, Cromer, Norwich, Ipswich, Aylsham, Diss, Swaffham, Fakenham, Lowestoft, Yarmouth, Ely, King's Lynn, Bury St Edmunds, etc.)
+    if (/walsham|norwich|ipswich|cromer|aylsham|diss|swaffham|fakenham|lowestoft|yarmouth|thetford|stowmarket|ely|wisbech|lincolnshire|norfolk|suffolk|fen|marsh/.test(t)) {
+      return {
+        region: 'East Anglian & Fenland Market',
+        affectation: \`Historic Market Charter & 1381 Peasants' Revolt Parish of \${town}\`,
+        mottos: [
+          { motto: 'REBELLIO ET AGRI', translation: 'Rebellion and Fields Endure' },
+          { motto: 'BETAE ET LINUM', translation: 'Sugar Beet and Weaver Looms' },
+          { motto: 'PASTON ET NAVIS', translation: 'Paston School and Ships Stand Tall' }
+        ],
+        twinned: ['Paston School Cloisters', 'Cromer Crab Basin', 'Fenland Meridian Zero', 'Norwich Guildhall'],
+        objects: ["1381 Peasants' Revolt pike", 'sugar beet harvester', 'Paston Grammar School slate', 'woven linen loom shuttle', 'duck decoy whistle', 'Cromer crab pot'],
+        crimes: ['duck decoy poaching', 'sugar beet harvester racing', 'sabotaging parish church tower ruins', '18th-century weaver loom strikes'],
+        profanities: ['proper Norfolk fenland shite', 'sugar beet harvester bollocks', 'parish church tower clusterfuck'],
+        slogans: [
+          \`\${town}: Historic Market Town of the 1381 Peasants' Revolt & Fenland Heritage!\`,
+          \`\${town}: Where Lord Nelson's Schoolboy Pranks Meet Sugar Beet Harvesters!\`,
+          \`Discover \${town} — Ancient Weaver Looms & Parish Church Spire Heritage!\`
+        ],
+        brochures: [
+          \`Step into historic \${town}! Famed for its 14th-century market charter, the 1381 Peasants' Revolt heritage, and Paston Grammar School where young Horatio Nelson carved his initials! Explore ancient parish church ruins, sugar beet harvests, and traditional East Anglian market stalls!\`,
+          \`Experience \${town}! Nestled in the heart of East Anglia, where 18th-century weaver loom strikes meet fenland duck decoys! Sample fresh coastal crabs, inspect historic market charters, and enjoy traditional Norfolk pub hearth banter!\`
+        ],
+        reviews: [
+          { reviewer: 'RevoltHistorian', rating: 5, text: \`Visited the 1381 Peasants' Revolt memorial site in \${town}. Found a local parish councillor arguing over sugar beet truck parking. 5 stars for historical authenticity.\` },
+          { reviewer: 'PastonScholar', rating: 4, text: \`Inspected Paston Grammar School in \${town}. Saw Horatio Nelson's carved initials and a 1978 Ferguson tractor parked outside the tea shop.\` }
+        ],
+        taHeadlines: [
+          \`ANALYST EXPERT AUDIT #1381: 14th-Century Revolt Heritage, Paston School Lore, and Sugar Beet Harvesters in \${town}\`
+        ],
+        taReviews: [
+          \`ANALYST EXPERT AUDIT #1381: \${town} is a deeply atmospheric East Anglian market town steeped in 14th-century revolt heritage and Norfolk weaver loom traditions. Highlights include Paston Grammar School lore, sugar beet harvests, and parish church tower disputes. Rating: 4.5/5 — Outstanding historical grit & market banter.\`
+        ],
+        schools: [\`98% Pass Rate in Sugar Beet Harvester Operations & Fenland Navigation in \${town}.\`],
+        workforce: [\`Sugar Beet Agricultural Logistics (62%) & Parish Market Heritage Duty (28%) in \${town}.\`],
+        housing: [\`Grade II Listed East Anglian cottage in \${town}: £420,000 with authentic flint-wall damp.\`],
+        excuses: [\`Blame North Sea mizzle, 1381 Peasants' Revolt grievances, and tractor traffic jams.\`]
+      };
+    }
+
+    // 3. Northern Mill & Pennine Market Towns (Skipton, Hexham, Bakewell, Clitheroe, Ripon, Halifax, Todmorden, Hebden Bridge, Kendal, Hawes, Richmond, Alnwick, etc.)
+    if (/skipton|hexham|bakewell|clitheroe|ripon|halifax|todmorden|hebden|kendal|hawes|richmond|alnwick|pennine|dales|lakes|fell|yorkshire|lancashire|cumbria|northumberland/.test(t)) {
+      return {
+        region: 'Northern Mill & Pennine Market',
+        affectation: \`Pennine Mill Town & High Moors Heritage\`,
+        mottos: [
+          { motto: 'SAXUM ET OVIS', translation: 'Pennine Stone and Sheep Endure' },
+          { motto: 'VIADUCTUS IN MIZZLE', translation: 'The Stone Viaduct Stands in the Mizzle' }
+        ],
+        twinned: ['Pen-y-ghent Summit', 'Haworth Parsonage', 'Settle-Carlisle Viaduct', 'Ribblehead'],
+        objects: ['sheep dog whistle', 'tripe & black pudding tray', 'brass band cornet', 'Pennine slate tile', 'hand-knitted woollen jumper'],
+        crimes: ['unauthorized sheep dog trials', 'sabotaging brass band cornet soloists', 'black pudding price-fixing'],
+        profanities: ['proper Pennine mill shite', 'brass band cornet bollocks', 'high moors tripe'],
+        slogans: [
+          \`\${town}: High Moors Heritage, Stone Viaducts & Traditional Brass Bands!\`,
+          \`Discover \${town} — Heart of the Pennine Moors & Slate Mill Heritage!\`
+        ],
+        brochures: [
+          \`Welcome to \${town}! Discover dramatic Pennine stone viaducts, 19th-century woollen mill heritage, and traditional Yorkshire/Lancashire pub hearths! Sample fresh black pudding, listen to parish brass bands, and explore high moorland walking trails!\`
+        ],
+        reviews: [
+          { reviewer: 'FellWalker', rating: 5, text: \`Hiked across the moors into \${town}. Got caught in 3 hours of Pennine drizzle, but the black pudding and brass band in the local pub made it unforgettable.\` }
+        ],
+        taHeadlines: [
+          \`ANALYST EXPERT AUDIT #1888: Pennine Slate Mills, Brass Band Rivalries, and High Moor Drizzle in \${town}\`
+        ],
+        taReviews: [
+          \`ANALYST EXPERT AUDIT #1888: \${town} is a magnificently rugged Pennine market town of stone viaducts, brass band heritage, and moorland endurance. Rating: 4.6/5 — Exceptional atmospheric grit.\`
+        ],
+        schools: [\`97% Pass Rate in Fell Navigation & Brass Band Tuning in \${town}.\`],
+        workforce: [\`Pennine Heritage & Slate Repair (58%) & Brass Band Administration (32%) in \${town}.\`],
+        housing: [\`Pennine stone cottage in \${town}: £340,000 with authentic slate-roof damp.\`],
+        excuses: [\`Blame Pennine drizzle, high moorland gales, and brass band rehearsals.\`]
+      };
+    }
+
+    // 4. Celtic / Scottish / Welsh / Highland
+    if (/edinburgh|glasgow|inverness|aberdeen|dundee|stirling|perth|cardiff|swansea|bangor|aberystwyth|wales|scotland|highland|celtic|kirk|loch|glen|rhondda/.test(t)) {
       return {
         region: 'Celtic / Highland',
         affectation: \`Heart of the \${town} Highland Glen & Ancient Clan Hold\`,
@@ -1572,14 +1624,13 @@ const richHtml = `<!DOCTYPE html>
           \`Experience \${town}! Discover ancient castle ruins overlooking misty lochs, traditional tartan weaving mills, and historic highland hospitality! Enjoy traditional shortbread, single-malt distilleries, and storytelling by peat fires!\`
         ],
         reviews: [
-          { reviewer: 'ShortbreadAuditor', rating: 1, text: \`Visited the \${town} castle grounds. Got cornered by a piper demanding £4 for a photo with a stuffed haggis.\` },
-          { reviewer: 'LochSeeker', rating: 2, text: \`Stood by the glen in \${town} for 3 hours in torrential mizzle. Didn't see any monster, but the single malt in the local pub was outstanding.\` }
+          { reviewer: 'ShortbreadAuditor', rating: 1, text: \`Visited the \${town} castle grounds. Got cornered by a piper demanding £4 for a photo with a stuffed haggis.\` }
         ],
         taHeadlines: [
           \`ANALYST EXPERT AUDIT #6012: Highland Castles, Tartan Weaving, and Midnight Bagpipes in \${town}\`
         ],
         taReviews: [
-          \`ANALYST EXPERT AUDIT #6012: \${town} offers breathtaking highland scenery, ancient castle ruins, and legendary hospitality. Beware of midnight bagpipe practice and mizzle. Rating: 4.6/5 — Exceptional wild beauty.\`
+          \`ANALYST EXPERT AUDIT #6012: \${town} offers breathtaking highland scenery, ancient castle ruins, and legendary hospitality. Rating: 4.6/5 — Exceptional wild beauty.\`
         ],
         schools: [\`96% Pass Rate in Highland Navigation & Tartan Weaving in \${town}.\`],
         workforce: [\`Highland Distillery Management (68%) & Castle Heritage Duty (24%) in \${town}.\`],
@@ -1588,7 +1639,7 @@ const richHtml = `<!DOCTYPE html>
       };
     }
 
-    // 3. Cathedral / Heritage & Academic Spires
+    // 5. Cathedral / Heritage & Academic Spires
     if (/oxford|cambridge|york|durham|canterbury|lincoln|exeter|bath|salisbury|winchester|ely|chester|wells|stratford/.test(t)) {
       return {
         region: 'Cathedral / Heritage',
@@ -1608,14 +1659,13 @@ const richHtml = `<!DOCTYPE html>
           \`Step into \${town}! Marvel at 800-year-old university quadrangles, soaring cathedral spires, and historic cobbled alleyways where scholars and poets debated philosophy since 1209!\`
         ],
         reviews: [
-          { reviewer: 'PuntRower', rating: 1, text: \`Rented a wooden punt in \${town}. Crashed into a Senior Fellow reading Aristotle under a willow tree. 1 star.\` },
-          { reviewer: 'QuadWalker', rating: 2, text: \`Walked through \${town} college quad. Got yelled at in Latin by a porter for stepping on 500-year-old lawn grass.\` }
+          { reviewer: 'PuntRower', rating: 1, text: \`Rented a wooden punt in \${town}. Crashed into a Senior Fellow reading Aristotle under a willow tree. 1 star.\` }
         ],
         taHeadlines: [
           \`ANALYST EXPERT AUDIT #3302: Medieval Spires, Punting Battles, and Latin Porters in \${town}\`
         ],
         taReviews: [
-          \`ANALYST EXPERT AUDIT #3302: \${town} is an unmatched architectural treasure of medieval spires and university heritage. Visitors should prepare for aggressive bicycle traffic and dons arguing in Latin outside college gates. Rating: 4.8/5 — Sublimely atmospheric.\`
+          \`ANALYST EXPERT AUDIT #3302: \${town} is an unmatched architectural treasure of medieval spires and university heritage. Rating: 4.8/5 — Sublimely atmospheric.\`
         ],
         schools: [\`99% Pass Rate in Latin Grammar & Punting Navigation in \${town}.\`],
         workforce: [\`University Cloister Management (72%) & Library Archive Custody (22%) in \${town}.\`],
@@ -1624,8 +1674,8 @@ const richHtml = `<!DOCTYPE html>
       };
     }
 
-    // 4. Agricultural / West Country / Rural Parish
-    if (/gloucester|taunton|hereford|somerset|cotswold|devon|dorset|wiltshire|cornwall|shropshire|norfolk|suffolk|lincolnshire|cumbria|yorkshire/.test(t)) {
+    // 6. Agricultural / West Country / Rural Parish
+    if (/gloucester|taunton|hereford|somerset|cotswold|devon|dorset|wiltshire|cornwall|shropshire/.test(t)) {
       return {
         region: 'Agricultural / Rural',
         affectation: \`Heart of the \${town} Parish Green & Ancient Orchards\`,
@@ -1644,14 +1694,13 @@ const richHtml = `<!DOCTYPE html>
           \`Welcome to \${town}! Explore rolling hills, historic parish greens, and 300-year-old cider orchards! Sample authentic farmhouse cheese, inspect prize marrows at the parish show, and enjoy traditional pub hearths!\`
         ],
         reviews: [
-          { reviewer: 'CiderTaster', rating: 1, text: \`Tried authentic farmhouse cider in \${town}. Woke up 14 hours later in a hayloft with a ribbon for 2nd place in the parish marrow contest.\` },
-          { reviewer: 'CheeseRoller', rating: 2, text: \`Participated in the \${town} Cooper's Hill cheese rolling. Chased a 9lb Double Gloucester down a 1:2 slope. Broke both ankles. 5 stars.\` }
+          { reviewer: 'CiderTaster', rating: 1, text: \`Tried authentic farmhouse cider in \${town}. Woke up 14 hours later in a hayloft with a ribbon for 2nd place in the parish marrow contest.\` }
         ],
         taHeadlines: [
           \`ANALYST EXPERT AUDIT #2201: 300-Year Cider Orchards, Prize Marrows, and 1:2 Slope Cheese Rolling in \${town}\`
         ],
         taReviews: [
-          \`ANALYST EXPERT AUDIT #2201: \${town} presents a fascinating study in West Country cider heritage and agricultural passion. Highlights include 300-year-old cider orchards, parish marrow competitions, and the legendary 1:2 slope cheese rolling. Rating: 4.3/5 — Authentic rural charm.\`
+          \`ANALYST EXPERT AUDIT #2201: \${town} presents a fascinating study in West Country cider heritage and agricultural passion. Rating: 4.3/5 — Authentic rural charm.\`
         ],
         schools: [\`97% Pass Rate in Cider Fermentation & Cheese Slope Navigation in \${town}.\`],
         workforce: [\`Farmhouse Cider Production (64%) & Parish Show Management (28%) in \${town}.\`],
@@ -1660,66 +1709,77 @@ const richHtml = `<!DOCTYPE html>
       };
     }
     
-    // Default Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
+    // 7. Generic Historic Market Town Fallback (for suffixes -ham, -ton, -bury, -market, -ford, -ster, -stow, -port, -minster, -bridge, -gate, -well)
+    if (/ham|ton|bury|market|ford|ster|stow|port|minster|gate|bridge|well/.test(t)) {
+      return {
+        region: 'Historic Market Parish',
+        affectation: \`Royal Charter Market Parish of \${town}\`,
+        mottos: [
+          { motto: 'FORUM ET MERCATUS', translation: 'The Market and Charter Endure' },
+          { motto: 'AGRI ET COMPANAGIUM', translation: 'Fields and Bread for the Parish' }
+        ],
+        twinned: ['Chipping Camden', 'Stamford High Street', 'Market Harborough', 'Apperley Bridge'],
+        objects: ['14th-century market charter', 'parish weighing scales', 'timber-framed sign', 'artisanal loaf', 'ale garland'],
+        crimes: ['sabotaging weekly market stalls', 'illegal parish weighing scale tampering', 'coaching inn noise complaints'],
+        profanities: ['proper parish market shite', 'bureaucratic charter bollocks', 'historic market clusterfuck'],
+        slogans: [
+          \`\${town}: Historic Royal Charter Market Town & Parish Heritage!\`,
+          \`Discover \${town} — Ancient Timber-Framed Inns & Market Square Banter!\`
+        ],
+        brochures: [
+          \`Welcome to historic \${town}! Granted its royal market charter in 1294, \${town} features ancient timber-framed coaching inns, cobblestone market squares, and historic parish green traditions! Sample local artisan loaves, inspect weekly farmers' markets, and enjoy traditional pub hearths!\`
+        ],
+        reviews: [
+          { reviewer: 'MarketShopper', rating: 4, text: \`Visited the weekly farmers' market in \${town}. Bought an artisanal sourdough loaf and listened to two parish councillors argue over cheese stall licenses. 4 stars.\` }
+        ],
+        taHeadlines: [
+          \`ANALYST EXPERT AUDIT #1294: Royal Market Charters, Timber Coaching Inns, and Parish Banter in \${town}\`
+        ],
+        taReviews: [
+          \`ANALYST EXPERT AUDIT #1294: \${town} is a wonderfully preserved historic market town featuring 13th-century charter heritage, cobblestone squares, and traditional pub hospitality. Rating: 4.4/5 — Excellent market atmosphere.\`
+        ],
+        schools: [\`98% Pass Rate in Market Charter History & Artisan Baking in \${town}.\`],
+        workforce: [\`Parish Market Operations (60%) & Coaching Inn Hospitality (30%) in \${town}.\`],
+        housing: [\`Timber-framed market cottage in \${town}: £490,000 with authentic oak beam damp.\`],
+        excuses: [\`Blame 13th-century market charter disputes, cobblestone damp, and parish councillors.\`]
+      };
+    }
+    
+    // Default Commuter / Suburban Belt (Only for explicit new towns/commuters like Slough, Basingstoke, Bracknell, Milton Keynes, Crawley)
     return {
       region: 'Commuter / Suburban Belt',
-      affectation: \`Gateway to the \${town} Dual Carriageway Bypass\`,
+      affectation: \`Post-War Civic Ambition & Precinct Heritage of \${town}\`,
       mottos: [
-        { motto: 'ROTAMUR ET MANEMUS', translation: 'We Turn on the Roundabout, and We Remain' },
-        { motto: 'PRECINCTUS IN AETERNUM', translation: 'The Precinct Stands Forever' }
+        { motto: 'PRECINCTUS IN AETERNUM', translation: 'The Precinct Stands Forever' },
+        { motto: 'ROTAMUR ET MANEMUS', translation: 'We Turn on the Roundabout, and We Remain' }
       ],
       twinned: ['Swindon Magic Roundabout', 'Slough Flyover', \`\${town} Ring Road East\`],
-      objects: ['1970s tupperware box', 'broken shopping trolley', 'concrete bollard', 'disused Wimpy sign', 'parking meter', 'vape battery charger'],
-      crimes: ['shopping trolley canal immersion', 'roundabout drift racing', 'municipal bollard theft', 'aggravated bicycle borrowing'],
-      profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'atrocious roundabout clusterfuck', 'utter precinct tripe'],
+      objects: ['1970s tupperware box', 'broken shopping trolley', 'concrete bollard', 'disused Wimpy sign', 'parking meter'],
+      crimes: ['shopping trolley canal immersion', 'roundabout drift racing', 'municipal bollard theft'],
+      profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'utter precinct tripe'],
       slogans: [
-        \`Experience the Heroic Ambition of \${town}!\`,
-        \`\${town}: Where Modern Engineering Meets Heritage Damp!\`,
-        \`Discover \${town} — World-Class Consecrated Precincts!\`,
-        \`Welcome to \${town}: Gateway to the Bypass Network!\`
+        \`Experience the Post-War Civic Ambition of \${town}!\`,
+        \`Discover \${town} — World-Class Consecrated Precincts!\`
       ],
       brochures: [
-        \`Visit our magnificent \${town} indoor shopping concourse! Obviously mostly shuttered since Amazon dismantled traditional high streets, it now offers an authentic experience featuring 3 remaining vape outlets and scenic indoor moss growth!\`,
-        \`Marvel at the magnificent \${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!\`,
-        \`Steeped in glorious heritage! \${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl!\`,
-        \`Experience the continuous orbital bliss of \${town}'s 7-tier roundabout system, designed in 1968 to ensure motorists never actually reach their intended destination!\`
+        \`Visit our magnificent \${town} indoor shopping concourse! Hailed by post-war municipal planners as a triumph of modern engineering, featuring authentic 1970s architectural ambition!\`
       ],
       reviews: [
-        { reviewer: 'TrappedMotorist', rating: 1, text: \`Entered the \${town} dual carriageway roundabout. Completed 47 laps before finding an exit. Total bollocks.\` },
-        { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. What a clusterfuck.\` },
-        { reviewer: 'KebabRankSurvivor', rating: 1, text: \`Waited 3 hours at the \${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench. Absolute shite.\` },
-        { reviewer: 'RampVictim', rating: 1, text: \`Spent 4 hours stuck on the \${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.\` },
-        { reviewer: 'HighStreetVisitor', rating: 2, text: \`Visited the \${town} high street. Found 14 shuttered stores and 3 betting shops. Utter tripe.\` },
-        { reviewer: 'PrecinctAuditor', rating: 1, text: \`The \${town} parish council spent £3.4 million building a concrete glass cube over the disused 1974 subway while 3 remaining vape outlets took over the High Street.\` }
+        { reviewer: 'PrecinctShopper', rating: 2, text: \`Visited the \${town} concourse. Found historic 1970s precinct tiles and friendly local shoppers.\` }
       ],
       taHeadlines: [
-        \`Dead-End One-Way Systems and Missing Cathedral Ruins in \${town}\`,
-        \`The 2am Kebab Rank Taxi Cartel Monopoly Trap in \${town}\`
+        \`ANALYST EXPERT AUDIT #1974: Post-War Precinct Heritage and Civic Ambition in \${town}\`
       ],
       taReviews: [
-        \`Visitors arriving in \${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a 2am kebab rank queue.\`,
-        \`A masterclass in motion without destination. The \${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.\`,
-        \`The \${town} parish council spent £3.4 million on a concrete glass pavilion over the 1974 subway while disused 1970s precinct tiles fell into the underpass.\`,
-        \`Got trapped on the \${town} multi-storey car park ramp for 4 hours. Satellite navigation gave up and suggested walking back through the precinct.\`
+        \`ANALYST EXPERT AUDIT #1974: \${town} is a fascinating study in post-war civic architecture and shopping precinct history. Rating: 3.2/5 — Friendly local atmosphere.\`
       ],
-      schools: [
-        \`98% Pass Rate in Roundabout Navigation & Vape Shop Operations in \${town}.\`,
-        \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`
-      ],
-      workforce: [
-        \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
-        \`Multi-Storey Car Park Ramp Management & Traffic Orbit Ops (85%) in \${town}.\`
-      ],
-      housing: [
-        \`1970s precinct maisonette in \${town}: £340,000 with authentic brutalist concrete damp.\`,
-        \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`
-      ],
-      excuses: [
-        \`Blame 1968 brutalist roundabout architects, concrete suppliers, and highway planners.\`,
-        \`Blame 1970s urban planners, traditional \${town} weather, and regional highway directors.\`
-      ]
+      schools: [\`98% Pass Rate in Precinct Navigation & Civic Administration in \${town}.\`],
+      workforce: [\`Municipal Precinct Operations (62%) & Civic Administration (28%) in \${town}.\`],
+      housing: [\`Post-war suburban townhouse in \${town}: £390,000 with authentic 1970s brick damp.\`],
+      excuses: [\`Blame 1970s municipal planners and parish council flower tub budgets.\`]
     };
   }
+
 
   function buildDynamicFallbackResult(town, lensId, mode) {
     const reg = getRegionalProfile(town);
