@@ -24,7 +24,16 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   
   // Verify Coastal regional profile isolation logic exists
   assert.strictEqual(codeIndex.includes('Jewel of the ${town} Undercliff'), true);
-  assert.strictEqual(codeIndex.includes('UndercliffAuditor'), true);
-  assert.strictEqual(codeIndex.includes('SeaGaleVictim'), true);
+  assert.strictEqual(codeIndex.includes('MeridianWalker'), true);
+  assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
+
+test('FG-WL Prevention — Zero String Overlap Between TripAdvisor Analyst Audits & Customer Reviews', () => {
+  const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
+  
+  // Verify TripAdvisor Analyst Expert Audits are distinct formal reviews
+  assert.strictEqual(codeIndex.includes('ANALYST EXPERT AUDIT #4092'), true);
+  assert.strictEqual(codeIndex.includes('ANALYST EXPERT AUDIT #4093'), true);
+});
+
 

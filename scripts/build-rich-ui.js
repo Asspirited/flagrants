@@ -1208,30 +1208,28 @@ const richHtml = `<!DOCTYPE html>
           \`Welcome to \${town}: Gateway to the Undercliff Walk & Coastal Bus Shelters!\`
         ],
         brochures: [
-          \`Experience the invigorating 60mph coastal gales off the \${town} sea wall! Famous for traditional scampi hurling into oncoming gales and emergency RNLI rescues of runaway inflatable flamingos!\`,
-          \`Stand atop the crumbling \${town} chalk cliffs right on the Greenwich Meridian Line! Enjoy scenic views of sea-fog, coastal erosion swallowing 1920s bungalows at 3 inches per year, and salt-crusted promenade benches!\`,
-          \`Visit the magnificent \${town} clifftop caravan concourse, featuring 400 sun-bleached static homes, authentic salt-corroded deckchairs, and a high-street chip shop that closes at dusk!\`,
-          \`Stroll along the historic \${town} Undercliff Walk, where emergency coastguards audit abandoned pianos and driftwood wreckage deposited by Channel tides!\`
+          \`Founded in 1916 by visionaries who raffled off cliffside plots in national newspapers! \${town} invites you to walk the historic Greenwich Meridian Line, where 1920s bungalows meet crumbling chalk cliffs at 3 inches per year!\`,
+          \`Stroll the famous \${town} Undercliff Walk, where 19th-century shipwreck legends tell of 40 beached upright pianos serenading Channel tides! Enjoy 60mph coastal sea-gales, authentic salt-crusted deckchairs, and high-street chip shops closing at dusk!\`,
+          \`Experience the legendary \${town} Meridian Centre concourse! Located right where zero degrees longitude passes through Sussex, featuring 400 static caravans, coastal bus shelters, and scenic sea-wall scampi hurling!\`,
+          \`Discover the ancient coastal legends of \${town}! From the Great Scampi Tempest of 1987 to emergency coastguard audits of abandoned beach huts, our parish preserves lore that rings true!\`
         ],
         reviews: [
-          { reviewer: 'SeaGaleVictim', rating: 1, text: \`Arrived in \${town} expecting seaside charm. Ended up soaked by a 60mph sea-gale while eating lukewarm scampi out of a damp cardboard basket.\` },
-          { reviewer: 'DeckchairInspector', rating: 1, text: \`The local heritage B&B in \${town} offers authentic sea-fog damp carpets and breakfast served strictly between 7:00 and 7:12am by a hostile landlord.\` },
-          { reviewer: 'MeridianWalker', rating: 2, text: \`Standing on the \${town} clifftop, the wind-gale blew my umbrella into the English Channel while coastal erosion swallowed another 3 inches of footpath.\` },
-          { reviewer: 'UndercliffAuditor', rating: 1, text: \`Strolled along the \${town} Undercliff Walk. Found an abandoned upright piano and three rusted harbour buoys deposited by Channel tides.\` },
-          { reviewer: 'PromenadeShopper', rating: 2, text: \`Visited the \${town} clifftop concourse. Found 400 static caravans, a closed chip shop, and salt-crusted promenade benches. Attracious shite.\` },
-          { reviewer: 'FlamingoRescuer', rating: 1, text: \`RNLI lifeboat was called out in \${town} to rescue a runaway inflatable flamingo blown off the sea wall by 50-knot gales. Total bollocks.\` }
+          { reviewer: 'MeridianWalker', rating: 1, text: \`Walked the Meridian Line in \${town}. Got disoriented by sea-fog and ended up in the Meridian Centre car park thinking I was in Dieppe.\` },
+          { reviewer: 'DeckchairVictim', rating: 1, text: \`To the person who took my salt-crusted deckchair while I was buying scampi by the Undercliff Walk: I have you on Ring doorbell video.\` },
+          { reviewer: 'PlotRaffleDescendant', rating: 2, text: \`My grandfather won a cliffside plot here in a 1920 Daily Express raffle. The plot fell into the English Channel in 1974. Great views though.\` },
+          { reviewer: 'ScampiHurler', rating: 1, text: \`Tried eating scampi on the \${town} sea wall. A 60mph gale blew the entire tray into a coastguard cutter. 1 star.\` },
+          { reviewer: 'BungalowOwner', rating: 2, text: \`Living 40 yards from the \${town} chalk cliff edge. Up to 38 yards this morning. Very atmospheric.\` },
+          { reviewer: 'PianoSeeker', rating: 1, text: \`Came looking for the beached Undercliff piano legend in \${town}. Found a rusted shopping trolley and a wet seagull. Total bollocks.\` }
         ],
         taHeadlines: [
-          \`Freezing Coastal Gales and Lukewarm Scampi Baskets in \${town}\`,
-          \`Salt-Corroded Deckchairs, Damp B&B Carpets, and Hostile Landlords in \${town}\`,
-          \`Cliffside Erosion, Missing Beach Huts, and Zero Taxis in \${town}\`,
-          \`The 2am Kebab Rank Sea-Gale Queue Experience in \${town}\`
+          \`ANALYST EXPERT AUDIT #4092: 1916 Land Swindles & Greenwich Meridian Erosion in \${town}\`,
+          \`ANALYST EXPERT AUDIT #4093: 72-Hour Sea-Fog, Workhouse B&Bs, and A259 Resignation in \${town}\`,
+          \`ANALYST EXPERT AUDIT #4094: Beached Shipwreck Pianos vs Runaway Inflatable Flamingos in \${town}\`
         ],
         taReviews: [
-          \`Arrived in \${town} expecting seaside charm. Ended up soaked by a sea-gale while eating lukewarm scampi out of a damp cardboard basket by the bus shelter.\`,
-          \`The local heritage B&B in \${town} offers authentic sea-fog damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.\`,
-          \`Standing on the \${town} clifftop, the wind-gale blew my umbrella into the English Channel while the local pub ran out of cider by 8:15pm. Attracious shite.\`,
-          \`The hotel room in \${town} featured authentic salt-gale window corrosion, squeaky bed springs, and a view of the local recycling center.\`
+          \`ANALYST EXPERT AUDIT #4092: \${town} presents a fascinating study in coastal resignation. Founded as a 1916 newspaper raffle scheme, the town consists of a single linear road network (the A259) perpetually blanketed by a 72-hour sea-fog. The local gastronomy is defined strictly by lukewarm scampi served in cardboard trays that disintegrate under 50-knot Channel gales. Rating: 1.2/5 — Bring a foghorn and your own wellies.\`,
+          \`ANALYST EXPERT AUDIT #4093: An inspection of the \${town} Greenwich Meridian monument reveals that zero degrees longitude offers zero protection from coastal erosion. The local B&B operates on a 19th-century workhouse model, serving cold toast strictly at 7:00am while the landlord glares until guests vacate the premises. Rating: 1.5/5 — Mostly overcast with severe deckchair rust.\`,
+          \`ANALYST EXPERT AUDIT #4094: \${town}'s Undercliff Walk is renowned for washed-up driftwood and the legend of the 1884 beached piano shipwreck. However, modern visitors are more likely to encounter runaway inflatable flamingos and 2am kebab queue disputes outside the Meridian Centre. Rating: 1.1/5 — Attracious shite.\`
         ],
         schools: [
           \`94% Pass Rate in Coastal Navigation & Salt-Crusted Deckchair Maintenance in \${town}.\`,

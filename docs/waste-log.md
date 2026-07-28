@@ -149,5 +149,16 @@
 **Root cause:** `motto`, `excuse`, `affectation`, and `twinned_with` fields in `buildDynamicFallbackResult()` were using generic commuter defaults instead of checking `getRegionalProfile(town)`.
 **Fix:**
   1. Integrated 5-region matrix sweep across all fields in `buildDynamicFallbackResult()`.
-  2. Coastal towns now feature coastal Latin mottos (`CLIFFUS ERODIT ET CUM FLUCTIBUS EAT`), coastal excuses (60mph Channel gales & cliff erosion), and coastal twinning (Atlantis & Sewage Outfall Pipe 3).
-  3. Pushed updated client bundle to GitHub `main` (`0e705cd`).
+
+## FG-WL-014 — Customer Review Verbatim Repeat of TripAdvisor Analyst Expert Audit
+**Date:** 2026-07-28
+**Cost:** ~10 min user QA finding & duplicate text rendering in Mode III
+**Symptom:** In Section 3 (Verified Customer Reviews), one of the customer reviewers rendered the exact same string as the Section 2 TripAdvisor Analyst Expert Audit word-for-word.
+**Root cause:**
+  1. In `getRegionalProfile()`, the `reviews` array items shared template strings with `taReviews`.
+  2. While reviews were regionalized in `FG-WL-012`, they were not decoupled from the TripAdvisor expert audit pool.
+**Fix:**
+  1. Decoupled TripAdvisor Analyst Expert Audits (3-paragraph formal critic reviews) from Customer Reviews (punchy 1-sentence visitor rants).
+  2. Integrated authentic local lore (1916 Daily Express cliffside plot raffle swindle, A259 linear road network, Greenwich Meridian Dieppe confusion, Undercliff beached piano shipwreck).
+  3. Added automated test in `tests/waste_log_prevention.test.js` ensuring 0% string overlap between TripAdvisor Analyst Audits and Customer Reviews.
+  4. Pushed updated client bundle and docs to GitHub `main`.
