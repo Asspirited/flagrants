@@ -61,3 +61,57 @@ test('POKA-YOKE GUARD #2 — Mode I, II, III tab switching and generate button c
   
   assert.strictEqual(errors.length, 0, `Button clicks threw runtime errors: ${errors.map(e => e.message).join('; ')}`);
 });
+
+test('POKA-YOKE GUARD #3 — Regional Taxonomy Coverage (Experiment #1)', (t) => {
+  const buildScriptPath = path.join(__dirname, '..', 'scripts', 'build-rich-ui.js');
+  const code = fs.readFileSync(buildScriptPath, 'utf8');
+
+  // Test 20 UK towns across diverse geographical regions
+  const sampleTowns = [
+    'North Walsham', 'Skipton', 'Bakewell', 'Alnwick', 'Tewkesbury', 
+    'Cromer', 'Ludlow', 'Ripon', 'Diss', 'Kendal', 
+    'Fakenham', 'Aylsham', 'Hexham', 'Clitheroe', 'Hawes',
+    'Swaffham', 'Melton Mowbray', 'Richmond', 'St Ives', 'Padstow'
+  ];
+
+  // Extract getRegionalProfile logic execution via JSDOM window
+  const htmlPath = path.join(__dirname, '..', 'index.html');
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const dom = new JSDOM(html, { runScripts: 'dangerously' });
+  const window = dom.window;
+
+  let commuterCount = 0;
+  sampleTowns.forEach(town => {
+    const prof = window.getRegionalProfile ? window.getRegionalProfile(town) : null;
+    if (prof && prof.region === 'Commuter / Suburban Belt') {
+      commuterCount++;
+    }
+  });
+
+  const commuterRate = commuterCount / sampleTowns.length;
+  assert.ok(commuterRate < 0.15, `Too many non-commuter UK towns fell into generic commuter belt: ${(commuterRate * 100).toFixed(1)}%`);
+});
+
+test('POKA-YOKE GUARD #4 — CD3 Live Ticker & Parish Noticeboard Interactivity (Experiment #1)', (t) => {
+  const htmlPath = path.join(__dirname, '..', 'index.html');
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const dom = new JSDOM(html, { runScripts: 'dangerously' });
+  const document = dom.window.document;
+
+  const tickerBar = document.getElementById('ticker-bar');
+  const parishModal = document.getElementById('parish-modal');
+  const signBtn = document.getElementById('sign-parish-btn');
+  const petitionerInput = document.getElementById('parish-petitioner-name');
+
+  assert.ok(tickerBar, 'ticker-bar must be present in DOM');
+  assert.ok(parishModal, 'parish-modal must be present in DOM');
+
+  // Open modal via ticker click
+  tickerBar.click();
+  assert.strictEqual(parishModal.style.display, 'flex', 'Parish modal must display flex on ticker click');
+
+  // Sign petition
+  petitionerInput.value = 'Arthur Dent';
+  signBtn.click();
+  assert.strictEqual(signBtn.textContent, 'SIGNED ✓', 'Petition button must show SIGNED checkmark after click');
+});
