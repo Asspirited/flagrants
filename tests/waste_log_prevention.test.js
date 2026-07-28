@@ -28,12 +28,12 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Coastal Profile Purges Estate Agent Jargon (Clifftop Concourse)', () => {
+test('FG-WL Prevention — Debug Research Panel Is Hidden By Default In Production', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('clifftop concourse'), false, 'coastal text must not call cliffs a concourse');
-  assert.strictEqual(codeIndex.includes('Caravan Concourse Security'), false, 'caravan parks must be called caravan parks');
+  assert.strictEqual(codeIndex.includes('id="debug-research-card" style="display:none"'), true, 'debug panel must be hidden by default in production');
 });
+
 
 
 

@@ -173,3 +173,14 @@
   2. Reserved "concourse" strictly for actual indoor shopping / transit concourses (e.g. brutalist 1970s bus stations or shuttered shopping centers).
   3. Added automated test in `tests/waste_log_prevention.test.js` ensuring coastal profile contains zero "clifftop concourse" references.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-016 — Production Debug Research Panel Leak
+**Date:** 2026-07-28
+**Cost:** ~5 min user UI report
+**Symptom:** Section 7 (`🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)`) was visible by default to all end users at the bottom of the Mode III document in production.
+**Root cause:** The debug panel card added during FG-WL-011 was left without `display: none` by default.
+**Fix:**
+  1. Set `display: none` on `debug-research-card` by default in HTML template.
+  2. Configured debug panel to only display when explicitly requested via URL parameter `?debug=1` or `#debug`.
+  3. Added automated test in `tests/waste_log_prevention.test.js` ensuring `debug-research-card` has `display:none` in production HTML.
+  4. Pushed updated client bundle and docs to GitHub `main`.

@@ -1021,8 +1021,8 @@
         </div>
       </div>
 
-      <!-- Section 7: Debug Research Findings Panel -->
-      <div class="paper-section-card" id="debug-research-card">
+      <!-- Section 7: Debug Research Findings Panel (Hidden in Production — Enabled via ?debug=1) -->
+      <div class="paper-section-card" id="debug-research-card" style="display:none">
         <div class="paper-header-bar header-debug">
           <span>🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)</span>
           <span style="font-size:0.75rem; opacity:0.8;">RESEARCH SPEC</span>
@@ -2233,6 +2233,11 @@ function renderSpec(spec) {
           synthesized_doc: fallbackObj
         };
         debugContainer.textContent = JSON.stringify(debugData, null, 2);
+        const debugCard = document.getElementById('debug-research-card');
+        if (debugCard) {
+          const isDebug = window.location.search.includes('debug=1') || window.location.hash.includes('debug');
+          debugCard.style.display = isDebug ? 'flex' : 'none';
+        }
       }
 
       mode3Container.style.display = 'flex';
