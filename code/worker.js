@@ -868,7 +868,7 @@ Substitute these slots dynamically based on the specific location's research fin
 
 SECTION VOICE MAP:
 1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
-2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Apply Pattern A! Desperately trying to sell local features, but failing catastrophically and framing retail decay or dystopia as world-class attractions!
+2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Apply Pattern A! Desperately trying to sell local features, but failing catastrophically and framing retail decay or dystopia as world-class attractions! (CRITICAL: DO NOT repeat literal words like "The Last of Us", "Amazon", or "Debenhams" for every location. You MUST substitute new tech giants like QVC/UberEats/online algorithms, dystopian shows like "Children of Men"/"28 Days Later"/"Mad Max"/"Chernobyl", decaying facilities, shuttered department stores like Woolworths/BHS/House of Fraser, and local decay details!).
 3. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks) or Sub-Type 2B (Carlin) — Apply Pattern C! Acidic, unvarnished expert audit giving an unvarnished rating (e.g. "1.5 / 5 — Mostly Overcast").
 4. "socio_economic": Archetype 1 (The Cold Statistical Pedant) — Dry, scathing demographic report on Ofsted, police records, vape shop administration, and £450k damp housing.
 5. "customer_reviews": MUST be 3 highly varied visitor reviews:
