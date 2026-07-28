@@ -1965,6 +1965,115 @@ function renderSpec(spec) {
         ]
       };
     }
+
+    // 2. Celtic / Scottish / Welsh / Highland
+    if (/edinburgh|glasgow|inverness|aberdeen|dundee|stirling|perth|cardiff|swansea|bangor|aberystwyth|wales|scotland|highland|celtic|kirk|loch/.test(t)) {
+      return {
+        region: 'Celtic / Highland',
+        affectation: `Heart of the ${town} Highland Glen & Ancient Clan Hold`,
+        mottos: [
+          { motto: 'NEMO ME IMPUNE LACESSIT', translation: 'No One Provokes Me With Impunity' },
+          { motto: 'CLANNA ET MONTES', translation: 'The Clan and the Mountains Stand' }
+        ],
+        twinned: ['Valhalla', 'Skara Brae', 'Isle of Skye', 'Camelot'],
+        objects: ['shortbread tin', 'bagpipe drone', 'tartan plaid', 'single-malt cask', 'peat brick', 'haggis trap'],
+        crimes: ['illegal bagpipe solos past midnight', 'shortbread tin price-fixing', 'highland loch monster hoaxing'],
+        profanities: ['utter highland shite', 'atrocious tartan bollocks', 'proper glen-head tripe'],
+        slogans: [
+          `${town}: Gateway to Highland Lochs, Ancient Castles & Tartan Weaving!`,
+          `Discover ${town} — Home of Single-Malt Heritage & Peat-Fired Pubs!`
+        ],
+        brochures: [
+          `Experience ${town}! Discover ancient castle ruins overlooking misty lochs, traditional tartan weaving mills, and historic highland hospitality! Enjoy traditional shortbread, single-malt distilleries, and storytelling by peat fires!`
+        ],
+        reviews: [
+          { reviewer: 'ShortbreadAuditor', rating: 1, text: `Visited the ${town} castle grounds. Got cornered by a piper demanding £4 for a photo with a stuffed haggis.` },
+          { reviewer: 'LochSeeker', rating: 2, text: `Stood by the glen in ${town} for 3 hours in torrential mizzle. Didn't see any monster, but the single malt in the local pub was outstanding.` }
+        ],
+        taHeadlines: [
+          `ANALYST EXPERT AUDIT #6012: Highland Castles, Tartan Weaving, and Midnight Bagpipes in ${town}`
+        ],
+        taReviews: [
+          `ANALYST EXPERT AUDIT #6012: ${town} offers breathtaking highland scenery, ancient castle ruins, and legendary hospitality. Beware of midnight bagpipe practice and mizzle. Rating: 4.6/5 — Exceptional wild beauty.`
+        ],
+        schools: [`96% Pass Rate in Highland Navigation & Tartan Weaving in ${town}.`],
+        workforce: [`Highland Distillery Management (68%) & Castle Heritage Duty (24%) in ${town}.`],
+        housing: [`Highland cottage near ${town}: £380,000 with authentic peat-fire hearth.`],
+        excuses: [`Blame 18th-century clan disputes, highland mizzle, and bagpipe pitch tuning.`]
+      };
+    }
+
+    // 3. Cathedral / Heritage & Academic Spires
+    if (/oxford|cambridge|york|durham|canterbury|lincoln|exeter|bath|salisbury|winchester|ely|chester|wells|stratford/.test(t)) {
+      return {
+        region: 'Cathedral / Heritage',
+        affectation: `City of ${town} Dreaming Spires & Medieval Quadrangles`,
+        mottos: [
+          { motto: 'DOMINUS ILLUMINATIO MEA', translation: 'The Lord is My Light' },
+          { motto: 'SPIRES ET COBBLES', translation: 'Spires and Cobblestones Endure' }
+        ],
+        twinned: ['Heidelberg', 'Bologna (1088 AD)', 'Oxford High Street', 'Florence North'],
+        objects: ['wooden punt paddle', 'parchment scroll', 'solar gargoyle', 'brass rubbing', 'latin dictionary'],
+        crimes: ['unauthorized river punting', 'latin grammar vandalism', 'stealing college quad gargoyles'],
+        profanities: ['scholarly academic shite', 'pretentious quadrangle bollocks'],
+        slogans: [
+          `${town}: City of Dreaming Spires, Cobbled Colleges & Medieval Charters!`
+        ],
+        brochures: [
+          `Step into ${town}! Marvel at 800-year-old university quadrangles, soaring cathedral spires, and historic cobbled alleyways where scholars and poets debated philosophy since 1209!`
+        ],
+        reviews: [
+          { reviewer: 'PuntRower', rating: 1, text: `Rented a wooden punt in ${town}. Crashed into a Senior Fellow reading Aristotle under a willow tree. 1 star.` },
+          { reviewer: 'QuadWalker', rating: 2, text: `Walked through ${town} college quad. Got yelled at in Latin by a porter for stepping on 500-year-old lawn grass.` }
+        ],
+        taHeadlines: [
+          `ANALYST EXPERT AUDIT #3302: Medieval Spires, Punting Battles, and Latin Porters in ${town}`
+        ],
+        taReviews: [
+          `ANALYST EXPERT AUDIT #3302: ${town} is an unmatched architectural treasure of medieval spires and university heritage. Visitors should prepare for aggressive bicycle traffic and dons arguing in Latin outside college gates. Rating: 4.8/5 — Sublimely atmospheric.`
+        ],
+        schools: [`99% Pass Rate in Latin Grammar & Punting Navigation in ${town}.`],
+        workforce: [`University Cloister Management (72%) & Library Archive Custody (22%) in ${town}.`],
+        housing: [`Grade II Listed townhouse in ${town}: £1,200,000 with authentic 16th-century timber damp.`],
+        excuses: [`Blame 14th-century university charters, river punting currents, and Latin translation errors.`]
+      };
+    }
+
+    // 4. Agricultural / West Country / Rural Parish
+    if (/gloucester|taunton|hereford|somerset|cotswold|devon|dorset|wiltshire|cornwall|shropshire|norfolk|suffolk|lincolnshire|cumbria|yorkshire/.test(t)) {
+      return {
+        region: 'Agricultural / Rural',
+        affectation: `Heart of the ${town} Parish Green & Ancient Orchards`,
+        mottos: [
+          { motto: 'CIDER ET MARROW', translation: 'Cider and Marrow Endure' },
+          { motto: 'CHEESE ROLLIS VOLANT', translation: 'The Rolling Cheese Flies High' }
+        ],
+        twinned: ['The Shire (Lower)', 'Sleepy Hollow', 'Little Snoring', 'Much Binding in the Marsh'],
+        objects: ['9lb Double Gloucester cheese', 'farmhouse cider barrel', 'prize marrow', 'welly boot', 'parish flower tub'],
+        crimes: ['1:2 slope cheese rustling', 'farmhouse cider barrel tampering', 'sabotaging parish marrow weigh-ins'],
+        profanities: ['proper West Country shite', 'farmhouse cider bollocks', 'parish tub clusterfuck'],
+        slogans: [
+          `${town}: Home of Ancient Cider Orchards, 1:2 Slope Cheese Rolling & Parish Traditions!`
+        ],
+        brochures: [
+          `Welcome to ${town}! Explore rolling hills, historic parish greens, and 300-year-old cider orchards! Sample authentic farmhouse cheese, inspect prize marrows at the parish show, and enjoy traditional pub hearths!`
+        ],
+        reviews: [
+          { reviewer: 'CiderTaster', rating: 1, text: `Tried authentic farmhouse cider in ${town}. Woke up 14 hours later in a hayloft with a ribbon for 2nd place in the parish marrow contest.` },
+          { reviewer: 'CheeseRoller', rating: 2, text: `Participated in the ${town} Cooper's Hill cheese rolling. Chased a 9lb Double Gloucester down a 1:2 slope. Broke both ankles. 5 stars.` }
+        ],
+        taHeadlines: [
+          `ANALYST EXPERT AUDIT #2201: 300-Year Cider Orchards, Prize Marrows, and 1:2 Slope Cheese Rolling in ${town}`
+        ],
+        taReviews: [
+          `ANALYST EXPERT AUDIT #2201: ${town} presents a fascinating study in West Country cider heritage and agricultural passion. Highlights include 300-year-old cider orchards, parish marrow competitions, and the legendary 1:2 slope cheese rolling. Rating: 4.3/5 — Authentic rural charm.`
+        ],
+        schools: [`97% Pass Rate in Cider Fermentation & Cheese Slope Navigation in ${town}.`],
+        workforce: [`Farmhouse Cider Production (64%) & Parish Show Management (28%) in ${town}.`],
+        housing: [`Cotswold stone cottage in ${town}: £680,000 with authentic thatch roof damp.`],
+        excuses: [`Blame West Country mizzle, 1:2 slope gravity, and parish marrow judges.`]
+      };
+    }
     
     // Default Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
     return {

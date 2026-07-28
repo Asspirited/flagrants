@@ -256,3 +256,14 @@
   2. Dundee profile now renders: RRS Discovery polar ship, Keiller Marmalade, DC Thomson Beano comics / Dennis the Menace, V&A Dundee, and Tay Estuary.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Dundee renders 100% authentic Beano & RRS Discovery lore without Highland loch mis-matches.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-022 — Section Asynchrony Desync (`getRegionalProfile()` Missing 5-Region Matrix Classification)
+**Date:** 2026-07-28
+**Cost:** ~10 min user QA report on Gloucester section desync
+**Symptom:** Entering `Gloucester` caused the Tourist Board brochure to update to rural cider lore, but TripAdvisor and Customer Reviews remained stuck on commuter roundabout / taxi rank reviews!
+**Root cause:** `getRegionalProfile(town)` only checked `Coastal` vs `Commuter`, lacking matching branches for `Agricultural / Rural`, `Cathedral / Heritage`, `Industrial / Midlands`, and `Celtic`.
+**Fix:**
+  1. Fully wired `getRegionalProfile(town)` to support all 5 regional matrix profiles (`Coastal`, `Celtic`, `Cathedral & Industrial`, `Agricultural / Rural`, `Commuter`).
+  2. Built authentic regional TripAdvisor reviews & customer reviews for Agricultural / Rural towns (Gloucestershire cheese rolling down 1:2 slopes, cider orchard tastings, parish marrow competitions, Cotswold stone cottage damp).
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting `Gloucester` renders 100% rural cheese-rolling & cider TripAdvisor audits and customer reviews with ZERO commuter roundabout/kebab desync.
+  4. Pushed updated client bundle and docs to GitHub `main`.

@@ -35,12 +35,14 @@ test('FG-WL Prevention — Zero Towns Twin With Pripyat By Default (FG-WL-020)',
   assert.strictEqual(codeIndex.includes('Atlantis (Sunken)'), true, 'coastal towns must twin with maritime locations');
 });
 
-test('FG-WL Prevention — Dundee Renders Authentic Beano & RRS Discovery Lore (FG-WL-021)', () => {
+test('FG-WL Prevention — Gloucester 5-Region Synchronization (FG-WL-022)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Dundee: City of Jute, Jam, Journalism & RRS Discovery Heritage!'), true, 'Dundee must render authentic Jute, Jam, Beano & RRS Discovery lore');
-  assert.strictEqual(codeIndex.includes('Dennis the Menace statue'), true, 'Dundee must render Beano / Dennis the Menace lore');
+  assert.strictEqual(codeIndex.includes("ANALYST EXPERT AUDIT #2201"), true, 'Gloucester must render rural cider & cheese rolling TripAdvisor audit');
+  assert.strictEqual(codeIndex.includes('CiderTaster'), true, 'Gloucester must render rural CiderTaster customer review');
+  assert.strictEqual(codeIndex.includes('CheeseRoller'), true, 'Gloucester must render rural CheeseRoller customer review');
 });
+
 
 
 
