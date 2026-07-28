@@ -2818,6 +2818,14 @@ function renderSpec(spec) {
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js?v=1402').then(reg => {
+        reg.update();
+      }).catch(() => {});
+    });
+  }
 </script>
 
 </body>

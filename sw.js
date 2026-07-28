@@ -1,5 +1,5 @@
-// sw.js — Service Worker for Flagrants PWA — v1001
-const CACHE_NAME = 'flagrants-v1001';
+// sw.js — Service Worker for Flagrants PWA — v1402
+const CACHE_NAME = 'flagrants-v1402';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
@@ -9,7 +9,11 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
-        keys.map((key) => caches.delete(key))
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
       );
     }).then(() => self.clients.claim())
   );

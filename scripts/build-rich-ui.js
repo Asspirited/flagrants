@@ -2230,6 +2230,14 @@ const richHtml = `<!DOCTYPE html>
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js?v=1402').then(reg => {
+        reg.update();
+      }).catch(() => {});
+    });
+  }
 </script>
 
 </body>
@@ -2275,10 +2283,16 @@ function buildSVG(spec) {
 workerJs = workerJs.replace(/\/\/ ── SVG renderer [\s\S]*?\/\/ ── Prompts/, svgRendererModule + '\n\n// ── Prompts');
 
 const indexConst = 'const INDEX_HTML = ' + JSON.stringify(richHtml) + ';\n\n';
-if (workerJs.startsWith('const INDEX_HTML =')) {
-  workerJs = workerJs.replace(/^const INDEX_HTML = [\s\S]*?;\n\n/, indexConst);
+const vocabMarker = workerJs.indexOf('// ── Heraldic vocabulary');
+if (vocabMarker !== -1) {
+  workerJs = indexConst + workerJs.slice(vocabMarker);
 } else {
-  workerJs = indexConst + workerJs;
+  const tincturesMarker = workerJs.indexOf('const TINCTURES =');
+  if (tincturesMarker !== -1) {
+    workerJs = indexConst + workerJs.slice(tincturesMarker);
+  } else {
+    workerJs = indexConst + workerJs;
+  }
 }
 
 workerJs = workerJs.replace(/turnip/gi, 'cider');
