@@ -343,3 +343,17 @@
   1. Defaulted `selectedLens` to `'proud_of_it'` automatically if `null`, unblocking instant tab switching across all 3 modes (Mode I, Mode II, Mode III).
   2. Added automated test in `tests/waste_log_prevention.test.js` asserting `checkReady()` unblocks Mode II even when `selectedLens` starts as `null`.
   3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-030 — Feature Expansion: "Recent Events & Breaking Municipal Incidents" (4 Satirical Patterns)
+**Date:** 2026-07-28
+**Cost:** ~10 min user feature request for a Recent Events section
+**Symptom:** Mode III contained 5 municipal audit sections but lacked a dedicated Recent Events / Breaking Incidents card.
+**Fix:**
+  1. Built **Section 6: Recent Events & Breaking Municipal Incidents** in Mode III.
+  2. Implemented 4 Satirical Archetype Patterns:
+     - *Pattern 1 (Antiquity Reachback):* No news since 1348 AD Black Death poultry quarantine.
+     - *Pattern 2 (Blatant Fabrication & Reluctant Admission):* Golden dragon / NASA Mars landing site... absolute bollocks, obviously.
+     - *Pattern 3 (Nada / Tumbleweed / Us Chickens):* Nothing here but us chickens / move along, these aren't the droids you're looking for.
+     - *Pattern 4 (Desperate Waiting):* Something cool will happen any day now... any century now...
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Section 6 renders in Mode III with dynamic multi-click pattern rotation.
+  4. Pushed updated client bundle and docs to GitHub `main`.

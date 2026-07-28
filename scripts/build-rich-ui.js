@@ -935,6 +935,17 @@ const richHtml = `<!DOCTYPE html>
         </div>
       </div>
 
+      <!-- Section 6: Recent Events & Breaking Municipal Incidents -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-cyan">
+          <span>📰 RECENT EVENTS & BREAKING MUNICIPAL INCIDENTS</span>
+          <span style="font-size:0.75rem; opacity:0.8;">24-HOUR INCIDENT LOG</span>
+        </div>
+        <div class="paper-body">
+          <div style="font-family: 'EB Garamond', serif; font-size: 1.2rem; color: #ffffff; line-height: 1.6; font-style: italic;" id="recent-events-text"></div>
+        </div>
+      </div>
+
       <!-- Section 6: Local Gazette & Spotted:Town Community Chatter -->
       <div class="paper-section-card">
         <div class="paper-header-bar header-spotted">
@@ -1904,6 +1915,37 @@ const richHtml = `<!DOCTYPE html>
       document.getElementById('se-housing').textContent   = se.housing_property || fallbackObj.socio_economic.housing_property;
 
       document.getElementById('excuse-text').textContent = result.excuse || fallbackObj.excuse;
+
+      // Render Section 6: Recent Events & Breaking Municipal Incidents
+      const RECENT_EVENTS_PATTERNS = {
+        antiquity: [
+          'Zero breaking news reported in ' + location + ' in the last 72 hours. The most significant recent municipal incident on record remains the 1348 parish poultry quarantine during the Black Death.',
+          'Nothing notable has occurred in ' + location + ' since the Great Tupperware Freight Convention of 1978. Local journalists are currently interviewing a disused lamppost for breaking updates.',
+          'Zero newsworthy events in ' + location + ' since 1642, when a Royalist cavalry troop got lost on the parish green and demanded directions from a swan.'
+        ],
+        fabrication: [
+          'BREAKING SCOOP: A 40-foot golden dragon was spotted hovering over the ' + location + ' High Street... okay, fine, we made that up. It was actually a damp pigeon eating a discarded sausage roll.',
+          'MUNICIPAL BULLETIN: NASA designated the ' + location + ' main roundabout as a backup Mars landing site... absolute bollocks, obviously. The council just painted the curb yellow.',
+          'EXCLUSIVE: Archeologists discovered a 2,000-year-old Roman amphitheatre beneath the ' + location + ' Morrisons car park... complete shite. It\'s just a rusted shopping trolley in a pothole.'
+        ],
+        nada: [
+          'RECENT EVENTS: Nada. Zero. Absolutely nothing. Move along, these aren\'t the droids you\'re looking for. A parish dog barked at a wheelie bin at 3:14pm, but morale quickly recovered.',
+          'BREAKING INCIDENT LOG: Nothing here but us chickens. A seagull dropped a lukewarm chip on a 2004 Ford Fiesta. That is literally the entire 24-hour police log for ' + location + '.',
+          'PARISH STATUS: Total tumbleweed. The local newspaper\'s lead story today is a 2-paragraph obituary for a prize marrow.'
+        ],
+        waiting: [
+          'SOMETHING COOL WILL HAPPEN IN ' + location + ' ANY DAY NOW... any month now... any century now... Local historians have been sitting by the bus stop since 1994 waiting for news.',
+          'INCIDENT LOG: A resident sat on a bench in ' + location + ' and thought they saw a Hollywood celebrity, but it was just a wet gorse bush swaying in the sea-fog.',
+          'BREAKING: The parish council convened an emergency 4-hour meeting to discuss whether a 2012 flyer on the noticeboard should be removed. Decision postponed until 2028.'
+        ]
+      };
+
+      const eventCategories = Object.keys(RECENT_EVENTS_PATTERNS);
+      const catIdx = (hashTown(location, 443) + window._clickCount) % eventCategories.length;
+      const catKey = eventCategories[catIdx];
+      const eventPool = RECENT_EVENTS_PATTERNS[catKey];
+      const itemIdx = (hashTown(location, 557) + window._clickCount) % eventPool.length;
+      document.getElementById('recent-events-text').textContent = eventPool[itemIdx];
 
       // Render Hyper-Local Gazette & Spotted:[Town] Intelligence
       window._clickCount = (window._clickCount || 0) + 1;

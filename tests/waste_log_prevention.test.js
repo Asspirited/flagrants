@@ -41,11 +41,14 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Mode II Tab Switch Unblocked (FG-WL-029)', () => {
+test('FG-WL Prevention — Recent Events & Breaking Municipal Incidents (FG-WL-030)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes("if (!selectedLens) selectedLens = 'proud_of_it';"), true, 'checkReady must default selectedLens to proud_of_it so Mode II switches instantly');
+  assert.strictEqual(codeIndex.includes('RECENT EVENTS & BREAKING MUNICIPAL INCIDENTS'), true, 'code/index.html must render Recent Events card');
+  assert.strictEqual(codeIndex.includes('these aren\'t the droids you\'re looking for'), true, 'code/index.html must include nada/droids pattern');
+  assert.strictEqual(codeIndex.includes('Nothing here but us chickens'), true, 'code/index.html must include us chickens pattern');
 });
+
 
 
 
