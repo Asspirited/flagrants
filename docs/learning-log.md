@@ -76,6 +76,12 @@
 * **Date:** 2026-07-28
 * **Insight:** Lack of system status visibility is toxic in both web apps and AI assistant interactions. When an AI or app fails to communicate progress, state, or diagnostic steps, it causes friction, loss of trust, and forces context abandonment. We enforce **Nielsen Golden Rule #1** across both domain UI (visible Herald Research status card) and agent communication (transparent, immediate step updates).
 
+### Entry #014 — Zombie Task Hygiene & Clean Process Termination
+* **Category:** Process Safety & Environment Health
+* **Date:** 2026-07-28
+* **Insight:** One-off diagnostic scripts (e.g. JSDOM test scripts) that do not exit explicitly can hang indefinitely as active background processes, causing task pollution, UI indicators showing "task running", and agent stalling. Always terminate background processes explicitly and audit `manage_task(list)` to maintain 100% clean environment state.
+
+
 
 
 
