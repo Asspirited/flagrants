@@ -424,6 +424,114 @@
       font-family: 'EB Garamond', serif;
     }
 
+
+    /* Live Municipal Ticker Tape Footer Bar (CD3 Feature) */
+    .municipal-ticker-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 38px;
+      background: linear-gradient(180deg, #2b1d0a 0%, #140c03 100%);
+      border-top: 2px solid #FFD700;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .ticker-badge {
+      background: #FFD700;
+      color: #1a1008;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0 0.8rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 35s linear infinite;
+      gap: 3rem;
+      padding-left: 100%;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .ticker-item {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.98rem;
+      color: #e8d5a3;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ticker-item strong {
+      color: #FFD700;
+    }
+
+    /* Parish Council Emergency Audit Notice Modal (CD3 Feature) */
+    .parish-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .parish-modal-card {
+      background: #1c1409;
+      border: 3px solid #FFD700;
+      border-radius: 8px;
+      max-width: 620px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 0 32px rgba(255, 215, 0, 0.4);
+      color: #e8d5a3;
+      padding: 2rem;
+      position: relative;
+      font-family: 'EB Garamond', serif;
+    }
+    .parish-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: none;
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 0.2rem 0.6rem;
+    }
+    .parish-stamp {
+      border: 2px dashed #ff8080;
+      color: #ff8080;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      transform: rotate(-2deg);
+    }
     .re-design-bar {
       display: flex;
       flex-direction: column;
@@ -1121,6 +1229,52 @@
 
   </div>
 
+
+<!-- Live Municipal Ticker Tape Bar (CD3 Feature) -->
+<div class="municipal-ticker-bar" id="ticker-bar" title="Click to view Parish Council Emergency Audit Notice">
+  <div class="ticker-badge">📜 MUNICIPAL TICKER</div>
+  <div class="ticker-track">
+    <span class="ticker-item"><strong>LAMINATED NOTICE:</strong> To whoever took my prize marrow from outside the church porch, return it before dusk or police will be informed.</span>
+    <span class="ticker-item"><strong>PARISH ALERT:</strong> Brown bin garden waste collections suspended following 4-hour council debate over petunia colours.</span>
+    <span class="ticker-item"><strong>NEIGHBOURHOOD WATCH:</strong> Man spotted measuring dropped kerb clearance with wooden ruler at 6:15am.</span>
+    <span class="ticker-item"><strong>1978 PARISH MINUTES:</strong> Motion to ban 3-meter leylandii hedges defeated after vicar abstained.</span>
+    <span class="ticker-item"><strong>RECYCLING TIP NOTICE:</strong> Permits now require 3 utility bills, birth certificate, and signed affidavit.</span>
+  </div>
+</div>
+
+<!-- Parish Council Emergency Audit Notice Modal (CD3 Feature) -->
+<div class="parish-modal-overlay" id="parish-modal">
+  <div class="parish-modal-card">
+    <button class="parish-modal-close" id="close-parish-modal">✕</button>
+    <div class="parish-stamp">OFFICIAL PARISH COUNCIL AUDIT — 1978 CHARTER</div>
+    <h2 style="font-family: 'Cinzel', serif; color: #FFD700; margin-bottom: 0.5rem; font-size: 1.6rem;">📜 EMERGENCY PARISH NOTICEBOARD</h2>
+    <p style="font-style: italic; color: #c8a060; margin-bottom: 1.2rem;">Official Public Notices Taped to the Church Hall Door by Order of the Chairman</p>
+    
+    <div style="background: #120b04; border: 1px solid rgba(212,160,48,0.3); padding: 1.2rem; border-radius: 6px; margin-bottom: 1.2rem;">
+      <h3 style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.1rem; margin-bottom: 0.4rem;">🗳️ Active Parish Motions & Voting Records</h3>
+      <ul style="line-height: 1.6; margin-left: 1.2rem;">
+        <li><strong>Motion 401 (Leylandii Hedges):</strong> Motion to restrict leylandii hedges to 2.4 meters. <em>Defeated 4-3 (Vicar abstained).</em></li>
+        <li><strong>Motion 402 (Brown Bins):</strong> Mandate 14-page PDF guide for garden waste. <em>Passed unanimously.</em></li>
+        <li><strong>Motion 403 (Dropped Kerbs):</strong> Authorize laminated notes for vehicles parked 2 inches over kerbs. <em>Passed 6-1.</em></li>
+      </ul>
+    </div>
+
+    <div style="background: #281212; border-left: 4px solid #ff8080; padding: 1rem; border-radius: 0 4px 4px 0; margin-bottom: 1.2rem;">
+      <h4 style="font-family: 'Outfit', sans-serif; color: #ff8080; font-size: 0.95rem; font-weight: bold; margin-bottom: 0.3rem;">🚨 CHAIRMAN'S PUBLIC WARNING</h4>
+      <p style="font-size: 0.98rem; line-height: 1.5;">"To the individual who spray-painted a heart around the pothole near the precinct: this has been reported to the highways department as an illegal municipal affection."</p>
+    </div>
+
+    <div style="background: #111d28; border: 1px solid #4ca1af; padding: 1.2rem; border-radius: 6px; text-align: center;">
+      <h4 style="font-family: 'Cinzel', serif; color: #4ca1af; font-size: 1.1rem; margin-bottom: 0.4rem;">🖋️ Sign the Parish Protest Roll</h4>
+      <p style="font-size: 0.95rem; margin-bottom: 0.8rem;">Add your name to the official petition against 3-meter leylandii hedges:</p>
+      <div style="display: flex; gap: 0.5rem; justify-content: center; max-width: 400px; margin: 0 auto;">
+        <input type="text" id="parish-petitioner-name" placeholder="Enter your name..." style="padding: 0.5rem; background: #080d12; border: 1px solid #4ca1af; color: #fff; border-radius: 4px; flex: 1;">
+        <button id="sign-parish-btn" style="padding: 0.5rem 1rem; background: #4ca1af; color: #080d12; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">SIGN</button>
+      </div>
+      <div id="petition-count-display" style="font-size: 0.85rem; color: #FFD700; margin-top: 0.6rem; font-weight: bold;">4,218 Concerned Residents Have Signed</div>
+    </div>
+  </div>
+</div>
 </main>
 
 <script>
@@ -2926,6 +3080,50 @@ function renderSpec(spec) {
       navigator.serviceWorker.register('sw.js?v=1402').then(reg => {
         reg.update();
       }).catch(() => {});
+    });
+  }
+
+  // CD3 Feature: Ticker & Modal Event Listeners
+  const tickerBar = document.getElementById('ticker-bar');
+  const parishModal = document.getElementById('parish-modal');
+  const closeParishModal = document.getElementById('close-parish-modal');
+  const signParishBtn = document.getElementById('sign-parish-btn');
+  const petitionerInput = document.getElementById('parish-petitioner-name');
+  const petitionCountDisplay = document.getElementById('petition-count-display');
+
+  if (tickerBar && parishModal) {
+    tickerBar.addEventListener('click', () => {
+      parishModal.style.display = 'flex';
+    });
+  }
+
+  if (closeParishModal && parishModal) {
+    closeParishModal.addEventListener('click', () => {
+      parishModal.style.display = 'none';
+    });
+    parishModal.addEventListener('click', (e) => {
+      if (e.target === parishModal) parishModal.style.display = 'none';
+    });
+  }
+
+  if (signParishBtn && petitionerInput) {
+    signParishBtn.addEventListener('click', () => {
+      let count = 4218;
+      try {
+        if (typeof localStorage !== 'undefined') {
+          count = parseInt(localStorage.getItem('parish_petition_count') || '4218', 10);
+          count++;
+          localStorage.setItem('parish_petition_count', count.toString());
+        } else {
+          count++;
+        }
+      } catch (e) {
+        count++;
+      }
+      petitionCountDisplay.textContent = count.toLocaleString() + ' Concerned Residents Have Signed (Including ' + name + ')';
+      petitionerInput.value = '';
+      signParishBtn.textContent = 'SIGNED ✓';
+      signParishBtn.disabled = true;
     });
   }
 </script>
