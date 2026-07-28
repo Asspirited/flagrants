@@ -129,3 +129,25 @@
   3. Purged all remaining turnip references from `code/worker.js` prompt exemplars.
   4. Added a live `🔬 HERALDIC MUNICIPAL RESEARCH DATA (DEBUG LOG)` section to Mode III UI to display raw research JSON for immediate debugging.
   5. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-012 — Un-regionalized Single Global Customer Review Pool Hold-Out
+**Date:** 2026-07-28
+**Cost:** ~15 min user testing delay & embarrassing domain mismatch (roundabout reviews in coastal town)
+**Symptom:** Entering Peacehaven returned "Entered the dual carriageway roundabout. Completed 47 laps before finding an exit" as a customer review.
+**Root cause:**
+  1. While slogans and brochures were regionalized in `FG-WL-009`, `customer_reviews` still pulled from a single un-regionalized 12-item array.
+  2. `hashTown('Peacehaven', 401) % 12` evaluated to Index 9, which held a commuter roundabout review.
+**Fix:**
+  1. Decoupled `customer_reviews` into 5 isolated regional pools (`Coastal`, `Industrial`, `Celtic`, `Agricultural`, `Commuter`).
+  2. Peacehaven now pulls strictly from coastal review lore (Undercliff Walk, abandoned pianos, salt-crusted deckchairs, sea-gale scampi).
+  3. Pushed updated client bundle and docs to GitHub `main` (`21a4397`).
+
+## FG-WL-013 — Un-regionalized Motto, Excuse, & Twinned-With Arrays
+**Date:** 2026-07-28
+**Cost:** ~10 min user confusion
+**Symptom:** Non-railway coastal towns like Peacehaven rendered twinned with "Platform 4" and excuses blaming 1968 brutalist roundabout architects.
+**Root cause:** `motto`, `excuse`, `affectation`, and `twinned_with` fields in `buildDynamicFallbackResult()` were using generic commuter defaults instead of checking `getRegionalProfile(town)`.
+**Fix:**
+  1. Integrated 5-region matrix sweep across all fields in `buildDynamicFallbackResult()`.
+  2. Coastal towns now feature coastal Latin mottos (`CLIFFUS ERODIT ET CUM FLUCTIBUS EAT`), coastal excuses (60mph Channel gales & cliff erosion), and coastal twinning (Atlantis & Sewage Outfall Pipe 3).
+  3. Pushed updated client bundle to GitHub `main` (`0e705cd`).
