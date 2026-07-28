@@ -41,12 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Zero Generic Sculpture Tropes (FG-WL-034 / Law 1)', () => {
+test('FG-WL Prevention — Johnny Front-Row Callout Engine (FG-WL-035)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('abstract sculpture'), false, 'code/index.html must contain zero generic abstract sculpture lines');
-  assert.strictEqual(codeIndex.includes('destroyed both front axles of my Vauxhall Corsa'), false, 'code/index.html must contain zero generic Vauxhall Corsa axle lines');
+  assert.strictEqual(codeIndex.includes('reminds me of an unwashed 8th-century manuscript scribe, Johnny'), true, 'code/index.html must render Bede Johnny callout');
+  assert.strictEqual(codeIndex.includes('reminds me of that wet Wimpy wrapper, Johnny'), true, 'code/index.html must render Ray Mears Johnny callout');
 });
+
 
 
 

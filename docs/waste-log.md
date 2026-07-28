@@ -410,3 +410,13 @@
   1. Replaced all generic sculpture exemplars in `docs/satirical-comedy-patterns.md`, `satirical_comedy_manifesto.md`, and `scripts/build-rich-ui.js` with 100% hyper-locally grounded town exemplars (*Nottingham cave glass cubes, Glastonbury copper dowsing rods, Dundee Desperate Dan catapults, Peacehaven Meridian brass compasses*).
   2. Added automated test in `tests/waste_log_prevention.test.js` asserting zero generic ungrounded sculpture exemplars exist.
   3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-035 — Feature Expansion: "Johnny Front-Row Callout Engine" (Panelist Interjections)
+**Date:** 2026-07-28
+**Cost:** ~5 min user feature selection for Upgrade 3
+**Symptom:** Panelist interjections (*Bede, Ray Mears, Attenborough, Steve Backshall*) lacked direct 3rd-register front-row audience callouts (*"You remind me of that monkey, Johnny"*).
+**Fix:**
+  1. Built the **Johnny Front-Row Callout Engine** into `INTERJECTIONS` pool in `scripts/build-rich-ui.js`.
+  2. Embedded dynamic front-row callouts across all 4 panelists (Bede, Ray Mears, David Attenborough, Steve Backshall).
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Johnny front-row callouts render in panel interjections.
+  4. Pushed updated client bundle and docs to GitHub `main`.
