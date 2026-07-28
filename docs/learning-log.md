@@ -66,6 +66,12 @@
 * **Date:** 2026-07-28
 * **Insight:** Removing execution status messages breaches Nielsen Heuristic #1 (*Visibility of System Status*), leaving users uncertain if their click took effect. Restoring the 300ms rotating Herald Research status card (*"The Herald is researching parish records & gazettes..."*) provides clear status feedback, satisfies Heuristic #5 (*Error Prevention*), and creates a delightful user experience.
 
+### Entry #012 — The Poka-Yoke Principle: Zero-Obstruction QA Charter
+* **Category:** Operational Excellence & Error-Proofing
+* **Date:** 2026-07-28
+* **Insight:** Bugs that obstruct the user from interacting with or testing the core output gold of the app are classified as **P0 Priority 0 Blockers**. In accordance with Lean manufacturing *Poka-Yoke* (mistake-proofing), all builds must run automated JSDOM click simulation guards (`tests/poka_yoke_guards.test.js`) before deployment to guarantee zero browser syntax errors, zero broken event listeners, and 100% operational UI flow.
+
+
 
 
 
