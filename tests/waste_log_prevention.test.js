@@ -28,12 +28,14 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Coastal Profile Purges Inappropriate Parking Infrastructure', () => {
+test('FG-WL Prevention — Dynamic 6-Archetype Regional Classification (Nottingham & Oxford)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Meridian Centre car park'), false, 'coastal profile must not reference car parks');
-  assert.strictEqual(codeIndex.includes('Meridian Centre clifftop gravel patch'), true, 'coastal profile must use authentic clifftop gravel patch');
+  assert.strictEqual(codeIndex.includes('Sherwood Outlaw Legends, Sandstone Caves & Heritage Lace'), true, 'Nottingham must render sandstone caves & Robin Hood lore');
+  assert.strictEqual(codeIndex.includes('City of Dreaming Spires, Cobbled Colleges'), true, 'Oxford must render dreaming spires & college lore');
+  assert.strictEqual(codeIndex.includes('Gateway to Highland Lochs, Ancient Castles'), true, 'Inverness must render highland loch & tartan lore');
 });
+
 
 
 

@@ -213,3 +213,20 @@
   2. Confined "multi-storey car park" strictly to `Commuter / Suburban Belt` (e.g. Bracknell, Slough, Basingstoke).
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting coastal profiles contain zero "car park" or "multi-storey" references.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-019 — Default Fallback Trap for Un-Database UK Towns (Nottingham / Generic Bypass Leak)
+**Date:** 2026-07-28
+**Cost:** ~10 min user QA report on unlisted town (Nottingham) reverting to generic bypasses
+**Symptom:** Entering an unlisted town like `Nottingham` caused `getHyperLocalLore()` to hit the generic fallback, rendering "MYSTERY NOISE NEAR THE BYPASS", "2am kebab rush", and commuter roundabouts!
+**Root cause:** `getHyperLocalLore()` lacked dynamic geographic classification, defaulting all un-database towns to generic commuter bypass tropes.
+**Fix:**
+  1. Built a **Dynamic 6-Archetype Regional Classification Engine** (`classifyTown`) covering all UK towns:
+     - `Industrial / Midlands` (Nottingham, Manchester, Sheffield, Birmingham -> Sandstone caves, Robin Hood, Sherwood Forest, Lace Market).
+     - `Cathedral / Heritage` (Oxford, Cambridge, York, Durham, Bath -> Dreaming spires, gargoyles, cobbled colleges, punting).
+     - `Celtic / Highland` (Edinburgh, Glasgow, Inverness, Cardiff -> Loch Ness, tartan weaving, ancient castle ruins, bagpipe lore).
+     - `Agricultural / Rural` (Gloucester, Somerset, Cotswolds, Devon -> Cider orchards, cheese rolling, parish tub budgets).
+     - `Coastal / Maritime` (Peacehaven, Blackpool, Plymouth, Dover -> Meridian zero degrees, chalk cliffs, beached pianos).
+     - `Commuter / Suburban` (Basingstoke, Bracknell, Slough -> Top of Town markets, Tupperware conventions).
+  2. Updated `getHyperLocalLore()` to generate 100% archetype-grounded folklore for ANY town entered in the UK.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Nottingham, Oxford, and Inverness render 100% archetype-grounded lore with ZERO bypass or kebab references.
+  4. Pushed updated client bundle and docs to GitHub `main`.

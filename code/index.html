@@ -1783,17 +1783,109 @@ function renderSpec(spec) {
     }
   };
 
+  function classifyTown(town) {
+    const t = town.toLowerCase().trim();
+
+    if (/peacehaven|blackpool|brighton|hastings|portsmouth|torquay|scarborough|whitby|plymouth|dover|grimsby|sunderland|hull|southampton|seaside|bay|harbour|beach|coast|pier|skegness|bournemouth|rye|margate|clacton/.test(t)) {
+      return 'coastal';
+    }
+    if (/edinburgh|glasgow|inverness|aberdeen|dundee|stirling|perth|cardiff|swansea|bangor|aberystwyth|wales|scotland|highland|celtic|kirk|loch/.test(t)) {
+      return 'celtic';
+    }
+    if (/oxford|cambridge|york|durham|canterbury|lincoln|exeter|bath|salisbury|winchester|ely|chester|wells|stratford/.test(t)) {
+      return 'cathedral_heritage';
+    }
+    if (/nottingham|manchester|sheffield|birmingham|leeds|leicester|derby|bradford|newcastle|liverpool|stoke|wolverhampton|coventry|bolton|preston|huddersfield|halifax/.test(t)) {
+      return 'industrial_midlands';
+    }
+    if (/gloucester|taunton|hereford|somerset|cotswold|devon|dorset|wiltshire|cornwall|shropshire|norfolk|suffolk|lincolnshire|cumbria|yorkshire/.test(t)) {
+      return 'agricultural_rural';
+    }
+    return 'commuter';
+  }
+
   function getHyperLocalLore(town) {
     const clean = town.toLowerCase().trim();
     if (HYPER_LOCAL_DATABASE[clean]) {
       return HYPER_LOCAL_DATABASE[clean];
     }
+
+    const archetype = classifyTown(town);
+
+    if (archetype === 'industrial_midlands') {
+      return {
+        paper: `${town} Post & Mail`,
+        spotted: `Spotted: ${town}`,
+        gazette_headline: `MYSTERY MEDIEVAL CAVE DISCOVERED BENEATH ${town.toUpperCase()} HIGH STREET PROMPTS ARCHAEOLOGICAL AUDIT`,
+        spotted_chatter: `Can whoever is leaving longbow targets near Sherwood Forest / the precinct please remove them before the morning commute.`,
+        local_scandal: `Disputes over ancient lace market charters and 12th-century sandstone tavern cellars in ${town}.`,
+        tourist_slogan: `${town}: Home of Sherwood Outlaw Legends, Sandstone Caves & Heritage Lace!`,
+        tourist_brochure: `Discover ${town}! Explore ancient 12th-century sandstone caves carved beneath Ye Olde tavern cellars, legendary Robin Hood outlaw lore, and the historic Lace Market precinct where 19th-century weavers crafted world-famous textiles!`,
+        tripadvisor_audit: `ANALYST EXPERT AUDIT #5091: ${town} combines rich 12th-century cave network heritage with vibrant market lore. Highlights include historic sandstone taverns, Sheriff outlaw legends, and outstanding local ale. Rating: 4.4/5 — Rich historical atmosphere.`
+      };
+    }
+
+    if (archetype === 'cathedral_heritage') {
+      return {
+        paper: `${town} Chronicle & Heritage Times`,
+        spotted: `Overheard in ${town}`,
+        gazette_headline: `GARGOYLE ON ${town.toUpperCase()} CATHEDRAL SPIRE ACCIDENTALLY FITTED WITH SOLAR-POWERED FLASHLIGHT`,
+        spotted_chatter: `Will the student who left their wooden punt blocking the River Cherwell / Ouse please tow it back to the boathouse.`,
+        local_scandal: `Debates in the Senior Common Room over 14th-century cobbled alleyway bicycle rights in ${town}.`,
+        tourist_slogan: `${town}: City of Dreaming Spires, Cobbled Colleges & Medieval Charters!`,
+        tourist_brochure: `Step into ${town}! Marvel at 800-year-old university quadrangles, soaring cathedral spires, and historic cobbled alleyways where scholars and poets debated philosophy since 1209! Enjoy punt rides along ancient riverways and quiet library cloisters!`,
+        tripadvisor_audit: `ANALYST EXPERT AUDIT #3302: ${town} is an unmatched architectural treasure of medieval spires and university heritage. Visitors should prepare for aggressive bicycle traffic and dons arguing in Latin outside college gates. Rating: 4.8/5 — Sublimely atmospheric.`
+      };
+    }
+
+    if (archetype === 'celtic') {
+      return {
+        paper: `${town} Highland Gazette & Herald`,
+        spotted: `Spotted: ${town} & District`,
+        gazette_headline: `MYSTERY LOCH SIGHTING NEAR ${town.toUpperCase()} CASTLE PROMPTS EMERGENCY TARTAN WEAVING AUDIT`,
+        spotted_chatter: `Will whoever is practicing the bagpipes past midnight near the castle grounds please relocate to the glen.`,
+        local_scandal: `Debates over shortbread tin pricing and ancient clan tartan weaving rights in ${town}.`,
+        tourist_slogan: `${town}: Gateway to Highland Lochs, Ancient Castles & Tartan Weaving!`,
+        tourist_brochure: `Experience ${town}! Discover ancient castle ruins overlooking misty lochs, traditional tartan weaving mills, and historic highland hospitality! Enjoy traditional shortbread, single-malt distilleries, and storytelling by peat fires!`,
+        tripadvisor_audit: `ANALYST EXPERT AUDIT #6012: ${town} offers breathtaking highland scenery, ancient castle ruins, and legendary hospitality. Beware of midnight bagpipe practice and mizzle. Rating: 4.6/5 — Exceptional wild beauty.`
+      };
+    }
+
+    if (archetype === 'agricultural_rural') {
+      return {
+        paper: `${town} Agricultural Journal & Parish News`,
+        spotted: `Spotted: ${town} Parish`,
+        gazette_headline: `PARISH COUNCIL AUDITS 18TH-CENTURY CIDER BARREL RUSTLING NEAR THE VILLAGE GREEN`,
+        spotted_chatter: `Will the owner of the prize marrow left by the church porch please claim it before the autumn show.`,
+        local_scandal: `Disputes over parish council flower tub budgets and 1:2 cliff cheese rolling in ${town}.`,
+        tourist_slogan: `${town}: Home of Ancient Cider Orchards, Prize Marrows & Parish Traditions!`,
+        tourist_brochure: `Welcome to ${town}! Explore rolling hills, historic parish greens, and 300-year-old cider orchards! Sample authentic farmhouse cheese, inspect prize marrows at the parish show, and enjoy traditional pub hearths!`,
+        tripadvisor_audit: `ANALYST EXPERT AUDIT #2201: ${town} is a quintessential rural haven. Highlights include ancient cider tasting, parish tub disputes, and friendly village pub banter. Rating: 4.3/5 — Charming rural escape.`
+      };
+    }
+
+    if (archetype === 'coastal') {
+      return {
+        paper: `${town} Coastal Express`,
+        spotted: `Spotted: ${town} Promenade`,
+        gazette_headline: `MYSTERY DECKCHAIR DISCOVERED ON THE ${town.toUpperCase()} PROMENADE PROMPTS COASTGUARD AUDIT`,
+        spotted_chatter: `To the person who took my salt-crusted deckchair while I was buying scampi: return it to the sea wall.`,
+        local_scandal: `Sea-fog obscuring the pier for 48 hours while residents argue over beach hut paint colours.`,
+        tourist_slogan: `${town}: Where Invigorating Sea-Gales Meet Historic Coastal Promenades!`,
+        tourist_brochure: `Visit ${town}! Enjoy 60mph coastal gales off the historic sea wall, fresh seafood baskets, and scenic clifftop walks! Explore traditional beach huts, salt-crusted promenade benches, and maritime heritage!`,
+        tripadvisor_audit: `ANALYST EXPERT AUDIT #4010: ${town} offers authentic coastal mizzle, salt-corroded deckchairs, and high-street chip shops closing at dusk. Rating: 3.5/5 — Refreshing coastal sea-fog.`
+      };
+    }
+
     return {
       paper: `${town} Gazette & District News`,
       spotted: `Spotted: ${town}`,
-      gazette_headline: `MUNICIPAL COUNCIL INVESTIGATES MYSTERY NOISE NEAR THE ${town.toUpperCase()} BYPASS`,
-      spotted_chatter: `Can the person who left their shopping trolley in the middle of the ${town} precinct please move it before the 2am kebab rush.`,
-      local_scandal: `Disputes over parish council flower tubs and 2am taxi rank queue jumping in ${town}.`
+      gazette_headline: `MUNICIPAL COUNCIL INVESTIGATES HISTORIC TOP OF TOWN MARKET PRECINCT IN ${town.toUpperCase()}`,
+      spotted_chatter: `Can the person who left their shopping trolley near the market precinct please collect it before dusk.`,
+      local_scandal: `Disputes over parish council flower tubs and 1978 regional convention heritage in ${town}.`,
+      tourist_slogan: `${town}: Gateway to Historic Market Precincts & Post-War Civic Ambition!`,
+      tourist_brochure: `Explore ${town}! Discover historic market precincts, post-war civic architecture, and friendly local high-street banter!`,
+      tripadvisor_audit: `ANALYST EXPERT AUDIT #1100: ${town} offers an interesting glimpse into post-war municipal planning and market precinct heritage. Rating: 3.2/5 — Friendly local atmosphere.`
     };
   }
 
