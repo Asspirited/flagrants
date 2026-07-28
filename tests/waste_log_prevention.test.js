@@ -41,12 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — 3-Way Celebrity Panel Conspire & Dialogue Engine (FG-WL-037)', () => {
+test('FG-WL Prevention — Survival School Custom Persona Intake Module (FG-WL-038)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('PANEL_DIALOGUES = ['), true, 'code/index.html must include PANEL_DIALOGUES 3-way threads');
-  assert.strictEqual(codeIndex.includes('thermodynamic entropy of those alcopops'), true, 'code/index.html must include Brian Cox alcopop entropy line');
+  assert.strictEqual(codeIndex.includes('SURVIVAL_SCHOOL_PERSONAS = {'), true, 'code/index.html must include SURVIVAL_SCHOOL_PERSONAS');
+  assert.strictEqual(codeIndex.includes('Frankie Boyle'), true, 'code/index.html must include Frankie Boyle persona');
 });
+
 
 
 

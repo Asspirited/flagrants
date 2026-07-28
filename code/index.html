@@ -1582,13 +1582,26 @@ function renderSpec(spec) {
 
 
 
+  const SURVIVAL_SCHOOL_PERSONAS = {
+    ray: { id: 'ray', name: 'Ray Mears', role: 'Bushcraft & Survival', avatar: '🏕️', catchphrase: "Don't." },
+    bear: { id: 'bear', name: 'Bear Grylls', role: 'Former SAS & Londis Hydration', avatar: '🥤', catchphrase: "Hydration? Londis is 40 yards away!" },
+    cody: { id: 'cody', name: 'Cody Lundin', role: 'Primitive Skills & Barefoot Integrity', avatar: '🦶', catchphrase: "Cattails. Thirty feet away." },
+    les: { id: 'les', name: 'Les Hiddins', role: 'Bush Tucker Man', avatar: '🤠', catchphrase: "Have a look at that." },
+    frankie: { id: 'frankie', name: 'Frankie Boyle', role: 'Aggressive Surrealist & Loft Monkey Specialist', avatar: '🐒', catchphrase: "You remind me of that monkey, Johnny." },
+    winstone: { id: 'winstone', name: 'Ray Winstone', role: 'Rough-Diamond Hardman', avatar: '🥊', catchphrase: "Listen to me, sunshine." },
+    cox: { id: 'cox', name: 'Prof. Brian Cox', role: 'Quantum Physicist', avatar: '🌌', catchphrase: "Space-time dilates at 3am." }
+  };
+
   const PANELISTS = [
     { id: 'bede', name: 'Venerable Bede', role: 'Anglo-Saxon Chronicler', avatar: '📜' },
     { id: 'ray', name: 'Ray Mears', role: 'Bushcraft & Survival Expert', avatar: '🏕️' },
     { id: 'david', name: 'David Attenborough', role: 'Naturalist & Broadcaster', avatar: '🎙️' },
     { id: 'steve', name: 'Steve Backshall', role: 'Deadly 60 Explorer', avatar: '🦎' },
     { id: 'winstone', name: 'Ray Winstone', role: 'Rough-Diamond Pub Philosopher', avatar: '🥊' },
-    { id: 'cox', name: 'Prof. Brian Cox', role: 'Wondrous Quantum Physicist', avatar: '🌌' }
+    { id: 'cox', name: 'Prof. Brian Cox', role: 'Wondrous Quantum Physicist', avatar: '🌌' },
+    { id: 'bear', name: 'Bear Grylls', role: 'Former SAS & Londis Hydration', avatar: '🥤' },
+    { id: 'cody', name: 'Cody Lundin', role: 'Primitive Skills & Barefoot Integrity', avatar: '🦶' },
+    { id: 'frankie', name: 'Frankie Boyle', role: 'Aggressive Surrealist', avatar: '🐒' }
   ];
 
   const PANEL_DIALOGUES = [

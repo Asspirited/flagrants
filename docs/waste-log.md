@@ -440,3 +440,13 @@
   2. Embedded multi-speaker dialogue threads into panel interjections for all 5 regional archetypes.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting 3-way celebrity panel dialogue threads render cleanly.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-038 — CD3 Board Item #3 Resolution: "Survival School Custom Persona Intake Module"
+**Date:** 2026-07-28
+**Cost:** ~5 min execution of CD3 Board Item #3
+**Symptom:** Panel show interjections were limited to hardcoded panel lists without porting Survival School persona intake questions or allowing custom user-defined panelists/regional characters.
+**Fix:**
+  1. Ported `CHARACTERS` persona schema from `survival-school` into `scripts/build-rich-ui.js`.
+  2. Built `CustomPersonaRegistry` allowing users to register custom panel show guests (*Frankie Boyle, Bear Grylls, Cody Lundin, Les Hiddins*) with custom catchphrases and voices.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting custom persona registration and intake.
+  4. Pushed updated client bundle and docs to GitHub `main`.
