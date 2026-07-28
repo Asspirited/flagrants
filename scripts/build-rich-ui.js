@@ -2464,29 +2464,26 @@ const richHtml = `<!DOCTYPE html>
       document.getElementById('spotted-post-text').textContent   = \`"\${chatterText}"\`;
 
       // Render Section 7: Historic Luminary Quotes & Subsequent Municipal Descent
-      const LUMINARY_QUOTES = {
+            const LUMINARY_QUOTES = {
         coastal: [
           {
-            author: "John Betjeman (1937)",
-            quote: "Come, friendly gales, and sweep the coastal mizzle clear...",
-            reality: location + " ignored Sir John's poetic plea and instead built 400 static caravans directly on the eroding chalk cliff edge, leading residents to erect Ring cameras to watch the footpaths fall into the sea."
-          },
+            author: "Oscar Wilde (1895)",
+            quote: "To lose one beach hut is a misfortune; to lose 40 upright pianos off the undercliff walk looks like coastal sea-fog.",
+            reality: "109 years later, " + location + " has turned Wilde's observation into a 72-hour land plot raffle dispute where 1920s bungalow owners clash with eroding chalk cliffs at 3 inches per year."
+          }
+        ],
+        east_anglia: [
           {
-            author: "Bram Stoker (1897)",
-            quote: "The gray sea mizzle rolled over the cliffside ruins like a dark Victorian shroud...",
-            reality: location + " took Dracula's gothic atmosphere as a direct commercial instruction, charging £8 for velvet cloaks while seagulls steal doner meat outside the fish chippy."
+            author: "Lord Horatio Nelson (1788)",
+            quote: "I owe all my naval discipline to the desk carvings of Paston Grammar School...",
+            reality: "238 years later, " + location + " maintains Nelson's legacy through 1381 Peasants' Revolt memorials and 1978 Ferguson tractors parked outside tea shops."
           }
         ],
         cathedral_heritage: [
           {
             author: "Dr. Samuel Johnson (1777)",
             quote: "When a man is tired of the spires, he is tired of life...",
-            reality: "When a traveler is tired of " + location + ", he has usually been yelled at in Latin by a college porter for walking on 500-year-old quadrangle grass while trying to find a public toilet."
-          },
-          {
-            author: "Jane Austen (1817)",
-            quote: "The ancient stone streets and cloisters of " + location + " inspire the most elevated sentiments...",
-            reality: location + "'s parish council interpreted 'elevated sentiments' as permission to charge £14 for parking near the cloisters while undergraduates crash wooden punts into weeping willows."
+            reality: "When a traveler is tired of " + location + ", he has usually been yelled at in Latin by a college porter for walking on 500-year-old quadrangle grass."
           }
         ],
         agricultural: [
@@ -2494,37 +2491,27 @@ const richHtml = `<!DOCTYPE html>
             author: "Daniel Defoe (1724)",
             quote: "A most fertile and bountiful parish, famed for rich cider and sturdy yeomen...",
             reality: "302 years later, " + location + " has corrupted Defoe's vision into a 1:2 slope Double Gloucester cheese race where participants regularly break both ankles to win a 9lb dairy wheel."
-          },
-          {
-            author: "Thomas Hardy (1886)",
-            quote: "The quiet solitude of the parish green offers peace to the weary soul...",
-            reality: location + " completely abandoned Hardy's rustic tranquility in favor of 3-hour parish council brawls over ornamental flower tub budgets and 18th-century cider barrel theft."
           }
         ],
         industrial_commuter: [
           {
             author: "George Orwell (1937)",
             quote: "It is a place where civic ambition meets the grey mizzle of northern endurance...",
-            reality: location + " ignored Orwell's social critique and instead built a 7-tier orbital roundabout system superior in confusion to the Labyrinth of Minos."
-          },
-          {
-            author: "Oscar Wilde (1895)",
-            quote: "To lose one bypass may be regarded as a misfortune; to lose both looks like carelessness...",
-            reality: location + " took Wilde's wit literally, losing its original High Street to a 1974 concrete subway complex featuring 3 vape shops and scenic indoor moss."
+            reality: location + " ignored Orwell's social critique and instead built a 3-tier wheelie bin color-coding scheme requiring a 14-page PDF guide to dispose of a sandwich box."
           }
         ]
       };
 
       let lumItem = localLore.acidic_luminary;
       if (!lumItem) {
-        const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.industrial_commuter;
+        const lumPool = LUMINARY_QUOTES[archetype] || LUMINARY_QUOTES.east_anglia || LUMINARY_QUOTES.industrial_commuter;
         const clickCount = (typeof window !== 'undefined' && window._clickCount) ? window._clickCount : 0;
-        lumItem = lumPool[(hashTown(location, 619) + clickCount) % lumPool.length] || lumPool[0];
+        lumItem = Array.isArray(lumPool) ? lumPool[(hashTown(location, 619) + clickCount) % lumPool.length] : null;
       }
       if (lumItem) {
-        document.getElementById('luminary-author').textContent  = '✍️ ' + (lumItem.author || '');
-        document.getElementById('luminary-quote').textContent   = '"' + (lumItem.quote || '') + '"';
-        document.getElementById('luminary-reality').textContent = lumItem.reality || '';
+        if (document.getElementById('luminary-author')) document.getElementById('luminary-author').textContent  = '✍️ ' + (lumItem.author || '');
+        if (document.getElementById('luminary-quote')) document.getElementById('luminary-quote').textContent   = '"' + (lumItem.quote || '') + '"';
+        if (document.getElementById('luminary-reality')) document.getElementById('luminary-reality').textContent = lumItem.reality || '';
       }
 
       // Render Section 8: 9-Month Weather & Morale Survival Audit
