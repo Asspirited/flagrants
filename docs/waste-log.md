@@ -1,10 +1,24 @@
-# Flagrants Waste Log & Architectural Kaizen Directives
+# Flagrants — Retrospective Waste Log & Core Architectural Laws
 
 > [!IMPORTANT]
-> **CORE ARCHITECTURAL PRINCIPLE: Structural Patterns + Dynamic Variety + Hyper-Local Grounding**
-> 1. **Structural Patterns:** Every section (Tourist Board Brochure, TripAdvisor Analyst Audit, Customer Reviews, Socio-Economic Metrics, Spotted Community Chatter, Panel Show Turns) uses clean, predictable structural patterns.
-> 2. **Dynamic Variety:** High-entropy pattern variety to ensure zero repetitive output across different locations.
-> 3. **Hyper-Local Grounding (ZERO Generic Monocultural Tropes):** Content filling pattern slots MUST be wedded directly to the authentic geography, local folklore, ancient customs, eccentrics, and parish scandals of that specific town — never default to generic suburban tropes (bypasses, kebabs, multi-storeys) unless specifically relevant!
+> **THE 5 UNCOMPROMISING SATIRICAL & ARCHITECTURAL LAWS OF FLAGRANTS**
+>
+> 1. **Law 1: The Anti-Generic Law (Zero "Pripyat / Bypass / Kebab" Monopolies):**
+>    - Every location is wedded 90%+ to its authentic local geography, ancient folklore, parish scandals, and historic oddities. Generic suburban tropes (*bypasses, kebabs, multi-storeys*) are restricted to <10% incidental rotation.
+>
+> 2. **Law 2: The Vitriolic Luminary Reality Check Law:**
+>    - High-contrast collision between noble historic figures/legends (*Robin Hood, Orwell, Bram Stoker, Captain Scott, King Arthur*) and modern degraded municipal realities (*40,000 undergraduates drinking 2-for-1 alcopops in the Lace Market, £8 aura crystals, Keiller marmalade disputes*).
+>
+> 3. **Law 3: The High-Entropy Multi-Click Law:**
+>    - Successive clicks on the exact same location shift seed states, rotating across 6+ objects, 6+ disputes, 10 gossip channels, 4 recent event patterns, and fresh luminary contrasts. Zero sentence repeats.
+>
+> 4. **Law 4: The Hyper-Specific Precision Law ("Detail is Funny, Generalities are Flat"):**
+>    - Comedy dies in generalities (*"drinking beer"*) and thrives in hyper-specific nouns and numbers (*"drinking 2-for-1 alcopops in the Lace Market"*, *"a 2004 Ford Fiesta"*, *"1348 Black Death poultry quarantine"*).
+>
+> 5. **Law 5: The Instant Response & Zero Lag Law:**
+>    - Tab switching across all 3 modes (*Mode I Location Flag, Mode II Family Crest, Mode III Tourist Board Audit*) must be 100% instant, unblocked, and client-rendered with 0 worker dependency.
+
+## Waste Log Entries
 
 ## FG-WL-001 — Cloudflare secret propagation requires redeploy
 **Date:** 2026-07-27
