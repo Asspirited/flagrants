@@ -1,4 +1,10 @@
-# Flagrants Waste Log
+# Flagrants Waste Log & Architectural Kaizen Directives
+
+> [!IMPORTANT]
+> **CORE ARCHITECTURAL PRINCIPLE: Structural Patterns + Dynamic Variety + Hyper-Local Grounding**
+> 1. **Structural Patterns:** Every section (Tourist Board Brochure, TripAdvisor Analyst Audit, Customer Reviews, Socio-Economic Metrics, Spotted Community Chatter, Panel Show Turns) uses clean, predictable structural patterns.
+> 2. **Dynamic Variety:** High-entropy pattern variety to ensure zero repetitive output across different locations.
+> 3. **Hyper-Local Grounding (ZERO Generic Monocultural Tropes):** Content filling pattern slots MUST be wedded directly to the authentic geography, local folklore, ancient customs, eccentrics, and parish scandals of that specific town — never default to generic suburban tropes (bypasses, kebabs, multi-storeys) unless specifically relevant!
 
 ## FG-WL-001 — Cloudflare secret propagation requires redeploy
 **Date:** 2026-07-27
