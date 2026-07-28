@@ -756,7 +756,7 @@ function validateSpec(spec) {
 
   const defaultReviews = [
     { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
-    { reviewer: 'ConcreteCowFanatic', rating: 5, text: 'The concrete cows are magnificent. 10/10.' },
+    { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
     { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
   ];
 
@@ -871,6 +871,8 @@ ARCHETYPE CLUSTERS & SUB-CHARACTERISTIC MECHANICS:
 4. THE SURREAL & REVERENT ABSURDIST (Vic & Bob, Spike Milligan, Karl Pilkington, Bill Bailey, Python):
    - Sub-Type 4A (Bill Bailey): Musical/lyrical rhythms, sea-shanty cadences, or doom-metal organ refrains applied to civic planning.
    - Sub-Type 4B (Vic & Bob / Karl): Sincere devotion to nonsensical premises, weird local advice & turnip rituals.
+5. THE UNFILTERED LOCAL BASTARD (The Tom Register):
+   - Mouthy, sweary, hyper-articulate, zero-bullshit reality check calling out council propaganda, municipal lies, and bad infrastructure with surgical profanity & scathing clarity.
 
 SECTION VOICE MAP:
 1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
@@ -879,9 +881,9 @@ SECTION VOICE MAP:
 4. "socio_economic": Archetype 1 (The Cold Statistical Pedant) — Dry, scathing demographic report on Ofsted, police records, vape shop administration, and £450k damp housing.
 5. "customer_reviews": MUST be 3 highly varied visitor reviews:
    - Review 1: Archetype 3 (Domestic Realist / Gervais Theological Absurdity) — Longer, cringeworthy personal saga about getting trapped on the bypass.
-   - Review 2: Archetype 2 (Raging Iconoclast / Carlin Fury) — Short, punchy 1-sentence aggressive reality check.
+   - Review 2: Archetype 5 (The Unfiltered Local Bastard — Tom Register) — Mouthy, sweary, zero-bullshit 1-sentence reality check (e.g., "The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.").
    - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, turnip advice, or sea-shanty roundabout warnings).
-6. "excuse": Archetype 1 & 4 (Defiant Delusional Bureaucrat) — Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
+6. "excuse": Archetype 1, 4 & 5 (Defiant Delusional Bureaucrat meets Mouthy Callout) — Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
 {
