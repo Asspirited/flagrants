@@ -474,7 +474,7 @@ const richHtml = `<!DOCTYPE html>
     .crest-figure svg {
       filter: drop-shadow(0 6px 16px rgba(0,0,0,0.8));
       max-width: 100%;
-      height: auto;
+      height auto;
     }
 
     .export-actions {
@@ -1048,7 +1048,7 @@ const richHtml = `<!DOCTYPE html>
           comedy_seed: 'Famous for shite local pubs, 2am kebab ranks, and local taxi monopolies.',
           nightlife_catering: 'Shite pubs, lukewarm curry houses, and throwing up kebabs at the taxi rank.',
           infrastructure_flaws: 'Local bus monopolies, disused bus shelters, and 1970s concrete precincts.',
-          weird_local_lore: 'Cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, or mummers blood-eagling.',
+          weird_local_lore: 'Scampi hurling championships, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliffs, Egremont World Gurning Championships, Scottish Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, or Mari Lwyd horse skull guising.',
           claim_to_fame: 'Birthplace of the 1974 regional tupperware convention.'
         };
       } else {
@@ -1328,7 +1328,7 @@ fs.writeFileSync(rootHtmlPath, richHtml, 'utf8');
 // Update code/worker.js with richHtml embedded and svg-renderer.js inline
 let workerJs = fs.readFileSync(workerPath, 'utf8');
 
-// Enrich RESEARCH_SYSTEM with UK Regional Weirdness (Gurning, Highland Games, Welsh Bog Snorkelling, Cornish Cider Drowning & Ship Wrecking, Cotswold Shin-Kicking, Ferret Legging)
+// Enrich RESEARCH_SYSTEM with Fabricated Surreal Folk Rituals (Scampi Hurling, Blood-Letting, Rectal Cheese Processing, Subterranean Sausage Fermentation)
 const NEW_RESEARCH_SYSTEM = `const RESEARCH_SYSTEM = \`You are a Municipal Researcher & Local Satirist.
 Given a location, town, or institution, return ONLY a JSON object with targeted hyper-local relevance (token-efficient, high-precision):
 {
@@ -1338,7 +1338,7 @@ Given a location, town, or institution, return ONLY a JSON object with targeted 
   "dark_history": "<ancient or modern local misdemeanour / planning disaster>",
   "nightlife_catering": "<shite local pubs, 2am kebab ranks, lukewarm curry houses, local taxi rank monopolies>",
   "infrastructure_flaws": "<bus station waiting room, local taxi monopolies, 1970s concrete precincts>",
-  "weird_local_lore": "<cheese rolling down 1:2 cliff faces, Egremont World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling & eisteddfod druid bards, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, or mummers blood-eagling>",
+  "weird_local_lore": "<scampi hurling championships into sea gales, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation in disused railway tunnels, cheese rolling down 1:2 cliff faces, Egremont World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, or mummers blood-eagling>",
   "claim_to_fame": "<over-inflated local achievement or banal convention>"
 }\`;`;
 
@@ -1346,8 +1346,8 @@ if (workerJs.includes('const RESEARCH_SYSTEM =')) {
   workerJs = workerJs.replace(/const RESEARCH_SYSTEM = [\s\S]*?`;/, NEW_RESEARCH_SYSTEM);
 }
 
-// Enrich Archetype 4 and TripAdvisor audit prompt with UK Regional Weirdness
-const FOLKLORE_ENRICHMENT = `Sub-Type 4B (Vic & Bob / Karl / Python): Sincere devotion to nonsensical premises & absurd UK regional folk rituals (cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, mummers blood-eagling, turnip worshipping).`;
+// Enrich Archetype 4 and TripAdvisor audit prompt with Fabricated Surreal Folk Rituals
+const FOLKLORE_ENRICHMENT = `Sub-Type 4B (Vic & Bob / Karl / Python): Sincere devotion to nonsensical premises & fabricated/absurd UK regional folk rituals (scampi hurling championships into gale force winds, municipal blood-letting trials, rectal cheese processing, subterranean sausage fermentation, cheese rolling down 1:2 cliff faces, World Gurning Championships in horse collars, Scottish Highland Caber Tossing, Welsh bog snorkelling, Cornish harbour wall cider drowning & ship wrecking, Cotswold straw-padded shin-kicking, Yorkshire ferret-legging, Border Morris stick brawls, pagan maypole rituals, flaming tar barrels, Mari Lwyd horse skull guising, mummers blood-eagling, turnip worshipping).`;
 
 workerJs = workerJs.replace(/Sub-Type 4B \(Vic & Bob [\s\S]*?\./, FOLKLORE_ENRICHMENT);
 
@@ -1370,4 +1370,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for UK Regional Weirdness (Gurning, Highland Games, Welsh Bog Snorkelling, Cornish Cider Drowning & Ship Wrecking, Cotswold Shin-Kicking, Ferret Legging)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Fabricated Surreal Folk Rituals (Scampi Hurling, Blood-Letting, Rectal Cheese Processing, Subterranean Sausages)');
