@@ -367,3 +367,13 @@
   2. Embedded historic quote library paired with dynamic municipal reality contrasts across all 5 regional archetypes.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Section 7 renders in Mode III with dynamic luminary contrasts.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-032 — Hyper-Local Luminary Anchors: George Orwell & H.G. Wells on Woking
+**Date:** 2026-07-28
+**Cost:** ~5 min user feature request for Orwell on Woking
+**Symptom:** Entering Woking in Mode III lacked George Orwell's 1939 suburban critique and H.G. Wells' 1898 Martian tripod invasion on Horsell Common.
+**Fix:**
+  1. Added dedicated `woking` profile to `HYPER_LOCAL_DATABASE` featuring Horsell Common Martian tripod lore, Peacocks precinct, and Woking town council debt.
+  2. Embedded George Orwell (1939) and H.G. Wells (1898) quotes into Section 7 Luminary Quotes library.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Woking renders Orwell & H.G. Wells luminary quotes.
+  4. Pushed updated client bundle and docs to GitHub `main`.

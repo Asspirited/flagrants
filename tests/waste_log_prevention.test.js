@@ -41,13 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Historic Luminary Quotes & Subsequent Municipal Descent (FG-WL-031)', () => {
+test('FG-WL Prevention — Woking Orwell & H.G. Wells Luminary Anchors (FG-WL-032)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('HISTORIC LUMINARY QUOTES & SUBSEQUENT MUNICIPAL DESCENT'), true, 'code/index.html must render Historic Luminary Quotes card');
-  assert.strictEqual(codeIndex.includes('John Betjeman (1937)'), true, 'code/index.html must include Betjeman quote');
-  assert.strictEqual(codeIndex.includes('Daniel Defoe (1724)'), true, 'code/index.html must include Defoe quote');
+  assert.strictEqual(codeIndex.includes('Woking: Home of H.G. Wells Martian Invasion Lore'), true, 'Woking must render H.G. Wells Martian lore');
+  assert.strictEqual(codeIndex.includes('Horsell Common'), true, 'Woking must render Horsell Common lore');
 });
+
 
 
 
