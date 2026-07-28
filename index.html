@@ -7,7 +7,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=1001">
+  <link rel="manifest" href="manifest.json?v=1101">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1709,7 +1709,7 @@ function renderSpec(spec) {
     };
   }
 
-  // REGIONAL CULTURAL ANCHORS & SCATHING UK SATIRE ENGINE
+  // REGIONAL CULTURAL ANCHORS & 100% REGION-MATED PATTERN MATRICES
   function getRegionalProfile(town) {
     const t = town.toLowerCase();
     
@@ -1718,7 +1718,31 @@ function renderSpec(spec) {
         region: 'Coastal / Maritime',
         objects: ['rusted anchor', 'fibreglass seagull', 'salt-crusted deckchair', 'stolen harbour buoy', 'soggy fish basket', 'copper diving helmet'],
         crimes: ['illegal scampi smuggling', 'pier-hopping at low tide', 'lighthouse bell tampering', 'stealing sea-gale deckchairs'],
-        profanities: ['utter coastal shite', 'atrocious salt-encrusted bollocks', 'proper sea-side tripe', 'complete pier-head clusterfuck']
+        profanities: ['utter coastal shite', 'atrocious salt-encrusted bollocks', 'proper sea-side tripe', 'complete pier-head clusterfuck'],
+        slogans: [
+          `Experience the Invigorating Coastal Gales of ${town}!`,
+          `${town}: Where the Greenwich Meridian Meets Sea-Gale Erosion!`,
+          `Discover ${town} — Premier Destination for Salt-Corroded Deckchair Maintenance!`,
+          `Welcome to ${town}: Gateway to the Undercliff Walk & Coastal Bus Shelters!`
+        ],
+        brochures: [
+          `Experience the invigorating 60mph coastal gales off the ${town} sea wall! Famous for traditional scampi hurling into oncoming gales and emergency RNLI rescues of runaway inflatable flamingos!`,
+          `Stand atop the crumbling ${town} chalk cliffs right on the Greenwich Meridian Line! Enjoy scenic views of sea-fog, coastal erosion swallowing 1920s bungalows at 3 inches per year, and salt-crusted promenade benches!`,
+          `Visit the magnificent ${town} clifftop caravan concourse, featuring 400 sun-bleached static homes, authentic salt-corroded deckchairs, and a high-street chip shop that closes at dusk!`,
+          `Stroll along the historic ${town} Undercliff Walk, where emergency coastguards audit abandoned pianos and driftwood wreckage deposited by Channel tides!`
+        ],
+        taHeadlines: [
+          `Freezing Coastal Gales and Lukewarm Scampi Baskets in ${town}`,
+          `Salt-Corroded Deckchairs, Damp B&B Carpets, and Hostile Landlords in ${town}`,
+          `Cliffside Erosion, Missing Beach Huts, and Zero Taxis in ${town}`,
+          `The 2am Kebab Rank Sea-Gale Queue Experience in ${town}`
+        ],
+        taReviews: [
+          `Arrived in ${town} expecting seaside charm. Ended up soaked by a sea-gale while eating lukewarm scampi out of a damp cardboard basket by the bus shelter.`,
+          `The local heritage B&B in ${town} offers authentic sea-fog damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.`,
+          `Standing on the ${town} clifftop, the wind-gale blew my umbrella into the English Channel while the local pub ran out of cider by 8:15pm. Attracious shite.`,
+          `The hotel room in ${town} featured authentic salt-gale window corrosion, squeaky bed springs, and a view of the local recycling center.`
+        ]
       };
     }
     
@@ -1727,7 +1751,31 @@ function renderSpec(spec) {
         region: 'Industrial / Northern',
         objects: ['cast-iron anvil', 'subterranean sausage vat', 'disused loom shuttle', 'heavy steel girder', 'coal scuttle', 'foundry crucible'],
         crimes: ['unauthorized sausage fermentation', 'mill-lead rustling', 'subterranean arch sabotage', 'illegal ferret-legging'],
-        profanities: ['scathing northern shite', 'utterly knackered bollocks', 'industrial-grade clusterfuck', 'proper tight-fisted pillocks']
+        profanities: ['scathing northern shite', 'utterly knackered bollocks', 'industrial-grade clusterfuck', 'proper tight-fisted pillocks'],
+        slogans: [
+          `Experience the Industrial Ambition of ${town}!`,
+          `${town}: Where Foundry Steel Meets Subterranean Arch Damp!`,
+          `Discover ${town} — World-Class Consecrated Mill Precincts!`,
+          `Welcome to ${town}: Home of Subterranean Sausage Fermentation!`
+        ],
+        brochures: [
+          `Descend into the disused Victorian railway arches of ${town}, where subterranean sausage fermentation has taken place under magistrate license since 1884!`,
+          `Marvel at the magnificent ${town} cast-iron foundry works and brutalist mill concourse, hailed by 19th-century industrial directors as a triumph superior to Roman aqueducts!`,
+          `Walk through the historic ${town} Kirkgate market concourse, featuring 14 shuttered stalls, authentic 1970s concrete benches, and 2am kebab ranks!`,
+          `Explore our world-class ${town} industrial canal basin! A 14-acre expanse of overgrown railway sidings, disused barges, and protected habitats for urban pigeons!`
+        ],
+        taHeadlines: [
+          `Subterranean Sausage Smells and Shuttered Department Stores in ${town}`,
+          `Shite Pubs, Lukewarm Kebabs, and Zero Taxis in ${town}`,
+          `Industrial Rain, Damp Tenement Carpets, and Hostile Landlords in ${town}`,
+          `The 2am Kebab Rank Monopoly Trap in ${town}`
+        ],
+        taReviews: [
+          `The smell of subterranean sausage fermentation from the railway arches in ${town} permeates every hotel room within a 2-mile radius. Attracious shite.`,
+          `Visitors arriving in ${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh.`,
+          `They promised a historic cathedral city in ${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam.`,
+          `The local pub in ${town} ran out of draft ale by 8:30pm and the landlord threatened to call the magistrate when we asked for a menu.`
+        ]
       };
     }
 
@@ -1736,7 +1784,31 @@ function renderSpec(spec) {
         region: 'Celtic / Scottish / Welsh',
         objects: ['leaden haggis boiling pot', 'slate roof tile', 'bagpipe drone', 'peat spade', 'granite paving block', 'tartan loom shuttle'],
         crimes: ['unauthorized haggis hunting', 'bog-snorkelling without a permit', 'midnight tartan smuggling', 'druidic chanting beyond midnight'],
-        profanities: ['absolute Celtic shite', 'utter Highland bollocks', 'dour and miserable tripe', 'proper tartan-clad clusterfuck']
+        profanities: ['absolute Celtic shite', 'utter Highland bollocks', 'dour and miserable tripe', 'proper tartan-clad clusterfuck'],
+        slogans: [
+          `Experience the Ancient Celtic Ambition of ${town}!`,
+          `${town}: Where Slate Roofs Meet Highland Rain!`,
+          `Discover ${town} — Home of Haggis Hunting and Bog Snorkelling!`,
+          `Welcome to ${town}: Gateway to Peat Bogs and Fringe Ticketing!`
+        ],
+        brochures: [
+          `Steeped in glorious Celtic heritage! ${town} is the celebrated birthplace of ancient bog snorkelling and home to a historic tartan loom rebellion that altered local history forever!`,
+          `Discover the ancient pagan traditions of ${town}! From Highland haggis hunting to Welsh slate carving, our municipal council preserves rituals that ring true to those who know!`,
+          `Walk through the ancient stone tenement Wynds of ${town}, featuring 14 closed shortbread tin shops, authentic 18th-century granite cobbles, and rain!`,
+          `Explore our world-class ${town} peat bog reserve! A 14-acre expanse of misty hills, stagnant drainage ditches, and protected habitats for Highland midges!`
+        ],
+        taHeadlines: [
+          `Damp Tenements, Bagpipe Noise, and Missing Cathedral Ruins in ${town}`,
+          `Freezing Mizzle and Cold Toast Served Strictly at 7:00am in ${town}`,
+          `The 2am Kebab Rank Taxi Cartel Monopoly Trap in ${town}`,
+          `Haggis Hunting Scandals and Shuttered Shortbread Outlets in ${town}`
+        ],
+        taReviews: [
+          `The local heritage tenement B&B in ${town} offers authentic 18th-century stone damp, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a dour landlord.`,
+          `They promised a historic castle view in ${town}. What you actually get is North Sea mizzle, an abandoned Woolworths, and a 3-hour traffic jam.`,
+          `If you visit ${town}, bring your own fuel, your own food, and a sleeping bag, because the taxi rank and local amenities close at dusk.`,
+          `The hotel room in ${town} featured authentic 18th-century wall damp, squeaky bed springs, and a view of the local peat bog.`
+        ]
       };
     }
 
@@ -1745,82 +1817,79 @@ function renderSpec(spec) {
         region: 'Agricultural / Rural',
         objects: ['vintage tractor flywheel', 'cider barrel', 'rusted manure spreader', 'prize marrow', 'straw bale', 'heavy sheep shears'],
         crimes: ['cider barrel rustling', 'unauthorized shin-kicking', 'manure spreader sabotage', 'illegal Maypole stick brawling'],
-        profanities: ['rural agricultural shite', 'proper cider-soaked bollocks', 'utter country bumpkin tripe', 'scathing village clusterfuck']
+        profanities: ['rural agricultural shite', 'proper cider-soaked bollocks', 'utter country bumpkin tripe', 'scathing village clusterfuck'],
+        slogans: [
+          `Experience the Rural Heritage of ${town}!`,
+          `${town}: Where Cider Barrels Meet Manure Spreader Innovation!`,
+          `Discover ${town} — World-Class Straw Bale Architecture!`,
+          `Welcome to ${town}: Home of Shin-Kicking and Cider Fermentation!`
+        ],
+        brochures: [
+          `Steeped in glorious West Country heritage! ${town} is the celebrated birthplace of traditional cider barrel fermentation and home to an annual shin-kicking tournament that altered local history forever!`,
+          `Discover the ancient agricultural traditions of ${town}! From Cotswold straw-padded shin-kicking to village Maypole stick brawls, our parish council preserves rituals that ring true!`,
+          `Walk through the thatched cottage village of ${town}, featuring 4 closed country pubs, authentic 17th-century cobble lanes, and manure spreaders!`,
+          `Explore our world-class ${town} village green! A 14-acre expanse of cider orchards, stagnant duck ponds, and protected habitats for sheep!`
+        ],
+        taHeadlines: [
+          `Cider Shortages and Hostile Pub Landlords in ${town}`,
+          `Manure Spreader Noise and Squeaky Bed Springs in ${town}`,
+          `Cotswold Damp and Zero Taxis After 8:00pm in ${town}`,
+          `The 2am Village Bus Shelter Monopoly Trap in ${town}`
+        ],
+        taReviews: [
+          `The local pub in ${town} ran out of draft cider by 8:15pm and the landlord threatened to call the parish magistrate when we asked for a food menu.`,
+          `Arrived in ${town} expecting rural peace. Ended up awake all night listening to a disused manure spreader idling by the duck pond.`,
+          `The thatched B&B in ${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute bollocks.`,
+          `If you visit ${town}, bring your own wellies, your own food, and a torch, because the streetlights and local pub close at dusk.`
+        ]
       };
     }
 
-    // Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
+    // Default Commuter / Suburban Belt (Basingstoke, Bracknell, Slough, Newbury, Milton Keynes, Crawley, etc.)
     return {
       region: 'Commuter / Suburban Belt',
       objects: ['1970s tupperware box', 'broken shopping trolley', 'concrete bollard', 'disused Wimpy sign', 'parking meter', 'vape battery charger'],
       crimes: ['shopping trolley canal immersion', 'roundabout drift racing', 'municipal bollard theft', 'aggravated bicycle borrowing'],
-      profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'atrocious roundabout clusterfuck', 'utter precinct tripe']
+      profanities: ['suburban commuter shite', 'bureaucratic council bollocks', 'atrocious roundabout clusterfuck', 'utter precinct tripe'],
+      slogans: [
+        `Experience the Heroic Ambition of ${town}!`,
+        `${town}: Where Modern Engineering Meets Heritage Damp!`,
+        `Discover ${town} — World-Class Consecrated Precincts!`,
+        `Welcome to ${town}: Gateway to the Bypass Network!`
+      ],
+      brochures: [
+        `Visit our magnificent ${town} indoor shopping concourse! Obviously mostly shuttered since Amazon dismantled traditional high streets, it now offers an authentic experience featuring 3 remaining vape outlets and scenic indoor moss growth!`,
+        `Marvel at the magnificent ${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!`,
+        `Steeped in glorious heritage! ${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl!`,
+        `Experience the continuous orbital bliss of ${town}'s 7-tier roundabout system, designed in 1968 to ensure motorists never actually reach their intended destination!`
+      ],
+      taHeadlines: [
+        `Shite Pubs, Lukewarm Kebabs, and Zero Taxis in ${town}`,
+        `Clutch-Destroying Roundabouts, Damp B&B Carpets, and Hostile Landlords in ${town}`,
+        `Dead-End One-Way Systems and Missing Cathedral Ruins in ${town}`,
+        `The 2am Kebab Rank Taxi Cartel Monopoly Trap in ${town}`
+      ],
+      taReviews: [
+        `Visitors arriving in ${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a 2am kebab rank queue.`,
+        `A masterclass in motion without destination. The ${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.`,
+        `The council spent £3.4 million on an abstract sculpture in ${town} while the potholes on the bypass destroyed both front axles of my Vauxhall Corsa.`,
+        `Got trapped on the ${town} multi-storey car park ramp for 4 hours. Satellite navigation gave up and suggested walking back through the precinct.`
+      ]
     };
   }
 
   function buildDynamicFallbackResult(town, lensId, mode) {
-    const poolSize = 12;
     const reg = getRegionalProfile(town);
 
-    const slogans = [
-      `Experience the Heroic Ambition of ${town}!`,
-      `${town}: Where Modern Engineering Meets Heritage Damp!`,
-      `Discover ${town} — World-Class Consecrated Precincts!`,
-      `Welcome to ${town}: Gateway to the Bypass Network!`,
-      `${town}: Unrivalled Heritage and Coastal Gale Ambition!`,
-      `Explore ${town}: Home of Subterranean Sausage Fermentation!`,
-      `${town}: Where 1974 Multi-Storey Architecture Thrives!`,
-      `${town}: Steeped in 17th-Century Tavern Brawls and Bog Snorkelling!`,
-      `${town}: Premier Destination for Vape Shop Administration!`,
-      `${town}: Celebrated Birthplace of the Regional Tupperware Convention!`,
-      `${town}: Where the Roundabout System Never Sleeps!`,
-      `${town}: Uncompromising Civic Pride & 2am Kebab Culture!`
-    ];
+    const idxSlogan   = hashTown(town, 13) % reg.slogans.length;
+    const idxBrochure = hashTown(town, 37) % reg.brochures.length;
+    const idxTaHead   = hashTown(town, 73) % reg.taHeadlines.length;
+    const idxTaRev    = hashTown(town, 109) % reg.taReviews.length;
 
-    const brochures = [
-      `Visit our magnificent ${town} indoor shopping concourse! Obviously mostly shuttered since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!`,
-      `Marvel at the magnificent ${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!`,
-      `Steeped in glorious heritage! ${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl that altered local history forever!`,
-      `Explore our world-class ${town} nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons and feral cats!`,
-      `Experience the invigorating coastal gales of ${town}! Famous for traditional scampi hurling competitions off the sea wall and emergency RNLI rescues of inflatable flamingos!`,
-      `Descend into the disused Victorian railway arches of ${town}, where subterranean sausage fermentation has taken place under magistrate license since 1884!`,
-      `Walk through the sacred pedestrian precinct of ${town}, featuring 14 closed department stores, authentic 1970s brutalist concrete benches, and a high-street betting shop on every corner!`,
-      `Discover the ancient pagan traditions of ${town}! From Cotswold shin-kicking to Welsh bog snorkelling, our municipal council preserves rituals that ring true to those who know!`,
-      `${town} welcomes visitors to its historic taxi rank concourse! Boasting authentic 2am queues, lukewarm kebab grease, and local drivers who refuse to travel beyond the parish boundary!`,
-      `Witness the legendary ${town} civic sculpture, erected by the council for £3.4 million to distract residents from the clutch-swallowing potholes on the main bypass!`,
-      `Experience the continuous orbital bliss of ${town}'s 7-tier roundabout system, designed in 1968 to ensure motorists never actually reach their intended destination!`,
-      `Enjoy the historic charm of ${town}! A town so fiercely independent that 92% of the local workforce is employed directly in vape shop administration and shortbread distribution!`
-    ];
-
-    const taHeadlines = [
-      `Shite Pubs, Lukewarm Kebabs, and Zero Taxis in ${town}`,
-      `Clutch-Destroying Hills, Damp B&B Carpets, and Hostile Landlords in ${town}`,
-      `Dead-End One-Way Systems and Missing Cathedral Ruins in ${town}`,
-      `The 2am Kebab Rank Taxi Cartel Monopoly Trap in ${town}`,
-      `Freezing Coastal Gales and Lukewarm Scampi Baskets in ${town}`,
-      `Subterranean Sausage Smells and Shuttered Department Stores in ${town}`,
-      `The £3.4 Million Concrete Sculpture Scandal in ${town}`,
-      `Permanent Traffic Orbit on the ${town} Dual Carriageway`,
-      `Hostile B&B Landlords and Breakfast Served Strictly at 7:00am in ${town}`,
-      `Abandoned Woolworths and Disused Railway Sidings in ${town}`,
-      `Vape Smoke Haze and Paper-Thin Tenement Walls in ${town}`,
-      `14-Hour Queue at the Only Working Taxi Rank in ${town}`
-    ];
-
-    const taReviews = [
-      `Visitors arriving in ${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank queue experience.`,
-      `The local heritage B&B in ${town} offers authentic 1970s damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.`,
-      `A masterclass in motion without destination. The ${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.`,
-      `They promised a historic cathedral town in ${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass.`,
-      `Arrived in ${town} expecting seaside charm. Ended up soaked by a sea-gale while eating lukewarm scampi out of a damp cardboard basket by the bus shelter.`,
-      `The smell of subterranean sausage fermentation from the railway arches in ${town} permeates every hotel room within a 2-mile radius. Attracious shite.`,
-      `The council spent £3.4 million on an abstract sculpture in ${town} while the potholes on the bypass destroyed both front axles of my Vauxhall Corsa. Utter bollocks.`,
-      `Got trapped on the ${town} multi-storey car park ramp for 4 hours. Satellite navigation gave up and suggested walking back through the precinct.`,
-      `The local pub in ${town} ran out of draft ale by 8:30pm and the landlord threatened to call the magistrate when we asked for a menu.`,
-      `Visited ${town} for a heritage weekend. The entire historic quarter consists of a disused Wimpy, two tanning salons, and a boarded-up pub.`,
-      `The hotel room in ${town} featured authentic 18th-century wall damp, squeaky bed springs, and a view of the local recycling center.`,
-      `If you visit ${town}, bring your own fuel, your own food, and a sleeping bag, because the taxi rank and local amenities close at dusk.`
-    ];
+    const slogan = reg.slogans[idxSlogan].replace(/{town}/g, town);
+    const brochure = reg.brochures[idxBrochure].replace(/{town}/g, town);
+    const taHead = reg.taHeadlines[idxTaHead].replace(/{town}/g, town);
+    const taRev = reg.taReviews[idxTaRev].replace(/{town}/g, town);
 
     const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris', 'Honda Civic', 'Renault Clio', 'Skoda Fabia', 'Ford Fiesta', 'Austin Metro'];
     
@@ -1837,15 +1906,15 @@ function renderSpec(spec) {
     const reviewPool = [
       { reviewer: 'LandlordVictim', rating: 1, text: `The B&B in ${town} served cold toast strictly between 7:00 and 7:12am. Landlord glared at us until we left. Absolute ${profanity}.` },
       { reviewer: 'PotholeSurvivor', rating: 1, text: `The council spent £${millions} million on a ${obj} sculpture while the potholes on the ${town} bypass swallowed my ${car}. Total bollocks.` },
-      { reviewer: 'WindblownVisitor', rating: 1, text: `Got soaked by a sea-gale in ${town} while trying to eat scampi out of a damp cardboard tray. Attracious ${profanity}.` },
-      { reviewer: 'SausageWatcher', rating: 2, text: `The smell of subterranean sausage fermentation from the ${town} railway arches permeates every hotel room in the parish. What a clusterfuck.` },
+      { reviewer: 'WindblownVisitor', rating: 1, text: `Got soaked by a gale in ${town} while trying to eat food out of a damp cardboard tray. Attracious ${profanity}.` },
+      { reviewer: 'PrecinctShopper', rating: 2, text: `Visited the ${town} concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. What a clusterfuck.` },
       { reviewer: 'KebabRankSurvivor', rating: 1, text: `Waited 3 hours at the ${town} taxi rank at 2am. System gave up and we ate cold kebabs on a bench. Absolute shite.` },
       { reviewer: 'TrappedMotorist', rating: 1, text: `Spent 4 hours stuck on the ${town} multi-storey car park ramp. Sat nav suggested walking back through the precinct.` },
-      { reviewer: 'PrecinctShopper', rating: 2, text: `Visited the ${town} shopping concourse. Found 3 vape shops, a tanning salon, and scenic indoor moss. Utter tripe.` },
-      { reviewer: 'FolkObserver', rating: 3, text: `Came for the ${town} annual scampi hurling and shin-kicking tournament. Brutal but authentic.` },
+      { reviewer: 'LocalResident', rating: 2, text: `Visited the ${town} high street. Found 14 shuttered stores and 3 betting shops. Utter tripe.` },
+      { reviewer: 'FolkObserver', rating: 3, text: `Came for the ${town} annual local tournament. Brutal but authentic.` },
       { reviewer: 'NostalgicVisitor', rating: 2, text: `They promised a historic cathedral in ${town}. It was an abandoned Woolworths next to a Wimpy.` },
       { reviewer: 'LostNavigator', rating: 1, text: `Entered the ${town} dual carriageway roundabout. Completed 47 laps before finding an exit. Total bollocks.` },
-      { reviewer: 'LocalHistorian', rating: 2, text: `Fascinating 17th-century tavern brawl history in ${town}, though the local pub ran out of ale by 8:30pm. Proper pillocks.` },
+      { reviewer: 'LocalHistorian', rating: 2, text: `Fascinating local history in ${town}, though the local pub ran out of ale by 8:30pm. Proper pillocks.` },
       { reviewer: 'TourBusDriver', rating: 1, text: `Parked the coach in ${town}. Wheels were missing within 20 minutes. 1 star. Attracious shite.` }
     ];
 
@@ -1862,12 +1931,12 @@ function renderSpec(spec) {
       `98% Distinction in Vocational Roundabout Navigation and Slate Mining in ${town}.`,
       `Academic focus centered on Bagpipe Theory and Fringe Ticketing in ${town}.`,
       `100% Pass Rate in Local Taxi Queue Management and Vape Shop Operations in ${town}.`,
-      `94% Pass Rate in Coastal Scampi Hurling and Sea Wall Navigation in ${town}.`,
-      `Specialized curriculum in Subterranean Sausage Fermentation Science in ${town}.`,
+      `94% Pass Rate in Coastal Navigation & Deckchair Maintenance in ${town}.`,
+      `Specialized curriculum in Local Industry & Precinct Management in ${town}.`,
       `Academic emphasis strictly on 1970s Brutalist Architecture Appreciation in ${town}.`,
       `100% Distinction in Shin-Kicking, Ferret-Legging, and Bog Snorkelling in ${town}.`,
       `88% of Graduates enter the Local Kebab Rank Concierge Industry in ${town}.`,
-      `Magistrate-Approved Curriculum in ${reg.objects[0]} Maintenance in ${town}.`,
+      `Magistrate-Approved Curriculum in ${obj} Maintenance in ${town}.`,
       `Vocational training centered on Multi-Storey Traffic Flow Optimization in ${town}.`,
       `100% Pass Rate in Shortbread Tin Packing and Peat Bog Administration in ${town}.`
     ];
@@ -1879,8 +1948,8 @@ function renderSpec(spec) {
       `Arcade Penny-Slot Administration (72%) and Fish Chippy Management (24%) in ${town}.`,
       `Ghost Tour Management (58%) and Shortbread Tin Sales (35%) in ${town}.`,
       `Railway Station Sign Maintenance (80%) and Peat Bog Administration (15%) in ${town}.`,
-      `Coastal Scampi Hurling & RNLI Inflatable Flamingo Rescue (74%) in ${town}.`,
-      `Subterranean Sausage Fermentation & Arch Preservation (68%) in ${town}.`,
+      `Coastal Sea-Gale Rescue & RNLI Inflatable Flamingo Duty (74%) in ${town}.`,
+      `Local Arch Preservation & Municipal Industry (68%) in ${town}.`,
       `Concrete Precinct Security & Wimpy Counter Management (82%) in ${town}.`,
       `Shin-Kicking Federation & Bog Snorkelling Administration (65%) in ${town}.`,
       `2am Kebab Rank Concierge Services & Taxi Dispatch (79%) in ${town}.`,
@@ -1895,13 +1964,13 @@ function renderSpec(spec) {
       `1-bed tenement flat in ${town}: £650,000 with authentic 18th-century stone damp.`,
       `Stone cottage in ${town}: £380,000 with authentic Welsh slate damp.`,
       `Seaside promenade flat in ${town}: £520,000 with authentic salt-gale window corrosion.`,
-      `Converted railway arch in ${town}: £410,000 with authentic sausage fermentation aroma.`,
+      `Converted property in ${town}: £410,000 with authentic local precinct damp.`,
       `1970s precinct maisonette in ${town}: £340,000 with authentic brutalist concrete damp.`,
       `Thatched cottage in ${town}: £490,000 with authentic Cotswold straw damp.`,
       `Terraced house by taxi rank in ${town}: £430,000 with 2am kebab queue noise included.`,
       `Modern apartment near ${obj} sculpture in ${town}: £580,000 with pothole views.`,
       `Penthouse over roundabout in ${town}: £620,000 with continuous 24/7 traffic hum.`,
-      `Victorian terrace in ${town}: £470,000 with authentic shortbread factory chimney damp.`
+      `Victorian terrace in ${town}: £470,000 with authentic chimney damp.`
     ];
 
     const excuses = [
@@ -1910,7 +1979,7 @@ function renderSpec(spec) {
       `Blame the English, the damp North Sea climate, and 18th-century stone masons.`,
       `Blame English weather, 19th-century railway directors, and druidic prophecies.`,
       `Blame coastal gales, English Channel tides, and 19th-century lighthouse keepers.`,
-      `Blame Victorian railway engineers, disused arch humidity, and traditional yeast.`,
+      `Blame Victorian engineers, disused arch humidity, and traditional weather.`,
       `Blame 1968 brutalist architects, concrete suppliers, and municipal shopping boards.`,
       `Blame ancient Saxon warlords, Cotswold stone quarrymen, and pagan Maypole elders.`,
       `Blame the regional taxi rank cartel, local curry house suppliers, and 2am licensing laws.`,
@@ -1919,15 +1988,10 @@ function renderSpec(spec) {
       `Blame North Sea mizzle, shortbread bakery emissions, and 19th-century magistrate orders.`
     ];
 
-    const idxSlogan    = hashTown(town, 13)  % poolSize;
-    const idxBrochure  = hashTown(town, 37)  % poolSize;
-    const idxTaHead    = hashTown(town, 73)  % poolSize;
-    const idxTaRev     = hashTown(town, 109) % poolSize;
-    const idxSchools   = hashTown(town, 151) % poolSize;
-    const idxCrime     = hashTown(town, 193) % crime.length;
-    const idxWorkforce = hashTown(town, 241) % poolSize;
-    const idxHousing   = hashTown(town, 307) % poolSize;
-    const idxExcuse    = hashTown(town, 373) % poolSize;
+    const idxSchools   = hashTown(town, 151) % schools.length;
+    const idxWorkforce = hashTown(town, 241) % workforce.length;
+    const idxHousing   = hashTown(town, 307) % housing.length;
+    const idxExcuse    = hashTown(town, 373) % excuses.length;
 
     return {
       lens: (mode === 'tourist_board' || mode === 'mode3') ? 'multi_lens' : lensId,
@@ -1937,18 +2001,18 @@ function renderSpec(spec) {
       motto_translation: 'We Turn, and We Remain',
       excuse: excuses[idxExcuse],
       tourist_board: {
-        slogan: slogans[idxSlogan],
-        brochure_copy: brochures[idxBrochure]
+        slogan: slogan,
+        brochure_copy: brochure
       },
       tripadvisor_audit: {
-        headline: taHeadlines[idxTaHead],
+        headline: taHead,
         overall_rating: `${((hashTown(town, 53) % 15) / 10 + 1.0).toFixed(1)} / 5 — Mostly Overcast`,
-        audit_review: taReviews[idxTaRev]
+        audit_review: taRev
       },
       customer_reviews: reviews,
       socio_economic: {
         schools_education: schools[idxSchools],
-        crime_order: crime[idxCrime],
+        crime_order: crime[hashTown(town, 193) % crime.length],
         workforce_industry: workforce[idxWorkforce],
         housing_property: housing[idxHousing]
       }
