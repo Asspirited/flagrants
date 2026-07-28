@@ -872,6 +872,13 @@ All folklore, local lore, absurd rituals, and satirical inventions MUST be stric
 - Home Counties / Commuter Belt (Basingstoke, Slough, Reading, Woking): Roundabout maintenance rituals, 1970s precinct Last of Us concourses, taxi monopoly brawls.
 - Celtic Fringes (Wales, Highlands, Cornwall): Mari Lwyd horse skull guising, Welsh bog snorkelling, Eisteddfod bards, Highland caber tossing.
 
+INSIDER SATIRE & UNSPOKEN LOCAL TRUTHS DIRECTIVE:
+Every section MUST "ring true to those who know"! Avoid generic lazy stereotypes. Target the exact, hyper-specific, unspoken local realities that locals and frequent visitors recognize instantly:
+- Specific local shopping concourses, disused department store chains, and local nicknames (e.g. "Amazingstoke", "Slough Trading Estate").
+- Hyper-local transportation nightmares (e.g. the 2am taxi rank cartel, specific bus monopolies, dead-end ring roads, clutch-destroying steep hills).
+- Local catering sagas (lukewarm rogan josh at 2am, greasy chippies, Wetherspoons stairs).
+- Unspoken civic rivalries, regional weather miseries, and council vanity projects.
+
 Substitute these slots dynamically based on the specific location's research findings!
 
 SECTION VOICE MAP:
