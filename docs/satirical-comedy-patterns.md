@@ -97,6 +97,15 @@
 * **Exemplar:**
   *"The Venerable Synod of 731 AD strictly forbade such shenanigans past Vespers, yet here we are standing in a disused bus shelter eating lukewarm scampi."*
 
+---
+
+### Formula 11: The Affectionate Piss-Take & Gallows Humour Principle (Gervais / Boyle)
+* **Mechanics:** Self-deprecation first, followed by unfiltered, affectionate piss-taking of regional absurdities.
+* **Philosophy:** Mockery as the highest form of intimacy and regional love. Roasting a town's 300-year-old cider contests, 1920s land raffles, or council debt is the ultimate tribute to its authentic British identity.
+* **Exemplar:**
+  *"We take the piss out of Peacehaven not because we hate it, but because zero degrees longitude passing through a 1916 newspaper raffle town is the most magnificent thing in Sussex."*
+
+
 
 
 ---
