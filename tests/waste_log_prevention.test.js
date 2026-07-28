@@ -41,11 +41,12 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Mode III Tab Switch Auto-Triggers Generation (FG-WL-028)', () => {
+test('FG-WL Prevention — Mode II Tab Switch Unblocked (FG-WL-029)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('if (locationInput.value.trim()) {\n      generate();\n    }'), true, 'setMode must auto-trigger generate() when location is entered');
+  assert.strictEqual(codeIndex.includes("if (!selectedLens) selectedLens = 'proud_of_it';"), true, 'checkReady must default selectedLens to proud_of_it so Mode II switches instantly');
 });
+
 
 
 

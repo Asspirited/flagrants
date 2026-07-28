@@ -333,3 +333,13 @@
   2. Unblocked `generateBtn` state so Mode III tab click instantly renders the full Tourist Board & TripAdvisor audit.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting `setMode('tourist_board')` auto-triggers output generation.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-029 — Mode II Family Crest Tab Selection Block (`selectedLens` Null Trap)
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA bug report on Mode II tab selection
+**Symptom:** Switching to Mode II (Family / Group Crest) was blocked if a Defence Lens had not been manually pre-selected.
+**Root cause:** `checkReady()` required `selectedLens` to be non-null, disabling the action button and blocking auto-generation on tab switch.
+**Fix:**
+  1. Defaulted `selectedLens` to `'proud_of_it'` automatically if `null`, unblocking instant tab switching across all 3 modes (Mode I, Mode II, Mode III).
+  2. Added automated test in `tests/waste_log_prevention.test.js` asserting `checkReady()` unblocks Mode II even when `selectedLens` starts as `null`.
+  3. Pushed updated client bundle and docs to GitHub `main`.

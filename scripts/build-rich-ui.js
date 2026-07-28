@@ -1106,11 +1106,8 @@ const richHtml = `<!DOCTYPE html>
   locationInput.addEventListener('input', checkReady);
 
   function checkReady() {
-    if (selectedMode === 'tourist_board' || selectedMode === 'mode3') {
-      generateBtn.disabled = !locationInput.value.trim();
-    } else {
-      generateBtn.disabled = !(locationInput.value.trim() && selectedLens);
-    }
+    if (!selectedLens) selectedLens = 'proud_of_it';
+    generateBtn.disabled = !locationInput.value.trim();
   }
 
   generateBtn.addEventListener('click', generate);
