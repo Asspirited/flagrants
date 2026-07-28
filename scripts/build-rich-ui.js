@@ -113,8 +113,34 @@ const richHtml = `<!DOCTYPE html>
     }
 
     @media (max-width: 640px) {
+      main {
+        padding: 1.2rem 0.8rem;
+        gap: 1.5rem;
+      }
       .mode-tabs {
         grid-template-columns: 1fr;
+      }
+      .input-panel {
+        padding: 1.2rem 1rem;
+      }
+      .output-panel {
+        padding: 1.2rem 0.9rem;
+      }
+      .main-heading {
+        font-size: 1.65rem;
+        line-height: 1.2;
+      }
+      .subject-affectation {
+        font-size: 1.15rem;
+      }
+      .motto-ribbon-scroll {
+        padding: 0.35rem 1rem;
+      }
+      .motto-text-main {
+        font-size: 0.95rem;
+      }
+      .motto-text-sub {
+        font-size: 0.9rem;
       }
     }
 
@@ -316,11 +342,7 @@ const richHtml = `<!DOCTYPE html>
       padding: 2.2rem;
       box-shadow: 0 16px 48px rgba(0,0,0,0.7);
       animation: fadeIn 0.4s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      scroll-margin-top: 15px;
     }
 
     .output-panel.visible { display: flex; }
@@ -334,6 +356,7 @@ const richHtml = `<!DOCTYPE html>
       flex-direction: column;
       align-items: center;
       gap: 0.6rem;
+      scroll-margin-top: 15px;
     }
 
     .main-heading {
@@ -2197,8 +2220,11 @@ const richHtml = `<!DOCTYPE html>
 
     const outputPanel = document.getElementById('output-panel');
     outputPanel.classList.add('visible');
-    if (autoScroll && typeof outputPanel.scrollIntoView === 'function') {
-      outputPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (autoScroll) {
+      const scrollTarget = document.getElementById('subject-name') || outputPanel;
+      if (typeof scrollTarget.scrollIntoView === 'function') {
+        scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
 
