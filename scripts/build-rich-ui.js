@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=201">
+  <link rel="manifest" href="manifest.json?v=301">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -912,7 +912,7 @@ const richHtml = `<!DOCTYPE html>
     '🌿 LOCATE APPROVED LOCAL DEALERS',
     '🏖️ CHECK YOUR DREAM DESTINATION',
     '🛡️ IS IT SAFE TO VISIT?',
-    '🚓 INSPECT CRIME & PUBLIC ORDER',
+    '计时 INSPECT CRIME & PUBLIC ORDER',
     '🤔 WILL I SURVIVE A WEEKEND HERE?',
     '🏛️ INSPECT TOURIST BOARD LIES',
     '🦉 AUDIT THIS HOLIDAY DESTINATION'
@@ -1023,22 +1023,29 @@ const richHtml = `<!DOCTYPE html>
 
   function buildDynamicFallbackResult(town, lensId, mode) {
     const hash = town.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206'];
-    const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box'];
+    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Toyota Yaris'];
+    const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil'];
+    const shows = ['The Last of Us', '28 Days Later', 'Chernobyl', 'Children of Men', 'Mad Max Beyond Thunderdome'];
+    const techGiants = ['Amazon', 'UberEats', 'QVC Shopping', 'Deliveroo', 'Online Algorithms'];
+    const storeTypes = ['vape outlets', 'nail bars', 'tanning salons', 'pawn shops', 'abandoned department stores'];
+    
     const car = cars[hash % cars.length];
     const obj = objects[hash % objects.length];
+    const show = shows[hash % shows.length];
+    const tech = techGiants[hash % techGiants.length];
+    const store = storeTypes[hash % storeTypes.length];
     const millions = (hash % 4) + 1;
 
     return {
       lens: (mode === 'tourist_board' || mode === 'mode3') ? 'multi_lens' : lensId,
-      affectation: \`Gateway to the \${town} Ring Road\`,
+      affectation: \`Gateway to the \${town} Bypass\`,
       twinned_with: ['Pripyat', 'Detroit', \`\${town} Platform 4\`],
       motto: 'ROTAMUR ET MANEMUS',
       motto_translation: 'We Turn, and We Remain',
-      excuse: \`Blame 1970s urban planners, traditional \${town} weather, and French invaders.\`,
+      excuse: \`Blame 1970s urban planners, traditional \${town} weather, and regional highway directors.\`,
       tourist_board: {
-        slogan: \`Experience the Heroic Ambition of \${town}!\`,
-        brochure_copy: \`Welcome to \${town}, where history is made every day on the bypass. Enjoy scenic vistas of 1970s concrete precincts, heritage damp, and world-class pigeon sanctuaries!\`
+        slogan: \`Experience the Unstoppable Ambition of \${town}!\`,
+        brochure_copy: \`Visit our magnificent \${town} concourse! Obviously mostly closed since \${tech} dismantled traditional retail, it now offers an authentic, immersive experience reminiscent of '\${show}', featuring three remaining \${store} and scenic indoor moss growth!\`
       },
       tripadvisor_audit: {
         headline: \`Shite Pubs, Lukewarm Kebabs, and Zero Taxis in \${town}\`,
@@ -1046,12 +1053,12 @@ const richHtml = `<!DOCTYPE html>
         audit_review: \`Visitors arriving in \${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank experience.\`
       },
       customer_reviews: [
-        { reviewer: \`DisappointedFrom\${town}\`, rating: 1, text: \`Spent 2 hours waiting for a taxi by the kebab shop in \${town}. System gave up.\` },
+        { reviewer: \`DisappointedFrom\${town}\`, rating: 1, text: \`Spent 3 hours trapped in the \${town} multi-storey car park. Navigation system gave up.\` },
         { reviewer: 'LocalBastardFromBypass', rating: 1, text: \`The council spent £\${millions} million on a \${obj} sculpture while the potholes on the \${town} bypass swallow \${car}s. Absolute bollocks.\` },
-        { reviewer: \`\${town}Historian\`, rating: 2, text: \`They promised a historic castle in \${town}. It was a 1970s multi-storey car park.\` }
+        { reviewer: \`\${town}Historian\`, rating: 2, text: \`They promised a historic cathedral in \${town}. It was an abandoned Woolworths.\` }
       ],
       socio_economic: {
-        schools_education: \`14% Ofsted Requires Improvement, 86% Closed by Magistrate Order in \${town}.\`,
+        schools_education: \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`,
         crime_order: \`Primary offences in \${town}: turnip rustling and aggravated bicycle borrowing.\`,
         workforce_industry: \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
         housing_property: \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`
@@ -1222,20 +1229,22 @@ const richHtml = `<!DOCTYPE html>
       });
     }
 
-    // Bulletproof Mode III Normalization Helper
+    // Bulletproof Dynamic Renderer without hardcoded static OR fallbacks
     const mode3Container = document.getElementById('mode3-container');
     if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
+      const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
+      
       const tb = result.tourist_board || result.touristBoard || result.brochure || {};
       const ta = result.tripadvisor_audit || result.tripadvisor || result.audit || result.expert_audit || {};
-      const cr = result.customer_reviews || result.reviews || [];
+      const cr = (Array.isArray(result.customer_reviews) && result.customer_reviews.length > 0) ? result.customer_reviews : ((Array.isArray(result.reviews) && result.reviews.length > 0) ? result.reviews : fallbackObj.customer_reviews);
       const se = result.socio_economic || result.socioEconomic || {};
 
-      const slogan = tb.slogan || tb.headline || tb.title || \`Experience the \${location} High Street Ambition!\`;
-      const copy = tb.brochure_copy || tb.copy || tb.text || tb.description || \`Welcome to \${location}, where history is made every day by the taxi rank. Enjoy scenic vistas of 1970s concrete architecture, traditional overcast skies, and heritage damp!\`;
+      const slogan = tb.slogan || tb.headline || tb.title || fallbackObj.tourist_board.slogan;
+      const copy   = tb.brochure_copy || tb.copy || tb.text || tb.description || fallbackObj.tourist_board.brochure_copy;
 
-      const rating = ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast';
-      const taHeadline = ta.headline || ta.title || \`Shite Pubs, Cold Kebabs, and Zero Taxis in \${location}\`;
-      const taReview = ta.audit_review || ta.review || ta.text || ta.body || \`Visitors arriving in \${location} are immediately struck by the complete absence of available taxis after 11pm.\`;
+      const rating     = ta.overall_rating || ta.rating || fallbackObj.tripadvisor_audit.overall_rating;
+      const taHeadline = ta.headline || ta.title || fallbackObj.tripadvisor_audit.headline;
+      const taReview   = ta.audit_review || ta.review || ta.text || ta.body || fallbackObj.tripadvisor_audit.audit_review;
 
       document.getElementById('tb-slogan').textContent = slogan;
       document.getElementById('tb-copy').textContent   = copy;
@@ -1247,13 +1256,7 @@ const richHtml = `<!DOCTYPE html>
       const crList = document.getElementById('cr-list');
       crList.innerHTML = '';
       
-      const reviewsToRender = cr.length > 0 ? cr : [
-        { reviewer: \`DisappointedFrom\${location}\`, rating: 1, text: \`Spent 2 hours waiting for a taxi by the kebab shop in \${location}. System gave up.\` },
-        { reviewer: 'LocalBastardFromBypass', rating: 1, text: \`The council spent £2 million on a turnip sculpture in \${location} while the potholes swallow Ford Focuses. Absolute bollocks.\` },
-        { reviewer: \`\${location}Historian\`, rating: 2, text: \`They promised a historic castle in \${location}. It was a multi-storey car park.\` }
-      ];
-
-      reviewsToRender.forEach(rev => {
+      cr.forEach(rev => {
         const rVal = parseInt(rev.rating) || 1;
         const stars = '★'.repeat(Math.max(1, Math.min(5, rVal))) + '☆'.repeat(5 - Math.max(1, Math.min(5, rVal)));
         const card = document.createElement('div');
@@ -1267,12 +1270,12 @@ const richHtml = `<!DOCTYPE html>
         crList.appendChild(card);
       });
 
-      document.getElementById('se-schools').textContent   = se.schools_education || \`14% Ofsted Requires Improvement in \${location}, 86% Closed by Magistrate Order.\`;
-      document.getElementById('se-crime').textContent     = se.crime_order || \`Primary offences in \${location}: turnip rustling and aggravated bicycle borrowing.\`;
-      document.getElementById('se-workforce').textContent = se.workforce_industry || \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${location}.\`;
-      document.getElementById('se-housing').textContent   = se.housing_property || \`Average 2-bed terrace in \${location}: £450,000 with authentic heritage damp.\`;
+      document.getElementById('se-schools').textContent   = se.schools_education || fallbackObj.socio_economic.schools_education;
+      document.getElementById('se-crime').textContent     = se.crime_order || fallbackObj.socio_economic.crime_order;
+      document.getElementById('se-workforce').textContent = se.workforce_industry || fallbackObj.socio_economic.workforce_industry;
+      document.getElementById('se-housing').textContent   = se.housing_property || fallbackObj.socio_economic.housing_property;
 
-      document.getElementById('excuse-text').textContent = result.excuse || \`External forces in \${location}. 1970s urban planners. Traditional weather.\`;
+      document.getElementById('excuse-text').textContent = result.excuse || fallbackObj.excuse;
 
       mode3Container.style.display = 'flex';
     } else {
@@ -1375,4 +1378,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Dynamic Multi-Town Fallback Generator Engine');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js to purge all static OR fallback strings in renderOutput');
