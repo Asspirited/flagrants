@@ -1801,6 +1801,7 @@ const richHtml = `<!DOCTYPE html>
     const errorEl   = document.getElementById('error');
 
     loadingEl.style.display = 'flex';
+    loadingEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     outputEl.classList.remove('visible');
     errorEl.style.display = 'none';
     generateBtn.disabled = true;
