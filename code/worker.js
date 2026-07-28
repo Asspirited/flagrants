@@ -715,28 +715,65 @@ function validateSpec(spec) {
     }
   });
 
-  // Ensure Mode 3 Tourist Board & TripAdvisor defaults are NEVER blank (Server-Side JSON Repair Pipe)
+  // Ensure Mode 3 Tourist Board & TripAdvisor defaults are NEVER blank or repetitive (Server-Side JSON Repair Pipe)
   const tb = spec.tourist_board || spec.touristBoard || spec.brochure || {};
   const ta = spec.tripadvisor_audit || spec.tripadvisor || spec.audit || {};
   const cr = spec.customer_reviews || spec.reviews || [];
   const se = spec.socio_economic || spec.socioEconomic || {};
 
+  const town = (spec._subject || spec.location || 'Municipal Borough').trim();
+  const hash = town.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 1000007, 0);
+
+  const defaultSlogans = [
+    `Experience the Heroic Ambition of ${town}!`,
+    `${town}: Where Modern Engineering Meets Heritage Damp!`,
+    `Discover ${town} — World-Class Consecrated Precincts!`,
+    `Welcome to ${town}: Gateway to the Bypass Network!`
+  ];
+
+  const defaultBrochures = [
+    `Visit our magnificent ${town} indoor shopping concourse! Obviously mostly closed since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!`,
+    `Marvel at the magnificent ${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!`,
+    `Steeped in glorious heritage! ${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl that altered local history forever!`,
+    `Explore our world-class ${town} nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons and feral cats!`
+  ];
+
+  const defaultTaHeadlines = [
+    `Shite Pubs, Lukewarm Kebabs, and Zero Taxis in ${town}`,
+    `Clutch-Destroying Hills, Damp B&B Carpets, and Hostile Landlords in ${town}`,
+    `Dead-End One-Way Systems and Missing Cathedral Ruins in ${town}`,
+    `The 2am Kebab Rank Taxi Cartel Monopoly Trap in ${town}`
+  ];
+
+  const defaultTaReviews = [
+    `Visitors arriving in ${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank queue experience.`,
+    `The local heritage B&B in ${town} offers authentic 1970s damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.`,
+    `A masterclass in motion without destination. The ${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.`,
+    `They promised a historic cathedral town in ${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass.`
+  ];
+
+  const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris'];
+  const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil', 'steel girder'];
+  const car = cars[hash % cars.length];
+  const obj = objects[hash % objects.length];
+  const millions = (hash % 5) + 1;
+
+  const defaultReviews = [
+    { reviewer: `DisappointedFrom${town}`, rating: 1, text: `Spent 3 hours trapped in the ${town} multi-storey car park. Navigation system gave up.` },
+    { reviewer: 'LocalBastardFromBypass', rating: 1, text: `The council spent £${millions} million on a ${obj} sculpture while the potholes on the ${town} bypass swallow ${car}s. Absolute bollocks.` },
+    { reviewer: `${town}Local`, rating: 2, text: `If you visit ${town}, stay on the bypass and keep your car doors locked. 2 stars.` }
+  ];
+
   spec.tourist_board = {
-    slogan: tb.slogan || tb.headline || tb.title || 'Experience the Heroic Ambition of the Bypass!',
-    brochure_copy: tb.brochure_copy || tb.copy || tb.text || tb.description || 'Welcome to a town where history is made every day on the ring road. Enjoy scenic vistas of concrete architecture, heritage damp, and traditional overcast skies!'
+    slogan: tb.slogan || tb.headline || tb.title || defaultSlogans[hash % defaultSlogans.length],
+    brochure_copy: tb.brochure_copy || tb.copy || tb.text || tb.description || defaultBrochures[hash % defaultBrochures.length]
   };
 
   spec.tripadvisor_audit = {
-    headline: ta.headline || ta.title || 'A Masterclass in Motion Without Destination',
-    overall_rating: ta.overall_rating || ta.rating || '1.5 / 5 — Mostly Overcast',
-    audit_review: ta.audit_review || ta.review || ta.text || ta.body || 'Visitors arriving are immediately struck by a sense of impending departure. The local ring road system offers continuous circular motion without destination.'
+    headline: ta.headline || ta.title || defaultTaHeadlines[hash % defaultTaHeadlines.length],
+    overall_rating: ta.overall_rating || ta.rating || `${((hash % 15) / 10 + 1.0).toFixed(1)} / 5 — Mostly Overcast`,
+    audit_review: ta.audit_review || ta.review || ta.text || ta.body || defaultTaReviews[hash % defaultTaReviews.length]
   };
-
-  const defaultReviews = [
-    { reviewer: 'DisappointedFromSurrey', rating: 1, text: 'Spent 3 hours on the roundabout. Navigation system gave up.' },
-    { reviewer: 'LocalBastardFromBypass', rating: 1, text: 'The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.' },
-    { reviewer: 'LocalHistorian87', rating: 2, text: 'They promised a historic castle. It was a multi-storey car park.' }
-  ];
 
   if (!Array.isArray(cr) || cr.length === 0) {
     spec.customer_reviews = defaultReviews;
@@ -751,11 +788,39 @@ function validateSpec(spec) {
     }
   }
 
+  const schools = [
+    `14% Ofsted Requires Improvement in ${town}, 86% Closed by Magistrate Order.`,
+    `98% Distinction in Vocational Roundabout Navigation and Slate Mining in ${town}.`,
+    `Academic focus centered on Bagpipe Theory and Fringe Ticketing in ${town}.`,
+    `100% Pass Rate in Local Taxi Queue Management and Vape Shop Operations in ${town}.`
+  ];
+
+  const crime = [
+    `Primary offences in ${town}: turnip rustling, municipal lead removal, and aggravated bicycle borrowing.`,
+    `Primary offences in ${town}: illegal scampi smuggling and pier-hopping.`,
+    `Primary offences in ${town}: unauthorized haggis hunting and midnight tartan smuggling.`,
+    `Primary offences in ${town}: sheep rustling and unauthorized druidic chanting.`
+  ];
+
+  const workforce = [
+    `Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in ${town}.`,
+    `Arcade Penny-Slot Administration (72%) and Fish Chippy Management (24%) in ${town}.`,
+    `Ghost Tour Management (58%) and Shortbread Tin Sales (35%) in ${town}.`,
+    `Railway Station Sign Maintenance (80%) and Peat Bog Administration (15%) in ${town}.`
+  ];
+
+  const housing = [
+    `Average 2-bed terrace in ${town}: £450,000 with authentic heritage damp.`,
+    `Boarding house room in ${town}: £45/night with sea view damp and squeaky springs.`,
+    `1-bed tenement flat in ${town}: £650,000 with authentic 18th-century stone damp.`,
+    `Stone cottage in ${town}: £380,000 with authentic Welsh slate damp.`
+  ];
+
   spec.socio_economic = {
-    schools_education: se.schools_education || se.schools || '14% Ofsted "Requires Improvement", 86% "Closed by Order of the Magistrate". Academic emphasis centers on vocational roundabout navigation.',
-    crime_order: se.crime_order || se.crime || 'Primary offences: turnip rustling, municipal roof lead removal, and aggravated bicycle borrowing.',
-    workforce_industry: se.workforce_industry || se.workforce || 'Largest employers: Roundabout Maintenance Board (62%) and Vape Shop Administration (28%). Skilled labour remains a theoretical concept.',
-    housing_property: se.housing_property || se.housing || 'Average 2-bed terrace: £450,000. Features authentic heritage damp, 1970s carpet, and scenic views of the bypass.'
+    schools_education: se.schools_education || se.schools || schools[hash % schools.length],
+    crime_order: se.crime_order || se.crime || crime[hash % crime.length],
+    workforce_industry: se.workforce_industry || se.workforce || workforce[hash % workforce.length],
+    housing_property: se.housing_property || se.housing || housing[hash % housing.length]
   };
 
   return spec;
