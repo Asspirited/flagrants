@@ -41,13 +41,14 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Peacehaven Rotates Across 6 Dynamic Gazette Headlines (FG-WL-025)', () => {
+test('FG-WL Prevention — 10-Channel Local Surveillance & Gossip Matrix (FG-WL-026)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('RUNAWAY INFLATABLE FLAMINGO RESCUED BY RNLI CUTTER'), true, 'Peacehaven must contain inflatable flamingo headline');
-  assert.strictEqual(codeIndex.includes('GREENWICH MERIDIAN LINE WALKER DISORIENTED BY GALES'), true, 'Peacehaven must contain meridian walker headline');
-  assert.strictEqual(codeIndex.includes('SALT-CRUSTED DECKCHAIR THEFT WAVE PROMPTS RING DOORBELL'), true, 'Peacehaven must contain deckchair theft headline');
+  assert.strictEqual(codeIndex.includes('Laminated note taped to parish lamp-post'), true, 'code/index.html must include laminated note channel');
+  assert.strictEqual(codeIndex.includes('Nextdoor App Thread'), true, 'code/index.html must include Nextdoor app thread channel');
+  assert.strictEqual(codeIndex.includes('Passive-aggressive note under windshield wiper'), true, 'code/index.html must include windshield note channel');
 });
+
 
 
 

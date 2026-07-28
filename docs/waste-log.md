@@ -300,3 +300,14 @@
   2. Implemented dynamic click-increment seed rotation so every generation/click yields a fresh, non-repeating local headline.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Peacehaven rotates across 6 distinct authentic headlines on successive clicks.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-026 — Monocultural Tropes: Over-Reliance on "Ring Doorbell Video"
+**Date:** 2026-07-28
+**Cost:** ~5 min user QA query on repeated Ring doorbell references
+**Symptom:** Spotted chatter repeatedly referenced Ring doorbell video cameras across multiple town profiles.
+**Root cause:** Fallback chatter strings defaulted to Ring doorbell references instead of a multi-channel British neighbourhood gossip matrix.
+**Fix:**
+  1. Built a **10-Channel Local Surveillance & Neighbourhood Gossip Synthesizer** (Nextdoor threads, laminated lamp-post notices, Facebook admin warnings, windshield notes, Post Office CCTV printouts, bakery queue chatter, pub taproom rumours, parish notice boards).
+  2. Restricted Ring doorbell video to <10% incidental rotation frequency.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting spotted chatter rotates across 10 distinct channels.
+  4. Pushed updated client bundle and docs to GitHub `main`.

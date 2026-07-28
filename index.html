@@ -2499,10 +2499,31 @@ function renderSpec(spec) {
       if (Array.isArray(localLore.gazette_headlines) && localLore.gazette_headlines.length > 0) {
         gHead = localLore.gazette_headlines[hashTown(location, 107 + window._clickCount) % localLore.gazette_headlines.length];
       }
+
+      const GOSSIP_CHANNELS = [
+        'Laminated note taped to parish lamp-post: To whoever took my lawnmower, return it before dusk or the police will be informed.',
+        'Nextdoor App Thread: Has anyone else noticed a man measuring the parish flower tubs with a wooden ruler at 6am?',
+        'Local Facebook Admin Post: Turn off comments on the dog-walking thread, people are making personal accusations about copper piping.',
+        'Handwritten card pinned to church hall: Lost ferret answers to Barnaby, last seen by Morrisons bakery aisle.',
+        'Neighbourhood Watch WhatsApp: Suspicious individual in high-vis jacket inspecting drain covers near the main roundabout.',
+        'Passive-aggressive note under windshield wiper: You parked 4 inches over my dropped kerb. I have photographed your front tyre.',
+        'Post Office window notice: Low-resolution CCTV image of pasty thief displayed until full reimbursement is made.',
+        'Overheard in bakery queue: He swore on his mother's prize marrow that the cider contest was rigged.',
+        'Pub Taproom Rumour: The parish council chairman secretly sold the village green mower to a man from Swindon.',
+        'Ring Doorbell Night-Vision Video: To the person who borrowed my lawn rake: I have your slippers on 1080p footage.'
+      ];
+
+      let chatterText = localLore.spotted_chatter;
+      if (Array.isArray(localLore.spotted_chatters) && localLore.spotted_chatters.length > 0) {
+        chatterText = localLore.spotted_chatters[hashTown(location, 223 + window._clickCount) % localLore.spotted_chatters.length];
+      } else if (!localLore.spotted_chatter || hashTown(location, 223 + window._clickCount) % 10 !== 9) {
+        chatterText = GOSSIP_CHANNELS[hashTown(location, 223 + window._clickCount) % GOSSIP_CHANNELS.length];
+      }
+
       document.getElementById('gazette-paper-name').textContent = `📰 ${localLore.paper}`;
       document.getElementById('gazette-headline').textContent   = `"${gHead}"`;
       document.getElementById('spotted-group-name').textContent  = `📱 ${localLore.spotted}`;
-      document.getElementById('spotted-post-text').textContent   = `"${localLore.spotted_chatter}"`;
+      document.getElementById('spotted-post-text').textContent   = `"${chatterText}"`;
 
       // Render Debug Research Findings Panel
       const debugContainer = document.getElementById('debug-research-json');
