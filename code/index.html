@@ -1998,6 +1998,17 @@ function renderSpec(spec) {
 
   // HYPER-LOCAL SPOTTED:[TOWN] & GAZETTE KNOWLEDGE GRAPH (25+ SPECIFIC UK TOWNS & REGIONAL LORE)
   const HYPER_LOCAL_DATABASE = {
+    bracknell: {
+      paper: 'Bracknell Standard & Lexicon News',
+      spotted: 'Spotted: Bracknell Lexicon & Swinley Forest',
+      gazette_headline: 'CORAL REEF WATERWORLD PIRATE SHIP FLUME DELAYED AFTER SWIMMING WRISTBAND TIMER AUDIT',
+      spotted_chatter: 'To whoever spent 45 minutes searching for their Ford Focus in Yellow Zone Level 3 of The Lexicon car park: security have your ticket.',
+      local_scandal: 'The great 2017 Lexicon car park ticket machine confusion and Swinley Forest mountain bike trail right-of-way disputes.',
+      tourist_slogan: 'Bracknell: Berkshire New Town Ambition, The Lexicon & Coral Reef Waterworld!',
+      tourist_brochure: 'Welcome to Bracknell! Experience Berkshire New Town transformation! Featuring The Lexicon retail plaza, Coral Reef Waterworld pirate flumes, South Hill Park arts manor, and sprawling Bracknell Forest trails!',
+      tripadvisor_audit: 'ANALYST EXPERT AUDIT #1949: Bracknell presents a fascinating study in New Town regeneration, where The Lexicon shopping plaza meets Swinley Forest mountain bike trails. Rating: 4.1/5 — Excellent retail and waterpark facilities.'
+    },
+
     blakeney: {
       paper: 'Blakeney & Glaven Valley News',
       spotted: 'Spotted: Blakeney Quay & Seal Colony',
@@ -2656,10 +2667,12 @@ function renderSpec(spec) {
         `Discover ${town} — World-Class Consecrated Precincts!`
       ],
       brochures: [
-        `Visit our magnificent ${town} indoor shopping concourse! Hailed by post-war municipal planners as a triumph of modern engineering, featuring authentic 1970s architectural ambition!`
+        'Welcome to ' + town + '! Hailed by post-war planners as a triumph of Berkshire civic ambition, featuring sprawling retail plazas, glass-canopied high streets, and seamless rail connections to London Paddington!'
       ],
       reviews: [
-        { reviewer: 'PrecinctShopper', rating: 2, text: `Visited the ${town} concourse. Found historic 1970s precinct tiles and friendly local shoppers.` }
+        { reviewer: "M4Commuter", rating: 3, text: 'Commuted through ' + town + ' main station. Train was on time, but the multi-storey car park machine only accepted 20p coins.' },
+        { reviewer: "RetailShopper", rating: 4, text: 'Visited ' + town + ' for weekend shopping. Great variety of high street stores, though I got turned around twice on the dual carriageway ring road.' },
+        { reviewer: "SuburbanFamily", rating: 4, text: 'Took the kids to the local leisure pool in ' + town + '. Kids loved the water flumes; dad spent 20 minutes finding a parking space.' }
       ],
       taHeadlines: [
         `ANALYST EXPERT AUDIT #1974: Post-War Precinct Heritage and Civic Ambition in ${town}`

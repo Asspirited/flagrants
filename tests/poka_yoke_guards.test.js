@@ -115,3 +115,34 @@ test('POKA-YOKE GUARD #4 — CD3 Live Ticker & Parish Noticeboard Interactivity 
   signBtn.click();
   assert.strictEqual(signBtn.textContent, 'SIGNED ✓', 'Petition button must show SIGNED checkmark after click');
 });
+
+test('POKA-YOKE GUARD #6 — Customer Reviews must NOT parrot Tourist Board brochure phrasing', (t) => {
+  const htmlPath = path.join(__dirname, '..', 'index.html');
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const dom = new JSDOM(html, { runScripts: 'dangerously' });
+  const window = dom.window;
+
+  const testTowns = ['Bracknell', 'Slough', 'North Walsham', 'Basingstoke', 'Cromer', 'London', 'Aylsham', 'Diss', 'Wymondham', 'Blakeney'];
+
+  testTowns.forEach(town => {
+    const res = window.buildDynamicFallbackResult ? window.buildDynamicFallbackResult(town, 'proud_of_it', 'mode3') : null;
+    assert.ok(res, `Result must exist for ${town}`);
+
+    const brochureText = (res.tourist_board.brochure_copy || '').toLowerCase();
+    const reviews = res.customer_reviews || [];
+
+    reviews.forEach(rev => {
+      const revText = (rev.text || '').toLowerCase();
+      // Extract 5-word N-grams from review text
+      const words = revText.replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(Boolean);
+      for (let i = 0; i <= words.length - 5; i++) {
+        const ngram = words.slice(i, i + 5).join(' ');
+        assert.strictEqual(
+          brochureText.includes(ngram),
+          false,
+          `Customer review for "${town}" parroted brochure 5-word phrase "${ngram}" inside review: "${rev.text}"`
+        );
+      }
+    });
+  });
+});
