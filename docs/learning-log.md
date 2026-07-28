@@ -144,6 +144,11 @@
 * **Date:** 2026-07-28
 * **Insight:** 3 static layers (Regional backdrop + Local DB + Hash) still risk "50-mile radius sameness" if an unmatched town relies on regional fallbacks. Moving to a **5-Layer Architecture** (1. Regional Anchor -> 2. Local DB -> 3. 4-Slot Sentence Synthesizer -> 4. Panelist Shuffler -> 5. CussLab Wound Detector) yields > 440,000 unique sentence permutations per region, eliminating repetition and making repeated text mathematically impossible.
 
+### Entry #026 — Zero-Loop Unbounded Sampling Rule (Preventing Thread-Locking CPU Hangs)
+* **Category:** Defensive Engineering & Performance
+* **Date:** 2026-07-28
+* **Insight:** Never use unbounded `while` loops for array sampling/filtering in UI render paths. If an array length is less than the required sample size (e.g. picking 3 distinct items from a 1-item or 2-item pool), a `while` loop condition can never be satisfied, locking the main thread at 100% CPU usage forever. Because infinite CPU loops are synchronous and do not throw runtime exceptions, `try/catch` guards cannot recover from them. Always enforce **Bounded Modulo Indexing** or pre-padded safe pools (`safeReviewPool`) to guarantee 0-loop $\mathcal{O}(1)$ execution.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
