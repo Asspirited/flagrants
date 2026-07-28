@@ -61,6 +61,12 @@
 * **Date:** 2026-07-28
 * **Insight:** When Tom uses shorthand `"think"`, it is a mandatory directive to **STOP IMMEDIATELY**, drop the failed premise, step out of the fix-fail-fix-fail loop ("don't keep digging with your hands if there is a shovel outside"), re-assess from first principles, pull in broader/radical diagnostic tools and sources, and re-architect the solution cleanly.
 
+### Entry #011 — Nielsen Heuristic #1: System Status Visibility & The Herald Status Card
+* **Category:** Usability Heuristics & UX Feedback
+* **Date:** 2026-07-28
+* **Insight:** Removing execution status messages breaches Nielsen Heuristic #1 (*Visibility of System Status*), leaving users uncertain if their click took effect. Restoring the 300ms rotating Herald Research status card (*"The Herald is researching parish records & gazettes..."*) provides clear status feedback, satisfies Heuristic #5 (*Error Prevention*), and creates a delightful user experience.
+
+
 
 
 

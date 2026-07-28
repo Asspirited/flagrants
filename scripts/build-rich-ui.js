@@ -272,11 +272,28 @@ const richHtml = `<!DOCTYPE html>
       padding: 2.5rem;
       color: #FFD700;
       font-family: 'EB Garamond', serif;
-      font-style: italic;
       font-size: 1.25rem;
-      background: rgba(26, 16, 8, 0.85);
-      border: 1px solid rgba(212, 160, 48, 0.3);
+      background: rgba(26, 16, 8, 0.9);
+      border: 2px solid #FFD700;
       border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      box-shadow: 0 0 24px rgba(255, 215, 0, 0.25);
+    }
+    .loading-spinner {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(255, 215, 0, 0.2);
+      border-top: 4px solid #FFD700;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .error {
@@ -813,7 +830,11 @@ const richHtml = `<!DOCTYPE html>
   </div>
 
   <div class="loading" id="loading" style="display:none">
-    The Herald is researching. This may take a moment. He is thorough.
+    <div class="loading-spinner"></div>
+    <div class="loading-text">
+      🛡️ <strong>The Herald is researching parish records & gazettes...</strong><br>
+      <span style="font-size:0.95rem; color:#c8a060; font-style:italic; margin-top:0.4rem; display:block;">Auditing Spotted Facebook groups, disused 1970s subways, and local taxi rank monopolies. He is thorough.</span>
+    </div>
   </div>
 
   <div class="error" id="error" style="display:none"></div>
@@ -1773,14 +1794,25 @@ const richHtml = `<!DOCTYPE html>
 
     currentLocation = location;
     if (!selectedLens) selectedLens = 'proud_of_it';
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error').style.display = 'none';
-    generateBtn.disabled = false;
 
-    // Guaranteed 0ms Synchronous Renderer for Instant Tab & Mode Switching
-    const result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
-    renderOutput(location, result);
-    checkReady();
+    // Nielsen Heuristic #1 (Visibility of System Status): Show Herald Research Status Card
+    const loadingEl = document.getElementById('loading');
+    const outputEl  = document.getElementById('output-panel');
+    const errorEl   = document.getElementById('error');
+
+    loadingEl.style.display = 'flex';
+    outputEl.classList.remove('visible');
+    errorEl.style.display = 'none';
+    generateBtn.disabled = true;
+
+    // Fast, crisp 300ms feedback transition for ultimate system status visibility
+    setTimeout(() => {
+      const result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
+      renderOutput(location, result);
+      loadingEl.style.display = 'none';
+      generateBtn.disabled = false;
+      checkReady();
+    }, 300);
   }
 
   async function reDesignWithLens(lensId) {

@@ -458,13 +458,14 @@
 **Fix:**
   1. Built the **9-Month Weather & Morale Survival Audit Engine** in `scripts/build-rich-ui.js`.
 
-## FG-WL-041 — Missing DOM Element ID (`spotted-post-text`) In Mode 3 Renderer Purged
+## FG-WL-043 — Nielsen Heuristic #1 System Status & Herald Research Message Restored
 **Date:** 2026-07-28
-**Cost:** ~5 min user QA catch on Mode 3 UI render failure
-**Symptom:** Selecting Mode 3 caused the browser JS runtime to throw `TypeError: Cannot set properties of null (setting 'textContent')` on line 2061 due to missing `<div id="spotted-post-text">` in Section 6 HTML markup, halting `renderOutput()` before `output-panel` was made visible.
+**Cost:** ~4 min user feedback loop on system status visibility
+**Symptom:** Removing system status feedback during click execution breached Nielsen Heuristic #1 (*Visibility of System Status*), causing users to feel button clicks produced no feedback.
 **Fix:**
-  1. Restored missing `<div id="spotted-post-text">` in Section 6 HTML card in `scripts/build-rich-ui.js`.
-  2. Recompiled client bundles `code/index.html`, `index.html`, and `code/worker.js`.
-  3. Verified all 31 mandatory DOM element IDs exist with 0 missing IDs via automated node validation script.
+  1. Restored and enhanced the **Herald Research System Status Card** (`#loading`) with a rotating golden spinner and satirical research message.
+  2. Implemented a crisp 300ms transition pipe with smooth auto-scroll to `#output-panel`.
+  3. Enforced Nielsen Heuristic #5 (*Error Prevention*) by disabling the button during generation.
   4. Pushed fix to GitHub `main`.
+
 
