@@ -119,6 +119,21 @@
 * **Date:** 2026-07-28
 * **Insight:** In accordance with Lean manufacturing *Poka-Yoke* principles, testing must prioritize **PREVENT OVER DETECT**. Instead of relying on late-stage detection when defective components have already piled up, every data pipeline and UI renderer MUST be equipped with defensive input normalization and boundary guards (`tests/poka_yoke_boundary_prevention.test.js`). All tests must enforce graceful fallback degradation for `null`, `undefined`, empty string, special character, and malformed inputs to make runtime UI crashes physically impossible.
 
+### Entry #021 — Derby & Larsen 5-Stage Retrospective Facilitation Framework
+* **Category:** Agile Facilitation & Team Ways of Working
+* **Date:** 2026-07-28
+* **Insight:** Professional retrospective facilitation follows Esther Derby & Diana Larsen's 5-Stage Framework (*Set the Stage -> Gather Data -> Generate Insights -> Decide What to Do -> Close Retro*). The facilitator maintains neutrality, holds space, avoids premature solutioneering during early stages, and guides the team through each step iteratively.
+
+### Entry #022 — The Accountability Pact (Holding PO & AI Accountable to Metrics & EVI)
+* **Category:** Pairing Governance & Measurement Philosophy
+* **Date:** 2026-07-28
+* **Insight:** Both Product Owner and AI coding partner are bound by an Accountability Pact to ground all engineering and retro decisions in: (1) **Douglas Hubbard's Expected Value of Information (EVI)** (measuring uncertainty reduction over blind guessing), (2) **DORA Metrics** (monitoring CFR, MTTR, DF), and (3) **Lean Poka-Yoke** (Prevent Over Detect). Either partner is required to call out premature solutioneering or unverified claims.
+
+### Entry #023 — The Hyper-Local Diversity Rule (Beyond Regional Archetypes)
+* **Category:** Satirical Architecture & Domain Quality
+* **Date:** 2026-07-28
+* **Insight:** Regional archetypes (e.g. 8 UK regions) solve generic fallbacks, but risk creating "50-mile radius sameness" where neighbouring towns (Cromer vs Norwich vs Diss) share identical satire. True domain excellence requires combining regional background templates with **Hyper-Local Town Research Overrides** (specific headlines, local scandals, local landmarks, and town-mated claims) so every town feels uniquely roasted.
+
 ---
 
 ## 🔄 Knowledge Retrospective Protocol
