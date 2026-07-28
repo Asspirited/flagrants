@@ -1043,6 +1043,22 @@
         </div>
       </div>
 
+      <!-- Section 8: 9-Month Weather & Morale Survival Audit -->
+      <div class="paper-section-card">
+        <div class="paper-header-bar header-purple">
+          <span>🌧️ 9-MONTH WEATHER & MORALE SURVIVAL AUDIT</span>
+          <span style="font-size:0.75rem; opacity:0.8;" id="weather-badge-tag">WEATHER INDEX</span>
+        </div>
+        <div class="paper-body">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: #a855f7; font-weight: bold;" id="weather-rating-text"></div>
+          <div style="background: #1e112a; border-left: 3px solid #a855f7; padding: 1rem; border-radius: 0 4px 4px 0; margin-top: 0.5rem;">
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #e9d5ff; font-weight: bold; text-transform: uppercase;">🛡️ Regional Morale Sustain Factor:</div>
+            <div style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: #ffffff; margin-top: 0.3rem;" id="morale-sustain-text"></div>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #FFD700; font-weight: bold; margin-top: 0.6rem;">💡 Survival Tip: <span style="font-weight: normal; color: #e8d5a3;" id="weather-survival-tip"></span></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Section 8: Debug Research Findings Panel (Hidden in Production — Enabled via ?debug=1) -->
       <div class="paper-section-card" id="debug-research-card" style="display:none">
         <div class="paper-header-bar header-debug">
@@ -2717,6 +2733,42 @@ function renderSpec(spec) {
       document.getElementById('luminary-author').textContent  = '✍️ ' + lumItem.author;
       document.getElementById('luminary-quote').textContent   = '"' + lumItem.quote + '"';
       document.getElementById('luminary-reality').textContent = lumItem.reality;
+
+      // Render Section 8: 9-Month Weather & Morale Survival Audit
+      const WEATHER_PROFILES = {
+        coastal: {
+          badge: '🌧️ 9.4/10 HORIZONTAL SEA-FOG GALES',
+          weather: '9.4/10 Horizontal Sea-Fog Gales & Salt-Spray',
+          morale: 'Sustained entirely by 1920s land plot raffles, fish & chip queues, and salt-crusted deckchair disputes.',
+          survivalTip: 'Always face away from the English Channel when eating a lukewarm sausage roll.'
+        },
+        industrial_midlands: {
+          badge: '🌧️ 9.1/10 ESTUARY MIZZLE & HUMIDITY',
+          weather: '9.1/10 Freezing Tay Estuary / Pennine Mizzle & 92% Relative Humidity',
+          morale: 'Sustained by 2-for-1 Lace Market alcopops, Keiller marmalade, and Beano nostalgia.',
+          survivalTip: 'Treehouse outlaw refuge is 18 miles into Sherwood Forest if undergraduate noise exceeds 95 decibels.'
+        },
+        cathedral_heritage: {
+          badge: '🌧️ 8.2/10 SOLSTICE CLOISTER RAIN',
+          weather: '8.2/10 High-Vibrational Solstice Rain & Medieval Cloister Damp',
+          morale: 'Sustained by £8 aura crystal dowsing and college dons arguing in Latin outside college gates.',
+          survivalTip: 'Do not pay more than £6 for a copper dowsing rod during solstice downpours.'
+        },
+        industrial_commuter: {
+          badge: '🌧️ 8.7/10 CONCRETE SUBWAY DRIZZLE',
+          weather: '8.7/10 Permanent 1974 Concrete Drizzle & Overcast Grey',
+          morale: 'Sustained by continuous orbital motion on 7-tier roundabouts and 3 remaining vape outlets.',
+          survivalTip: 'If trapped on the dual carriageway after 3am, remain inside the Corsa and wait for daylight.'
+        }
+      };
+
+      const wAudit = WEATHER_PROFILES[archetype] || WEATHER_PROFILES.industrial_commuter;
+      if (document.getElementById('weather-badge-tag')) {
+        document.getElementById('weather-badge-tag').textContent  = wAudit.badge;
+        document.getElementById('weather-rating-text').textContent = '🌧️ Regional Weather Severity: ' + wAudit.weather;
+        document.getElementById('morale-sustain-text').textContent = wAudit.morale;
+        document.getElementById('weather-survival-tip').textContent = wAudit.survivalTip;
+      }
 
       // Render Debug Research Findings Panel
       const debugContainer = document.getElementById('debug-research-json');

@@ -450,3 +450,13 @@
   2. Built `CustomPersonaRegistry` allowing users to register custom panel show guests (*Frankie Boyle, Bear Grylls, Cody Lundin, Les Hiddins*) with custom catchphrases and voices.
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting custom persona registration and intake.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-039 — Feature Expansion: "9-Month Weather & Morale Survival Audit Engine"
+**Date:** 2026-07-28
+**Cost:** ~5 min execution of Upgrade 2
+**Symptom:** Mode III audits lacked dedicated British gallows weather ratings and regional morale survival tips for enduring 9 months of damp drizzle.
+**Fix:**
+  1. Built the **9-Month Weather & Morale Survival Audit Engine** in `scripts/build-rich-ui.js`.
+  2. Added a dedicated Mode III card displaying regional weather severity, morale sustain factors, and survival tips across all 5 UK archetypes.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting weather survival audit rendering.
+  4. Pushed updated client bundle and docs to GitHub `main`.

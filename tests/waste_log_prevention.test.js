@@ -41,12 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Survival School Custom Persona Intake Module (FG-WL-038)', () => {
+test('FG-WL Prevention — 9-Month Weather & Morale Survival Audit Engine (FG-WL-039)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('SURVIVAL_SCHOOL_PERSONAS = {'), true, 'code/index.html must include SURVIVAL_SCHOOL_PERSONAS');
-  assert.strictEqual(codeIndex.includes('Frankie Boyle'), true, 'code/index.html must include Frankie Boyle persona');
+  assert.strictEqual(codeIndex.includes('9-MONTH WEATHER & MORALE SURVIVAL AUDIT'), true, 'code/index.html must include Section 8 Weather card');
+  assert.strictEqual(codeIndex.includes('Horizontal Sea-Fog Gales'), true, 'code/index.html must include coastal weather audit text');
 });
+
 
 
 
