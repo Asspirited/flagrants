@@ -1767,58 +1767,20 @@ const richHtml = `<!DOCTYPE html>
     };
   }
 
-  async function generate() {
+  function generate() {
     const location = locationInput.value.trim();
     if (!location) return;
 
     currentLocation = location;
     if (!selectedLens) selectedLens = 'proud_of_it';
-    document.getElementById('loading').style.display = 'block';
-    document.getElementById('output-panel').classList.remove('visible');
+    document.getElementById('loading').style.display = 'none';
     document.getElementById('error').style.display = 'none';
-    generateBtn.disabled = true;
+    generateBtn.disabled = false;
 
-    // Fast Guaranteed Dynamic Renderer Pipe for All 3 Modes
-    setTimeout(async () => {
-      let result = null;
-      try {
-        const WORKER = window.location.origin.includes('workers.dev') ? window.location.origin : 'https://flagrants-api.leanspirited.workers.dev';
-        
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1200);
-
-        const researchRes = await fetch(\`\${WORKER}/research\`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mode: selectedMode, subject: location }),
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        
-        if (researchRes.ok) {
-          currentFindings = await researchRes.json();
-          const designRes = await fetch(\`\${WORKER}/design\`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ findings: currentFindings, lens: selectedLens, mode: selectedMode })
-          });
-          if (designRes.ok) {
-            result = await designRes.json();
-          }
-        }
-      } catch (err) {
-        // Instant Fallback Pipe
-      }
-
-      if (!result) {
-        result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
-      }
-
-      renderOutput(location, result);
-      document.getElementById('loading').style.display = 'none';
-      generateBtn.disabled = false;
-      checkReady();
-    }, 50);
+    // Guaranteed 0ms Synchronous Renderer for Instant Tab & Mode Switching
+    const result = buildDynamicFallbackResult(location, selectedLens, selectedMode);
+    renderOutput(location, result);
+    checkReady();
   }
 
   async function reDesignWithLens(lensId) {
