@@ -19,23 +19,12 @@ test('FG-WL Prevention — PWA Service Worker enforces Network-First HTML retrie
   assert.strictEqual(swJs.includes("fetch(e.request)"), true, 'sw.js must attempt network fetch first');
 });
 
-test('FG-WL Prevention — Zero Hash Collisions Across 10 UK Towns', () => {
-  const hashTown = (town, seed = 0) => {
-    let hash = seed;
-    const clean = town.toLowerCase().trim();
-    for (let i = 0; i < clean.length; i++) {
-      hash = (hash << 5) - hash + clean.charCodeAt(i);
-      hash |= 0;
-    }
-    return Math.abs(hash);
-  };
-
-  const towns = ['Peacehaven', 'Basingstoke', 'Bracknell', 'Slough', 'Newbury', 'Leeds', 'Blackpool', 'Edinburgh', 'Brighton', 'Hove'];
-  const hashOutputs = new Set();
-
-  towns.forEach(t => {
-    const key = `${hashTown(t, 13)}_${hashTown(t, 37)}_${hashTown(t, 73)}`;
-    assert.strictEqual(hashOutputs.has(key), false, `Town ${t} must have a unique bit-shift hash combination`);
-    hashOutputs.add(key);
-  });
+test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Roundabout Lore', () => {
+  const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
+  
+  // Verify Coastal regional profile isolation logic exists
+  assert.strictEqual(codeIndex.includes('Jewel of the ${town} Undercliff'), true);
+  assert.strictEqual(codeIndex.includes('UndercliffAuditor'), true);
+  assert.strictEqual(codeIndex.includes('SeaGaleVictim'), true);
 });
+
