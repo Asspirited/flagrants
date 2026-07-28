@@ -105,6 +105,13 @@
 * **Exemplar:**
   *"We take the piss out of Peacehaven not because we hate it, but because zero degrees longitude passing through a 1916 newspaper raffle town is the most magnificent thing in Sussex."*
 
+---
+
+### Formula 12 / Architectural Law 13: The Asspirited Suite Cross-Repo Synergy Law
+* **Mechanics:** Continuously audit sister repositories in the `Asspirited` ecosystem (*your-green-gardening-wizard, risk-and-impact-assessor (RIA), Universal-Harmonix (UFO), survival-school, cusslab, Fallacy-Finder*).
+* **Core Rule:** Extract, refine, and generalize shared patterns into small, decoupled, zero-dependency functions that compile cleanly and compound long-term velocity across the entire suite.
+
+
 
 
 
