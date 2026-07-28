@@ -1801,7 +1801,9 @@ const richHtml = `<!DOCTYPE html>
     const errorEl   = document.getElementById('error');
 
     loadingEl.style.display = 'flex';
-    loadingEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (typeof loadingEl.scrollIntoView === 'function') {
+      loadingEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     outputEl.classList.remove('visible');
     errorEl.style.display = 'none';
     generateBtn.disabled = true;
@@ -2178,8 +2180,11 @@ const richHtml = `<!DOCTYPE html>
       mode3Container.style.display = 'none';
     }
 
-    document.getElementById('output-panel').classList.add('visible');
-    document.getElementById('output-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const outputPanel = document.getElementById('output-panel');
+    outputPanel.classList.add('visible');
+    if (typeof outputPanel.scrollIntoView === 'function') {
+      outputPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // Crest Export Handlers (PNG & SVG)
