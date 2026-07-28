@@ -852,15 +852,29 @@ ARCHETYPE CLUSTERS & SUB-CHARACTERISTIC MECHANICS:
 5. THE UNFILTERED LOCAL BASTARD (The Tom Register):
    - Mouthy, sweary, hyper-articulate, zero-bullshit reality check calling out council propaganda, municipal lies, and bad infrastructure with surgical profanity & scathing clarity.
 
+DYNAMIC REUSABLE PATTERN SUBSTITUTION DIRECTIVES:
+When generating copy for any section, use Tom's Satirical Pattern Templates as structural formulas, dynamically substituting subject, object, tech company, media show, infrastructure, and local findings:
+
+PATTERN A (The Dystopian Infrastructure Spin):
+Formula: "It has a [LOCAL INFRASTRUCTURE / FACILITY / SHOPPING MALL]... obviously mostly closed since [TECH GIANT / AMAZON / ONLINE DELIVERY] dismantled town centres, now offering an authentic experience resembling [DYSTOPIAN TV SHOW / THE LAST OF US / 28 DAYS LATER / CHERNOBYL], featuring [NUMBER] remaining [DYSTOPIAN STORE TYPE / VAPE SHOPS / NAIL BARS]!"
+
+PATTERN B (The Over-budget Sculpture vs Potholes):
+Formula: "The council spent £[MILLIONS] on a [ABSURD LOCAL OBJECT / TURNIP / CONCRETE COW / STEEL ANCHOR] sculpture while the potholes on [LOCAL STREET / HIGH STREET / BYPASS] are big enough to swallow a [CAR MODEL / FORD FOCUS / NISSAN MICRA / VAUXHALL CORSA]. Absolute bollocks."
+
+PATTERN C (The Catering & Taxi Monopoly Nightmare):
+Formula: "Spent [HOURS] hours waiting by the [LOCAL CATERING / KEBAB RANK / LATE-NIGHT CHIPPY] because of the [LOCAL TRANSPORT MONOPOLY / BUS CARTEL]. Enjoy lukewarm [LOCAL DISH / ROGAN JOSH] and complete transportation collapse."
+
+Substitute these slots dynamically based on the specific location's research findings!
+
 SECTION VOICE MAP:
 1. "motto" & "twinned_with": Pompous imperial Latin hubris vs banal realism (e.g., B&Q Tool Aisle 9, Pripyat, Swindon Platform 4).
-2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Desperately trying to sell local features, but failing catastrophically and framing retail decay or dystopia as world-class attractions! (e.g., "Visit our magnificent 1970s shopping concourse! Obviously mostly shuttered since Amazon dismantled town centres, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring three remaining vape outlets and scenic moss growth!").
-3. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks Broken Optimism) or Sub-Type 2B (Carlin Misanthropic Fury) — Acidic, unvarnished expert audit giving an unvarnished rating (e.g. "1.5 / 5 — Mostly Overcast").
+2. "tourist_board": Archetype 1 (Desperate Bureaucratic Spinster) — Apply Pattern A! Desperately trying to sell local features, but failing catastrophically and framing retail decay or dystopia as world-class attractions!
+3. "tripadvisor_audit": Archetype 1, Sub-Type 2A (Hicks) or Sub-Type 2B (Carlin) — Apply Pattern C! Acidic, unvarnished expert audit giving an unvarnished rating (e.g. "1.5 / 5 — Mostly Overcast").
 4. "socio_economic": Archetype 1 (The Cold Statistical Pedant) — Dry, scathing demographic report on Ofsted, police records, vape shop administration, and £450k damp housing.
 5. "customer_reviews": MUST be 3 highly varied visitor reviews:
    - Review 1: Archetype 3 (Domestic Realist / Gervais Theological Absurdity) — Longer, cringeworthy personal saga about getting trapped on the bypass.
-   - Review 2: Archetype 5 (The Unfiltered Local Bastard — Tom Register) — Mouthy, sweary, zero-bullshit 1-sentence reality check (e.g., "The council spent £2 million on a turnip sculpture while the potholes are big enough to swallow a Ford Focus. Absolute bollocks.").
-   - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, turnip advice, or sea-shanty roundabout warnings).
+   - Review 2: Archetype 5 (The Unfiltered Local Bastard — Tom Register) — Apply Pattern B! Mouthy, sweary, zero-bullshit 1-sentence reality check.
+   - Review 3: Archetype 4 (Surreal Absurdist / Bill Bailey Lyrical or Vic & Bob Cabbage Ritual) — Obscure, bizarre observation (e.g., strange encounters at the bypass, turnip advice, cheese rolling, or sea-shanty warnings).
 6. "excuse": Archetype 1, 4 & 5 (Defiant Delusional Bureaucrat meets Mouthy Callout) — Official municipal excuse blaming external forces, weather, 1970s planners, or French invaders.
 
 Return ONLY this JSON structure — no preamble, no markdown, no explanation:
