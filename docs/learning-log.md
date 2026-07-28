@@ -56,6 +56,12 @@
 * **Date:** 2026-07-28
 * **Insight:** A single missing DOM element ID (*e.g. `spotted-post-text`*) causes standard `document.getElementById().textContent` calls to throw unhandled `TypeError` exceptions in client JS, silently halting entire rendering pipelines. Always enforce 100% DOM element ID contract validation in automated build steps.
 
+### Entry #010 — The "think" Directive: First-Principles Shovel Protocol
+* **Category:** Pair-Programming Protocol & Problem Solving
+* **Date:** 2026-07-28
+* **Insight:** When Tom uses shorthand `"think"`, it is a mandatory directive to **STOP IMMEDIATELY**, drop the failed premise, step out of the fix-fail-fix-fail loop ("don't keep digging with your hands if there is a shovel outside"), re-assess from first principles, pull in broader/radical diagnostic tools and sources, and re-architect the solution cleanly.
+
+
 
 
 ---
