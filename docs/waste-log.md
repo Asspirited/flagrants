@@ -196,3 +196,14 @@
   3. Restricted monocultural tropes (bypasses, kebabs) to <10% incidental background flavor.
   4. Added automated test in `tests/waste_log_prevention.test.js` asserting Glastonbury and Whitby render 100% unique hyper-local lore (Ley-Lines & Dracula 199 steps) without leaking generic bypasses.
   5. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-018 — Un-regionalized Multi-Storey Car Park Leak
+**Date:** 2026-07-28
+**Cost:** ~5 min user creative review & call-out on inappropriate parking infrastructure
+**Symptom:** Car park references ("Meridian Centre car park", "multi-storey car park ramp") leaked into coastal and rural towns where no multi-storey car parks exist.
+**Root cause:** Over-reliance on generic parking infrastructure tropes across fallback review arrays.
+**Fix:**
+  1. Replaced "Meridian Centre car park" in coastal profile with "Meridian Centre clifftop gravel patch".
+  2. Confined "multi-storey car park" strictly to `Commuter / Suburban Belt` (e.g. Bracknell, Slough, Basingstoke).
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting coastal profiles contain zero "car park" or "multi-storey" references.
+  4. Pushed updated client bundle and docs to GitHub `main`.

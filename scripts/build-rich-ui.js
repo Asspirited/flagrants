@@ -1240,7 +1240,7 @@ const richHtml = `<!DOCTYPE html>
           \`Discover the ancient coastal legends of \${town}! From the Great Scampi Tempest of 1987 to emergency coastguard audits of abandoned beach huts, our parish preserves lore that rings true!\`
         ],
         reviews: [
-          { reviewer: 'MeridianWalker', rating: 1, text: \`Walked the Meridian Line in \${town}. Got disoriented by sea-fog and ended up in the Meridian Centre car park thinking I was in Dieppe.\` },
+          { reviewer: 'MeridianWalker', rating: 1, text: \`Walked the Meridian Line in \${town}. Got disoriented by sea-fog and ended up on the Meridian Centre clifftop gravel patch thinking I was in Dieppe.\` },
           { reviewer: 'DeckchairVictim', rating: 1, text: \`To the person who took my salt-crusted deckchair while I was buying scampi by the Undercliff Walk: I have you on Ring doorbell video.\` },
           { reviewer: 'PlotRaffleDescendant', rating: 2, text: \`My grandfather won a cliffside plot here in a 1920 Daily Express raffle. The plot fell into the English Channel in 1974. Great views though.\` },
           { reviewer: 'ScampiHurler', rating: 1, text: \`Tried eating scampi on the \${town} sea wall. A 60mph gale blew the entire tray into a coastguard cutter. 1 star.\` },

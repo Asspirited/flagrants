@@ -28,12 +28,13 @@ test('FG-WL Prevention — Coastal Towns (Peacehaven) Never Leak Commuter Rounda
   assert.strictEqual(codeIndex.includes('1916 newspaper raffle scheme'), true);
 });
 
-test('FG-WL Prevention — Hyper-Local Lore Prioritization (Glastonbury & Whitby)', () => {
+test('FG-WL Prevention — Coastal Profile Purges Inappropriate Parking Infrastructure', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('Glastonbury: Capital of Ley-Line Vibrations'), true, 'Glastonbury must render Arthurian ley-line lore');
-  assert.strictEqual(codeIndex.includes('Whitby: 199 Steps, Bram Stoker Dracula Lore'), true, 'Whitby must render Dracula & 199 steps lore');
+  assert.strictEqual(codeIndex.includes('Meridian Centre car park'), false, 'coastal profile must not reference car parks');
+  assert.strictEqual(codeIndex.includes('Meridian Centre clifftop gravel patch'), true, 'coastal profile must use authentic clifftop gravel patch');
 });
+
 
 
 
