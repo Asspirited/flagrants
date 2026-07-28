@@ -41,12 +41,13 @@ test('FG-WL Prevention — LLM Prompts Contain Zero Pripyat Exemplars (FG-WL-024
   assert.strictEqual(workerJs.includes('Pripyat'), false, 'worker.js LLM prompts must not contain Pripyat');
 });
 
-test('FG-WL Prevention — Johnny Front-Row Callout Engine (FG-WL-035)', () => {
+test('FG-WL Prevention — 6-Celebrity Panel Commentary Engine (FG-WL-036)', () => {
   const codeIndex = fs.readFileSync(path.join(rootDir, 'code', 'index.html'), 'utf8');
   
-  assert.strictEqual(codeIndex.includes('reminds me of that 1978 tupperware box, Johnny'), true, 'code/index.html must render Bede Tupperware Johnny callout');
-  assert.strictEqual(codeIndex.includes('reminds me of that wet Wimpy wrapper, Johnny'), true, 'code/index.html must render Ray Mears Wimpy Johnny callout');
+  assert.strictEqual(codeIndex.includes('Ray Winstone'), true, 'code/index.html must include Ray Winstone panelist');
+  assert.strictEqual(codeIndex.includes('Prof. Brian Cox'), true, 'code/index.html must include Prof. Brian Cox panelist');
 });
+
 
 
 

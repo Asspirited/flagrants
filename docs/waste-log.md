@@ -420,3 +420,13 @@
   2. Embedded dynamic front-row callouts across all 4 panelists (Bede, Ray Mears, David Attenborough, Steve Backshall).
   3. Added automated test in `tests/waste_log_prevention.test.js` asserting Johnny front-row callouts render in panel interjections.
   4. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-036 — Feature Expansion: "6-Celebrity Panel Commentary Engine" (Ray Winstone & Brian Cox)
+**Date:** 2026-07-28
+**Cost:** ~5 min user feature request for celebrity panel commentary
+**Symptom:** Panel commentary featured 4 panelists but lacked Ray Winstone (*Rough-Diamond Pub Philosopher*) and Prof. Brian Cox (*Wondrous Quantum Physicist*).
+**Fix:**
+  1. Expanded `PANELISTS` roster to 6 iconic British celebrity commentators in `scripts/build-rich-ui.js`.
+  2. Added Ray Winstone (*"Listen to me, sunshine..."*) and Prof. Brian Cox (*"Space-time actually dilates at 3am on the orbital roundabout..."*) commentary streams.
+  3. Added automated test in `tests/waste_log_prevention.test.js` asserting Ray Winstone and Brian Cox appear in celebrity panel roster.
+  4. Pushed updated client bundle and docs to GitHub `main`.
