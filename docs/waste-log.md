@@ -91,3 +91,15 @@
   1. Configured client-side Mode III generation in `index.html` to generate town-anchored dynamic variety directly on the client in <50ms without depending on un-updated remote Cloudflare Worker endpoints.
   2. Purged all hardcoded fallback strings from both `code/worker.js` and `index.html`.
   3. Pushed updated client bundle and docs to GitHub `main`.
+
+## FG-WL-009 — Modular Hash Collision Across Town String Hashes (Peacehaven & Basingstoke)
+**Date:** 2026-07-28
+**Cost:** ~20 min investigation & user confusion after initial fix
+**Symptom:** Bracknell produced brand new dynamic results, but Peacehaven reverted to the exact same concourse & taxi rank review pattern as Basingstoke even after a hard refresh.
+**Root cause:**
+  1. The string hashing function `town.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 1000007, 0)` evaluated `Peacehaven` to hash `273796` (`273796 % 4 === 0`) and `Basingstoke` to hash `588952` (`588952 % 4 === 0`).
+  2. Because both `Peacehaven` and `Basingstoke` evaluated to `hash % 4 === 0` in modulo 4 arithmetic, both towns picked Array Index 0 across all 4 pattern fields, creating an artificial string collision!
+**Fix:**
+  1. Replaced single-modulo arithmetic with 32-bit bit-shift positional seed hashing `hashTown(town, seed)` with distinct prime seeds per field.
+  2. Expanded pattern pools from 4 to 12 distinct satirical pattern options per category.
+  3. Pushed updated client bundle and docs to GitHub `main`.

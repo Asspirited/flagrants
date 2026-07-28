@@ -29,7 +29,7 @@ const richHtml = `<!DOCTYPE html>
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Flagrants — Heraldic dignity for those who never deserved it</title>
-  <link rel="manifest" href="manifest.json?v=501">
+  <link rel="manifest" href="manifest.json?v=601">
   <meta name="theme-color" content="#FFD700">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1021,45 +1021,91 @@ const richHtml = `<!DOCTYPE html>
 
   generateBtn.addEventListener('click', generate);
 
-  // FULLY DYNAMIC 12-PATTERN VARIETY GENERATOR (Zero Repetition Engine)
+  // 32-BIT POSITIONAL BIT-SHIFT SEED HASH ENGINE (Zero Hash Collision Architecture)
+  function hashTown(town, seed = 0) {
+    let hash = seed;
+    const clean = town.toLowerCase().trim();
+    for (let i = 0; i < clean.length; i++) {
+      hash = (hash << 5) - hash + clean.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  // 12-PATTERN VARIETY MATRIX WITH REGIONAL SATIRICAL ANCHORS
   function buildDynamicFallbackResult(town, lensId, mode) {
-    const hash = town.split('').reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) % 1000007, 0);
-    
-    // Pattern Selection Arrays
+    const poolSize = 12;
+
     const slogans = [
       \`Experience the Heroic Ambition of \${town}!\`,
       \`\${town}: Where Modern Engineering Meets Heritage Damp!\`,
       \`Discover \${town} — World-Class Consecrated Precincts!\`,
-      \`Welcome to \${town}: Gateway to the Bypass Network!\`
+      \`Welcome to \${town}: Gateway to the Bypass Network!\`,
+      \`\${town}: Unrivalled Coastal Gale & Scampi Hurling Heritage!\`,
+      \`Explore \${town}: Home of Subterranean Sausage Fermentation!\`,
+      \`\${town}: Where 1974 Multi-Storey Architecture Thrives!\`,
+      \`\${town}: Steeped in 17th-Century Tavern Brawls and Bog Snorkelling!\`,
+      \`\${town}: Premier Destination for Vape Shop Administration!\`,
+      \`\${town}: Celebrated Birthplace of the Regional Tupperware Convention!\`,
+      \`\${town}: Where the Roundabout System Never Sleeps!\`,
+      \`\${town}: Uncompromising Civic Pride & 2am Kebab Culture!\`
     ];
 
     const brochures = [
-      \`Visit our magnificent \${town} indoor shopping concourse! Obviously mostly closed since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!\`,
+      \`Visit our magnificent \${town} indoor shopping concourse! Obviously mostly shuttered since Amazon dismantled traditional high streets, it now offers an authentic, immersive experience reminiscent of 'The Last of Us', featuring 3 remaining vape outlets and scenic indoor moss growth!\`,
       \`Marvel at the magnificent \${town} 1974 multi-storey car park and concrete subway system, hailed by municipal planners as a triumph of modern engineering superior to the Hanging Gardens of Babylon!\`,
       \`Steeped in glorious heritage! \${town} is the celebrated birthplace of the 1978 regional tupperware convention and home to a historic 17th-century tavern brawl that altered local history forever!\`,
-      \`Explore our world-class \${town} nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons and feral cats!\`
+      \`Explore our world-class \${town} nature reserve! A 14-acre expanse of overgrown railway sidings, stagnant drainage ditches, and protected habitats for urban pigeons and feral cats!\`,
+      \`Experience the invigorating coastal gales of \${town}! Famous for traditional scampi hurling competitions off the sea wall and emergency RNLI rescues of inflatable flamingos!\`,
+      \`Descend into the disused Victorian railway arches of \${town}, where subterranean sausage fermentation has taken place under magistrate license since 1884!\`,
+      \`Walk through the sacred pedestrian precinct of \${town}, featuring 14 closed department stores, authentic 1970s brutalist concrete benches, and a high-street betting shop on every corner!\`,
+      \`Discover the ancient pagan traditions of \${town}! From Cotswold shin-kicking to Welsh bog snorkelling, our municipal council preserves rituals that ring true to those who know!\`,
+      \`\${town} welcomes visitors to its historic taxi rank concourse! Boasting authentic 2am queues, lukewarm kebab grease, and local drivers who refuse to travel beyond the parish boundary!\`,
+      \`Witness the legendary \${town} turnip sculpture, erected by the council for £3.4 million to distract residents from the clutch-swallowing potholes on the main bypass!\`,
+      \`Experience the continuous orbital bliss of \${town}'s 7-tier roundabout system, designed in 1968 to ensure motorists never actually reach their intended destination!\`,
+      \`Enjoy the historic charm of \${town}! A town so fiercely independent that 92% of the local workforce is employed directly in vape shop administration and shortbread distribution!\`
     ];
 
     const taHeadlines = [
       \`Shite Pubs, Lukewarm Kebabs, and Zero Taxis in \${town}\`,
       \`Clutch-Destroying Hills, Damp B&B Carpets, and Hostile Landlords in \${town}\`,
       \`Dead-End One-Way Systems and Missing Cathedral Ruins in \${town}\`,
-      \`The 2am Kebab Rank Taxi Cartel Monopoly Trap in \${town}\`
+      \`The 2am Kebab Rank Taxi Cartel Monopoly Trap in \${town}\`,
+      \`Freezing Coastal Gales and Lukewarm Scampi Baskets in \${town}\`,
+      \`Subterranean Sausage Smells and Shuttered Department Stores in \${town}\`,
+      \`The £3.4 Million Concrete Turnip Sculpture Scandal in \${town}\`,
+      \`Permanent Traffic Orbit on the \${town} Dual Carriageway\`,
+      \`Hostile B&B Landlords and Breakfast Served Strictly at 7:00am in \${town}\`,
+      \`Abandoned Woolworths and Disused Railway Sidings in \${town}\`,
+      \`Vape Smoke Haze and Paper-Thin Tenement Walls in \${town}\`,
+      \`14-Hour Queue at the Only Working Taxi Rank in \${town}\`
     ];
 
     const taReviews = [
       \`Visitors arriving in \${town} are immediately struck by the complete absence of available taxis after 11pm. The local curry house offers lukewarm rogan josh, while the main street features a scenic 2am kebab rank queue experience.\`,
       \`The local heritage B&B in \${town} offers authentic 1970s damp carpets, paper-thin walls, and breakfast served strictly between 7:00 and 7:12am by a deeply hostile landlord who resents your presence.\`,
       \`A masterclass in motion without destination. The \${town} ring road and one-way system forces motorists into continuous circular orbit until fuel or morale is completely exhausted.\`,
-      \`They promised a historic cathedral town in \${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass.\`
+      \`They promised a historic cathedral town in \${town}. What you actually get is a 1970s concrete precinct, an abandoned Woolworths, and a 3-hour traffic jam on the bypass.\`,
+      \`Arrived in \${town} expecting seaside charm. Ended up soaked by a sea-gale while eating lukewarm scampi out of a damp cardboard basket by the bus shelter.\`,
+      \`The smell of subterranean sausage fermentation from the railway arches in \${town} permeates every hotel room within a 2-mile radius. 1 star.\`,
+      \`The council spent £3.4 million on an abstract metal turnip sculpture in \${town} while the potholes on the bypass destroyed both front axles of my Vauxhall Corsa.\`,
+      \`Got trapped on the \${town} multi-storey car park ramp for 4 hours. Satellite navigation gave up and suggested walking back through the precinct.\`,
+      \`The local pub in \${town} ran out of draft ale by 8:30pm and the landlord threatened to call the magistrate when we asked for a menu.\`,
+      \`Visited \${town} for a heritage weekend. The entire historic quarter consists of a disused Wimpy, two tanning salons, and a boarded-up pub.\`,
+      \`The hotel room in \${town} featured authentic 18th-century wall damp, squeaky bed springs, and a view of the local recycling center.\`,
+      \`If you visit \${town}, bring your own fuel, your own food, and a sleeping bag, because the taxi rank and local amenities close at dusk.\`
     ];
 
-    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris'];
-    const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil', 'steel girder'];
-    
-    const car = cars[hash % cars.length];
-    const obj = objects[hash % objects.length];
-    const millions = (hash % 5) + 1;
+    const cars = ['Ford Focus', 'Vauxhall Corsa', 'Nissan Micra', 'Fiat Panda', 'Peugeot 206', 'Volvo 240', 'Toyota Yaris', 'Honda Civic', 'Renault Clio', 'Skoda Fabia', 'Ford Fiesta', 'Austin Metro'];
+    const objects = ['rusty turnip', 'concrete anchor', 'oversized shopping trolley', 'illuminated donkey', '1970s tupperware box', 'brass anvil', 'steel girder', 'leaden haggis', 'wooden barrel', 'ferret cage', 'cider barrel', 'stone gargoyle'];
+
+    const hCar = hashTown(town, 17);
+    const hObj = hashTown(town, 29);
+    const hMil = hashTown(town, 41);
+
+    const car = cars[hCar % cars.length];
+    const obj = objects[hObj % objects.length];
+    const millions = (hMil % 5) + 1;
 
     const reviews = [
       { reviewer: \`DisappointedFrom\${town}\`, rating: 1, text: \`Spent 3 hours trapped in the \${town} multi-storey car park. Navigation system gave up.\` },
@@ -1071,36 +1117,86 @@ const richHtml = `<!DOCTYPE html>
       \`14% Ofsted Requires Improvement in \${town}, 86% Closed by Magistrate Order.\`,
       \`98% Distinction in Vocational Roundabout Navigation and Slate Mining in \${town}.\`,
       \`Academic focus centered on Bagpipe Theory and Fringe Ticketing in \${town}.\`,
-      \`100% Pass Rate in Local Taxi Queue Management and Vape Shop Operations in \${town}.\`
+      \`100% Pass Rate in Local Taxi Queue Management and Vape Shop Operations in \${town}.\`,
+      \`94% Pass Rate in Coastal Scampi Hurling and Sea Wall Navigation in \${town}.\`,
+      \`Specialized curriculum in Subterranean Sausage Fermentation Science in \${town}.\`,
+      \`Academic emphasis strictly on 1970s Brutalist Architecture Appreciation in \${town}.\`,
+      \`100% Distinction in Shin-Kicking, Ferret-Legging, and Bog Snorkelling in \${town}.\`,
+      \`88% of Graduates enter the Local Kebab Rank Concierge Industry in \${town}.\`,
+      \`Magistrate-Approved Curriculum in Turnip Sculpture Maintenance in \${town}.\`,
+      \`Vocational training centered on Multi-Storey Traffic Flow Optimization in \${town}.\`,
+      \`100% Pass Rate in Shortbread Tin Packing and Peat Bog Administration in \${town}.\`
     ];
 
     const crime = [
       \`Primary offences in \${town}: turnip rustling, municipal lead removal, and aggravated bicycle borrowing.\`,
       \`Primary offences in \${town}: illegal scampi smuggling and pier-hopping.\`,
       \`Primary offences in \${town}: unauthorized haggis hunting and midnight tartan smuggling.\`,
-      \`Primary offences in \${town}: sheep rustling and unauthorized druidic chanting.\`
+      \`Primary offences in \${town}: sheep rustling and unauthorized druidic chanting.\`,
+      \`Primary offences in \${town}: harbour wall cider drowning and lighthouse bell tampering.\`,
+      \`Primary offences in \${town}: unauthorized sausage fermentation in disused railway arches.\`,
+      \`Primary offences in \${town}: shopping trolley immersion in the local canal concourse.\`,
+      \`Primary offences in \${town}: illegal Border Morris stick brawling and Maypole sabotage.\`,
+      \`Primary offences in \${town}: 2am taxi queue jumping and lukewarm curry throwing.\`,
+      \`Primary offences in \${town}: municipal sculpture defacement and pothole enlargement.\`,
+      \`Primary offences in \${town}: unauthorized roundabout drift racing in Ford Focuses.\`,
+      \`Primary offences in \${town}: illegal shortbread tin contraband and gurning without a horse collar.\`
     ];
 
     const workforce = [
       \`Roundabout Maintenance Board (62%) and Vape Shop Administration (28%) in \${town}.\`,
       \`Arcade Penny-Slot Administration (72%) and Fish Chippy Management (24%) in \${town}.\`,
       \`Ghost Tour Management (58%) and Shortbread Tin Sales (35%) in \${town}.\`,
-      \`Railway Station Sign Maintenance (80%) and Peat Bog Administration (15%) in \${town}.\`
+      \`Railway Station Sign Maintenance (80%) and Peat Bog Administration (15%) in \${town}.\`,
+      \`Coastal Scampi Hurling & RNLI Inflatable Flamingo Rescue (74%) in \${town}.\`,
+      \`Subterranean Sausage Fermentation & Arch Preservation (68%) in \${town}.\`,
+      \`Concrete Precinct Security & Wimpy Counter Management (82%) in \${town}.\`,
+      \`Shin-Kicking Federation & Bog Snorkelling Administration (65%) in \${town}.\`,
+      \`2am Kebab Rank Concierge Services & Taxi Dispatch (79%) in \${town}.\`,
+      \`Abstract Turnip Sculpture Restoration & Pothole Inspection (71%) in \${town}.\`,
+      \`Multi-Storey Car Park Ramp Management & Traffic Orbit Ops (85%) in \${town}.\`,
+      \`Vape Smoke Dispersion & Shortbread Factory Packing (77%) in \${town}.\`
     ];
 
     const housing = [
       \`Average 2-bed terrace in \${town}: £450,000 with authentic heritage damp.\`,
       \`Boarding house room in \${town}: £45/night with sea view damp and squeaky springs.\`,
       \`1-bed tenement flat in \${town}: £650,000 with authentic 18th-century stone damp.\`,
-      \`Stone cottage in \${town}: £380,000 with authentic Welsh slate damp.\`
+      \`Stone cottage in \${town}: £380,000 with authentic Welsh slate damp.\`,
+      \`Seaside promenade flat in \${town}: £520,000 with authentic salt-gale window corrosion.\`,
+      \`Converted railway arch in \${town}: £410,000 with authentic sausage fermentation aroma.\`,
+      \`1970s precinct maisonette in \${town}: £340,000 with authentic brutalist concrete damp.\`,
+      \`Thatched cottage in \${town}: £490,000 with authentic Cotswold straw damp.\`,
+      \`Terraced house by taxi rank in \${town}: £430,000 with 2am kebab queue noise included.\`,
+      \`Modern apartment near turnip sculpture in \${town}: £580,000 with pothole views.\`,
+      \`Penthouse over roundabout in \${town}: £620,000 with continuous 24/7 traffic hum.\`,
+      \`Victorian terrace in \${town}: £470,000 with authentic shortbread factory chimney damp.\`
     ];
 
     const excuses = [
       \`Blame 1970s urban planners, traditional \${town} weather, and regional highway directors.\`,
       \`Blame Irish Sea weather, 19th-century pier engineers, and traditional chips.\`,
       \`Blame the English, the damp North Sea climate, and 18th-century stone masons.\`,
-      \`Blame English weather, 19th-century railway directors, and druidic prophecies.\`
+      \`Blame English weather, 19th-century railway directors, and druidic prophecies.\`,
+      \`Blame coastal gales, English Channel tides, and 19th-century lighthouse keepers.\`,
+      \`Blame Victorian railway engineers, disused arch humidity, and traditional yeast.\`,
+      \`Blame 1968 brutalist architects, concrete suppliers, and municipal shopping boards.\`,
+      \`Blame ancient Saxon warlords, Cotswold stone quarrymen, and pagan Maypole elders.\`,
+      \`Blame the regional taxi rank cartel, local curry house suppliers, and 2am licensing laws.\`,
+      \`Blame over-budget municipal arts committees, abstract sculptors, and highway pothole inspectors.\`,
+      \`Blame dual carriageway traffic engineers, one-way system designers, and navigation satellites.\`,
+      \`Blame North Sea mizzle, shortbread bakery emissions, and 19th-century magistrate orders.\`
     ];
+
+    const idxSlogan    = hashTown(town, 13)  % poolSize;
+    const idxBrochure  = hashTown(town, 37)  % poolSize;
+    const idxTaHead    = hashTown(town, 73)  % poolSize;
+    const idxTaRev     = hashTown(town, 109) % poolSize;
+    const idxSchools   = hashTown(town, 151) % poolSize;
+    const idxCrime     = hashTown(town, 193) % poolSize;
+    const idxWorkforce = hashTown(town, 241) % poolSize;
+    const idxHousing   = hashTown(town, 307) % poolSize;
+    const idxExcuse    = hashTown(town, 373) % poolSize;
 
     return {
       lens: (mode === 'tourist_board' || mode === 'mode3') ? 'multi_lens' : lensId,
@@ -1108,22 +1204,22 @@ const richHtml = `<!DOCTYPE html>
       twinned_with: ['Pripyat', 'Detroit', \`\${town} Platform 4\`],
       motto: 'ROTAMUR ET MANEMUS',
       motto_translation: 'We Turn, and We Remain',
-      excuse: excuses[hash % excuses.length],
+      excuse: excuses[idxExcuse],
       tourist_board: {
-        slogan: slogans[hash % slogans.length],
-        brochure_copy: brochures[hash % brochures.length]
+        slogan: slogans[idxSlogan],
+        brochure_copy: brochures[idxBrochure]
       },
       tripadvisor_audit: {
-        headline: taHeadlines[hash % taHeadlines.length],
-        overall_rating: \`\${((hash % 15) / 10 + 1.0).toFixed(1)} / 5 — Mostly Overcast\`,
-        audit_review: taReviews[hash % taReviews.length]
+        headline: taHeadlines[idxTaHead],
+        overall_rating: \`\${((hashTown(town, 53) % 15) / 10 + 1.0).toFixed(1)} / 5 — Mostly Overcast\`,
+        audit_review: taReviews[idxTaRev]
       },
       customer_reviews: reviews,
       socio_economic: {
-        schools_education: schools[hash % schools.length],
-        crime_order: crime[hash % crime.length],
-        workforce_industry: workforce[hash % workforce.length],
-        housing_property: housing[hash % housing.length]
+        schools_education: schools[idxSchools],
+        crime_order: crime[idxCrime],
+        workforce_industry: workforce[idxWorkforce],
+        housing_property: housing[idxHousing]
       }
     };
   }
@@ -1314,7 +1410,7 @@ const richHtml = `<!DOCTYPE html>
       });
     }
 
-    // Bulletproof Dynamic Renderer — 100% Location Hash Matrix
+    // Bulletproof Dynamic Renderer — 100% Location Bitshift Hash Matrix
     const mode3Container = document.getElementById('mode3-container');
     if (isMode3 || result.tourist_board || result.tripadvisor_audit) {
       const fallbackObj = buildDynamicFallbackResult(location, result.lens || 'proud_of_it', selectedMode);
@@ -1463,4 +1559,4 @@ if (workerJs.startsWith('const INDEX_HTML =')) {
 }
 
 fs.writeFileSync(workerPath, workerJs, 'utf8');
-console.log('Successfully updated code/index.html, index.html, and code/worker.js for Pure Instant Client-Side Variety Generator (501)');
+console.log('Successfully updated code/index.html, index.html, and code/worker.js for Bitshift Hashing & 12-Pattern Variety Engine (601)');
